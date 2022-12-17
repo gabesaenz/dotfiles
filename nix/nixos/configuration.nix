@@ -16,12 +16,27 @@
       <home-manager/nixos>
     ];
 
+  # Optimise Nix Storage
+  nix.settings.auto-optimise-store = true;
+
+  # Garbage Collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  # run if free space is low
+  nix.extraOptions = ''
+    min-free = ${toString (100 * 1024 * 1024)}
+    max-free = ${toString (1024 * 1024 * 1024)}
+  '';
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "NixOS-Gabe"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -37,18 +52,36 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
 
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [ anthy libpinyin ];
+  };
+
+  # Fonts
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    annapurna-sil
+    # (nerdfonts.override { fonts = [ "Noto" ]; })
+    # Yoru AwesomeWM Theme
+    # roboto
+    # material-design-icons
+    # Couldn't find all of them through Nix so let's see if the way they're packaged in the theme works
+  ];
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Enable xmonad window manager
   # services.xserver.windowManager.xmonad.enable = true;
-  services.xserver.windowManager = {
-    xmonad = {
-      enable = true;
+  # services.xserver.windowManager = {
+    # xmonad = {
+      # enable = true;
       #enableContribAndExtras = true;
       #extraPackages = haskellPackages: [
         #haskellPackages.dbus
@@ -59,25 +92,39 @@
         #haskellPackages.containers
       #];
       #config = pkgs.lib.readFile ./xmonad-config/Main.hs;
-    };
-  };
+    # };
+  # };
 
   # LeftWM
-  services.xserver.windowManager.leftwm.enable = true;
+  # services.xserver.windowManager.leftwm.enable = true;
+
+  # AwesomeWM
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.defaultSession = "none+awesome";
+  services.xserver.windowManager.awesome = {
+    enable = true;
+    luaModules = with pkgs.luaPackages; [
+      luarocks # is the package manager for Lua modules
+      luadbi-mysql # Database abstraction layer
+    ];
+  };
 
   # Set default window manager
   # services.xserver.displayManager.defaultSession = "none+xmonad";
-  services.xserver.displayManager.defaultSession = "none+leftwm";
+  # services.xserver.displayManager.defaultSession = "none+leftwm";
+
+  # required by Flatpak (and others?)
+  xdg.portal.enable = true;
 
   # Enable remote desktop
-  #services.xrdp.enable = true;
-  #services.xrdp.defaultWindowManager = "xmonad";
-  #networking.firewall.allowedTCPPorts = [ 3389 ];
+  # services.xrdp.enable = true;
+  # services.xrdp.defaultWindowManager = "awesome";
+  # networking.firewall.allowedTCPPorts = [ 3389 ];
   # Soon: services.xrdp.openFirewall = true;
   # from https://nixos.wiki/wiki/Remote_Desktop
 
   # Disable xterm
-  #services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.desktopManager.xterm.enable = false;
 
   # Set default shell
   programs.fish.enable = true;
@@ -133,11 +180,14 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # VMs
+  virtualisation.lxd.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gabesaenz = {
     isNormalUser = true;
     description = "Gabe Saenz";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "lxd" ];
     shell = pkgs.fish;
   };
 
@@ -147,11 +197,64 @@
     home.packages = with pkgs; [
       firefox
       neovide # neovim GUI
+      rust-motd
+      figlet # used for motd bannder
+      jq # used by motd-on-acid
+
+      # Work - Beginning Sanskrit
+      pandoc
+      libreoffice
+      libwpd
+
+      # Test
+      # (import /home/gabesaenz/hello-test/my-hello.nix)
 
       # Rust
-      rustup
+      # rustup # this stopped working
+      cargo
+      clippy
+      rustc
+      rustfmt
+      rust-analyzer
+      bacon
 
-      # flatpak # for fightcade
+      maestral # dropbox client
+
+      spotify-tui
+
+      # Yoru AwesomeWM Theme
+      # requirements from: https://github.com/rxyhn/yoru/wiki/Detailed-Setup
+      # picom
+      # wezterm
+      # acpi
+      # acpid
+      #acpi_call # I think acpi already handles this?
+      # upower
+      # pipewire, pipewire-pule and pipewire-alsa all seem to be enabled already
+      # rofi
+      # mpd # also enabled as a service
+      # mpdris2
+      # mpc-cli # the guide says "mpc"
+      # ncmpcpp
+      # playerctl
+      # maim
+      # gpick
+      # xclip
+      # jq
+      # brightnessctl
+      # redshift
+      # more requirements from: https://github.com/rxyhn/yoru#wrench--setup
+      # lxappearance # the guide says "lxappearance-gtk3"
+      # inotify-tools
+      # polkit_gnome # the guide says "polkit-gnome"
+      # xdotool
+      # ffmpeg
+      # blueman
+      # alsa-utils
+      # feh
+      # mpv
+      # the guide says "python-mutagen" but I have no idea how to do that
+      # lua # see if this fixes AwesomeWM config issues
 
       # Flutter
       # flutter
@@ -169,7 +272,15 @@
       # ghc # needed for cabal
       # stack
     ];
-    programs.fish.enable = true;
+    programs.fish = {
+      enable = true;
+      functions = {
+        fish_greeting = {
+	        description = "";
+	        body = "";
+	      };
+      };
+    };
     programs.starship.enable = true;
     programs.alacritty.enable = true;
 
@@ -179,7 +290,22 @@
     # programs.neovim.configure = {
     #   # custom config goes here
     # };
+
+    services.spotifyd.enable = true;
+    # services.spotifyd.settings {
+    #   global = {
+    #     bitrate = 320;
+    #   };
+    # }
+
+    # More Yoru AwesomeWM Theme requirements
+    # services.mpd.enable = true;
   };
+
+  # allow insecure packages
+  #nixpkgs.config.permittedInsecurePackages = [
+  #  "electron-9.4.4" # for pomotroid -- which isn't working so this isn't necessary
+  #];
 
   # Enable emacs server
   services.emacs.enable = true;
@@ -206,13 +332,15 @@
   environment.systemPackages = with pkgs; [
     git
 
+    # pomotroid # timer - requires insecure package electron-9.4.4 -- not working 2022-12-14
+
     # xmonad
     dmenu
     gmrun
 
     # LeftWM
-    rofi # default command runner
-    openssl # required for leftwm-theme
+    # rofi # default command runner
+    # openssl # required for leftwm-theme
 
     # doomemacs
     # required dependencies
@@ -228,10 +356,12 @@
     # unfree
     # steam # unfree
     spotify # unfree
+    # dropbox # unfree
+    # dropbox-cli # unfree
   ];
 
   # Steam
-  programs.steam.enable = true;
+  programs.steam.enable = true; # unfree
 
   # flatpak package manager
   services.flatpak.enable = true;
@@ -265,7 +395,7 @@
 
   # Enable automatic upgrades
   system.autoUpgrade.enable = true;
-  # Enable automatic reboot when necessary to finish and upgrade
+  # Enable automatic reboot when necessary to finish an upgrade
   #system.autoUpgrade.allowReboot = true;
 
 }
