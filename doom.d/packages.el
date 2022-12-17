@@ -53,3 +53,6 @@
 ;; from: https://polymode.github.io/
 (unless (package! polymode)
   (package! poly-R))
+
+;; Sanskrit IAST input support
+(package! indian-ext)
