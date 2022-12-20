@@ -63,6 +63,7 @@
     noto-fonts-cjk
     noto-fonts-emoji
     annapurna-sil
+    fira-code # used by Starship prompt
     # (nerdfonts.override { fonts = [ "Noto" ]; })
     # Yoru AwesomeWM Theme
     # roboto
