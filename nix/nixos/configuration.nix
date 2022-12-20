@@ -168,17 +168,22 @@
   };
 
   # Enable bluetooth support
+  hardware.firmware = [ pkgs.rtl8761b-firmware ]; #unfree
   hardware.bluetooth.enable = true;
   hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
     };
   };
+  hardware.bluetooth.package = pkgs.bluezFull;
   # Bluetooth management with blueman
   services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  # Moonlander
+  hardware.keyboard.zsa.enable = true;
 
   # VMs
   virtualisation.lxd.enable = true;
@@ -195,11 +200,35 @@
   home-manager.users.gabesaenz = { pkgs, ... }: {
     home.stateVersion = "22.05";
     home.packages = with pkgs; [
+      # Moonlander
+      wally-cli
+
+      # Typing Games
+      typespeed
+      ttyper
+      toipe
+      klavaro
+      thokr
+      tuxtype
+      tipp10
+
+      # shell tools
+      exa
+      bat
+      neofetch
+
+      # fish plugins
+      fzf
+      fishPlugins.fzf-fish
+
       firefox
       neovide # neovim GUI
       rust-motd
       figlet # used for motd bannder
-      jq # used by motd-on-acid
+      # jq # used by motd-on-acid
+
+      pavucontrol # volume control
+      volumeicon
 
       # Work - Beginning Sanskrit
       pandoc
@@ -220,7 +249,9 @@
 
       maestral # dropbox client
 
-      spotify-tui
+      # spotify frontend
+      spotify-tui # executable is named "spt"
+      ncspot
 
       # Yoru AwesomeWM Theme
       # requirements from: https://github.com/rxyhn/yoru/wiki/Detailed-Setup
@@ -277,9 +308,16 @@
       functions = {
         fish_greeting = {
 	        description = "";
-	        body = "";
+	        body = "rust-motd";
 	      };
       };
+      shellAliases = {
+        ls = "exa -ahl --icons --color-scale --group-directories-first --git";
+        cat = "bat";
+      };
+      # plugins = [
+        # { name = "fzf"; src = pkgs.fishPlugins.fzf-fish.src; }
+      # ];
     };
     programs.starship.enable = true;
     programs.alacritty.enable = true;
@@ -297,6 +335,9 @@
     #     bitrate = 320;
     #   };
     # }
+
+    # hide the mouse cursor when inactive
+    services.unclutter.enable = true;
 
     # More Yoru AwesomeWM Theme requirements
     # services.mpd.enable = true;
@@ -323,6 +364,15 @@
 
   # Enable proprietary nvidia drivers
   services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.screenSection = ''
+    Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+    Option         "AllowIndirectGLXProtocol" "off"
+    Option         "TripleBuffer" "on"
+    Option         "SLI" "AFR"
+  '';
+
+  # Optionally, you may need to select the appropriate driver version for your specific GPU.
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   # Enable opengl
   hardware.opengl.enable = true;
