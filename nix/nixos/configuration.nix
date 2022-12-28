@@ -144,19 +144,11 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  # Bluetooth config for PulseAudio
-  #  not used since PulseAudio needs to be disabled for pipewire to work
-  #hardware.pulseaudio = {
-  #  enable = true;
-  #  extraModules = [ pkgs.pulseaudio-modules-bt ];
-  #  package = pkgs.pulseaudioFull;
-  #};
-  #hardware.pulseaudio.extraConfig = "
-  #  load-module module-switch-on-connect
-  #";
-  hardware.pulseaudio.enable = false;
+  # Pipewire
+  # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
+  sound.enable = false;
+
+  # rtkit is optional but recommended
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -164,22 +156,63 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
+    config.pipewire = {
+      "context.properties" = {
+        #"link.max-buffers" = 64;
+        "link.max-buffers" = 16; # version < 3 clients can't handle more than this
+        "log.level" = 2; # https://docs.pipewire.org/page_daemon.html
+        #"default.clock.rate" = 48000;
+        #"default.clock.quantum" = 1024;
+        #"default.clock.min-quantum" = 32;
+        #"default.clock.max-quantum" = 8192;
+      };
+    };
+    media-session.config.bluez-monitor.rules = [
+      {
+        # Matches all cards
+        matches = [ { "device.name" = "~bluez_card.*"; } ];
+        actions = {
+          "update-props" = {
+            "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+            # mSBC is not expected to work on all headset + adapter combinations.
+            "bluez5.msbc-support" = true;
+            # SBC-XQ is not expected to work on all headset + adapter combinations.
+            "bluez5.sbc-xq-support" = true;
+          };
+        };
+      }
+      {
+        matches = [
+          # Matches all sources
+          { "node.name" = "~bluez_input.*"; }
+          # Matches all outputs
+          { "node.name" = "~bluez_output.*"; }
+        ];
+      }
+    ];
+  };
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+  environment.etc = {
+	  "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.enable-hw-volume"] = true,
+        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+      }
+    '';
   };
 
   # Enable bluetooth support
-  hardware.firmware = [ pkgs.rtl8761b-firmware ]; #unfree
+  # hardware.firmware = [ pkgs.rtl8761b-firmware ]; #unfree
   hardware.bluetooth.enable = true;
   hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
     };
   };
-  hardware.bluetooth.package = pkgs.bluezFull;
+  # hardware.bluetooth.package = pkgs.bluezFull;
   # Bluetooth management with blueman
   services.blueman.enable = true;
 
@@ -211,15 +244,6 @@
       # Moonlander
       wally-cli
 
-      # Typing Games
-      typespeed
-      ttyper
-      toipe
-      klavaro
-      thokr
-      tuxtype
-      tipp10
-
       # shell tools
       exa
       bat
@@ -233,8 +257,7 @@
       chromium
       neovide # neovim GUI
       rust-motd
-      figlet # used for motd bannder
-      # jq # used by motd-on-acid
+      figlet # used for rust-motd banner
 
       pavucontrol # volume control
       volumeicon
@@ -244,11 +267,7 @@
       libreoffice
       libwpd
 
-      # Test
-      # (import /home/gabesaenz/hello-test/my-hello.nix)
-
       # Rust
-      # rustup # this stopped working
       cargo
       clippy
       rustc
@@ -258,59 +277,7 @@
 
       maestral # dropbox client
 
-      # spotify frontend
-      spotify-tui # executable is named "spt"
-      ncspot
-
-      # Yoru AwesomeWM Theme
-      # requirements from: https://github.com/rxyhn/yoru/wiki/Detailed-Setup
-      # picom
-      # wezterm
-      # acpi
-      # acpid
-      #acpi_call # I think acpi already handles this?
-      # upower
-      # pipewire, pipewire-pule and pipewire-alsa all seem to be enabled already
-      # rofi
-      # mpd # also enabled as a service
-      # mpdris2
-      # mpc-cli # the guide says "mpc"
-      # ncmpcpp
-      # playerctl
-      # maim
-      # gpick
-      # xclip
-      # jq
-      # brightnessctl
-      # redshift
-      # more requirements from: https://github.com/rxyhn/yoru#wrench--setup
-      # lxappearance # the guide says "lxappearance-gtk3"
-      # inotify-tools
-      # polkit_gnome # the guide says "polkit-gnome"
-      # xdotool
-      # ffmpeg
-      # blueman
-      # alsa-utils
-      # feh
-      # mpv
-      # the guide says "python-mutagen" but I have no idea how to do that
-      # lua # see if this fixes AwesomeWM config issues
-
-      # Flutter
-      # flutter
-      # Flutter Linux requirements
-      # clang
-      # cmake
-      # gtk3
-      # ninja
-      # pkg-config
-
-      # xmonad
-      # haskellPackages.haskell-language-server
-      # haskellPackages.hoogle
-      # cabal-install
-      # ghc # needed for cabal
-      # stack
+      ncspot # spotify frontend
     ];
     programs.fish = {
       enable = true;
@@ -348,14 +315,21 @@
     # hide the mouse cursor when inactive
     services.unclutter.enable = true;
 
-    # More Yoru AwesomeWM Theme requirements
-    # services.mpd.enable = true;
+    # Adjust screen temperature depending on the time of day
+    services.redshift.enable = true;
+    services.redshift.provider = "geoclue2";
+
+    # Support for buttons on Bluetooth headsets
+    systemd.user.services.mpris-proxy = {
+      Unit.Description = "Mpris proxy";
+      Unit.After = [ "network.target" "sound.target" ];
+      Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+      Install.WantedBy = [ "default.target" ];
+    };
   };
 
-  # allow insecure packages
-  #nixpkgs.config.permittedInsecurePackages = [
-  #  "electron-9.4.4" # for pomotroid -- which isn't working so this isn't necessary
-  #];
+    # Location information
+    services.geoclue2.enable = true;
 
   # Enable emacs server
   services.emacs.enable = true;
@@ -392,20 +366,6 @@
     git
     google-chrome # unfree
 
-    # text editors
-    kibi
-    gnome.gedit
-
-    # pomotroid # timer - requires insecure package electron-9.4.4 -- not working 2022-12-14
-
-    # xmonad
-    dmenu
-    gmrun
-
-    # LeftWM
-    # rofi # default command runner
-    # openssl # required for leftwm-theme
-
     # doomemacs
     # required dependencies
     ripgrep
@@ -417,11 +377,6 @@
 
     cachix # access community binary caches, for example: the emacs overlay
 
-    # unfree
-    # steam # unfree
-    spotify # unfree
-    # dropbox # unfree
-    # dropbox-cli # unfree
   ];
 
   # Steam
