@@ -53,8 +53,9 @@
   i18n.defaultLocale = "en_US.utf8";
 
   i18n.inputMethod = {
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [ anthy libpinyin ];
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-gtk fcitx5-m17n fcitx5-configtool fcitx5-chinese-addons ];
+    # ibus.engines = with pkgs.ibus-engines; [ anthy libpinyin ];
   };
 
   # Fonts
@@ -63,8 +64,9 @@
     noto-fonts-cjk
     noto-fonts-emoji
     annapurna-sil
-    fira-code # used by Starship prompt
-    # (nerdfonts.override { fonts = [ "Noto" ]; })
+    fira-code
+    fira-code-symbols
+    (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
     # Yoru AwesomeWM Theme
     # roboto
     # material-design-icons
@@ -116,6 +118,7 @@
 
   # required by Flatpak (and others?)
   xdg.portal.enable = true;
+  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
 
   # Enable remote desktop
   # services.xrdp.enable = true;
@@ -189,6 +192,10 @@
   # VMs
   virtualisation.lxd.enable = true;
 
+  # Groups
+  # users.groups.plugdev = { };
+  # users.groups.uaccess = { };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gabesaenz = {
     isNormalUser = true;
@@ -223,6 +230,7 @@
       fishPlugins.fzf-fish
 
       firefox
+      chromium
       neovide # neovim GUI
       rust-motd
       figlet # used for motd bannder
@@ -382,6 +390,11 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
+    google-chrome # unfree
+
+    # text editors
+    kibi
+    gnome.gedit
 
     # pomotroid # timer - requires insecure package electron-9.4.4 -- not working 2022-12-14
 
