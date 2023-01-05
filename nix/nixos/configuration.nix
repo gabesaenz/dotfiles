@@ -223,7 +223,7 @@
   hardware.keyboard.zsa.enable = true;
 
   # VMs
-  virtualisation.lxd.enable = true;
+  # virtualisation.lxd.enable = true; # requires "lxd" user group
 
   # Groups
   # users.groups.plugdev = { };
@@ -233,7 +233,7 @@
   users.users.gabesaenz = {
     isNormalUser = true;
     description = "Gabe Saenz";
-    extraGroups = [ "networkmanager" "wheel" "lxd" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
   };
 
@@ -278,7 +278,21 @@
       maestral # dropbox client
 
       ncspot # spotify frontend
+
+      # Media players
+      clementine
+      kaffeine
+      sayonara
+
+      # Retroarch
+      (retroarch.override {
+        cores = [
+          libretro.fbneo
+        ];
+      })
+      libretro.fbneo
     ];
+
     programs.fish = {
       enable = true;
       functions = {
@@ -365,6 +379,7 @@
   environment.systemPackages = with pkgs; [
     git
     google-chrome # unfree
+    unzip
 
     # doomemacs
     # required dependencies
@@ -383,7 +398,7 @@
   programs.steam.enable = true; # unfree
 
   # flatpak package manager
-  services.flatpak.enable = true;
+  # services.flatpak.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
