@@ -1,7 +1,7 @@
-# Font
 font:
   normal:
     family: Noto Sans Mono
-    # family: Fira Code
-  # size: 16.0
-  size: 14.0
+  size: 16.0
+
+window:
+  decorations: buttonless
