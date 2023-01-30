@@ -37,10 +37,7 @@
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
   programs.fish.enable = true;
-
-  # services.yabai.enable = true;
-  # services.yabai.package = pkgs.yabai;
-  # services.skhd.enable = true;
+  environment.shells = with pkgs; [ fish ];
 
   services.yabai = {
     enable = true;
@@ -90,7 +87,14 @@
   homebrew.brews = [
     {
       name = "emacs-mac";
-      args = [ "with-modules" "with-native-compilation" ];
+      args = [
+        "with-dbus"
+        "with-imagemagick"
+        "with-librsvg"
+        "with-native-compilation"
+        "with-no-title-bars"
+        "with-modules" # not sure if this is necessary
+      ];
       # restart_service = true;
       # link = true; # default behavior should work?
     }
@@ -100,7 +104,9 @@
     "alacritty"
     "dropbox"
     "firefox"
+    "flux"
     "google-chrome"
+    "libreoffice" # work
     "spotify"
   ];
   # homebrew.onActivation.cleanup = "uninstall";
@@ -112,22 +118,72 @@
   users.users.gabesaenz = {
     name = "Gabe Saenz";
     home = "/Users/gabesaenz";
+    shell = pkgs.fish;
   };
   home-manager.users.gabesaenz = { pkgs, ... }: {
     home.stateVersion = "22.05";
     home.packages = with pkgs; [
+      # shell tools
       exa
       bat
-      # adobe-reader # i686 Linux package (not supported) 2023-01-23
-      # neovide
-      # alacritty
-      # firefox # not supported on darwin 2023-01-22
-      # rustup
-      # rustdesk # not supported on darwin 2022-12-02
-      # pomotroid # not supported on darwin 2022-12-12
+      neofetch
+      rust-motd # used in fish config !! needs a config (copy from NixOS machine)
+      figlet # used for rust-motd banner
+
+      # media-downloader # broken 2023-01-30
+
+      # Work - Beginning Sanskrit
+      pandoc
+      libwpd
+
+      # Rust
+      cargo
+      clippy
+      rustc
+      rustfmt
+      rust-analyzer
+      bacon
+
+      # neovide # neovim frontend
     ];
+
+    programs.fish = {
+      enable = true;
+      functions = {
+        fish_greeting = {
+	        description = "";
+	        body = "rust-motd";
+	      };
+      };
+      shellAliases = {
+        ls = "exa -ahl --icons --color-scale --group-directories-first --git";
+        cat = "bat";
+      };
+      # plugins = [
+      # { name = "fzf"; src = pkgs.fishPlugins.fzf-fish.src; }
+      # ];
+    };
     programs.starship.enable = true;
-    programs.fish.enable = true;
+    programs.alacritty.enable = true;
+    programs.alacritty.settings = {
+      font = {
+        normal = {
+          family = "NotoSansMono Nerd Font";
+        };
+        size = 16.0;
+      };
+
+      window = {
+        decorations = "buttonless";
+      };
+    };
+
+    # programs.neovim.enable = true;
+    # programs.neovim.viAlias = true;
+    # programs.neovim.vimAlias = true;
+    # programs.neovim.configure = {
+    #   # custom config goes here
+    # };
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
