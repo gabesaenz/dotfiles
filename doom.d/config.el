@@ -24,9 +24,9 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
-(setq doom-font (font-spec :family "Noto Sans Mono" :size 24)
-      doom-serif-font (font-spec :family "Noto Serif" :size 24)
-      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 24)
+(setq doom-font (font-spec :family "NotoSansMono Nerd Font" :size 24)
+      doom-serif-font (font-spec :family "NotoSerif Nerd Font" :size 24)
+      doom-variable-pitch-font (font-spec :family "NotoSerif Nerd Font" :size 24)
       doom-unicode-font (font-spec :family "Annapurna SIL" :size 36))
 
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
