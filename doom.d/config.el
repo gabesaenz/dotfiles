@@ -24,10 +24,10 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
-(setq doom-font (font-spec :family "Noto Sans Mono" :size 32)
-      doom-serif-font (font-spec :family "Noto Serif" :size 32)
-      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 32)
-      doom-unicode-font (font-spec :family "Annapurna SIL" :size 42))
+(setq doom-font (font-spec :family "Noto Sans Mono" :size 24)
+      doom-serif-font (font-spec :family "Noto Serif" :size 24)
+      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 24)
+      doom-unicode-font (font-spec :family "Annapurna SIL" :size 36))
 
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
