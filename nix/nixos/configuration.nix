@@ -254,7 +254,8 @@
       fishPlugins.fzf-fish
 
       firefox
-      chromium
+      # chromium
+      evince # document viewer (pdf viewer)
       neovide # neovim GUI
       rust-motd
       figlet # used for rust-motd banner
@@ -262,9 +263,23 @@
       pavucontrol # volume control
       volumeicon
 
+      # Whitenoise
+      gnaural
+      blanket
+
+      # File manager
+      # sfm
+      # vifm
+      gnome.nautilus
+
+      # Media downloader
+      # tartube
+      # smtube # requires an insecure package
+      media-downloader
+
       # Work - Beginning Sanskrit
       pandoc
-      libreoffice
+      # libreoffice # build error 2023-01-27
       libwpd
 
       # Rust
@@ -280,17 +295,20 @@
       ncspot # spotify frontend
 
       # Media players
-      clementine
-      kaffeine
-      sayonara
+      # clementine
+      # kaffeine
+      # sayonara
+      # mplayer
+      # mpv
+      smplayer
 
       # Retroarch
-      (retroarch.override {
-        cores = [
-          libretro.fbneo
-        ];
-      })
-      libretro.fbneo
+      # (retroarch.override {
+        # cores = [
+          # libretro.fbneo
+        # ];
+      # })
+      # libretro.fbneo
     ];
 
     programs.fish = {
@@ -359,6 +377,11 @@
   # required for nvidia drivers
   nixpkgs.config.allowUnfree = true;
 
+  # Allow insecure packages
+  # nixpkgs.config.permittedInsecurePackages = [
+    # "adobe-reader-9.5.5"
+  # ];
+
   # Enable proprietary nvidia drivers
   services.xserver.videoDrivers = [ "nvidia" ];
   services.xserver.screenSection = ''
@@ -380,6 +403,7 @@
     git
     google-chrome # unfree
     unzip
+    # adobe-reader # unfree and insecure (added to insecure whitelist)
 
     # doomemacs
     # required dependencies
@@ -395,7 +419,11 @@
   ];
 
   # Steam
-  programs.steam.enable = true; # unfree
+  # programs.steam.enable = true; # unfree
+
+  # Jellyfin media server
+  services.jellyfin.enable = true;
+  services.jellyfin.openFirewall = true;
 
   # flatpak package manager
   # services.flatpak.enable = true;
