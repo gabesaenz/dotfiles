@@ -51,7 +51,7 @@ prefix = "Up"
 # [fail_2_ban]
 # jails = ["sshd", "anotherjail"]
 
-[last_login]
-gabesaenz = 5
+# [last_login]
+# gabesaenz = 5
 
 [last_run]
