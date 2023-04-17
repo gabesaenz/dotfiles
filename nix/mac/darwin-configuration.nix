@@ -144,7 +144,8 @@
   };
   # homebrew.onActivation.cleanup = "uninstall";
   # homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data
-  # homebrew.onActivation.upgrade = true;
+  homebrew.onActivation.autoUpdate = true;
+  homebrew.onActivation.upgrade = true;
 
   # Home Manager
   imports = [ <home-manager/nix-darwin> ];
