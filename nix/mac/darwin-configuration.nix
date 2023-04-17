@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  # Networking
+  networking.hostName = "Gabe-Mac"; # Define your hostname.
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -33,6 +36,9 @@
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
+
+  # Enable nix command
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
@@ -82,8 +88,23 @@
       '';
   };
 
+  services.skhd = {
+    enable = true;
+    skhdConfig = ''
+      # open terminal
+      cmd - return : alacritty
+
+      # emacs
+      cmd - e : emacsclient -c -a ""
+    '';
+  };
+
   homebrew.enable = true;
-  homebrew.taps = [ "homebrew/cask" "railwaycat/emacsmacport" ];
+  homebrew.taps = [
+    "homebrew/cask"
+    "homebrew/services"
+    "railwaycat/emacsmacport"
+  ];
   homebrew.brews = [
     {
       name = "emacs-mac";
@@ -96,6 +117,7 @@
         "with-modules" # not sure if this is necessary
       ];
       # restart_service = true;
+      # start_service = true;
       # link = true; # default behavior should work?
     }
   ];
@@ -107,9 +129,21 @@
     "flux"
     "google-chrome"
     "libreoffice" # work
+    "noisy" # whitenoise generator
     "spotify"
+    "vlc" # media player
+    "whatsapp"
+    "zoom" # video conferencing
   ];
+  homebrew.masApps = { # Mac App Store
+    "Horo - Timer for Menu Bar" = 1437226581;
+    "Human Japanese" = 412213489;
+    "Human Japanese Intermediate" = 648625032;
+    # "Logic Pro" = 634148309; # large (1GB+)
+    "Microsoft Word" = 462054704; # large (1GB+) # work
+  };
   # homebrew.onActivation.cleanup = "uninstall";
+  # homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data
   # homebrew.onActivation.upgrade = true;
 
   # Home Manager
@@ -123,14 +157,12 @@
   home-manager.users.gabesaenz = { pkgs, ... }: {
     home.stateVersion = "22.05";
     home.packages = with pkgs; [
-      # shell tools
+      # Shell tools
       exa
       bat
       neofetch
-      rust-motd # used in fish config !! needs a config (copy from NixOS machine)
+      rust-motd # used in fish config
       figlet # used for rust-motd banner
-
-      # media-downloader # broken 2023-01-30
 
       # Work - Beginning Sanskrit
       pandoc
@@ -144,7 +176,12 @@
       rust-analyzer
       bacon
 
-      # neovide # neovim frontend
+      # Media
+      # vlc # not supported on ‘x86_64-darwin’
+
+      # Whitenoise
+      # sbagen # binaural audio generator # not supported on darwin 2023-01-31
+      # blanket # background noise mixer # not supported on darwin 2023-01-31
     ];
 
     programs.fish = {
@@ -170,20 +207,17 @@
         normal = {
           family = "NotoSansMono Nerd Font";
         };
-        size = 16.0;
+        size = 18.0;
       };
-
-      window = {
-        decorations = "buttonless";
-      };
+      window.decorations = "buttonless";
+      shell.program = "fish";
     };
 
-    # programs.neovim.enable = true;
-    # programs.neovim.viAlias = true;
-    # programs.neovim.vimAlias = true;
-    # programs.neovim.configure = {
-    #   # custom config goes here
-    # };
+    # launchd.agents = {
+    #     name = "emacs-daemon";
+    #     command = "/usr/local/opt/emacs-mac/Emacs.app/Contents/MacOS/Emacs --daemon";
+    #     serviceConfig.RunAtLoad = true;
+    #   };
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
