@@ -123,24 +123,25 @@
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
-    "alacritty"
-    "dropbox"
-    "firefox"
-    "flux"
-    "google-chrome"
+    "alacritty" # terminal emulator
+    "dropbox" # cloud storage
+    "firefox" # web browser
+    "flux" # nighttime colorshift
+    "google-chrome" # web browser
     "libreoffice" # work
     "noisy" # whitenoise generator
-    "spotify"
+    "spotify" # music streaming
+    "telegram" # messaging
     "vlc" # media player
-    "whatsapp"
+    "whatsapp" # messaging
     "zoom" # video conferencing
   ];
   homebrew.masApps = { # Mac App Store
-    "Horo - Timer for Menu Bar" = 1437226581;
-    "Human Japanese" = 412213489;
-    "Human Japanese Intermediate" = 648625032;
-    # "Logic Pro" = 634148309; # large (1GB+)
-    "Microsoft Word" = 462054704; # large (1GB+) # work
+    "Horo - Timer for Menu Bar" = 1437226581; # timer
+    "Human Japanese" = 412213489; # Japanese textbook
+    "Human Japanese Intermediate" = 648625032; # Japanese textbook
+    # "Logic Pro" = 634148309; # audio editor # large (1GB+)
+    "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
   # homebrew.onActivation.cleanup = "uninstall";
   # homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data
