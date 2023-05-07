@@ -16,7 +16,8 @@ command = "hostname | figlet -f slant"
 # url = "https://wttr.in/Leander,TX" # full report
 # url = "https://wttr.in/Leander,TX?0" # for the current only
 # url = "https://wttr.in/Leander,TX?uFn1q&lang=de" # u -> US units
-url = "https://wttr.in/Leander,TX?Fn1q&lang=de"
+# url = "https://wttr.in/Leander,TX?Fn1q&lang=de"
+url = "https://wttr.in/Bielefeld,DE?Fn1q&lang=de"
 # proxy = "http://proxy:8080"
 
 # [service_status]
