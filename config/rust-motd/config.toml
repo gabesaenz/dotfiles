@@ -30,8 +30,8 @@ url = "https://wttr.in/Bielefeld,DE?Fn1q&lang=de"
 # "/nextcloud-nextcloud-1" = "Nextcloud"
 # "/nextcloud-nextcloud-mariadb-1" = "Nextcloud Database"
 
-[uptime]
-prefix = "Up"
+# [uptime]
+# prefix = "Up"
 
 # [user_service_status]
 # gpg-agent = "gpg-agent"
@@ -55,4 +55,4 @@ prefix = "Up"
 # [last_login]
 # gabesaenz = 5
 
-[last_run]
+# [last_run]
