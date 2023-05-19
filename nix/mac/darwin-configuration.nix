@@ -166,6 +166,25 @@
       rust-motd # used in fish config
       figlet # used for rust-motd banner
 
+      # Spellchecking - used by emacs
+      (aspellWithDicts (dicts: with dicts; [
+        en # English
+        en-computers # English Computer Jargon
+        en-science # English Scientific Jargon
+        la # Latin
+        el # Greek
+        grc # Ancient Greek
+        de # German
+        de-alt # German Old-Spelling
+      ]))
+      hunspell
+      # hunspell dictionaries
+      mythes # thesaurus
+      hunspellDicts.en_US-large # English (United States) Large
+      hunspellDicts.en_GB-large # English (United Kingdom) Large
+      hunspellDicts.de_DE # German (Germany)
+      enchant
+
       # Work - Beginning Sanskrit
       pandoc
       libwpd

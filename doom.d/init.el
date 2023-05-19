@@ -16,8 +16,8 @@
 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
-       ;;chinese
-       ;;japanese
+       chinese
+       japanese
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
@@ -80,9 +80,9 @@
        ;;vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       ;;syntax              ; tasing you for every semicolon you forget
-       ;;(spell +flyspell) ; tasing you for misspelling mispelling
-       ;;grammar           ; tasing grammar mistake every you make
+       syntax              ; tasing you for every semicolon you forget
+       (spell +enchant)    ; tasing you for misspelling mispelling
+       grammar             ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
