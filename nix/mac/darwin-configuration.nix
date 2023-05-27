@@ -110,14 +110,15 @@
       name = "emacs-mac";
       args = [
         "with-dbus"
+        "with-glib"
         "with-imagemagick"
         "with-librsvg"
         "with-native-compilation"
         "with-no-title-bars"
         "with-modules" # not sure if this is necessary
       ];
-      # restart_service = true;
-      # start_service = true;
+      # restart_service = true; # this doesn't have a service
+      # start_service = true; # this doesn't have a service
       # link = true; # default behavior should work?
     }
   ];
@@ -127,6 +128,7 @@
     "dropbox" # cloud storage
     "firefox" # web browser
     "flux" # nighttime colorshift
+    # "goldendict" # dictionary
     "google-chrome" # web browser
     "libreoffice" # work
     "noisy" # whitenoise generator
