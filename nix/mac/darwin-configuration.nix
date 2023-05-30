@@ -134,6 +134,7 @@
     "noisy" # whitenoise generator
     "spotify" # music streaming
     "telegram" # messaging
+    "vitalsource-bookshelf" # textbook ebook reader
     "vlc" # media player
     "whatsapp" # messaging
     "zoom" # video conferencing
