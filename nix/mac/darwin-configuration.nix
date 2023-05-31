@@ -200,6 +200,9 @@
       rust-analyzer
       bacon
 
+      # PDF
+      djvu2pdf # convert djvu to pdf
+
       # Media
       # vlc # not supported on ‘x86_64-darwin’
 
