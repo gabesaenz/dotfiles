@@ -132,6 +132,7 @@
     "google-chrome" # web browser
     "libreoffice" # work
     "noisy" # whitenoise generator
+    "the-unarchiver" # archive manager
     "spotify" # music streaming
     "telegram" # messaging
     "vitalsource-bookshelf" # textbook ebook reader
