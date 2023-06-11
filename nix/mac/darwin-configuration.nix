@@ -167,8 +167,6 @@
       exa
       bat
       neofetch
-      rust-motd # used in fish config
-      figlet # used for rust-motd banner
 
       # Spellchecking - used by emacs
       (aspellWithDicts (dicts: with dicts; [
@@ -217,7 +215,7 @@
       functions = {
         fish_greeting = {
 	        description = "";
-	        body = "rust-motd";
+	        body = "";
 	      };
       };
       shellAliases = {
