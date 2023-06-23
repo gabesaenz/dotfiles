@@ -128,7 +128,6 @@
     "dropbox" # cloud storage
     "firefox" # web browser
     "flux" # nighttime colorshift
-    # "goldendict" # dictionary
     "google-chrome" # web browser
     "libreoffice" # work
     "noisy" # whitenoise generator
@@ -142,9 +141,7 @@
   ];
   homebrew.masApps = { # Mac App Store
     "Horo - Timer for Menu Bar" = 1437226581; # timer
-    "Human Japanese" = 412213489; # Japanese textbook
-    "Human Japanese Intermediate" = 648625032; # Japanese textbook
-    # "Logic Pro" = 634148309; # audio editor # large (1GB+)
+    "Logic Pro" = 634148309; # audio editor # large (1GB+)
     "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
   # homebrew.onActivation.cleanup = "uninstall";
