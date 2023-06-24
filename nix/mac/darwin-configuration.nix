@@ -3,9 +3,19 @@
 {
   # Nix settings
 
+  # Channels
+  # darwin https://github.com/LnL7/nix-darwin/archive/master.tar.gz
+  # home-manager https://github.com/nix-community/home-manager/archive/master.tar.gz
+  # nixpkgs https://nixos.org/channels/nixpkgs-unstable
+  # Update them with: nix-channel --update
+  # Also update the root channels with: sudo -i nix-channel --update
+
   # Use a custom configuration.nix location.
   # see: https://github.com/LnL7/nix-darwin/wiki/Changing-the-configuration.nix-location
-  # $ darwin-rebuild switch -I darwin-config=$HOME/dotfiles/nix/mac/darwin-configuration.nix
+  # Run this the first time:
+  # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/nix/mac/darwin-configuration.nix
+  # Then run this any time after that:
+  # nix-channel --update;darwin-rebuild switch
   environment.darwinConfig = "$HOME/dotfiles/nix/mac/darwin-configuration.nix";
 
   # Optimize the store
@@ -175,7 +185,7 @@
   imports = [ <home-manager/nix-darwin> ];
 
   users.users.gabesaenz = {
-    name = "Gabe Saenz";
+    # name = "Gabe Saenz"; # this was causing an error during darwin-rebuild switch
     home = "/Users/gabesaenz";
     shell = pkgs.fish;
   };
