@@ -27,7 +27,11 @@
 (setq doom-font (font-spec :family "NotoSansMono Nerd Font" :size 24)
       doom-serif-font (font-spec :family "NotoSerif Nerd Font" :size 24)
       doom-variable-pitch-font (font-spec :family "NotoSerif Nerd Font" :size 24)
-      doom-unicode-font (font-spec :family "Annapurna SIL" :size 36))
+      ;; doom-unicode-font (font-spec :family "Annapurna SIL" :size 42))
+      doom-unicode-font (font-spec :family "Noto Sans" :size 42))
+
+(after! unicode-fonts
+  (push "Annapurna SIL" (cadr (assoc "Devanagari" unicode-fonts-block-font-mapping))))
 
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
