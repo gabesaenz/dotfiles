@@ -1,10 +1,43 @@
 { config, pkgs, ... }:
 
 {
+  # Nix settings
+
   # Use a custom configuration.nix location.
   # see: https://github.com/LnL7/nix-darwin/wiki/Changing-the-configuration.nix-location
   # $ darwin-rebuild switch -I darwin-config=$HOME/dotfiles/nix/mac/darwin-configuration.nix
   environment.darwinConfig = "$HOME/dotfiles/nix/mac/darwin-configuration.nix";
+
+  # Optimize the store
+  # https://nixos.wiki/wiki/Storage_optimization#Optimising_the_store
+  nix.settings.auto-optimise-store = true;
+
+  # Garbage collection
+  # https://nixos.wiki/wiki/Storage_optimization#Automation
+  # Also run these commands to manually clean up garbage:
+  # nix-collect-garbage -d
+  # sudo nix-collect-garbage -d
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 0; Minute = 0; };
+    options = "--delete-older-than 30d";
+  };
+  nix.extraOptions = ''
+  min-free = ${toString (100 * 1024 * 1024)}
+  max-free = ${toString (1024 * 1024 * 1024)}
+  '';
+
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable = true;
+  nix.package = pkgs.nix;
+
+  # Enable nix command
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Create /etc/zshrc that loads the nix-darwin environment.
+  programs.zsh.enable = true;  # default shell on catalina
+  programs.fish.enable = true;
+  environment.shells = with pkgs; [ fish ];
 
   # Networking
   networking.hostName = "Gabe-Mac"; # Define your hostname.
@@ -33,22 +66,6 @@
     # doom-emacs
     emacs-all-the-icons-fonts
   ];
-
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
-
-  # Enable nix command
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
-  programs.fish.enable = true;
-  environment.shells = with pkgs; [ fish ];
 
   services.yabai = {
     enable = true;
