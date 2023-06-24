@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  # Use a custom configuration.nix location.
+  # see: https://github.com/LnL7/nix-darwin/wiki/Changing-the-configuration.nix-location
+  # $ darwin-rebuild switch -I darwin-config=$HOME/dotfiles/nix/mac/darwin-configuration.nix
+  environment.darwinConfig = "$HOME/dotfiles/nix/mac/darwin-configuration.nix";
+
   # Networking
   networking.hostName = "Gabe-Mac"; # Define your hostname.
 
