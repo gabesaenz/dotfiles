@@ -127,7 +127,7 @@
       cmd - return : alacritty
 
       # emacs
-      cmd - e : emacsclient -c -a ""
+      # cmd - e : emacsclient -c -a "" # this doesn't work
     '';
   };
 
