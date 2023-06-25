@@ -121,3 +121,20 @@
 
 ;; disable smartparens/automatic parentheses completion
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+
+;; whitespace
+;; set white space options
+(setq whitespace-style '(
+                         face
+                         indentation
+                         tabs
+                         tab-mark
+                         ;; spaces
+                         ;; space-mark
+                         newline
+                         newline-mark
+                         trailing
+                         ;; lines-tail
+                         ))
+;; reload white space options
+(global-whitespace-toggle-options '(whitespace-style))
