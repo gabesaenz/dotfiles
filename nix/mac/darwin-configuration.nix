@@ -93,7 +93,7 @@
     enable = true;
     skhdConfig = ''
       # open terminal
-      cmd - return : alacritty
+      cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
     '';
   };
   services.yabai = {
@@ -130,7 +130,6 @@
       right_padding                = 2;
       window_gap                   = 2;
     };
-
     extraConfig = ''
         # rules
         yabai -m rule --add app='System Preferences' manage=off
