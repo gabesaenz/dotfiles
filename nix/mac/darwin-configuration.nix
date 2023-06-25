@@ -60,7 +60,18 @@
       ripgrep
       coreutils # optional
       fd # optional
-      fontconfig # added because of doom doctor warning
+      # doom-emacs doom doctor suggestions
+      fontconfig
+      cmigemo
+      gnugrep # gnu pcre warning
+      coreutils-prefixed # gnu ls warning
+      nixfmt
+      shellcheck
+      nodePackages.stylelint
+      nodePackages.js-beautify
+      emacsPackages.mbsync
+      offlineimap
+      mu
   ];
 
   # Fonts
@@ -72,11 +83,19 @@
     # Devanagari
     annapurna-sil
     # nerd fonts
-    (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
-    # doom-emacs
-    emacs-all-the-icons-fonts
+    (nerdfonts.override { fonts = [
+      "Noto"
+      "FiraCode"
+    ]; })
   ];
 
+  services.skhd = {
+    enable = true;
+    skhdConfig = ''
+      # open terminal
+      cmd - return : alacritty
+    '';
+  };
   services.yabai = {
     enable = true;
     package = pkgs.yabai;
@@ -120,17 +139,6 @@
       '';
   };
 
-  services.skhd = {
-    enable = true;
-    skhdConfig = ''
-      # open terminal
-      cmd - return : alacritty
-
-      # emacs
-      # cmd - e : emacsclient -c -a "" # this doesn't work
-    '';
-  };
-
   homebrew.enable = true;
   homebrew.taps = [
     "homebrew/cask"
@@ -138,6 +146,12 @@
     "railwaycat/emacsmacport"
   ];
   homebrew.brews = [
+    {
+      # doom emacs dependency (fixes doom doctor warning)
+      name = "dbus";
+      restart_service = true;
+      start_service = true;
+    }
     {
       name = "emacs-mac";
       args = [
@@ -149,10 +163,8 @@
         "with-no-title-bars"
         "with-modules" # not sure if this is necessary
       ];
-      # restart_service = true; # this doesn't have a service
-      # start_service = true; # this doesn't have a service
-      # link = true; # default behavior should work?
     }
+    "npm" # doom-emacs dependency
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
@@ -162,6 +174,7 @@
     "flux" # nighttime colorshift
     "google-chrome" # web browser
     "libreoffice" # work
+    "iina" # media player
     "noisy" # whitenoise generator
     "the-unarchiver" # archive manager
     "spotify" # music streaming
@@ -176,8 +189,8 @@
     "Logic Pro" = 634148309; # audio editor # large (1GB+)
     "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
-  # homebrew.onActivation.cleanup = "uninstall";
-  # homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data
+  # homebrew.onActivation.cleanup = "uninstall"; # disabled as it deleted dependencies
+  # homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data # disabled as it deleted dependencies
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.upgrade = true;
 
@@ -230,13 +243,6 @@
 
       # PDF
       djvu2pdf # convert djvu to pdf
-
-      # Media
-      # vlc # not supported on ‘x86_64-darwin’
-
-      # Whitenoise
-      # sbagen # binaural audio generator # not supported on darwin 2023-01-31
-      # blanket # background noise mixer # not supported on darwin 2023-01-31
     ];
 
     programs.fish = {
@@ -251,9 +257,6 @@
         ls = "exa -ahl --icons --color-scale --group-directories-first --git";
         cat = "bat";
       };
-      # plugins = [
-      # { name = "fzf"; src = pkgs.fishPlugins.fzf-fish.src; }
-      # ];
     };
     programs.starship.enable = true;
     programs.alacritty.enable = true;
@@ -267,12 +270,6 @@
       window.decorations = "buttonless";
       shell.program = "fish";
     };
-
-    # launchd.agents = {
-    #     name = "emacs-daemon";
-    #     command = "/usr/local/opt/emacs-mac/Emacs.app/Contents/MacOS/Emacs --daemon";
-    #     serviceConfig.RunAtLoad = true;
-    #   };
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
