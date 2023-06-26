@@ -44,6 +44,11 @@
   # Enable nix command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Environment variables
+  environment.variables = {
+    DOOMDIR = "$HOME/dotfiles/.config/.doom.d"; # doom emacs config folder
+  };
+
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
   programs.fish.enable = true;
@@ -55,12 +60,12 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-      # doom-emacs dependencies
+      # doom emacs dependencies
       git
       ripgrep
       coreutils # optional
       fd # optional
-      # doom-emacs doom doctor suggestions
+      # doom emacs doom doctor suggestions
       fontconfig
       cmigemo
       gnugrep # gnu pcre warning
@@ -163,7 +168,7 @@
         "with-modules" # not sure if this is necessary
       ];
     }
-    "npm" # doom-emacs dependency
+    "npm" # doom emacs dependency
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
