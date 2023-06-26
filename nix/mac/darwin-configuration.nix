@@ -85,7 +85,7 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    # Devanagari
+    # Devanāgarī
     annapurna-sil
     # nerd fonts
     (nerdfonts.override { fonts = [
