@@ -54,6 +54,14 @@
   programs.fish.enable = true;
   environment.shells = with pkgs; [ fish ];
 
+  # Mac settings
+
+  # Finder
+  # Show all file extensions in Finder.
+  system.defaults.finder.AppleShowAllExtensions = true;
+  # Always show hidden files.
+  system.defaults.finder.AppleShowAllFiles = true;
+
   # Networking
   networking.hostName = "Gabe-Mac"; # Define your hostname.
 
@@ -66,7 +74,6 @@
       coreutils # optional
       fd # optional
       # doom emacs doom doctor suggestions
-      fontconfig
       cmigemo
       gnugrep # gnu pcre warning
       coreutils-prefixed # gnu ls warning
@@ -248,6 +255,8 @@
       # PDF
       djvu2pdf # convert djvu to pdf
     ];
+
+    fonts.fontconfig.enable = true; # doom emacs dependency
 
     programs.fish = {
       enable = true;
