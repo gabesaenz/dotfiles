@@ -129,8 +129,8 @@
                          indentation
                          tabs
                          tab-mark
-                         ;; spaces
-                         ;; space-mark
+                         spaces
+                         space-mark
                          newline
                          newline-mark
                          trailing
