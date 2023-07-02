@@ -270,6 +270,14 @@
         ls = "exa -ahl --icons --color-scale --group-directories-first --git";
         cat = "bat";
       };
+      shellInit = ''
+        # add doom emacs bin to $PATH
+        fish_add_path ~/.emacs.d/bin
+
+        # add tlmgr to $PATH
+        # requires brew cask "basictex"
+        fish_add_path /usr/local/texlive/2023basic/bin/universal-darwin
+      '';
     };
     programs.starship.enable = true;
     programs.alacritty.enable = true;
