@@ -180,6 +180,7 @@
   homebrew.casks = [
     "adobe-acrobat-reader" # work
     "alacritty" # terminal emulator
+    "basictex" # minimal texlive distribution, provides tlmgr
     "dropbox" # cloud storage
     "firefox" # web browser
     "flux" # nighttime colorshift
