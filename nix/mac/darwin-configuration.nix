@@ -222,6 +222,9 @@
       bat
       neofetch
 
+      # Text editing
+      helix
+
       # Spellchecking - used by emacs
       (aspellWithDicts (dicts: with dicts; [
         en # English
