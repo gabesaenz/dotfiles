@@ -81,9 +81,6 @@
       shellcheck
       nodePackages.stylelint
       nodePackages.js-beautify
-      emacsPackages.mbsync
-      offlineimap
-      mu
   ];
 
   # Fonts
@@ -176,6 +173,7 @@
       ];
     }
     "npm" # doom emacs dependency
+    "mu" # doom emacs dependency
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
@@ -225,6 +223,9 @@
       # Text editing
       helix
 
+      # Password management
+      pass
+
       # Spellchecking - used by emacs
       (aspellWithDicts (dicts: with dicts; [
         en # English
@@ -262,6 +263,14 @@
 
     fonts.fontconfig.enable = true; # doom emacs dependency
 
+    programs.git = {
+      enable = true;
+      userEmail = "29664619+gabesaenz@users.noreply.github.com";
+      extraConfig = {
+        credential.helper = "osxkeychain";
+        init.defaultBranch = "main";
+      };
+    };
     programs.fish = {
       enable = true;
       functions = {
@@ -295,8 +304,25 @@
       window.decorations = "buttonless";
       shell.program = "fish";
     };
-  };
 
+    # Email
+    programs.offlineimap.enable = true; # doom emacs mu4e dependency
+    programs.msmtp.enable = true;
+    accounts.email = {
+      maildirBasePath = "${config.users.users.gabesaenz.home}/.mail";
+      accounts.gmx = {
+        primary = true;
+        address = "gabriel.saenz@gmx.de";
+        userName = "gabriel.saenz@gmx.de";
+        passwordCommand = "pass gmx";
+        realName = "Gabriel Saenz";
+        imap.host = "imap.gmx.net";
+        smtp.host = "mail.gmx.net";
+        offlineimap.enable = true;
+        msmtp.enable = true;
+      };
+    };
+  };
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;

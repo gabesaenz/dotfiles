@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "Gabe Saenz"
-      user-mail-address "gabesaenz@gmail.com")
+;; (setq user-full-name "Gabe Saenz"
+      ;; user-mail-address "gabesaenz@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -138,3 +138,23 @@
                          ))
 ;; reload white space options
 (global-whitespace-toggle-options '(whitespace-style))
+
+;; email
+;; msmtp
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+	send-mail-function #'smtpmail-send-it
+	message-sendmail-f-is-evil t
+	message-sendmail-extra-arguments '("--read-envelope-from")
+	message-send-mail-function #'message-send-mail-with-sendmail))
+;; offlineimap
+(setq +mu4e-backend 'offlineimap)
+(set-email-account! "gmx"
+  '(;; (mu4e-sent-folder       . "")
+    ;; (mu4e-drafts-folder     . "")
+    ;; (mu4e-trash-folder      . "")
+    ;; (mu4e-refile-folder     . "")
+    ;; (smtpmail-smtp-user     . "")
+    (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
+    (user-full-name         . "Gabriel Saenz"))
+  t)
