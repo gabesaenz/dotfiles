@@ -101,7 +101,7 @@
   services.skhd = {
     enable = true;
     skhdConfig = ''
-      # open terminal
+      # terminal
       cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
     '';
   };
@@ -189,6 +189,7 @@
     "the-unarchiver" # archive manager
     "spotify" # music streaming
     "telegram" # messaging
+    "virtualbox" # virtualization
     "vitalsource-bookshelf" # textbook ebook reader
     "vlc" # media player
     "whatsapp" # messaging
