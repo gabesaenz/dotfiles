@@ -13,6 +13,27 @@
       <home-manager/nixos>
    ];
 
+  # Change the location of configuration.nix
+  # Run this the first time:
+  # sudo -i nixos-rebuild switch -I nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix
+  # Then run this any time after that:
+  # sudo -i nix-channel --update;sudo -i nixos-rebuild switch
+  # Update the related environment variable (maybe this could be done with nix.nixPath instead):
+  # environment.sessionVariables = { NIXOS_CONF = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; };
+  # nix.nixPath = [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ];
+  # this one doesn't work:
+  # nix.nixPath = options.nix.nixPath.default ++ [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
+  # nix.nixPath = mkOptionDefault [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
+  # None of these are working so I'm going to use a shell config for now and revisit this later with flakes.
+  # environment.sessionVariables = rec {
+    # NIXOS_CONF = "$HOME/dotfiles/nix/nixos-mba/configuration.nix";
+  # };
+  # nix.nixPath = [
+  #   "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+  #   "nixos-config=/etc/nixos/configuration.nix"
+  #   "/nix/var/nix/profiles/per-user/root/channels"
+  # ];
+
   # Optimize the store
   # https://nixos.wiki/wiki/Storage_optimization#Optimising_the_store
   nix.settings.auto-optimise-store = true;
