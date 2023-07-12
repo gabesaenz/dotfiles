@@ -2,15 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: let
+  # Hyprland Window Manager
+  flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
 
-{
+  hyprland = (import flake-compat {
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
       # Home Manager
       <home-manager/nixos>
+
+      # Hyprland Window Manager
+      hyprland.nixosModules.default
    ];
 
   # Change the location of configuration.nix
@@ -23,6 +31,7 @@
   # nix.nixPath = [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ];
   # this one doesn't work:
   # nix.nixPath = options.nix.nixPath.default ++ [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
+  # nix.nixPath = config.nix.nixPath.default + [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
   # nix.nixPath = mkOptionDefault [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
   # None of these are working so I'm going to use a shell config for now and revisit this later with flakes.
   # environment.sessionVariables = rec {
@@ -33,6 +42,16 @@
   #   "nixos-config=/etc/nixos/configuration.nix"
   #   "/nix/var/nix/profiles/per-user/root/channels"
   # ];
+  # environment.variables = {
+  #   NIXOS_CONF = "$HOME/dotfiles/nix/nixos-mba/configuration.nix";
+  # };
+  # nix.nixPath = [{ nixos-config = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; }];
+  # nix.nixPath = lib.mkMerge [
+  #   # [ { nixos-config = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; } ]
+  #   # [{ prefix = "nixos-config"; path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; }]
+  #   [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ]
+  # ];
+  # nix.nixPath = [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ];
 
   # Optimize the store
   # https://nixos.wiki/wiki/Storage_optimization#Optimising_the_store
@@ -149,6 +168,21 @@
   users.defaultUserShell = pkgs.fish;
   environment.shells = with pkgs; [ fish ];
 
+  # Hyprland Window Manager
+  programs.hyprland = {
+    enable = true;
+
+    # default options, you don't need to set them
+    package = hyprland.packages.${pkgs.system}.default;
+
+    xwayland = {
+      enable = true;
+      hidpi = false;
+    };
+
+    nvidiaPatches = false;
+  };
+
   # Users
   users.users.gabe = {
     isNormalUser = true;
@@ -158,21 +192,37 @@
   };
 
   # Home Manager
-  home-manager.users.gabe = { pkgs, ... }: {
+  home-manager.users.gabe = { pkgs, ... }: let
+    # Hyprland Window Manager
+    flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+
+    hyprland = (import flake-compat {
+      src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+    }).defaultNix;
+  in {
+    imports =
+    [ # Hyprland Window Manager
+      hyprland.homeManagerModules.default
+    ];
+
     home.stateVersion = "22.05";
     home.packages = with pkgs; [
-    # Shell tools
-    exa
-    bat
+      # Shell tools
+      exa
+      bat
 
-    # Text editing
-    helix
+      # Text editing
+      helix
 
-    # Password management
-    pass
+      # Password management
+      pass
 
-    # Web browsing
-    firefox
+      # Web browsing
+      firefox
+
+      # Dropbox client
+      maestral
+      maestral-gui
     ];
     programs.git = {
       enable = true;
@@ -205,6 +255,15 @@
       };
       window.decorations = "none";
       shell.program = "fish";
+    };
+    # Hyprland Window Manager
+    wayland.windowManager.hyprland = {
+      enable = true;
+
+      extraConfig = ''
+        bind = SUPER, Return, exec, alacritty
+        # ...
+      '';
     };
   };
 
