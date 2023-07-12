@@ -53,6 +53,9 @@ in {
   # ];
   # nix.nixPath = [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ];
 
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Optimize the store
   # https://nixos.wiki/wiki/Storage_optimization#Optimising_the_store
   nix.settings.auto-optimise-store = true;
