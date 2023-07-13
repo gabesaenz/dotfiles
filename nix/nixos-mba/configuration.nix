@@ -2,56 +2,36 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }: let
-  # Hyprland Window Manager
-  flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+{ config, pkgs, ... }:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
 
-  hyprland = (import flake-compat {
-    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
-  }).defaultNix;
-in {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    # Home Manager
+    <home-manager/nixos>
 
-      # Home Manager
-      <home-manager/nixos>
+    # nix-community binary cache
+    /etc/nixos/cachix.nix
+  ];
 
-      # Hyprland Window Manager
-      hyprland.nixosModules.default
-   ];
+  # Emacs overlay
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
 
   # Change the location of configuration.nix
   # Run this the first time:
   # sudo -i nixos-rebuild switch -I nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix
+  # The reboot to update the environment variables.
   # Then run this any time after that:
   # sudo -i nix-channel --update;sudo -i nixos-rebuild switch
-  # Update the related environment variable (maybe this could be done with nix.nixPath instead):
-  # environment.sessionVariables = { NIXOS_CONF = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; };
-  # nix.nixPath = [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ];
-  # this one doesn't work:
-  # nix.nixPath = options.nix.nixPath.default ++ [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
-  # nix.nixPath = config.nix.nixPath.default + [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
-  # nix.nixPath = mkOptionDefault [{ path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; prefix = "nixos-config"; }];
-  # None of these are working so I'm going to use a shell config for now and revisit this later with flakes.
-  # environment.sessionVariables = rec {
-    # NIXOS_CONF = "$HOME/dotfiles/nix/nixos-mba/configuration.nix";
-  # };
-  # nix.nixPath = [
-  #   "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-  #   "nixos-config=/etc/nixos/configuration.nix"
-  #   "/nix/var/nix/profiles/per-user/root/channels"
-  # ];
-  # environment.variables = {
-  #   NIXOS_CONF = "$HOME/dotfiles/nix/nixos-mba/configuration.nix";
-  # };
-  # nix.nixPath = [{ nixos-config = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; }];
-  # nix.nixPath = lib.mkMerge [
-  #   # [ { nixos-config = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; } ]
-  #   # [{ prefix = "nixos-config"; path = "$HOME/dotfiles/nix/nixos-mba/configuration.nix"; }]
-  #   [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ]
-  # ];
-  # nix.nixPath = [ "nixos-config=$HOME/dotfiles/nix/nixos-mba/configuration.nix" ];
+  environment.variables = {
+    NIXOS_CONFIG = "/home/gabe/dotfiles/nix/nixos-mba/configuration.nix";
+    DOOMDIR = "/home/gabe/dotfiles/.config/.doom.d"; # doom emacs config folder
+  };
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -166,24 +146,17 @@ in {
     (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
   ];
 
+  fonts.fontconfig.enable = true; # doom emacs dependency
+
   # Set default shell
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
   environment.shells = with pkgs; [ fish ];
 
-  # Hyprland Window Manager
-  programs.hyprland = {
+  # Emacs
+  services.emacs = {
     enable = true;
-
-    # default options, you don't need to set them
-    package = hyprland.packages.${pkgs.system}.default;
-
-    xwayland = {
-      enable = true;
-      hidpi = false;
-    };
-
-    nvidiaPatches = false;
+    package = pkgs.emacs-pgtk;
   };
 
   # Users
@@ -195,20 +168,9 @@ in {
   };
 
   # Home Manager
-  home-manager.users.gabe = { pkgs, ... }: let
-    # Hyprland Window Manager
-    flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
-
-    hyprland = (import flake-compat {
-      src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
-    }).defaultNix;
-  in {
-    imports =
-    [ # Hyprland Window Manager
-      hyprland.homeManagerModules.default
-    ];
-
-    home.stateVersion = "22.05";
+  home-manager.users.gabe = { pkgs, ... }:
+  {
+    home.stateVersion = "23.05";
     home.packages = with pkgs; [
       # Shell tools
       exa
@@ -246,6 +208,10 @@ in {
         ls = "exa -ahl --icons --color-scale --group-directories-first --git";
         cat = "bat";
       };
+      shellInit = ''
+        # add doom emacs bin to $PATH
+        fish_add_path ~/.emacs.d/bin
+      '';
     };
     programs.starship.enable = true;
     programs.alacritty.enable = true;
@@ -259,14 +225,25 @@ in {
       window.decorations = "none";
       shell.program = "fish";
     };
-    # Hyprland Window Manager
-    wayland.windowManager.hyprland = {
-      enable = true;
 
-      extraConfig = ''
-        bind = SUPER, Return, exec, alacritty
-        # ...
-      '';
+    fonts.fontconfig.enable = true; # doom emacs dependency
+
+    # Email
+    programs.offlineimap.enable = true; # doom emacs mu4e dependency
+    programs.msmtp.enable = true;
+    accounts.email = {
+      maildirBasePath = "${config.users.users.gabe.home}/.mail";
+      accounts.gmx = {
+        primary = true;
+        address = "gabriel.saenz@gmx.de";
+        userName = "gabriel.saenz@gmx.de";
+        passwordCommand = "pass gmx";
+        realName = "Gabriel Saenz";
+        imap.host = "imap.gmx.net";
+        smtp.host = "mail.gmx.net";
+        offlineimap.enable = true;
+        msmtp.enable = true;
+      };
     };
   };
 
@@ -284,9 +261,53 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    # doom emacs dependencies
+    git
+    ripgrep
+    coreutils # optional
+    fd # optional
+    # doom emacs doom doctor suggestions
+    cmigemo
+    gnugrep # gnu pcre warning
+    coreutils-prefixed # gnu ls warning
+    nixfmt
+    shellcheck
+    nodePackages.stylelint
+    nodePackages.js-beautify
+    mu
+    pandoc # fixes doom doctor :lang markdown warning
+    html-tidy # fixes doom doctor :lang web warning
+    imagemagick # fixes doom doctor :email mu4e warning
+
+    # Spellchecking - used by emacs
+    (aspellWithDicts (dicts: with dicts; [
+      en # English
+      en-computers # English Computer Jargon
+      en-science # English Scientific Jargon
+      la # Latin
+      el # Greek
+      grc # Ancient Greek
+      de # German
+      de-alt # German Old-Spelling
+    ]))
+    hunspell
+    # hunspell dictionaries
+    mythes # thesaurus
+    hunspellDicts.en_US-large # English (United States) Large
+    hunspellDicts.en_GB-large # English (United Kingdom) Large
+    hunspellDicts.de_DE # German (Germany)
+    enchant
+
+    # Rust
+    cargo
+    clippy
+    rustc
+    rustfmt
+    rust-analyzer
+    bacon
   ];
+
+  programs.npm.enable = true; # doom emacs dependency
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
