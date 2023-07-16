@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
@@ -18,7 +17,8 @@
   # Emacs overlay
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      url =
+        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
     }))
   ];
 
@@ -60,13 +60,31 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
+  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
+
+  # Boot screen
+  boot.plymouth.enable = true;
+
+  # Login manager
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        user = "greeter";
+      };
+      initial_session = {
+        command = "sway";
+        user = "gabe";
+      };
+    };
   };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-adbdd4a3-bce7-43b6-9e24-ae2cbb500449".device = "/dev/disk/by-uuid/adbdd4a3-bce7-43b6-9e24-ae2cbb500449";
-  boot.initrd.luks.devices."luks-adbdd4a3-bce7-43b6-9e24-ae2cbb500449".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-adbdd4a3-bce7-43b6-9e24-ae2cbb500449".device =
+    "/dev/disk/by-uuid/adbdd4a3-bce7-43b6-9e24-ae2cbb500449";
+  boot.initrd.luks.devices."luks-adbdd4a3-bce7-43b6-9e24-ae2cbb500449".keyFile =
+    "/crypto_keyfile.bin";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -98,6 +116,10 @@
 
   # Enable gpg
   programs.gnupg.agent.enable = true;
+
+  # Sway prerequisites
+  security.polkit.enable = true;
+  programs.light.enable = true; # brightness and volumes controls
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -146,7 +168,7 @@
     (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
   ];
 
-  fonts.fontconfig.enable = true; # doom emacs dependency
+  # fonts.fontconfig.enable = true; # doom emacs dependency
 
   # Set default shell
   programs.fish.enable = true;
@@ -159,17 +181,22 @@
     package = pkgs.emacs-pgtk;
   };
 
+  services.geoclue2.enable = true; # required by gammastep
+
   # Users
   users.users.gabe = {
     isNormalUser = true;
     description = "gabe";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video" # Sway: brightness and volume controls
+    ];
     shell = pkgs.fish;
   };
 
   # Home Manager
-  home-manager.users.gabe = { pkgs, ... }:
-  {
+  home-manager.users.gabe = { pkgs, ... }: {
     home.stateVersion = "23.05";
     home.packages = with pkgs; [
       # Shell tools
@@ -188,21 +215,30 @@
       # Dropbox client
       maestral
       maestral-gui
+
+      # Sway
+      swaylock
+      swayidle
+      grim # screenshot functionality
+      slurp # screenshot functionality
+      wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+      bemenu # wayland clone of dmenu
+      mako # notification system developed by swaywm maintainer
+      wdisplays # tool to configure displays
+      gammastep # screen color temperature manager
     ];
     programs.git = {
       enable = true;
       userEmail = "29664619+gabesaenz@users.noreply.github.com";
-      extraConfig = {
-        init.defaultBranch = "main";
-      };
+      extraConfig = { init.defaultBranch = "main"; };
     };
     programs.fish = {
       enable = true;
       functions = {
         fish_greeting = {
-	        description = "";
-	        body = "";
-	      };
+          description = "";
+          body = "";
+        };
       };
       shellAliases = {
         ls = "exa -ahl --icons --color-scale --group-directories-first --git";
@@ -217,18 +253,75 @@
     programs.alacritty.enable = true;
     programs.alacritty.settings = {
       font = {
-        normal = {
-          family = "NotoSansM Nerd Font Mono";
-        };
+        normal = { family = "NotoSansM Nerd Font Mono"; };
         size = 14.0;
       };
-      window.decorations = "none";
+      window.decorations = "full";
       shell.program = "fish";
     };
 
-    fonts.fontconfig.enable = true; # doom emacs dependency
+    # Sway (Wayland compositor / window manager)
+    wayland.windowManager.sway = {
+      enable = true;
+      config = rec {
+        modifier = "Mod4";
+        # default terminal
+        terminal = "alacritty";
+        startup = [
+          # Launch on start
+          { command = "firefox"; }
+        ];
+      };
+      extraConfig = ''
+        # Modkey
+        set $mod Mod4
+
+        # Menu
+        set $menu bemenu-run
+
+        # Emacs
+        bindsym $mod+m exec "emacsclient -c"
+
+        # Screenshots
+        bindsym $mod+c exec grim  -g "$(slurp)" /tmp/$(date +'%H:%M:%S.png')
+
+        # Day/Night color temp shift
+        exec gammastep -l geoclue2 -m wayland -b 1.0:0.8 -t 6500K:3500K
+
+        # Brightness keys
+        bindsym XF86MonBrightnessDown exec light -U 10
+        bindsym XF86MonBrightnessUp exec light -A 10
+
+        # Volume keys
+        bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+        bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+        bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+
+        # Input
+        # Touchpad
+        input 1452:657:bcm5974 {
+        # left_handed enabled
+        tap enabled
+        natural_scroll enabled
+        # dwt enabled
+        accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+        pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+        }
+      '';
+    };
+
+    # fonts.fontconfig.enable = true; # doom emacs dependency
 
     # Email
+    # To configure this on a new system, run the following commands:
+    # gpg --batch --passphrase '' --quick-gen-key passwords_key default default
+    # pass init "passwords_key"
+    # pass git init
+    # pass insert gmx
+    # (then paste in the correct password)
+    # offlineimap -o
+    # mu init --maildir ~/.mail --my-address gabriel.saenz@gmx.de
+    # mu index
     programs.offlineimap.enable = true; # doom emacs mu4e dependency
     programs.msmtp.enable = true;
     accounts.email = {
@@ -269,34 +362,38 @@
     # doom emacs doom doctor suggestions
     cmigemo
     gnugrep # gnu pcre warning
+    gnumake # missing make warning
+    cmake # missing cmake warning
     coreutils-prefixed # gnu ls warning
     nixfmt
     shellcheck
+    shfmt # missing shfmt warning
     nodePackages.stylelint
     nodePackages.js-beautify
     mu
     pandoc # fixes doom doctor :lang markdown warning
     html-tidy # fixes doom doctor :lang web warning
     imagemagick # fixes doom doctor :email mu4e warning
+    # emacsPackages.flyspell-lazy # fixes missing flyspell-lazy error # doesn't work
 
     # Spellchecking - used by emacs
-    (aspellWithDicts (dicts: with dicts; [
-      en # English
-      en-computers # English Computer Jargon
-      en-science # English Scientific Jargon
-      la # Latin
-      el # Greek
-      grc # Ancient Greek
-      de # German
-      de-alt # German Old-Spelling
-    ]))
-    hunspell
-    # hunspell dictionaries
-    mythes # thesaurus
-    hunspellDicts.en_US-large # English (United States) Large
-    hunspellDicts.en_GB-large # English (United Kingdom) Large
-    hunspellDicts.de_DE # German (Germany)
-    enchant
+    # (aspellWithDicts (dicts: with dicts; [
+    #   en # English
+    #   en-computers # English Computer Jargon
+    #   en-science # English Scientific Jargon
+    #   la # Latin
+    #   el # Greek
+    #   grc # Ancient Greek
+    #   de # German
+    #   de-alt # German Old-Spelling
+    # ]))
+    # hunspell
+    # # hunspell dictionaries
+    # mythes # thesaurus
+    # hunspellDicts.en_US-large # English (United States) Large
+    # hunspellDicts.en_GB-large # English (United Kingdom) Large
+    # hunspellDicts.de_DE # German (Germany)
+    # enchant
 
     # Rust
     cargo
@@ -305,6 +402,8 @@
     rustfmt
     rust-analyzer
     bacon
+
+    greetd.tuigreet # required by greetd login manager
   ];
 
   programs.npm.enable = true; # doom emacs dependency
