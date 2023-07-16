@@ -168,8 +168,6 @@
     (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
   ];
 
-  # fonts.fontconfig.enable = true; # doom emacs dependency
-
   # Set default shell
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
@@ -300,17 +298,15 @@
         # Input
         # Touchpad
         input 1452:657:bcm5974 {
-        # left_handed enabled
-        tap enabled
-        natural_scroll enabled
-        # dwt enabled
-        accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
-        pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+          # left_handed enabled
+          tap enabled
+          natural_scroll enabled
+          # dwt enabled
+          accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+          pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
         }
       '';
     };
-
-    # fonts.fontconfig.enable = true; # doom emacs dependency
 
     # Email
     # To configure this on a new system, run the following commands:
@@ -374,26 +370,6 @@
     pandoc # fixes doom doctor :lang markdown warning
     html-tidy # fixes doom doctor :lang web warning
     imagemagick # fixes doom doctor :email mu4e warning
-    # emacsPackages.flyspell-lazy # fixes missing flyspell-lazy error # doesn't work
-
-    # Spellchecking - used by emacs
-    # (aspellWithDicts (dicts: with dicts; [
-    #   en # English
-    #   en-computers # English Computer Jargon
-    #   en-science # English Scientific Jargon
-    #   la # Latin
-    #   el # Greek
-    #   grc # Ancient Greek
-    #   de # German
-    #   de-alt # German Old-Spelling
-    # ]))
-    # hunspell
-    # # hunspell dictionaries
-    # mythes # thesaurus
-    # hunspellDicts.en_US-large # English (United States) Large
-    # hunspellDicts.en_GB-large # English (United Kingdom) Large
-    # hunspellDicts.de_DE # German (Germany)
-    # enchant
 
     # Rust
     cargo
