@@ -271,6 +271,15 @@
         ];
       };
       extraConfig = ''
+
+
+        ################
+        # Extra config #
+        ################
+
+        # Wallpaper
+        output * bg /home/gabe/dotfiles/salty_mountains.png fill
+
         # Modkey
         set $mod Mod4
 
