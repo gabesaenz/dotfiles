@@ -24,14 +24,18 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
-(setq doom-font (font-spec :family "NotoSansMono Nerd Font" :size 24)
+(setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 24)
       doom-serif-font (font-spec :family "NotoSerif Nerd Font" :size 24)
-      doom-variable-pitch-font (font-spec :family "NotoSerif Nerd Font" :size 24)
-      ;; doom-unicode-font (font-spec :family "Annapurna SIL" :size 42))
-      doom-unicode-font (font-spec :family "Noto Sans" :size 42))
+      doom-variable-pitch-font (font-spec :family "NotoSans Nerd Font" :size 24)
+      doom-unicode-font (font-spec :family "Noto Sans" :size 24)
+      )
 
 (after! unicode-fonts
-  (push "Annapurna SIL" (cadr (assoc "Devanagari" unicode-fonts-block-font-mapping))))
+  (push "Annapurna SIL" (cadr (assoc "Common Indic Number Forms" unicode-fonts-block-font-mapping)))
+  (push "Annapurna SIL" (cadr (assoc "Devanagari" unicode-fonts-block-font-mapping)))
+  (push "Annapurna SIL" (cadr (assoc "Devanagari Extended" unicode-fonts-block-font-mapping)))
+  (push "Annapurna SIL" (cadr (assoc "Vedic Extensions" unicode-fonts-block-font-mapping)))
+  )
 
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -154,7 +158,7 @@
     ;; (mu4e-drafts-folder     . "")
     ;; (mu4e-trash-folder      . "")
     ;; (mu4e-refile-folder     . "")
-    ;; (smtpmail-smtp-user     . "")
+    (smtpmail-smtp-user     . "gabriel.saenz@gmx.de")
     (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
     (user-full-name         . "Gabriel Saenz"))
   t)
