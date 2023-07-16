@@ -204,6 +204,9 @@
       # Text editing
       helix
 
+      # PDF viewer
+      zathura
+
       # Password management
       pass
 
@@ -314,6 +317,9 @@
           accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
           pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
         }
+
+        # Hide mouse cursor (time in milliseconds)
+        seat * hide_cursor 3000
       '';
     };
 
