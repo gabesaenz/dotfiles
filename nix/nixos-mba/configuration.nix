@@ -120,6 +120,11 @@
   # Sway prerequisites
   security.polkit.enable = true;
   programs.light.enable = true; # brightness and volumes controls
+  security.pam.services.swaylock.text = ''
+    # PAM configuration file for the swaylock screen locker. By default, it includes
+    # the 'login' configuration file (see /etc/pam.d/login)
+    auth include login
+  '';
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -272,6 +277,16 @@
           # Launch on start
           { command = "firefox"; }
         ];
+        menu = "bemenu-run";
+        fonts = {
+          names = [ "NotoSansM Nerd Font Mono" "FontAwesome" ];
+          style = "Bold Semi-Condensed";
+          size = 14.0;
+        };
+        window = {
+          titlebar = false;
+          hideEdgeBorders = "both";
+        };
       };
       extraConfig = ''
 
@@ -320,6 +335,16 @@
 
         # Hide mouse cursor (time in milliseconds)
         seat * hide_cursor 3000
+
+        # Idle and screen locking
+        exec swayidle -w \
+             timeout 300 'swaylock -f -c 000000' \
+             timeout 600 'swaymsg "output * dpms off"' \
+             resume 'swaymsg "output * dpms on"' \
+             before-sleep 'swaylock -f -c 000000'
+
+        # Prevent idle when a window is in fullscreen mode
+        for_window [class=.*] inhibit_idle fullscreen
       '';
     };
 
