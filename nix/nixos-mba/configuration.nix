@@ -260,7 +260,7 @@
     programs.alacritty.settings = {
       font = {
         normal = { family = "NotoSansM Nerd Font Mono"; };
-        size = 14.0;
+        size = 18.0;
       };
       window.decorations = "full";
       shell.program = "fish";
