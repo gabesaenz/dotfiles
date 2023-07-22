@@ -344,7 +344,7 @@
              before-sleep 'swaylock -f -c 000000'
 
         # Prevent idle when a window is in fullscreen mode
-        for_window [class=.*] inhibit_idle fullscreen
+        # for_window [class=.*] inhibit_idle fullscreen
       '';
     };
 
@@ -418,6 +418,7 @@
     rustfmt
     rust-analyzer
     bacon
+    gcc # fixes "linker `cc` not found" error
 
     greetd.tuigreet # required by greetd login manager
   ];
