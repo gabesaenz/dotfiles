@@ -143,7 +143,9 @@
         # rules
         yabai -m rule --add app='System Preferences' manage=off
 
-        # Any other arbitrary config here
+        # disable borders
+        # fixes an issue with blurred windows
+        yabai -m config window_border off
       '';
   };
 
