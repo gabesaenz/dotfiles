@@ -20,7 +20,9 @@
 
   # Optimize the store
   # https://nixos.wiki/wiki/Storage_optimization#Optimising_the_store
-  nix.settings.auto-optimise-store = true;
+  # this causes issues during rebuilds on mac so it's disabled for now
+  # run it manually with: nix optimise store
+  # nix.settings.auto-optimise-store = true;
 
   # Garbage collection
   # https://nixos.wiki/wiki/Storage_optimization#Automation
