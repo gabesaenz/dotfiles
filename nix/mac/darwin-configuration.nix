@@ -21,7 +21,7 @@
   # Optimize the store
   # https://nixos.wiki/wiki/Storage_optimization#Optimising_the_store
   # this causes issues during rebuilds on mac so it's disabled for now
-  # run it manually with: nix optimise store
+  # run it manually with: nix-store --optimise
   # nix.settings.auto-optimise-store = true;
 
   # Garbage collection
@@ -31,12 +31,16 @@
   # sudo nix-collect-garbage -d
   nix.gc = {
     automatic = true;
-    interval = { Weekday = 0; Hour = 0; Minute = 0; };
+    interval = {
+      Weekday = 0;
+      Hour = 0;
+      Minute = 0;
+    };
     options = "--delete-older-than 30d";
   };
   nix.extraOptions = ''
-  min-free = ${toString (100 * 1024 * 1024)}
-  max-free = ${toString (1024 * 1024 * 1024)}
+    min-free = ${toString (100 * 1024 * 1024)}
+    max-free = ${toString (1024 * 1024 * 1024)}
   '';
 
   # Auto upgrade nix package and the daemon service.
@@ -52,7 +56,7 @@
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
   environment.shells = with pkgs; [ fish ];
 
@@ -70,19 +74,20 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-      # doom emacs dependencies
-      git
-      ripgrep
-      coreutils # optional
-      fd # optional
-      # doom emacs doom doctor suggestions
-      cmigemo
-      gnugrep # gnu pcre warning
-      coreutils-prefixed # gnu ls warning
-      nixfmt
-      shellcheck
-      nodePackages.stylelint
-      nodePackages.js-beautify
+    # doom emacs dependencies
+    git
+    ripgrep
+    coreutils # optional
+    fd # optional
+    # doom emacs doom doctor suggestions
+    cmigemo
+    gnugrep # gnu pcre warning
+    coreutils-prefixed # gnu ls warning
+    nixfmt
+    shellcheck
+    shfmt
+    nodePackages.stylelint
+    nodePackages.js-beautify
   ];
 
   # Fonts
@@ -94,10 +99,7 @@
     # Devanāgarī
     annapurna-sil
     # nerd fonts
-    (nerdfonts.override { fonts = [
-      "Noto"
-      "FiraCode"
-    ]; })
+    (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
   ];
 
   services.skhd = {
@@ -112,51 +114,44 @@
     package = pkgs.yabai;
     enableScriptingAddition = true;
     config = {
-      focus_follows_mouse          = "autoraise";
-      mouse_follows_focus          = "off";
-      window_placement             = "second_child";
-      window_opacity               = "off";
-      window_opacity_duration      = "0.0";
-      window_border                = "on";
-      window_border_placement      = "inset";
-      window_border_width          = 2;
-      window_border_radius         = 10;
+      focus_follows_mouse = "autoraise";
+      mouse_follows_focus = "off";
+      window_placement = "second_child";
+      window_opacity = "off";
+      window_opacity_duration = "0.0";
+      window_border = "off";
+      window_border_placement = "inset";
+      window_border_width = 0;
+      window_border_radius = 0;
       active_window_border_topmost = "off";
-      window_topmost               = "on";
-      window_shadow                = "float";
-      active_window_border_color   = "0xff5c7e81";
-      normal_window_border_color   = "0xff505050";
-      insert_window_border_color   = "0xffd75f5f";
-      active_window_opacity        = "1.0";
-      normal_window_opacity        = "1.0";
-      split_ratio                  = "0.50";
-      auto_balance                 = "on";
-      mouse_modifier               = "fn";
-      mouse_action1                = "move";
-      mouse_action2                = "resize";
-      layout                       = "bsp";
-      top_padding                  = 2;
-      bottom_padding               = 2;
-      left_padding                 = 2;
-      right_padding                = 2;
-      window_gap                   = 2;
+      window_topmost = "on";
+      window_shadow = "float";
+      active_window_border_color = "0xff5c7e81";
+      normal_window_border_color = "0xff505050";
+      insert_window_border_color = "0xffd75f5f";
+      active_window_opacity = "1.0";
+      normal_window_opacity = "1.0";
+      split_ratio = "0.50";
+      auto_balance = "on";
+      mouse_modifier = "fn";
+      mouse_action1 = "move";
+      mouse_action2 = "resize";
+      layout = "bsp";
+      top_padding = 0;
+      bottom_padding = 0;
+      left_padding = 0;
+      right_padding = 0;
+      window_gap = 0;
     };
     extraConfig = ''
-        # rules
-        yabai -m rule --add app='System Preferences' manage=off
-
-        # disable borders
-        # fixes an issue with blurred windows
-        yabai -m config window_border off
-      '';
+      # rules
+      yabai -m rule --add app='System Preferences' manage=off
+    '';
   };
 
   homebrew.enable = true;
-  homebrew.taps = [
-    "homebrew/cask"
-    "homebrew/services"
-    "railwaycat/emacsmacport"
-  ];
+  homebrew.taps =
+    [ "homebrew/cask" "homebrew/services" "railwaycat/emacsmacport" ];
   homebrew.brews = [
     {
       # doom emacs dependency (fixes doom doctor warning)
@@ -232,16 +227,17 @@
       pass
 
       # Spellchecking - used by emacs
-      (aspellWithDicts (dicts: with dicts; [
-        en # English
-        en-computers # English Computer Jargon
-        en-science # English Scientific Jargon
-        la # Latin
-        el # Greek
-        grc # Ancient Greek
-        de # German
-        de-alt # German Old-Spelling
-      ]))
+      (aspellWithDicts (dicts:
+        with dicts; [
+          en # English
+          en-computers # English Computer Jargon
+          en-science # English Scientific Jargon
+          la # Latin
+          el # Greek
+          grc # Ancient Greek
+          de # German
+          de-alt # German Old-Spelling
+        ]))
       hunspell
       # hunspell dictionaries
       mythes # thesaurus
@@ -275,14 +271,15 @@
         credential.helper = "osxkeychain";
         init.defaultBranch = "main";
       };
+      ignores = [ ".DS_Store" ];
     };
     programs.fish = {
       enable = true;
       functions = {
         fish_greeting = {
-	        description = "";
-	        body = "";
-	      };
+          description = "";
+          body = "";
+        };
       };
       shellAliases = {
         ls = "exa -ahl --icons --color-scale --group-directories-first --git";
@@ -301,9 +298,7 @@
     programs.alacritty.enable = true;
     programs.alacritty.settings = {
       font = {
-        normal = {
-          family = "NotoSansMono Nerd Font";
-        };
+        normal = { family = "NotoSansMono Nerd Font"; };
         size = 18.0;
       };
       window.decorations = "buttonless";
