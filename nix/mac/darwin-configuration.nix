@@ -52,13 +52,15 @@
 
   # Environment variables
   environment.variables = {
-    DOOMDIR = "$HOME/dotfiles/.config/.doom.d"; # doom emacs config folder
+    # doom emacs config folder
+    DOOMDIR = "$HOME/dotfiles/.config/.doom.d";
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
   environment.shells = with pkgs; [ fish ];
+  environment.loginShell = "/Users/gabesaenz/.nix-profile/bin/fish";
 
   # Mac settings
 
@@ -100,13 +102,19 @@
     annapurna-sil
     # nerd fonts
     (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
+    # emacs icons
+    emacs-all-the-icons-fonts
   ];
 
   services.skhd = {
     enable = true;
     skhdConfig = ''
       # terminal
-      cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+      rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+      lcmd - return : kitty --config ~/dotfiles/.config/kitty/kitty.conf --directory=~ # tmux # don't run tmux as I don't actually use it
+
+      # text editors
+      lalt - return : neovide --multigrid --frame none
     '';
   };
   services.yabai = {
@@ -114,34 +122,20 @@
     package = pkgs.yabai;
     enableScriptingAddition = true;
     config = {
-      focus_follows_mouse = "autoraise";
+      focus_follows_mouse = "off";
       mouse_follows_focus = "off";
       window_placement = "second_child";
       window_opacity = "off";
       window_opacity_duration = "0.0";
+      window_animation_duration = "0.0";
       window_border = "off";
-      window_border_placement = "inset";
-      window_border_width = 0;
-      window_border_radius = 0;
       active_window_border_topmost = "off";
       window_topmost = "on";
-      window_shadow = "float";
-      active_window_border_color = "0xff5c7e81";
-      normal_window_border_color = "0xff505050";
-      insert_window_border_color = "0xffd75f5f";
       active_window_opacity = "1.0";
       normal_window_opacity = "1.0";
       split_ratio = "0.50";
       auto_balance = "on";
-      mouse_modifier = "fn";
-      mouse_action1 = "move";
-      mouse_action2 = "resize";
       layout = "bsp";
-      top_padding = 0;
-      bottom_padding = 0;
-      left_padding = 0;
-      right_padding = 0;
-      window_gap = 0;
     };
     extraConfig = ''
       # rules
@@ -182,8 +176,11 @@
     "firefox" # web browser
     "flux" # nighttime colorshift
     "google-chrome" # web browser
+    "kitty" # terminal emulator
+    "lapce" # text editor
     "libreoffice" # work
     "iina" # media player
+    "neovide" # neovim frontend
     "noisy" # whitenoise generator
     "the-unarchiver" # archive manager
     "spotify" # music streaming
@@ -216,35 +213,14 @@
     home.stateVersion = "22.05";
     home.packages = with pkgs; [
       # Shell tools
-      exa
-      bat
       neofetch
 
       # Text editing
       helix
+      kakoune
 
       # Password management
       pass
-
-      # Spellchecking - used by emacs
-      (aspellWithDicts (dicts:
-        with dicts; [
-          en # English
-          en-computers # English Computer Jargon
-          en-science # English Scientific Jargon
-          la # Latin
-          el # Greek
-          grc # Ancient Greek
-          de # German
-          de-alt # German Old-Spelling
-        ]))
-      hunspell
-      # hunspell dictionaries
-      mythes # thesaurus
-      hunspellDicts.en_US-large # English (United States) Large
-      hunspellDicts.en_GB-large # English (United Kingdom) Large
-      hunspellDicts.de_DE # German (Germany)
-      enchant
 
       # Work - Beginning Sanskrit
       pandoc
@@ -273,6 +249,8 @@
       };
       ignores = [ ".DS_Store" ];
     };
+
+    # Shells
     programs.fish = {
       enable = true;
       functions = {
@@ -281,10 +259,6 @@
           body = "";
         };
       };
-      shellAliases = {
-        ls = "exa -ahl --icons --color-scale --group-directories-first --git";
-        cat = "bat";
-      };
       shellInit = ''
         # add doom emacs bin to $PATH
         fish_add_path ~/.emacs.d/bin
@@ -292,17 +266,98 @@
         # add tlmgr to $PATH
         # requires brew cask "basictex"
         fish_add_path /usr/local/texlive/2023basic/bin/universal-darwin
+
+        # configure dircolors
+        dircolors ~/dotfiles/nord-dir_colors >/dev/null
       '';
+      shellAliases = {
+        cat = "bat";
+        rebuild =
+          "nix-channel --update;darwin-rebuild switch && nix store optimise";
+        rebuild-quick = "darwin-rebuild switch";
+        doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
+      };
     };
-    programs.starship.enable = true;
+
+    # Shell Tools
+    programs.oh-my-posh = {
+      enable = true;
+      useTheme = "nordtron";
+    };
+    programs.dircolors = { enable = true; };
+    programs.bat = {
+      enable = true;
+      config = { theme = "Nord"; };
+    };
+    programs.exa = {
+      enable = true;
+      enableAliases = true;
+      git = true;
+      icons = true;
+      extraOptions = [
+        "--all"
+        "--group-directories-first"
+        "--header"
+        "--long"
+        "--ignore-glob=.git|.DS_Store"
+      ];
+    };
+
+    # Terminals
+    programs.tmux = {
+      enable = true;
+      keyMode = "vi";
+      mouse = true;
+      shell = "/Users/gabesaenz/.nix-profile/bin/fish";
+      clock24 = true;
+      plugins = with pkgs.tmuxPlugins; [
+        nord
+        # menus # no nix package
+        # digit # no nix package
+        mode-indicator
+        weather
+        # powerline # no nix package
+        prefix-highlight
+      ];
+    };
     programs.alacritty.enable = true;
     programs.alacritty.settings = {
       font = {
-        normal = { family = "NotoSansMono Nerd Font"; };
-        size = 18.0;
+        normal = { family = "FiraCode Nerd Font Mono"; };
+        size = 20.0;
       };
       window.decorations = "buttonless";
       shell.program = "fish";
+    };
+
+    # Text Editors
+    programs.helix = {
+      enable = true;
+      defaultEditor = true;
+      settings = {
+        theme = "nord";
+        editor.whitespace.render = "all";
+        editor.auto-pairs = false;
+      };
+    };
+    programs.neovim = {
+      enable = true;
+      defaultEditor = false;
+      extraConfig = ''
+        " colorscheme
+        " isn't working
+        " colorscheme nord
+
+        " font
+        set guifont=FiraCode_Nerd_Font_Mono:h24
+
+        " hide mouse when typing
+        let g:neovide_hide_mouse_when_typing = v:false
+      '';
+      plugins = with pkgs.vimPlugins; [ nord-vim ];
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
     };
 
     # Email
