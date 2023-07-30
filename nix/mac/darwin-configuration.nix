@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
-{
+let
+  stylix = builtins.fetchTarball {
+    url = "https://github.com/danth/stylix/archive/master.tar.gz";
+  };
+in {
   # Nix settings
 
   # Channels
@@ -60,7 +64,7 @@
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
   environment.shells = with pkgs; [ fish ];
-  environment.loginShell = "/Users/gabesaenz/.nix-profile/bin/fish";
+  environment.loginShell = "/run/current-system/sw/bin/fish";
 
   # Mac settings
 
@@ -106,12 +110,13 @@
     emacs-all-the-icons-fonts
   ];
 
+  # Window Manager
   services.skhd = {
     enable = true;
     skhdConfig = ''
       # terminal
       rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
-      lcmd - return : kitty --config ~/dotfiles/.config/kitty/kitty.conf --directory=~ # tmux # don't run tmux as I don't actually use it
+      lcmd - return : kitty --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
 
       # text editors
       lalt - return : neovide --multigrid --frame none
@@ -250,6 +255,29 @@
       ignores = [ ".DS_Store" ];
     };
 
+    # Theming
+    # options: https://danth.github.io/stylix/options/hm.html
+    imports = [ (import stylix).homeManagerModules.stylix ];
+    stylix = {
+      # image = /Users/gabesaenz/dotfiles/nord_lake.png;
+      # theme list: https://github.com/tinted-theming/base16-schemes
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+      fonts = {
+        # serif.name = "";
+        # sansSerif.name = "";
+        monospace = {
+          name = "FiraCode Nerd Font Mono";
+          package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+        };
+        sizes = {
+          applications = 20;
+          desktop = 20;
+          popups = 20;
+          terminal = 20;
+        };
+      };
+    };
+
     # Shells
     programs.fish = {
       enable = true;
@@ -268,7 +296,7 @@
         fish_add_path /usr/local/texlive/2023basic/bin/universal-darwin
 
         # configure dircolors
-        dircolors ~/dotfiles/nord-dir_colors >/dev/null
+        # dircolors ~/dotfiles/nord-dir_colors >/dev/null
       '';
       shellAliases = {
         cat = "bat";
@@ -287,7 +315,7 @@
     programs.dircolors = { enable = true; };
     programs.bat = {
       enable = true;
-      config = { theme = "Nord"; };
+      # config = { theme = "Nord"; };
     };
     programs.exa = {
       enable = true;
@@ -311,7 +339,7 @@
       shell = "/Users/gabesaenz/.nix-profile/bin/fish";
       clock24 = true;
       plugins = with pkgs.tmuxPlugins; [
-        nord
+        # nord
         # menus # no nix package
         # digit # no nix package
         mode-indicator
@@ -322,10 +350,6 @@
     };
     programs.alacritty.enable = true;
     programs.alacritty.settings = {
-      font = {
-        normal = { family = "FiraCode Nerd Font Mono"; };
-        size = 20.0;
-      };
       window.decorations = "buttonless";
       shell.program = "fish";
     };
@@ -335,7 +359,7 @@
       enable = true;
       defaultEditor = true;
       settings = {
-        theme = "nord";
+        # theme = "nord";
         editor.whitespace.render = "all";
         editor.auto-pairs = false;
       };
@@ -344,19 +368,16 @@
       enable = true;
       defaultEditor = false;
       extraConfig = ''
-        " font
-        set guifont=FiraCode_Nerd_Font_Mono:h24
-
         " hide mouse when typing
         let g:neovide_hide_mouse_when_typing = v:false
       '';
       plugins = with pkgs;
         [
           # nord colorscheme
-          {
-            plugin = vimPlugins.nord-vim;
-            config = "colorscheme nord";
-          }
+          # {
+          #   plugin = vimPlugins.nord-vim;
+          #   config = "colorscheme nord";
+          # }
         ];
       viAlias = true;
       vimAlias = true;
