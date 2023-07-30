@@ -344,17 +344,20 @@
       enable = true;
       defaultEditor = false;
       extraConfig = ''
-        " colorscheme
-        " isn't working
-        " colorscheme nord
-
         " font
         set guifont=FiraCode_Nerd_Font_Mono:h24
 
         " hide mouse when typing
         let g:neovide_hide_mouse_when_typing = v:false
       '';
-      plugins = with pkgs.vimPlugins; [ nord-vim ];
+      plugins = with pkgs;
+        [
+          # nord colorscheme
+          {
+            plugin = vimPlugins.nord-vim;
+            config = "colorscheme nord";
+          }
+        ];
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
