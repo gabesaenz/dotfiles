@@ -31,7 +31,7 @@
 
 ;; big font mode
 ;; set increment
-(setq doom-big-font-increment 6)
+(setq doom-big-font-increment 5)
 ;; disable then enable doom big font mode
 ;; this prevents the font size from increasing repeatedly
 (if (display-graphic-p)
@@ -43,6 +43,9 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-nord)
+
+;; Remove the banner from the splash screen
+(setq +doom-dashboard-ascii-banner-fn nil)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.

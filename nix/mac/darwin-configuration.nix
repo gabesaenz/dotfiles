@@ -115,7 +115,7 @@ in {
     enable = true;
     skhdConfig = ''
       # terminal
-      rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+      # rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
       lcmd - return : kitty --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
 
       # text editors
@@ -149,8 +149,7 @@ in {
   };
 
   homebrew.enable = true;
-  homebrew.taps =
-    [ "homebrew/cask" "homebrew/services" "railwaycat/emacsmacport" ];
+  homebrew.taps = [ "homebrew/services" "railwaycat/emacsmacport" ];
   homebrew.brews = [
     {
       # doom emacs dependency (fixes doom doctor warning)
@@ -166,7 +165,7 @@ in {
         "with-imagemagick"
         "with-librsvg"
         "with-native-compilation"
-        "with-no-title-bars"
+        # "with-no-title-bars" # seems to be causing an error now
         "with-modules" # not sure if this is necessary
       ];
     }
@@ -175,7 +174,7 @@ in {
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
-    "alacritty" # terminal emulator
+    # "alacritty" # terminal emulator
     "basictex" # minimal texlive distribution, provides tlmgr
     "dropbox" # cloud storage
     "firefox" # web browser
@@ -188,8 +187,8 @@ in {
     "neovide" # neovim frontend
     "noisy" # whitenoise generator
     "the-unarchiver" # archive manager
+    "simple-comic" # comic book viewer
     "spotify" # music streaming
-    "telegram" # messaging
     "virtualbox" # virtualization
     "vitalsource-bookshelf" # textbook ebook reader
     "vlc" # media player
@@ -198,7 +197,7 @@ in {
   ];
   homebrew.masApps = { # Mac App Store
     "Horo - Timer for Menu Bar" = 1437226581; # timer
-    "Logic Pro" = 634148309; # audio editor # large (1GB+)
+    # "Logic Pro" = 634148309; # audio editor # large (1GB+)
     "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
   # homebrew.onActivation.cleanup = "uninstall"; # disabled as it deleted dependencies
@@ -221,7 +220,6 @@ in {
       neofetch
 
       # Text editing
-      helix
       kakoune
 
       # Password management
@@ -239,8 +237,18 @@ in {
       rust-analyzer
       bacon
 
+      # mdbook prereqs
+      # mdbook
+      # mdbook-pdf
+      # chromium (from brew) is also a requirement
+
       # PDF
       djvu2pdf # convert djvu to pdf
+
+      # Comics
+      comical
+      mcomix
+      termpdfpy
     ];
 
     fonts.fontconfig.enable = true; # doom emacs dependency
@@ -262,6 +270,7 @@ in {
       # image = /Users/gabesaenz/dotfiles/nord_lake.png;
       # theme list: https://github.com/tinted-theming/base16-schemes
       base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+      # base16Scheme = "/Users/gabesaenz/dotfiles/nix/themes/nord.yaml";
       fonts = {
         # serif.name = "";
         # sansSerif.name = "";
@@ -276,6 +285,10 @@ in {
           terminal = 20;
         };
       };
+      targets.bat.enable = false;
+      targets.helix.enable = false;
+      # targets.kitty.enable = false;
+      # targets.vim.enable = false; # leave this enabled for font settings
     };
 
     # Shells
@@ -291,12 +304,15 @@ in {
         # add doom emacs bin to $PATH
         fish_add_path ~/.emacs.d/bin
 
+        # add rust cargo installs to $PATH
+        fish_add_path ~/.cargo/bin
+
         # add tlmgr to $PATH
         # requires brew cask "basictex"
         fish_add_path /usr/local/texlive/2023basic/bin/universal-darwin
 
         # configure dircolors
-        # dircolors ~/dotfiles/nord-dir_colors >/dev/null
+        dircolors ~/dotfiles/nord-dir_colors >/dev/null
       '';
       shellAliases = {
         cat = "bat";
@@ -315,9 +331,9 @@ in {
     programs.dircolors = { enable = true; };
     programs.bat = {
       enable = true;
-      # config = { theme = "Nord"; };
+      config = { theme = "Nord"; };
     };
-    programs.exa = {
+    programs.eza = {
       enable = true;
       enableAliases = true;
       git = true;
@@ -339,7 +355,7 @@ in {
       shell = "/Users/gabesaenz/.nix-profile/bin/fish";
       clock24 = true;
       plugins = with pkgs.tmuxPlugins; [
-        # nord
+        nord
         # menus # no nix package
         # digit # no nix package
         mode-indicator
@@ -348,18 +364,19 @@ in {
         prefix-highlight
       ];
     };
-    programs.alacritty.enable = true;
-    programs.alacritty.settings = {
-      window.decorations = "buttonless";
-      shell.program = "fish";
-    };
+    # build error
+    # programs.alacritty.enable = true;
+    # programs.alacritty.settings = {
+    #   window.decorations = "buttonless";
+    #   shell.program = "fish";
+    # };
 
     # Text Editors
     programs.helix = {
       enable = true;
       defaultEditor = true;
       settings = {
-        # theme = "nord";
+        theme = "nord";
         editor.whitespace.render = "all";
         editor.auto-pairs = false;
       };
@@ -368,16 +385,20 @@ in {
       enable = true;
       defaultEditor = false;
       extraConfig = ''
+        " theme
+        " placed here to override stylix while still inheriting font settings from stylix
+        colorscheme nord
+
         " hide mouse when typing
         let g:neovide_hide_mouse_when_typing = v:false
       '';
       plugins = with pkgs;
         [
           # nord colorscheme
-          # {
-          #   plugin = vimPlugins.nord-vim;
-          #   config = "colorscheme nord";
-          # }
+          {
+            plugin = vimPlugins.nord-vim;
+            # config = "colorscheme nord";
+          }
         ];
       viAlias = true;
       vimAlias = true;
