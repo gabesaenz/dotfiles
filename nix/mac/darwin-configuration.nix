@@ -115,11 +115,10 @@ in {
     enable = true;
     skhdConfig = ''
       # terminal
-      # rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
-      lcmd - return : kitty --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
+      rcmd - return : kitty --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
 
       # text editors
-      lalt - return : neovide --multigrid --frame none
+      ralt - return : neovide --multigrid --frame none
     '';
   };
   services.yabai = {
@@ -174,7 +173,6 @@ in {
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
-    # "alacritty" # terminal emulator
     "basictex" # minimal texlive distribution, provides tlmgr
     "dropbox" # cloud storage
     "firefox" # web browser
@@ -364,12 +362,6 @@ in {
         prefix-highlight
       ];
     };
-    # build error
-    # programs.alacritty.enable = true;
-    # programs.alacritty.settings = {
-    #   window.decorations = "buttonless";
-    #   shell.program = "fish";
-    # };
 
     # Text Editors
     programs.helix = {
