@@ -249,6 +249,7 @@ in {
     "iina" # media player
     "neovide" # neovim frontend
     "noisy" # whitenoise generator
+    "qview" # image viewer
     "simple-comic" # comic book viewer
     "spotify" # music streaming
     "the-unarchiver" # archive manager
@@ -307,6 +308,7 @@ in {
 
       # PDF
       djvu2pdf # convert djvu to pdf
+      mupdf
 
       # Comics
       comical
