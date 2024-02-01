@@ -114,11 +114,73 @@ in {
   services.skhd = {
     enable = true;
     skhdConfig = ''
+      #################
+      # yabai controls:
+      #################
+
+      # focus window
+      meh - h : yabai -m window --focus west
+      meh - j : yabai -m window --focus south
+      meh - k : yabai -m window --focus north
+      meh - l : yabai -m window --focus east
+
+      # swap managed window
+      hyper - h : yabai -m window --swap west
+      hyper - j : yabai -m window --swap south
+      hyper - k : yabai -m window --swap north
+      hyper - l : yabai -m window --swap east
+
+      # send window to desktop
+      hyper - 1 : yabai -m window --space 1
+      hyper - 2 : yabai -m window --space 2
+      hyper - 3 : yabai -m window --space 3
+      hyper - 4 : yabai -m window --space 4
+      hyper - 5 : yabai -m window --space 5
+      hyper - 6 : yabai -m window --space 6
+      hyper - 7 : yabai -m window --space 7
+      hyper - 8 : yabai -m window --space 8
+      hyper - 9 : yabai -m window --space 9
+
+      # move floating window
+      meh - y : yabai -m window --move rel:-20:0
+      meh - u : yabai -m window --move rel:0:20
+      meh - i : yabai -m window --move rel:0:-20
+      meh - o : yabai -m window --move rel:20:0
+
+      # increase window size
+      hyper - y : yabai -m window --resize left:-20:0
+      hyper - i : yabai -m window --resize top:0:-20
+
+      # decrease window size
+      hyper - o : yabai -m window --resize left:20:0
+      hyper - u : yabai -m window --resize top:0:20
+
+      # balance size of windows
+      hyper - 0 : yabai -m space --balance
+
+      # toggle window zoom
+      fn - y : yabai -m window --toggle zoom-parent
+      fn - u : yabai -m window --toggle zoom-fullscreen
+
+      # toggle window split type
+      fn - i : yabai -m window --toggle split
+
+      # float / unfloat window and center on screen
+      fn - o : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+      # toggle sticky(+float), picture-in-picture
+      fn - p : yabai -m window --toggle sticky --toggle pip
+
+
+      ########################
+      # application shortcuts:
+      ########################
+
       # terminal
-      rcmd - return : kitty --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
+      rcmd - return : kitty --single-instance --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
 
       # text editors
-      ralt - return : neovide --multigrid --frame none
+      ralt - return : emacsclient -c -a "emacs"
     '';
   };
   services.yabai = {
