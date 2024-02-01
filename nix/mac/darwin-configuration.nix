@@ -164,12 +164,15 @@ in {
         "with-imagemagick"
         "with-librsvg"
         "with-native-compilation"
-        # "with-no-title-bars" # seems to be causing an error now
+        "with-no-title-bars"
         "with-modules" # not sure if this is necessary
+        "with-starter"
+        "with-mac-metal"
       ];
     }
     "npm" # doom emacs dependency
     "mu" # doom emacs dependency
+    "gcc" # doom emacs dependency (native compilation)
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
