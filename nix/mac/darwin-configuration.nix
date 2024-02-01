@@ -249,9 +249,9 @@ in {
     "iina" # media player
     "neovide" # neovim frontend
     "noisy" # whitenoise generator
-    "the-unarchiver" # archive manager
     "simple-comic" # comic book viewer
     "spotify" # music streaming
+    "the-unarchiver" # archive manager
     "virtualbox" # virtualization
     "vitalsource-bookshelf" # textbook ebook reader
     "vlc" # media player
@@ -260,7 +260,7 @@ in {
   ];
   homebrew.masApps = { # Mac App Store
     "Horo - Timer for Menu Bar" = 1437226581; # timer
-    # "Logic Pro" = 634148309; # audio editor # large (1GB+)
+    "Logic Pro" = 634148309; # audio editor # large (1GB+)
     "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
   # homebrew.onActivation.cleanup = "uninstall"; # disabled as it deleted dependencies
