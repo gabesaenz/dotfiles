@@ -314,10 +314,14 @@ in {
       '';
       shellAliases = {
         cat = "bat";
-        rebuild =
-          "nix-channel --update;darwin-rebuild switch && nix store optimise";
+        rebuild = "rebuild-nix && rebuild-brew && garbage && doomsync";
+        rebuild-nix =
+          "nix-channel --update && darwin-rebuild switch && nix store optimise";
+        rebuild-brew =
+          "brew update && brew upgrade && brew autoremove && brew cleanup";
         rebuild-quick = "darwin-rebuild switch";
         doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
+        garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
       };
     };
 
