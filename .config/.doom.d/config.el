@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;; (setq user-full-name "Gabe Saenz"
-      ;; user-mail-address "gabesaenz@gmail.com")
+;; user-mail-address "gabesaenz@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -143,11 +143,18 @@
 ;; offlineimap
 (setq +mu4e-backend 'offlineimap)
 (set-email-account! "gmx"
-  '(;; (mu4e-sent-folder       . "")
-    ;; (mu4e-drafts-folder     . "")
-    ;; (mu4e-trash-folder      . "")
-    ;; (mu4e-refile-folder     . "")
-    (smtpmail-smtp-user     . "gabriel.saenz@gmx.de")
-    (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
-    (user-full-name         . "Gabriel Saenz"))
-  t)
+                    '(;; (mu4e-sent-folder       . "")
+                      ;; (mu4e-drafts-folder     . "")
+                      ;; (mu4e-trash-folder      . "")
+                      ;; (mu4e-refile-folder     . "")
+                      (smtpmail-smtp-user     . "gabriel.saenz@gmx.de")
+                      (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
+                      (user-full-name         . "Gabriel Saenz"))
+                    t)
+
+;; customize window decoration for emacs-plus
+;; This should be in early-init.el but I'm trying it here.
+;; no titlebar, normal corners
+(add-to-list 'default-frame-alist '(undecorated . t))
+;; no titlebar, rounded corners
+;; (add-to-list 'default-frame-alist '(undecorated-round . t))
