@@ -180,7 +180,9 @@ in {
       rcmd - return : kitty --single-instance --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
 
       # text editors
-      ralt - return : emacsclient -c -a "emacs"
+      ralt - return : emacsclient -c -a "emacs" # this launches but doesn't connect to the server
+      meh - return : emacsclient -c # will this work?
+      hyper - return : emacsclient -n -c -a "" # will this work?
     '';
   };
   services.yabai = {
@@ -210,7 +212,11 @@ in {
   };
 
   homebrew.enable = true;
-  homebrew.taps = [ "homebrew/services" "railwaycat/emacsmacport" ];
+  homebrew.taps = [
+    "homebrew/services"
+    # "railwaycat/emacsmacport"
+    "d12frosted/emacs-plus"
+  ];
   homebrew.brews = [
     {
       # doom emacs dependency (fixes doom doctor warning)
@@ -218,19 +224,31 @@ in {
       restart_service = true;
       start_service = true;
     }
+    # {
+    #   name = "emacs-mac";
+    #   args = [
+    #     "with-dbus"
+    #     "with-glib"
+    #     "with-imagemagick"
+    #     "with-librsvg"
+    #     "with-native-compilation"
+    #     "with-no-title-bars"
+    #     "with-modules" # not sure if this is necessary
+    #     "with-starter"
+    #     "with-mac-metal"
+    #   ];
+    # }
     {
-      name = "emacs-mac";
+      name = "emacs-plus";
       args = [
         "with-dbus"
-        "with-glib"
+        "with-mailutils"
+        "with-no-frame-refocus"
         "with-imagemagick"
-        "with-librsvg"
-        "with-native-compilation"
-        "with-no-title-bars"
-        "with-modules" # not sure if this is necessary
-        "with-starter"
-        "with-mac-metal"
+        "with-native-comp"
       ];
+      restart_service = true;
+      start_service = true;
     }
     "npm" # doom emacs dependency
     "mu" # doom emacs dependency
