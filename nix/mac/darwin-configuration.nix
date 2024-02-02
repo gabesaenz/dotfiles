@@ -262,17 +262,13 @@ in {
     "flux" # nighttime colorshift
     "google-chrome" # web browser
     "kitty" # terminal emulator
-    "lapce" # text editor
     "libreoffice" # work
-    "iina" # media player
     "neovide" # neovim frontend
     "noisy" # whitenoise generator
-    "qview" # image viewer
     "simple-comic" # comic book viewer
     "spotify" # music streaming
     "the-unarchiver" # archive manager
     "virtualbox" # virtualization
-    "vitalsource-bookshelf" # textbook ebook reader
     "vlc" # media player
     "whatsapp" # messaging
     "zoom" # video conferencing
@@ -301,9 +297,6 @@ in {
       # Shell tools
       neofetch
 
-      # Text editing
-      kakoune
-
       # Password management
       pass
 
@@ -319,19 +312,8 @@ in {
       rust-analyzer
       bacon
 
-      # mdbook prereqs
-      # mdbook
-      # mdbook-pdf
-      # chromium (from brew) is also a requirement
-
       # PDF
       djvu2pdf # convert djvu to pdf
-      mupdf
-
-      # Comics
-      comical
-      mcomix
-      termpdfpy
     ];
 
     fonts.fontconfig.enable = true; # doom emacs dependency
