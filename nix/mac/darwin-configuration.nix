@@ -245,7 +245,7 @@ in {
         "with-imagemagick"
         "with-native-comp"
       ];
-      restart_service = true;
+      # restart_service = true;
       start_service = true;
     }
     "npm" # doom emacs dependency
