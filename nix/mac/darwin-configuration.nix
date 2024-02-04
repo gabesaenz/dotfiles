@@ -180,9 +180,7 @@ in {
       rcmd - return : kitty --single-instance --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
 
       # text editors
-      ralt - return : emacsclient -c -a "emacs" # this launches but doesn't connect to the server
-      meh - return : emacsclient -c # will this work?
-      hyper - return : emacsclient -n -c -a "" # will this work?
+      ralt - return : emacsclient -c -a "emacs"
     '';
   };
   services.yabai = {
