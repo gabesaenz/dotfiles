@@ -376,6 +376,16 @@ in {
 
         # configure dircolors
         dircolors ~/dotfiles/nord-dir_colors >/dev/null
+
+        # enable vi mode
+        fish_vi_key_bindings
+
+        # enable tmux
+        if not set -q TMUX
+          set -g TMUX tmux new-session -d -s base
+          eval $TMUX
+          tmux attach-session -d -t base
+        end
       '';
       shellAliases = {
         cat = "bat";
@@ -430,6 +440,7 @@ in {
         # powerline # no nix package
         prefix-highlight
       ];
+      extraConfig = "set -g default-command exec fish";
     };
 
     # Text Editors
