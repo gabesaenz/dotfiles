@@ -312,6 +312,8 @@ in {
 
       # PDF
       djvu2pdf # convert djvu to pdf
+      sioyek
+      zathura
     ];
 
     fonts.fontconfig.enable = true; # doom emacs dependency
