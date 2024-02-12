@@ -283,6 +283,9 @@ in {
       # Shell tools
       neofetch
 
+      # Text editors
+      micro
+
       # Password management
       pass
 
