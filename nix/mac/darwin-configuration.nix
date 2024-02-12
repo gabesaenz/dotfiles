@@ -217,11 +217,7 @@ in {
   };
 
   homebrew.enable = true;
-  homebrew.taps = [
-    "homebrew/services"
-    # "railwaycat/emacsmacport"
-    "d12frosted/emacs-plus"
-  ];
+  homebrew.taps = [ "homebrew/services" "d12frosted/emacs-plus" ];
   homebrew.brews = [
     {
       # doom emacs dependency (fixes doom doctor warning)
@@ -229,20 +225,6 @@ in {
       restart_service = true;
       start_service = true;
     }
-    # {
-    #   name = "emacs-mac";
-    #   args = [
-    #     "with-dbus"
-    #     "with-glib"
-    #     "with-imagemagick"
-    #     "with-librsvg"
-    #     "with-native-compilation"
-    #     "with-no-title-bars"
-    #     "with-modules" # not sure if this is necessary
-    #     "with-starter"
-    #     "with-mac-metal"
-    #   ];
-    # }
     {
       name = "emacs-plus";
       args = [
