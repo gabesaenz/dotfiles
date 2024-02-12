@@ -94,6 +94,7 @@ in {
     shfmt
     nodePackages.stylelint
     nodePackages.js-beautify
+    cmake # required for vterm
   ];
 
   # Fonts

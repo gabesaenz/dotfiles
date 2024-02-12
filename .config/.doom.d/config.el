@@ -158,3 +158,8 @@
 (add-to-list 'default-frame-alist '(undecorated . t))
 ;; no titlebar, rounded corners
 ;; (add-to-list 'default-frame-alist '(undecorated-round . t))
+
+;; fish shell related fixes suggested by doom doctor
+(setq shell-file-name (executable-find "bash"))
+(setq-default vterm-shell (executable-find "fish"))
+(setq-default explicit-shell-file-name (executable-find "fish"))
