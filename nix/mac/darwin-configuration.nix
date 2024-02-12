@@ -323,11 +323,8 @@ in {
     # options: https://danth.github.io/stylix/options/hm.html
     imports = [ (import stylix).homeManagerModules.stylix ];
     stylix = {
-      # image = /Users/gabesaenz/dotfiles/nord_lake.png;
       # theme list: https://github.com/tinted-theming/base16-schemes
-      # note: something is wrong with the built-in scheme so this uses a local copy instead
-      # base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-      base16Scheme = "/Users/gabesaenz/dotfiles/nix/themes/nord.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
       fonts = {
         monospace = {
           name = "FiraCode Nerd Font Mono";
