@@ -274,7 +274,6 @@ in {
   imports = [ <home-manager/nix-darwin> ];
 
   users.users.gabesaenz = {
-    # name = "Gabe Saenz"; # this was causing an error during darwin-rebuild switch
     home = "/Users/gabesaenz";
     shell = pkgs.fish;
   };
@@ -340,8 +339,6 @@ in {
       };
       targets.bat.enable = false;
       targets.helix.enable = false;
-      # targets.kitty.enable = false;
-      # targets.vim.enable = false; # leave this enabled for font settings
     };
 
     # Shells
