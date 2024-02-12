@@ -58,6 +58,9 @@ in {
   environment.variables = {
     # doom emacs config folder
     DOOMDIR = "$HOME/dotfiles/.config/.doom.d";
+
+    # hide direnv output
+    DIRENV_LOG_FORMAT = "";
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -379,15 +382,8 @@ in {
         # configure dircolors
         dircolors ~/dotfiles/nord-dir_colors >/dev/null
 
-        # enable vi mode
-        fish_vi_key_bindings
-
-        # enable tmux
-        if not set -q TMUX
-          set -g TMUX tmux new-session -d -s base
-          eval $TMUX
-          tmux attach-session -d -t base
-        end
+        # direnv integration
+        direnv hook fish | source
       '';
       shellAliases = {
         cat = "bat";
@@ -425,24 +421,25 @@ in {
         "--ignore-glob=.git|.DS_Store"
       ];
     };
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
 
     # Terminals
     programs.tmux = {
       enable = true;
+      clock24 = true;
       keyMode = "vi";
       mouse = true;
+      sensibleOnTop = false;
       shell = "/Users/gabesaenz/.nix-profile/bin/fish";
-      clock24 = true;
-      plugins = with pkgs.tmuxPlugins; [
-        nord
-        # menus # no nix package
-        # digit # no nix package
-        mode-indicator
-        weather
-        # powerline # no nix package
-        prefix-highlight
-      ];
-      extraConfig = "set -g default-command exec fish";
+      terminal = "tmux-direct";
+      plugins = with pkgs.tmuxPlugins; [ nord ];
+      extraConfig = ''
+        set-option -g status off
+        bind-key b set-option status
+      '';
     };
 
     # Text Editors
