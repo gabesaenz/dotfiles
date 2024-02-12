@@ -118,6 +118,9 @@ in {
   services.skhd = {
     enable = true;
     skhdConfig = ''
+      # Reload config
+      fn - r: skhd --reload
+
       #################
       # yabai controls:
       #################
