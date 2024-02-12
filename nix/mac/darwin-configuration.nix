@@ -445,14 +445,9 @@ in {
         " hide mouse when typing
         let g:neovide_hide_mouse_when_typing = v:false
       '';
-      plugins = with pkgs;
-        [
-          # nord colorscheme
-          {
-            plugin = vimPlugins.nord-vim;
-            # config = "colorscheme nord";
-          }
-        ];
+      plugins = with pkgs; [{
+        plugin = vimPlugins.nord-vim; # nord colorscheme
+      }];
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
