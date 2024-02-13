@@ -251,7 +251,6 @@ in {
     "kitty" # terminal emulator
     "libreoffice" # work
     "neovide" # neovim frontend
-    "noisy" # whitenoise generator
     "simple-comic" # comic book viewer
     "spotify" # music streaming
     "the-unarchiver" # archive manager
