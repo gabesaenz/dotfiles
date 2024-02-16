@@ -138,15 +138,6 @@
 (global-whitespace-toggle-options '(whitespace-style))
 
 ;; email
-;; msmtp
-(after! mu4e
-  (setq sendmail-program (executable-find "msmtp")
-	send-mail-function #'smtpmail-send-it
-	message-sendmail-f-is-evil t
-	message-sendmail-extra-arguments '("--read-envelope-from")
-	message-send-mail-function #'message-send-mail-with-sendmail))
-;; offlineimap
-(setq +mu4e-backend 'offlineimap)
 (set-email-account! "gmx"
                     '(;; (mu4e-sent-folder       . "")
                       ;; (mu4e-drafts-folder     . "")
@@ -156,6 +147,15 @@
                       (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
                       (user-full-name         . "Gabriel Saenz"))
                     t)
+;; offlineimap
+(setq +mu4e-backend 'offlineimap)
+;; msmtp
+(after! mu4e
+  (setq sendmail-program (executable-find "msmtp")
+	send-mail-function #'smtpmail-send-it
+	message-sendmail-f-is-evil t
+	message-sendmail-extra-arguments '("--read-envelope-from")
+	message-send-mail-function #'message-send-mail-with-sendmail))
 
 ;; customize window decoration for emacs-plus
 ;; This should be in early-init.el but I'm trying it here.
