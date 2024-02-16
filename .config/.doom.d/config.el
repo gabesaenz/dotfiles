@@ -44,8 +44,13 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-nord)
 
-;; Remove the banner from the splash screen
-(setq +doom-dashboard-ascii-banner-fn nil)
+;; Dashboard
+;; Remove the banner
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
+;; Remove load time message
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
+;; Remove footer
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
