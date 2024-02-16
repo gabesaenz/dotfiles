@@ -265,7 +265,8 @@ in {
     "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
   # homebrew.onActivation.cleanup = "uninstall"; # disabled as it deleted dependencies
-  # homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data # disabled as it deleted dependencies
+  homebrew.onActivation.cleanup =
+    "zap"; # uninstall and remove all data # disabled as it deleted dependencies # but maybe this isn't causing issues anymore?
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.upgrade = true;
 
