@@ -27,6 +27,7 @@
 ## Usability
  - [ ] LittleTips https://github.com/chenjing1294/LittleTips
    - displays shortcut keys for the active window
+ - [ ] [Vimium](https://vimium.github.io/)
 
 ## Windows Subsystem for Linux
  - [ ] Install: https://learn.microsoft.com/en-us/windows/wsl/install
@@ -58,5 +59,6 @@
  - [ ] Do the vi and emacs tutorials.
 
 # Install Nix
- - [ ] Nix Windows service: https://nixos.org/download#nix-install-windows
- - [ ] NixOS as WSL OS: https://github.com/nix-community/NixOS-WSL
+ - [ ] [Nix Windows service](https://nixos.org/download#nix-install-windows)
+ - [ ] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
+ - [ ] [NixOS as WSL OS](https://github.com/nix-community/NixOS-WSL)
