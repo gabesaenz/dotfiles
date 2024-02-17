@@ -66,6 +66,7 @@
  - [Example](https://imgur.com/gallery/Rsdhm5k)
  - [Example](https://www.reddit.com/r/desktops/comments/u66glg/windows_10_rice_jetblack/)
  - [Ricing Windows in 2020](https://gist.github.com/triplrrr/d2250db71f0b3a93ed60daa65fe5668f)
+ - [Rainmeter](https://www.rainmeter.net/)
 
 # Install Doom Emacs
  - [ ] Documentation: https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org
