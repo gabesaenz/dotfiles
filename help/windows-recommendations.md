@@ -54,6 +54,15 @@
 ## Notepad++
  - [ ] Install Nord Theme: https://github.com/nordtheme/notepadplusplus
 
+# Change appearance of Windows
+ - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)
+ - [How to Rice Windows.](https://dev.to/ananddhruv295/how-to-rice-windows-2h12)
+ - https://www.ricing.chloechantelle.com/
+   - [Examples](https://www.dropbox.com/sh/gnwhuxk3fi9cqdc/AABCPc3tJBnzC0pYS_jY_6Xla/W10?e=1&preview=66.png)
+ - [Example](https://imgur.com/gallery/Rsdhm5k)
+ - [Example](https://www.reddit.com/r/desktops/comments/u66glg/windows_10_rice_jetblack/)
+ - [Ricing Windows in 2020](https://gist.github.com/triplrrr/d2250db71f0b3a93ed60daa65fe5668f)
+
 # Install Doom Emacs
  - [ ] Documentation: https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org
  - [ ] Do the vi and emacs tutorials.
