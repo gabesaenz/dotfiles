@@ -54,6 +54,10 @@
 ## Notepad++
  - [ ] Install Nord Theme: https://github.com/nordtheme/notepadplusplus
 
+# Color Palettes
+ - [Catpuccin](https://github.com/catppuccin)
+ - [Nord](https://www.nordtheme.com/)
+
 # Change appearance of Windows
  - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)
  - [How to Rice Windows.](https://dev.to/ananddhruv295/how-to-rice-windows-2h12)

@@ -39,6 +39,10 @@
  - [ ] Install Nord Theme
  - [ ] Work through the tutorial.
 
+# Color Palettes
+ - [Catpuccin](https://github.com/catppuccin)
+ - [Nord](https://www.nordtheme.com/)
+
 # Install Doom Emacs
  - [ ] Documentation: https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org
  - [ ] Do the vi and emacs tutorials.
