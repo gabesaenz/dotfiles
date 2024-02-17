@@ -34,6 +34,9 @@
 
 # Configure
 
+## Windows Terminal
+ - [ ] [Themes](https://windowsterminalthemes.dev/)
+
 ## OhMyPosh
  - [ ] Install Fonts: https://ohmyposh.dev/docs/installation/fonts
 
