@@ -265,9 +265,8 @@ in {
     "Logic Pro" = 634148309; # audio editor # large (1GB+)
     "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
-  # homebrew.onActivation.cleanup = "uninstall"; # disabled as it deleted dependencies
   homebrew.onActivation.cleanup =
-    "zap"; # uninstall and remove all data # disabled as it deleted dependencies # but maybe this isn't causing issues anymore?
+    "zap"; # uninstall and remove all data from anything not listed above
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.upgrade = true;
 
