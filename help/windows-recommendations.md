@@ -80,6 +80,12 @@
 
 # Change appearance of Windows
  - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)
+   - [ ] [PowerToys](https://github.com/microsoft/PowerToys?tab=readme-ov-file#via-winget)
+     - [ ] Mac Style Spotlight Search
+   - [ ] [TaskbarX](https://chrisandriessen.nl/taskbarx)
+   - [ ] [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups?tab=readme-ov-file#-how-to-download-taskbar-groups)
+   - [ ] [QuickLook](https://github.com/QL-Win/QuickLook?tab=readme-ov-file#downloadinstallation)
+   - [ ] [Files](https://github.com/files-community/Files)
  - [How to Rice Windows.](https://dev.to/ananddhruv295/how-to-rice-windows-2h12)
  - https://www.ricing.chloechantelle.com/
    - [Examples](https://www.dropbox.com/sh/gnwhuxk3fi9cqdc/AABCPc3tJBnzC0pYS_jY_6Xla/W10?e=1&preview=66.png)
