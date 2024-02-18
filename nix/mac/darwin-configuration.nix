@@ -97,7 +97,7 @@ in {
     shfmt
     nodePackages.stylelint
     nodePackages.js-beautify
-    cmake # required for vterm
+    cmake # vterm dependency
   ];
 
   # Fonts
@@ -240,6 +240,7 @@ in {
     "npm" # doom emacs dependency
     "mu" # doom emacs dependency
     "gcc" # doom emacs dependency (native compilation)
+    "libvterm" # doom emacs dependency (vterm)
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
