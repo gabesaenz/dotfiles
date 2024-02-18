@@ -36,9 +36,13 @@
 
 ## Windows Terminal
  - [x] [Themes](https://windowsterminalthemes.dev/)
+ - [YouTube:  Make Windows Terminal look amazing!](https://www.youtube.com/watch?v=AK2JE2YsKto)
 
 ## OhMyPosh
  - [x] [Install Fonts](https://ohmyposh.dev/docs/installation/fonts)
+
+## [direnv](https://direnv.net/)
+ - [ ] [Install](https://direnv.net/docs/installation.html)
 
 ## Notepad++
  - [ ] [Install Nord Theme](https://github.com/nordtheme/notepadplusplus)
@@ -65,6 +69,14 @@
 # Color Palettes
  - [Catpuccin](https://github.com/catppuccin)
  - [Nord](https://www.nordtheme.com/)
+ - [Solarized](https://ethanschoonover.com/solarized/)
+ - [Gruvbox](https://github.com/morhetz/gruvbox)
+
+# Fonts
+ - [Korean Coding Font](https://github.com/naver/d2codingfont)
+   - [ ] Install (possibly using oh-my-posh font manager or winget?)
+   - [ ] Use in Windows Terminal
+   - [ ] Use in other places?
 
 # Change appearance of Windows
  - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)

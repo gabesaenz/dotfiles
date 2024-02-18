@@ -28,6 +28,9 @@
 ## OhMyPosh
  - [ ] [Install Fonts](https://ohmyposh.dev/docs/installation/fonts)
 
+## [direnv](https://direnv.net/)
+ - [ ] [Install](https://direnv.net/docs/installation.html)
+
 ## micro
  - [ ] [Install Nord Theme](https://github.com/KiranWells/micro-nord-tc-colors/)
  - [ ] Install Catpuccin Theme
@@ -45,6 +48,8 @@
 # Color Palettes
  - [Catpuccin](https://github.com/catppuccin)
  - [Nord](https://www.nordtheme.com/)
+ - [Solarized](https://ethanschoonover.com/solarized/)
+ - [Gruvbox](https://github.com/morhetz/gruvbox)
 
 # Install Doom Emacs
  - [ ] Documentation: https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org
