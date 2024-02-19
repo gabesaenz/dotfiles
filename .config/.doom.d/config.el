@@ -29,6 +29,9 @@
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 
+;; window transparency
+(add-to-list 'default-frame-alist '(alpha . 90))
+
 ;; big font mode
 ;; set increment
 (setq doom-big-font-increment 5)
