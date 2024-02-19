@@ -446,7 +446,7 @@ in {
         let g:neovide_hide_mouse_when_typing = v:false
 
         " transparency
-        let g:neovide_transparency = 0.5
+        let g:neovide_transparency = 0.7
 
         " blur
         let g:neovide_window_blurred = v:true
