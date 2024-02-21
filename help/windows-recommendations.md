@@ -104,5 +104,6 @@
 
 # Install Nix
  - [ ] [Nix Windows service](https://nixos.org/download#nix-install-windows)
+   - [ ] Required: https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/
  - [ ] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
  - [ ] [NixOS as WSL OS](https://github.com/nix-community/NixOS-WSL)
