@@ -7,19 +7,21 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, darwin, stylix, ... }: {
     darwinConfigurations = {
       hostname = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
-          ./darwin-configuration.nix
+          stylix.darwinModules.stylix
+          ./configuration.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            # home-manager.users.jdoe = import ./home.nix;
+            home-manager.users.gabesaenz = import ./home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
