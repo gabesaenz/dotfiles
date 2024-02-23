@@ -1,3 +1,6 @@
+# Run this the first time then use "rebuild" or "rebuild-quick" from then on.
+# nix flake update ~/dotfiles/nix/mac/ && darwin-rebuild switch --flake ~/dotfiles/nix/mac/
+
 {
   description = "Darwin configuration";
 
@@ -7,18 +10,13 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # stylix.url = "github:danth/stylix";
-    # stylix.inputs.nixpkgs.follows = "nixpkgs";
-    # stylix.inputs.home-manager.follows = "home-manager";
   };
 
-  # outputs = inputs@{ nixpkgs, home-manager, darwin, stylix, ... }: {
   outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
     darwinConfigurations = {
       Gabe-Mac = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [
-          # stylix.darwinModules.stylix
           ./configuration.nix
           home-manager.darwinModules.home-manager
           {

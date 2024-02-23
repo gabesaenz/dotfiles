@@ -10,14 +10,6 @@
   # Update them with: nix-channel --update
   # Also update the root channels with: sudo -i nix-channel --update
 
-  # Use a custom configuration.nix location.
-  # see: https://github.com/LnL7/nix-darwin/wiki/Changing-the-configuration.nix-location
-  # Run this the first time:
-  # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/nix/mac/darwin-configuration.nix
-  # Then run this any time after that:
-  # nix-channel --update;darwin-rebuild switch
-  environment.darwinConfig = "$HOME/dotfiles/nix/mac/darwin-configuration.nix";
-
   # Optimize the store
   # https://nixos.wiki/wiki/Storage_optimization#Optimising_the_store
   # this causes issues during rebuilds on mac so it's disabled for now

@@ -47,28 +47,6 @@
     ignores = [ ".DS_Store" ];
   };
 
-  # Theming
-  # options: https://danth.github.io/stylix/options/hm.html
-  # stylix = {
-  #   image = /Users/gabesaenz/dotfiles/background-images/nord_lake.png;
-  #   # theme list: https://github.com/tinted-theming/base16-schemes
-  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-  #   fonts = {
-  #     monospace = {
-  #       name = "FiraCode Nerd Font Mono";
-  #       package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
-  #     };
-  #     sizes = {
-  #       applications = 20;
-  #       desktop = 20;
-  #       popups = 20;
-  #       terminal = 20;
-  #     };
-  #   };
-  #   targets.bat.enable = false;
-  #   targets.helix.enable = false;
-  # };
-
   # Shells
   programs.zsh = {
     enable = true;
@@ -107,7 +85,7 @@
         "nix flake update ~/dotfiles/nix/mac/ && darwin-rebuild switch --flake ~/dotfiles/nix/mac/ && nix store optimise";
       rebuild-brew =
         "brew update && brew upgrade && brew autoremove && brew cleanup";
-      rebuild-quick = "darwin-rebuild switch";
+      rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/nix/mac/";
       doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
       garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
     };
@@ -210,7 +188,6 @@
     defaultEditor = false;
     extraConfig = ''
       " theme
-      " placed here to override stylix while still inheriting font settings from stylix
       colorscheme nord
 
       " hide mouse when typing
