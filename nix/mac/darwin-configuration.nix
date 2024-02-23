@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   stylix = builtins.fetchTarball {
@@ -58,6 +58,9 @@ in {
   environment.variables = {
     # doom emacs config folder
     DOOMDIR = "$HOME/dotfiles/.config/.doom.d";
+
+    # remove Neovide titlebar
+    NEOVIDE_FRAME = "none";
 
     # hide direnv output
     DIRENV_LOG_FORMAT = "";
@@ -184,10 +187,12 @@ in {
       ########################
 
       # terminal
-      rcmd - return : kitty --single-instance --config ~/dotfiles/.config/kitty/kitty.conf --directory=~
+      rcmd - return : /Applications/kitty.app/Contents/MacOS/kitty
 
       # text editors
       ralt - return : emacsclient -c -a "emacs"
+      meh - return : /Applications/Neovide.app/Contents/MacOS/neovide
+      hyper - return : /Applications/Neovide.app/Contents/MacOS/neovide --frame none
     '';
   };
   services.yabai = {
@@ -258,6 +263,7 @@ in {
     "virtualbox" # virtualization
     "vlc" # media player
     "whatsapp" # messaging
+    "yacreader" # comic book library
     "zoom" # video conferencing
   ];
   homebrew.masApps = { # Mac App Store
@@ -282,6 +288,7 @@ in {
     home.packages = with pkgs; [
       # Shell tools
       neofetch
+      pv
 
       # Text editors
       micro
@@ -305,6 +312,10 @@ in {
       djvu2pdf # convert djvu to pdf
       sioyek
       zathura
+
+      # Spotify
+      spicetify-cli
+      spotify-tui
     ];
 
     fonts.fontconfig.enable = true; # doom emacs dependency
@@ -342,6 +353,10 @@ in {
     };
 
     # Shells
+    programs.zsh = {
+      enable = true;
+      oh-my-zsh = { enable = true; };
+    };
     programs.fish = {
       enable = true;
       functions = {
@@ -369,6 +384,7 @@ in {
       '';
       shellAliases = {
         cat = "bat";
+        top = "btop";
         rebuild = "rebuild-nix && rebuild-brew && garbage && doomsync";
         rebuild-nix =
           "nix-channel --update && darwin-rebuild switch && nix store optimise";
@@ -381,15 +397,7 @@ in {
     };
 
     # Shell Tools
-    programs.oh-my-posh = {
-      enable = true;
-      useTheme = "nordtron";
-    };
-    programs.dircolors = { enable = true; };
-    programs.bat = {
-      enable = true;
-      config = { theme = "Nord"; };
-    };
+    programs.btop = { enable = true; };
     programs.eza = {
       enable = true;
       enableAliases = true;
@@ -403,12 +411,58 @@ in {
         "--ignore-glob=.git|.DS_Store"
       ];
     };
+    programs.dircolors = { enable = true; };
+    programs.bat = {
+      enable = true;
+      config = { theme = "Nord"; };
+    };
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
     };
+    programs.lazygit = { enable = true; };
+    programs.oh-my-posh = {
+      enable = true;
+      useTheme = "nordtron";
+    };
 
     # Terminals
+    programs.kitty = {
+      enable = true;
+      darwinLaunchOptions = [
+        # "--single-instance"
+        "--directory=~"
+      ];
+      extraConfig = ''
+        # default shell
+        shell fish
+
+        # disable confirm on close
+        confirm_os_window_close 0
+
+        # fonts
+        font_family FiraCode Nerd Font Mono
+        font_size 20.0
+
+        # Devanāgarī support
+        # from : https://www.wikiwand.com/en/Devanagari#Unicode
+        # The Unicode Standard defines four blocks for Devanāgarī: Devanagari (U+0900–U+097F), Devanagari Extended (U+A8E0–U+A8FF), Devanagari Extended-A (U+11B00–11B5F), and Vedic Extensions (U+1CD0–U+1CFF).
+        # symbol_map U+0900–U+097F,U+A8E0–U+A8FF,U+11B00–11B5F,U+1CD0–U+1CFF Annapurna SIL
+
+        # window decorations
+        hide_window_decorations yes
+
+        # transparency
+        background_opacity 0.7
+
+        # blur
+        background_blur 32
+
+        # startup session
+        startup_session ~/dotfiles/.config/kitty/kitty-startup.session
+      '';
+      # theme = "nord";
+    };
     programs.tmux = {
       enable = true;
       clock24 = true;
@@ -476,6 +530,19 @@ in {
         msmtp.enable = true;
       };
     };
+
+    # Spotify
+    # not supported on MacOS/nix-darwin
+    # services.spotifyd = {
+    #   enable = true;
+    #   settings = {
+    #     global = {
+    #       username = "gabesaenz@gmail.com";
+    #       password_cmd = "pass spotify";
+    #       # device_name = "macground";
+    #     };
+    #   };
+    # };
   };
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

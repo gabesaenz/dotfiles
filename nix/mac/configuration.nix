@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, modulesPath, inputs, ... }:
 
 {
   # Nix settings
@@ -276,4 +276,7 @@
     home = "/Users/gabesaenz";
     shell = pkgs.fish;
   };
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 4;
 }

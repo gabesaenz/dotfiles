@@ -1,4 +1,7 @@
-{ pkgs, config, stylix, ... }: {
+{ config, pkgs, lib, modulesPath, inputs, ... }:
+
+{
+  home.stateVersion = "22.05";
   home.packages = with pkgs; [
     # Shell tools
     neofetch
@@ -46,24 +49,25 @@
 
   # Theming
   # options: https://danth.github.io/stylix/options/hm.html
-  stylix = {
-    # theme list: https://github.com/tinted-theming/base16-schemes
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-    fonts = {
-      monospace = {
-        name = "FiraCode Nerd Font Mono";
-        package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
-      };
-      sizes = {
-        applications = 20;
-        desktop = 20;
-        popups = 20;
-        terminal = 20;
-      };
-    };
-    targets.bat.enable = false;
-    targets.helix.enable = false;
-  };
+  # stylix = {
+  #   image = /Users/gabesaenz/dotfiles/background-images/nord_lake.png;
+  #   # theme list: https://github.com/tinted-theming/base16-schemes
+  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+  #   fonts = {
+  #     monospace = {
+  #       name = "FiraCode Nerd Font Mono";
+  #       package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+  #     };
+  #     sizes = {
+  #       applications = 20;
+  #       desktop = 20;
+  #       popups = 20;
+  #       terminal = 20;
+  #     };
+  #   };
+  #   targets.bat.enable = false;
+  #   targets.helix.enable = false;
+  # };
 
   # Shells
   programs.zsh = {
@@ -100,7 +104,7 @@
       top = "btop";
       rebuild = "rebuild-nix && rebuild-brew && garbage && doomsync";
       rebuild-nix =
-        "nix-channel --update && darwin-rebuild switch && nix store optimise";
+        "nix flake update ~/dotfiles/nix/mac/ && darwin-rebuild switch --flake ~/dotfiles/nix/mac/ && nix store optimise";
       rebuild-brew =
         "brew update && brew upgrade && brew autoremove && brew cleanup";
       rebuild-quick = "darwin-rebuild switch";
@@ -174,7 +178,7 @@
       # startup session
       startup_session ~/dotfiles/.config/kitty/kitty-startup.session
     '';
-    # theme = "nord";
+    theme = "Nord";
   };
   programs.tmux = {
     enable = true;
@@ -230,7 +234,7 @@
   programs.offlineimap.enable = true; # doom emacs mu4e dependency
   programs.msmtp.enable = true;
   accounts.email = {
-    maildirBasePath = "${config.users.users.gabesaenz.home}/.mail";
+    maildirBasePath = "/Users/gabesaenz/.mail";
     accounts.gmx = {
       primary = true;
       address = "gabriel.saenz@gmx.de";
