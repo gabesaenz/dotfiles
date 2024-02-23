@@ -15,9 +15,9 @@
  - [x] WindowsTerminal
  - [x] OhMyPosh
  - [x] VisualStudioCode
- - [ ] micro
+ - [x] micro (installed via nix on Ubuntu)
  - [ ] Notepad++
- - [ ] Neovim
+ - [x] Neovim (installed via nix on Ubuntu)
  - [ ] Emacs
 
 ## Window Tiling Manager
@@ -32,7 +32,7 @@
  - [ ] [Vimium](https://vimium.github.io/)
 
 ## Windows Subsystem for Linux
- - [ ] [Install](https://learn.microsoft.com/en-us/windows/wsl/install)
+ - [x] [Install](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 # Configure
 
@@ -76,9 +76,10 @@
 
 # Fonts
  - [Korean Coding Font](https://github.com/naver/d2codingfont)
-   - [ ] Install (possibly using oh-my-posh font manager or winget?)
-   - [ ] Use in Windows Terminal
-   - [ ] Use in other places?
+   - [x] Install (possibly using oh-my-posh font manager or winget?)
+   - [x] Use in Windows Terminal
+   - [x] Use in other places?
+   - This has some spacing issues. Maybe it will work better with WSL.
 
 # Change appearance of Windows
  - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)
@@ -103,7 +104,16 @@
  - [ ] Install Catpuccin Theme
 
 # Install Nix
- - [ ] [Nix Windows service](https://nixos.org/download#nix-install-windows)
-   - [ ] Required: https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/
+ - [x] [Nix Windows service](https://nixos.org/download#nix-install-windows)
  - [ ] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
- - [ ] [NixOS as WSL OS](https://github.com/nix-community/NixOS-WSL)
+
+# Create a dotfiles repository
+ - [ ] Create a github account.
+   - [ ] Create a new repository for the dotfiles.
+   - [ ] Setup account authorization on Windows.
+   - [ ] Setup account authorization on WSL.
+ - [ ] Create bulk install script for winget.
+ - [ ] Create install script for other Windows applications and settings.
+ - [ ] Automate WSL configuration.
+ - [ ] Add WSL nix config to repository.
+ - [ ] Reinstall Windows using the dotfiles repo.
