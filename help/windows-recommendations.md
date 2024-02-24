@@ -100,6 +100,7 @@
 
 # Install Doom Emacs
  - [ ] [Documentation](https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org)
+   - [ ] Use [this example](https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix) as a model for instaling with nix.
  - [ ] Do the vi and emacs tutorials.
  - [ ] Install Nord Theme
  - [ ] Install Catpuccin Theme
