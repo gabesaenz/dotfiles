@@ -98,6 +98,11 @@
  - [Ricing Windows in 2020](https://gist.github.com/triplrrr/d2250db71f0b3a93ed60daa65fe5668f)
  - [Rainmeter](https://www.rainmeter.net/)
 
+## Windows 10 Themes
+ - [ ] [Catpuccin Theme](https://www.youtube.com/watch?v=kvpZx_SP2SM)
+   - [Written Instructions](https://github.com/niivu/Windows-10-themes)
+   - [Theme Gallery](https://www.deviantart.com/niivu/gallery/89254379/windows-10)
+
 # Install Doom Emacs
  - [ ] [Documentation](https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org)
    - [ ] Use [this example](https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix) as a model for instaling with nix.
