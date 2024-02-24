@@ -84,8 +84,8 @@
 
 # Change appearance of Windows
  - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)
-   - [PowerToys](https://github.com/microsoft/PowerToys?tab=readme-ov-file#via-winget) (not available on older versions of Windows 10)
-     - Mac Style Spotlight Search
+   - :x: ~~[PowerToys](https://github.com/microsoft/PowerToys?tab=readme-ov-file#via-winget)~~ (not available on older versions of Windows 10)
+     - :x: ~~Mac Style Spotlight Search~~
    - [x] [TaskbarX](https://chrisandriessen.nl/taskbarx)
    - [x] [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups?tab=readme-ov-file#-how-to-download-taskbar-groups)
    - [ ] [QuickLook](https://github.com/QL-Win/QuickLook?tab=readme-ov-file#downloadinstallation)
@@ -108,7 +108,9 @@
  - [x] [Nix Windows service](https://nixos.org/download#nix-install-windows)
  - [ ] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
    - [ ] Will setting [this](https://nix-community.github.io/home-manager/options.xhtml#opt-programs.home-manager.path) fix the error?
-     - `programs.home-manager.path = https://github.com/nix-community/home-manager/archive/master.tar.gz;`
+     ```
+     programs.home-manager.path = https://github.com/nix-community/home-manager/archive/master.tar.gz;
+     ```
 
 # Create a dotfiles repository
  - [ ] Create a github account.
