@@ -21,15 +21,15 @@
  - [ ] Emacs
 
 ## Window Tiling Manager
- - [ ] [whkd](https://github.com/LGUG2Z/whkd)
+ - [x] [whkd](https://github.com/LGUG2Z/whkd)
    - windows hotkey daemon, used by komorebi
- - [ ] [komorebi](https://github.com/LGUG2Z/komorebi)
+ - [x] [komorebi](https://github.com/LGUG2Z/komorebi)
    - window tiling manager, uses wkhd
 
 ## Usability
- - [ ] [LittleTips](https://github.com/chenjing1294/LittleTips)
+ - [x] [LittleTips](https://github.com/chenjing1294/LittleTips)
    - displays shortcut keys for the active window
- - [ ] [Vimium](https://vimium.github.io/)
+ - [x] [Vimium](https://vimium.github.io/)
 
 ## Windows Subsystem for Linux
  - [x] [Install](https://learn.microsoft.com/en-us/windows/wsl/install)
@@ -80,13 +80,14 @@
    - [x] Use in Windows Terminal
    - [x] Use in other places?
    - This has some spacing issues. Maybe it will work better with WSL.
+     - [ ] Install on WSL using nix.
 
 # Change appearance of Windows
  - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)
-   - [ ] [PowerToys](https://github.com/microsoft/PowerToys?tab=readme-ov-file#via-winget)
-     - [ ] Mac Style Spotlight Search
-   - [ ] [TaskbarX](https://chrisandriessen.nl/taskbarx)
-   - [ ] [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups?tab=readme-ov-file#-how-to-download-taskbar-groups)
+   - [PowerToys](https://github.com/microsoft/PowerToys?tab=readme-ov-file#via-winget) (not available on older versions of Windows 10)
+     - Mac Style Spotlight Search
+   - [x] [TaskbarX](https://chrisandriessen.nl/taskbarx)
+   - [x] [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups?tab=readme-ov-file#-how-to-download-taskbar-groups)
    - [ ] [QuickLook](https://github.com/QL-Win/QuickLook?tab=readme-ov-file#downloadinstallation)
    - [ ] [Files](https://github.com/files-community/Files)
  - [How to Rice Windows.](https://dev.to/ananddhruv295/how-to-rice-windows-2h12)
@@ -106,6 +107,8 @@
 # Install Nix
  - [x] [Nix Windows service](https://nixos.org/download#nix-install-windows)
  - [ ] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
+   - [ ] Will setting [this](https://nix-community.github.io/home-manager/options.xhtml#opt-programs.home-manager.path) fix the error?
+     - `programs.home-manager.path = https://github.com/nix-community/home-manager/archive/master.tar.gz;`
 
 # Create a dotfiles repository
  - [ ] Create a github account.
