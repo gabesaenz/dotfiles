@@ -1,6 +1,8 @@
 { config, pkgs, lib, modulesPath, inputs, ... }:
 
 {
+  # home.username = "gabesaenz";
+  # home.homeDirectory = "/Users/gabesaenz";
   home.stateVersion = "22.05";
   home.packages = with pkgs; [
     # Shell tools
@@ -35,6 +37,11 @@
     spotify-tui
   ];
 
+  home.file.sketchybar = {
+    source = ./dotfiles/.config/sketchybar;
+    target = "./.config/sketchybar";
+  };
+
   fonts.fontconfig.enable = true; # doom emacs dependency
 
   programs.git = {
@@ -59,6 +66,17 @@
         description = "";
         body = "";
       };
+      # sketchybar brew updates checker
+      brew = {
+        description = "";
+        body = ''
+          command brew "$@"
+
+          if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
+            sketchybar --trigger brew_update
+          fi
+        '';
+      };
     };
     shellInit = ''
       # add doom emacs bin to $PATH
@@ -82,10 +100,10 @@
       top = "btop";
       rebuild = "rebuild-nix && rebuild-brew && garbage && doomsync";
       rebuild-nix =
-        "nix flake update ~/dotfiles/nix/mac/ && darwin-rebuild switch --flake ~/dotfiles/nix/mac/ && nix store optimise";
+        "nix flake update ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix store optimise";
       rebuild-brew =
         "brew update && brew upgrade && brew autoremove && brew cleanup";
-      rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/nix/mac/";
+      rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
       doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
       garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
     };
@@ -145,7 +163,7 @@
       # symbol_map U+0900–U+097F,U+A8E0–U+A8FF,U+11B00–11B5F,U+1CD0–U+1CFF Annapurna SIL
 
       # window decorations
-      hide_window_decorations yes
+      hide_window_decorations titlebar-only
 
       # transparency
       background_opacity 0.7

@@ -163,9 +163,9 @@
 ;; customize window decoration for emacs-plus
 ;; This should be in early-init.el but I'm trying it here.
 ;; no titlebar, normal corners
-(add-to-list 'default-frame-alist '(undecorated . t))
+;; (add-to-list 'default-frame-alist '(undecorated . t))
 ;; no titlebar, rounded corners
-;; (add-to-list 'default-frame-alist '(undecorated-round . t))
+(add-to-list 'default-frame-alist '(undecorated-round . t))
 
 ;; fish shell related fixes suggested by doom doctor
 (setq shell-file-name (executable-find "bash"))
