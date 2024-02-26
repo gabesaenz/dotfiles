@@ -34,19 +34,20 @@
 
 ;; big font mode
 ;; set increment
-(setq doom-big-font-increment 5)
+;; (setq doom-big-font-increment 5)
 ;; disable then enable doom big font mode
 ;; this prevents the font size from increasing repeatedly
-(if (display-graphic-p)
-    (doom-big-font-mode -1))
-(if (display-graphic-p)
-    (doom-big-font-mode +1))
+;; (if (display-graphic-p)
+;; (doom-big-font-mode -1))
+;; (if (display-graphic-p)
+;; (doom-big-font-mode +1))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-nord)
-(setq doom-theme 'doom-gruvbox)
+;; (setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-gruvbox-material)
 
 ;; Dashboard
 ;; Remove the banner

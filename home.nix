@@ -235,12 +235,6 @@
     extraConfig = ''
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
-
-      " transparency
-      # let g:neovide_transparency = 0.7
-
-      " blur
-      # let g:neovide_window_blurred = v:true
     '';
     plugins = with pkgs;
       [
@@ -250,30 +244,9 @@
         #   config = "colorscheme nord";
         # }
         {
-          # gruvbox-material colorscheme
-          plugin = vimPlugins.gruvbox-material;
-          config = ''
-            " Important!!
-            if has('termguicolors')
-              set termguicolors
-            endif
-
-            " For dark version.
-            set background=dark
-
-            " For light version.
-            " set background=light
-
-            " Set contrast.
-            " This configuration option should be placed before `colorscheme gruvbox-material`.
-            " Available values: 'hard', 'medium'(default), 'soft'
-            let g:gruvbox_material_background = 'soft'
-
-            " For better performance
-            let g:gruvbox_material_better_performance = 1
-
-            colorscheme gruvbox-material
-          '';
+          # gruvbox-flat colorscheme
+          plugin = vimPlugins.gruvbox-flat-nvim;
+          config = "colorscheme gruvbox-flat";
         }
       ];
     viAlias = true;

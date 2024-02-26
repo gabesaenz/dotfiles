@@ -422,6 +422,7 @@
     "firefox" # web browser
     "flux" # nighttime colorshift
     "google-chrome" # web browser
+    "inkscape" # svg editor
     "kitty" # terminal emulator
     "libreoffice" # work
     "neovide" # neovim frontend
