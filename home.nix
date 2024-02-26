@@ -38,7 +38,7 @@
   ];
 
   home.file.sketchybar = {
-    source = ./dotfiles/.config/sketchybar;
+    source = ./.config/sketchybar;
     target = "./.config/sketchybar";
   };
 
@@ -58,6 +58,15 @@
   programs.zsh = {
     enable = true;
     oh-my-zsh = { enable = true; };
+    initExtra = ''
+      function brew() {
+        command brew "$@"
+
+        if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
+          sketchybar --trigger brew_update
+        fi
+      }
+    '';
   };
   programs.fish = {
     enable = true;
@@ -65,17 +74,6 @@
       fish_greeting = {
         description = "";
         body = "";
-      };
-      # sketchybar brew updates checker
-      brew = {
-        description = "";
-        body = ''
-          command brew "$@"
-
-          if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
-            sketchybar --trigger brew_update
-          fi
-        '';
       };
     };
     shellInit = ''
