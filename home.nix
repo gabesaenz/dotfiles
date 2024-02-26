@@ -197,7 +197,7 @@
       startup_session ~/dotfiles/.config/kitty/kitty-startup.session
     '';
     # theme = "Nord";
-    theme = "GruvboxMaterialDarkSoft";
+    theme = "Gruvbox Material Dark Soft";
   };
   programs.tmux = {
     enable = true;
