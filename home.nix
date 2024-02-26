@@ -88,7 +88,8 @@
       fish_add_path /usr/local/texlive/2023basic/bin/universal-darwin
 
       # configure dircolors
-      dircolors ~/dotfiles/nord-dir_colors >/dev/null
+      # dircolors ~/dotfiles/nord-dir_colors >/dev/null # nord
+      dircolors ~/dotfiles/gruvbox.dircolors >/dev/null # gruvbox
 
       # direnv integration
       direnv hook fish | source
@@ -108,7 +109,20 @@
   };
 
   # Shell Tools
-  programs.btop = { enable = true; };
+  programs.btop = {
+    enable = true;
+    settings = {
+      #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
+      #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
+      color_theme = "gruvbox_material_dark";
+
+      #* If the theme set background should be shown, set to False if you want terminal background transparency.
+      theme_background = true;
+
+      #* Sets if 24-bit truecolor should be used, will convert 24-bit colors to 256 color (6x6x6 color cube) if false.
+      truecolor = true;
+    };
+  };
   programs.eza = {
     enable = true;
     enableAliases = true;
@@ -125,16 +139,24 @@
   programs.dircolors = { enable = true; };
   programs.bat = {
     enable = true;
-    config = { theme = "Nord"; };
+    config = {
+      # theme = "Nord";
+      theme = "gruvbox-dark";
+    };
   };
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
   programs.lazygit = { enable = true; };
-  programs.oh-my-posh = {
-    enable = true;
-    useTheme = "nordtron";
+  # programs.oh-my-posh = {
+  #   enable = true;
+  #   useTheme = "nordtron";
+  # };
+  programs.starship.enable = true;
+  home.file.starship = {
+    source = ./.config/gruvbox-rainbow.toml;
+    target = "./.config/starship.toml";
   };
 
   # Terminals
@@ -153,7 +175,8 @@
 
       # fonts
       font_family FiraCode Nerd Font Mono
-      font_size 20.0
+      # font_size 20.0
+      font_size 12.0
 
       # Devanāgarī support
       # from : https://www.wikiwand.com/en/Devanagari#Unicode
@@ -161,18 +184,20 @@
       # symbol_map U+0900–U+097F,U+A8E0–U+A8FF,U+11B00–11B5F,U+1CD0–U+1CFF Annapurna SIL
 
       # window decorations
-      hide_window_decorations titlebar-only
+      # hide_window_decorations titlebar-only
+      hide_window_decorations no
 
       # transparency
-      background_opacity 0.7
+      # background_opacity 0.7
 
       # blur
-      background_blur 32
+      # background_blur 32
 
       # startup session
       startup_session ~/dotfiles/.config/kitty/kitty-startup.session
     '';
-    theme = "Nord";
+    # theme = "Nord";
+    theme = "GruvboxMaterialDarkSoft";
   };
   programs.tmux = {
     enable = true;
@@ -182,7 +207,11 @@
     sensibleOnTop = false;
     shell = "/Users/gabesaenz/.nix-profile/bin/fish";
     terminal = "tmux-direct";
-    plugins = with pkgs.tmuxPlugins; [ nord ];
+    plugins = with pkgs.tmuxPlugins;
+      [
+        # nord # nord theme
+        gruvbox # gruvbox theme
+      ];
     extraConfig = ''
       set-option -g status off
       bind-key b set-option status
@@ -194,7 +223,8 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "nord";
+      # theme = "nord";
+      theme = "gruvbox_dark_soft";
       editor.whitespace.render = "all";
       editor.auto-pairs = false;
     };
@@ -203,21 +233,49 @@
     enable = true;
     defaultEditor = false;
     extraConfig = ''
-      " theme
-      colorscheme nord
-
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
 
       " transparency
-      let g:neovide_transparency = 0.7
+      # let g:neovide_transparency = 0.7
 
       " blur
-      let g:neovide_window_blurred = v:true
+      # let g:neovide_window_blurred = v:true
     '';
-    plugins = with pkgs; [{
-      plugin = vimPlugins.nord-vim; # nord colorscheme
-    }];
+    plugins = with pkgs;
+      [
+        # {
+        #   # nord colorscheme
+        #   plugin = vimPlugins.nord-vim;
+        #   config = "colorscheme nord";
+        # }
+        {
+          # gruvbox-material colorscheme
+          plugin = vimPlugins.gruvbox-material;
+          config = ''
+            " Important!!
+            if has('termguicolors')
+              set termguicolors
+            endif
+
+            " For dark version.
+            set background=dark
+
+            " For light version.
+            " set background=light
+
+            " Set contrast.
+            " This configuration option should be placed before `colorscheme gruvbox-material`.
+            " Available values: 'hard', 'medium'(default), 'soft'
+            let g:gruvbox_material_background = 'soft'
+
+            " For better performance
+            let g:gruvbox_material_better_performance = 1
+
+            colorscheme gruvbox-material
+          '';
+        }
+      ];
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;

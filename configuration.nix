@@ -48,7 +48,7 @@
     DOOMDIR = "$HOME/dotfiles/.config/.doom.d";
 
     # remove Neovide titlebar
-    NEOVIDE_FRAME = "none";
+    # NEOVIDE_FRAME = "none";
 
     # hide direnv output
     DIRENV_LOG_FORMAT = "";

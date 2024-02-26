@@ -30,7 +30,7 @@
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 
 ;; window transparency
-(add-to-list 'default-frame-alist '(alpha . 70))
+;; (add-to-list 'default-frame-alist '(alpha . 70))
 
 ;; big font mode
 ;; set increment
@@ -45,7 +45,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-nord)
+;; (setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-gruvbox)
 
 ;; Dashboard
 ;; Remove the banner
@@ -165,7 +166,7 @@
 ;; no titlebar, normal corners
 ;; (add-to-list 'default-frame-alist '(undecorated . t))
 ;; no titlebar, rounded corners
-(add-to-list 'default-frame-alist '(undecorated-round . t))
+;; (add-to-list 'default-frame-alist '(undecorated-round . t))
 
 ;; fish shell related fixes suggested by doom doctor
 (setq shell-file-name (executable-find "bash"))
