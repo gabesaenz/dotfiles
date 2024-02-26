@@ -372,6 +372,7 @@
 
   homebrew.enable = true;
   homebrew.taps = [
+    "homebrew/cask"
     "homebrew/services"
     "homebrew/cask-fonts" # used for nerd fonts
     "d12frosted/emacs-plus" # emacs
