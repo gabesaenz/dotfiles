@@ -99,7 +99,7 @@
  - [Rainmeter](https://www.rainmeter.net/)
 
 ## Windows 10 Themes
- - [ ] [Catpuccin Theme](https://www.youtube.com/watch?v=kvpZx_SP2SM)
+ - [x] [Catpuccin Theme](https://www.youtube.com/watch?v=kvpZx_SP2SM)
    - [Written Instructions](https://github.com/niivu/Windows-10-themes)
    - [Theme Gallery](https://www.deviantart.com/niivu/gallery/89254379/windows-10)
 
@@ -112,11 +112,12 @@
 
 # Install Nix
  - [x] [Nix Windows service](https://nixos.org/download#nix-install-windows)
- - [ ] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
-   - [ ] Will setting [this](https://nix-community.github.io/home-manager/options.xhtml#opt-programs.home-manager.path) fix the error?
+ - [x] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
+   - :x: Will setting [this](https://nix-community.github.io/home-manager/options.xhtml#opt-programs.home-manager.path) fix the error?
      ```
      programs.home-manager.path = https://github.com/nix-community/home-manager/archive/master.tar.gz;
      ```
+   - It's not entirely clear what fixed this in the end but it's working now. Maybe a reset was enough or maybe that variable needed to be temporarily set and then removed.
 
 # Create a dotfiles repository
  - [ ] Create a github account.
