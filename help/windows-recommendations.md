@@ -33,6 +33,8 @@
 
 ## Windows Subsystem for Linux
  - [x] [Install](https://learn.microsoft.com/en-us/windows/wsl/install)
+   - [Running Linux commands from Windows and vice versa](https://learn.microsoft.com/en-us/windows/wsl/filesystems#run-linux-tools-from-a-windows-command-line)
+   - [Running Linux GUI apps](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)
 
 # Configure
 
