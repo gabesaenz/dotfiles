@@ -61,6 +61,8 @@
 
 # Install Nix
  - [ ] [Nix: the package manager](https://nixos.org/download#nix-install-macos)
+   - Unless you're sharing the laptop with someone, go with the single user install.
+   - Use flakes for the config files here and in the below steps.
  - [ ] [nix-darwin](https://github.com/LnL7/nix-darwin)
  - [ ] [home-manager](https://nix-community.github.io/home-manager/index.xhtml#sec-install-nix-darwin-module)
 
