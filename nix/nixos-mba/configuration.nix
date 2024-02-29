@@ -103,15 +103,15 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable gpg
@@ -172,6 +172,7 @@
     fira-code-symbols
     (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
   ];
+  fonts.fontconfig.enable = true;
 
   # Set default shell
   programs.fish.enable = true;
@@ -205,6 +206,8 @@
       # Shell tools
       exa
       bat
+      file # show the character encoding of a file
+      recode # change character encoging of files
 
       # Text editing
       helix
@@ -265,6 +268,9 @@
       window.decorations = "full";
       shell.program = "fish";
     };
+
+    # Fonts
+    fonts.fontconfig.enable = true;
 
     # Sway (Wayland compositor / window manager)
     wayland.windowManager.sway = {
