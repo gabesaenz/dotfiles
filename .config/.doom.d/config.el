@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;; (setq user-full-name "Gabe Saenz"
-      ;; user-mail-address "gabesaenz@gmail.com")
+;; user-mail-address "gabesaenz@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -24,39 +24,38 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
-(setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 24)
-      doom-serif-font (font-spec :family "NotoSerif Nerd Font" :size 24)
-      doom-variable-pitch-font (font-spec :family "NotoSans Nerd Font" :size 24)
-      doom-unicode-font (font-spec :family "Noto Sans" :size 24)
-      )
-
-(after! unicode-fonts
-  (push "Annapurna SIL" (cadr (assoc "Common Indic Number Forms" unicode-fonts-block-font-mapping)))
-  (push "Annapurna SIL" (cadr (assoc "Devanagari" unicode-fonts-block-font-mapping)))
-  (push "Annapurna SIL" (cadr (assoc "Devanagari Extended" unicode-fonts-block-font-mapping)))
-  (push "Annapurna SIL" (cadr (assoc "Vedic Extensions" unicode-fonts-block-font-mapping)))
-  )
-
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 
-;; Unicode font assignment by block
-;; from: https://github.com/doomemacs/doomemacs/blob/7e50f239c46ea17429f159fb543c0d793543c06e/modules/ui/unicode/README.org
-;; ! - not currently working
-;; after! unicode-fonts
-;;   (dolist (unicode-block '("Common Indic Number Forms"
-;;                            "Devanagari"
-;;                            "Devanagari Extended"
-;;                            "Vedic Extensions"))
-;;       (push "Monotty" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+;; window transparency
+;; (add-to-list 'default-frame-alist '(alpha . 70))
 
+;; big font mode
+;; set increment
+;; (setq doom-big-font-increment 5)
+;; disable then enable doom big font mode
+;; this prevents the font size from increasing repeatedly
+;; (if (display-graphic-p)
+;; (doom-big-font-mode -1))
+;; (if (display-graphic-p)
+;; (doom-big-font-mode +1))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-gruvbox)
+;; (setq doom-theme 'doom-gruvbox-material) ;; this is causing an error with the emacs server
+
+;; Dashboard
+;; Remove the banner
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
+;; Remove load time message
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
+;; Remove footer
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -144,6 +143,17 @@
 (global-whitespace-toggle-options '(whitespace-style))
 
 ;; email
+(set-email-account! "gmx"
+                    '(;; (mu4e-sent-folder       . "")
+                      ;; (mu4e-drafts-folder     . "")
+                      ;; (mu4e-trash-folder      . "")
+                      ;; (mu4e-refile-folder     . "")
+                      (smtpmail-smtp-user     . "gabriel.saenz@gmx.de")
+                      (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
+                      (user-full-name         . "Gabriel Saenz"))
+                    t)
+;; offlineimap
+(setq +mu4e-backend 'offlineimap)
 ;; msmtp
 (after! mu4e
   (setq sendmail-program (executable-find "msmtp")
@@ -151,14 +161,15 @@
 	message-sendmail-f-is-evil t
 	message-sendmail-extra-arguments '("--read-envelope-from")
 	message-send-mail-function #'message-send-mail-with-sendmail))
-;; offlineimap
-(setq +mu4e-backend 'offlineimap)
-(set-email-account! "gmx"
-  '(;; (mu4e-sent-folder       . "")
-    ;; (mu4e-drafts-folder     . "")
-    ;; (mu4e-trash-folder      . "")
-    ;; (mu4e-refile-folder     . "")
-    (smtpmail-smtp-user     . "gabriel.saenz@gmx.de")
-    (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
-    (user-full-name         . "Gabriel Saenz"))
-  t)
+
+;; customize window decoration for emacs-plus
+;; This should be in early-init.el but I'm trying it here.
+;; no titlebar, normal corners
+;; (add-to-list 'default-frame-alist '(undecorated . t))
+;; no titlebar, rounded corners
+;; (add-to-list 'default-frame-alist '(undecorated-round . t))
+
+;; fish shell related fixes suggested by doom doctor
+(setq shell-file-name (executable-find "bash"))
+(setq-default vterm-shell (executable-find "fish"))
+(setq-default explicit-shell-file-name (executable-find "fish"))
