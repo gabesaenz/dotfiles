@@ -1,0 +1,5 @@
+[[items]]
+file = "~/.config/.doom.d/themes/doom-base16-theme.el"
+template = "doom"
+hook = "~/.config/.doom.d/reload-theme"
+rewrite = true

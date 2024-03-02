@@ -1,0 +1,5 @@
+#!/usr/bin/env doomscript
+
+  (require 'doom-start)          ; load your user config
+    ;; (doom/reload-theme)
+(load-theme 'doom-base16 t)
