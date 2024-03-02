@@ -103,15 +103,15 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable gpg
@@ -134,9 +134,9 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -163,7 +163,7 @@
   # services.xserver.libinput.enable = true;
 
   # Fonts
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -172,6 +172,7 @@
     fira-code-symbols
     (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
   ];
+  fonts.fontconfig.enable = true;
 
   # Set default shell
   programs.fish.enable = true;
@@ -181,7 +182,8 @@
   # Emacs
   services.emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
+    package = ((pkgs.emacsPackagesFor pkgs.emacs-pgtk).emacsWithPackages
+      (epkgs: [ epkgs.vterm ]));
   };
 
   services.geoclue2.enable = true; # required by gammastep
@@ -203,8 +205,10 @@
     home.stateVersion = "23.05";
     home.packages = with pkgs; [
       # Shell tools
-      exa
+      eza
       bat
+      file # show the character encoding of a file
+      recode # change character encoging of files
 
       # Text editing
       helix
@@ -247,8 +251,14 @@
         };
       };
       shellAliases = {
-        ls = "exa -ahl --icons --color-scale --group-directories-first --git";
+        ls = "eza -ahl --icons --color-scale --group-directories-first --git";
         cat = "bat";
+        rebuild = "rebuild-nix && garbage && doomsync";
+        rebuild-nix =
+          "sudo -i nix-channel --update && sudo -i nixos-rebuild switch && sudo nix store optimise && nix store optimise";
+        rebuild-quick = "sudo -i nixos-rebuild switch";
+        doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
+        garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
       };
       shellInit = ''
         # add doom emacs bin to $PATH
@@ -260,11 +270,14 @@
     programs.alacritty.settings = {
       font = {
         normal = { family = "NotoSansM Nerd Font Mono"; };
-        size = 18.0;
+        size = 14.0;
       };
       window.decorations = "full";
       shell.program = "fish";
     };
+
+    # Fonts
+    fonts.fontconfig.enable = true;
 
     # Sway (Wayland compositor / window manager)
     wayland.windowManager.sway = {
@@ -296,7 +309,7 @@
         ################
 
         # Wallpaper
-        output * bg /home/gabe/dotfiles/salty_mountains.png fill
+        output * bg /home/gabe/dotfiles/background_images/salty_mountains.png fill
 
         # Modkey
         set $mod Mod4
