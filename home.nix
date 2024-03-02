@@ -8,6 +8,7 @@
     # Shell tools
     neofetch
     pv
+    skhd # standalone install for use with "skhd --observe"
 
     # Text editors
     micro
@@ -36,6 +37,11 @@
     spicetify-cli
     spotify-tui
   ];
+
+  home.file.flavours = {
+    source = ./.config/flavours;
+    target = "./.config/flavours";
+  };
 
   home.file.sketchybar = {
     source = ./.config/sketchybar;

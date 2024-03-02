@@ -42,12 +42,30 @@
 ;; (if (display-graphic-p)
 ;; (doom-big-font-mode +1))
 
+;; theming fix for emacsclient
+(setq custom-theme-directory "/Users/gabesaenz/dotfiles/.config/.doom.d/themes/")
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-nord)
-(setq doom-theme 'doom-gruvbox)
+;; (setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-base16)
 ;; (setq doom-theme 'doom-gruvbox-material) ;; this is causing an error with the emacs server
+
+;; auto reload the base16 theme when it changes
+(setq base16-reload nil)
+(if (equal doom-theme 'doom-base16) (setq base16-reload t))
+(setq base16-theme-file (concat (file-name-as-directory custom-theme-directory) "doom-base16-theme.el"))
+(defun base16-theme-reload ()
+  (load-file base16-theme-file)
+  (doom/reload-theme))
+(defun base16-callback (event)
+  (message "Event %S" event)
+  (if base16-reload (base16-theme-reload)))
+(require 'filenotify)
+(file-notify-add-watch base16-theme-file '(change) 'base16-callback)
 
 ;; Dashboard
 ;; Remove the banner

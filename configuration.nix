@@ -44,6 +44,11 @@
 
   # Environment variables
   environment.variables = {
+    XDG_CONFIG_HOME = "$HOME/.config";
+
+    # fix issue with flavours finding its config file
+    FLAVOURS_CONFIG_FILE = "$HOME/.config/flavours/config.toml";
+
     # doom emacs config folder
     DOOMDIR = "$HOME/dotfiles/.config/.doom.d";
 
@@ -300,6 +305,17 @@
       ralt - return : emacsclient -c -a "emacs"
       meh - return : /Applications/Neovide.app/Contents/MacOS/neovide
       hyper - return : /Applications/Neovide.app/Contents/MacOS/neovide --frame none
+
+      ##########
+      # theming:
+      ##########
+
+      # slash
+      fn - 0x2C : flavours apply
+      # comma
+      fn - 0x2B : $HOME/dotfiles/.config/flavours/previous-theme.sh
+      # period
+      fn - 0x2F : $HOME/dotfiles/.config/flavours/next-theme.sh
     '';
   };
   services.yabai = {
@@ -331,7 +347,7 @@
       yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
       yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
-      yabai -m config external_bar               all:35:0     \
+      yabai -m config external_bar               all:0:0      \
                       mouse_follows_focus        off          \
                       focus_follows_mouse        off          \
                       window_zoom_persist        off          \
@@ -341,7 +357,7 @@
                       window_opacity             on           \
                       window_opacity_duration    0.2          \
                       active_window_opacity      1.0          \
-                      normal_window_opacity      0.95         \
+                      normal_window_opacity      0.9          \
                       window_animation_duration  0.3          \
                       insert_feedback_color      0xff9dd274   \
                       split_ratio                0.50         \
@@ -352,11 +368,11 @@
                       mouse_action2              resize       \
                       mouse_drop_action          swap         \
                                                               \
-                      top_padding                14           \
-                      bottom_padding             8            \
-                      left_padding               8            \
-                      right_padding              8            \
-                      window_gap                 10
+                      top_padding                5            \
+                      bottom_padding             5            \
+                      left_padding               5            \
+                      right_padding              5            \
+                      window_gap                 5
       # Exclude problematic apps from being managed:
       yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor)$" manage=off
       yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
@@ -399,8 +415,8 @@
     }
     {
       name = "sketchybar";
-      restart_service = true;
-      start_service = true;
+      # restart_service = true;
+      # start_service = true;
     }
     "npm" # doom emacs dependency
     "mu" # doom emacs dependency
@@ -409,6 +425,7 @@
     "gh" # github-cli # used by sketchybar
     "jq" # used by sketchybar
     "switchaudio-osx" # cli audio source switcher # used by sketchybar
+    "flavours" # theming
   ];
   homebrew.casks = [
     #fonts

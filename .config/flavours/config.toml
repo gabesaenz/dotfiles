@@ -1,5 +1,16 @@
-[[items]]
-file = "~/.config/.doom.d/themes/doom-base16-theme.el"
+# schemes = "schemes"
+# templates = "templates"
+
+# [[extra_scheme]]
+# name = "tarko"
+# source = "https://github.com/Softsun2/base16-tarko-scheme"
+
+# [[extra_template]]
+# name = "tarko"
+# source = "https://github.com/Softsun2/base16-tarko-scheme"
+
+[[item]]
+file = "~/dotfiles/.config/.doom.d/themes/doom-base16-theme.el"
 template = "doom"
-hook = "~/.config/.doom.d/reload-theme"
 rewrite = true
+# hook = "~/dotfiles/.config/.doom.d/reload-theme"
