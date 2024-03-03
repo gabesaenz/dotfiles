@@ -43,6 +43,11 @@
     target = "./.config/flavours";
   };
 
+  home.file.flavours-sources = {
+    source = ./.config/flavours/sources;
+    target = "./Library/Application Support/flavours/base16/sources";
+  };
+
   home.file.sketchybar = {
     source = ./.config/sketchybar;
     target = "./.config/sketchybar";
@@ -160,10 +165,11 @@
   #   useTheme = "nordtron";
   # };
   programs.starship.enable = true;
-  home.file.starship = {
-    source = ./.config/gruvbox-rainbow.toml;
-    target = "./.config/starship.toml";
-  };
+  # a theme isn't necessary as the default prompt will follow the colors of the terminal
+  # home.file.starship = {
+  #   source = ./.config/gruvbox-rainbow.toml;
+  #   target = "./.config/starship.toml";
+  # };
 
   # Terminals
   programs.kitty = {
@@ -199,11 +205,20 @@
       # blur
       # background_blur 32
 
+      # theme
+      include ~/dotfiles/.config/kitty/base16.conf
+
+      # remote control for setting themes (used by flavours)
+      allow_remote_control password
+      remote_control_password "set-theme" set-colors
+      # remote_control_password "load-config" load-config
+      # remote_control_password "launch" launch
+
       # startup session
       startup_session ~/dotfiles/.config/kitty/kitty-startup.session
     '';
     # theme = "Nord";
-    theme = "Gruvbox Material Dark Soft";
+    # theme = "Gruvbox Material Dark Soft";
   };
   programs.tmux = {
     enable = true;

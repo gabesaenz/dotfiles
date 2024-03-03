@@ -304,7 +304,6 @@
       # text editors
       ralt - return : emacsclient -c -a "emacs"
       meh - return : /Applications/Neovide.app/Contents/MacOS/neovide
-      hyper - return : /Applications/Neovide.app/Contents/MacOS/neovide --frame none
 
       ##########
       # theming:
