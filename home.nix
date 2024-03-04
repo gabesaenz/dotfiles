@@ -9,6 +9,7 @@
     neofetch
     pv
     skhd # standalone install for use with "skhd --observe"
+    dwt1-shell-color-scripts # colorscripts for shell greeting
 
     # Text editors
     micro
@@ -84,7 +85,7 @@
     functions = {
       fish_greeting = {
         description = "";
-        body = "";
+        body = "colorscript random";
       };
     };
     shellInit = ''
@@ -209,8 +210,8 @@
       include ~/dotfiles/.config/kitty/base16.conf
 
       # remote control for setting themes (used by flavours)
-      allow_remote_control password
-      remote_control_password "set-theme" set-colors
+      # allow_remote_control password
+      # remote_control_password "set-theme" set-colors
       # remote_control_password "load-config" load-config
       # remote_control_password "launch" launch
 

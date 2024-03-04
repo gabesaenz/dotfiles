@@ -13,7 +13,7 @@
 file = "~/dotfiles/.config/.doom.d/themes/doom-base16-theme.el"
 template = "doom"
 rewrite = true
-hook = 'emacsclient --eval "(base16-theme-reload)" --quiet -no-wait --suppress-output -a true'
+# hook = 'emacsclient --eval "(base16-theme-reload)" --quiet -no-wait --suppress-output -a true'
 
 [[item]]
 file = "~/dotfiles/.config/kitty/base16.conf"

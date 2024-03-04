@@ -1,0 +1,5 @@
+gruvbox-material-dark-soft
+catppuccin-frappe
+nord
+solarized-dark
+tokyo-night-terminal-storm
