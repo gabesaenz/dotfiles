@@ -6,10 +6,12 @@
   home.stateVersion = "22.05";
   home.packages = with pkgs; [
     # Shell tools
-    neofetch
-    pv
+    neofetch # display OS information
+    pv # progress indicator for shell commands
     skhd # standalone install for use with "skhd --observe"
     dwt1-shell-color-scripts # colorscripts for shell greeting
+    tmatrix # The Matrix style animation
+    translate-shell # translator
 
     # Text editors
     micro

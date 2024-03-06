@@ -18,5 +18,6 @@ rewrite = true
 [[item]]
 file = "~/dotfiles/.config/kitty/base16.conf"
 template = "kitty"
+subtemplate = "default-256"
 rewrite = true
 hook = 'kitty +kitten themes --reload-in=all --config-file-name /tmp/kitty-theme.conf base16'

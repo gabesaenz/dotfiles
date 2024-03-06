@@ -387,7 +387,7 @@
 
   homebrew.enable = true;
   homebrew.taps = [
-    "homebrew/cask"
+    # "homebrew/cask"
     "homebrew/services"
     "homebrew/cask-fonts" # used for nerd fonts
     "d12frosted/emacs-plus" # emacs
@@ -436,6 +436,8 @@
     "adobe-acrobat-reader" # work
     "basictex" # minimal texlive distribution, provides tlmgr
     "dropbox" # cloud storage
+    "element" # matrix chat client
+    "ferdium" # chat service
     "firefox" # web browser
     "flux" # nighttime colorshift
     "google-chrome" # web browser
