@@ -2,6 +2,9 @@
  - [ ] https://www.rust-lang.org/learn
  - [ ] [Easy Rust](https://dhghomon.github.io/easy_rust/Chapter_1.html)
  - [ ] [LifetimeKata](https://tfpk.github.io/lifetimekata/)
+   - Macros:
+     - [ ] [MacroKata](https://github.com/tfpk/macrokata)
+     - [ ] [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
 
 # Uninstall manually installed programs then reinstall below
  - [x] rustup
