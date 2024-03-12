@@ -1,10 +1,15 @@
 # Learn Rust
  - [ ] https://www.rust-lang.org/learn
  - [ ] [Easy Rust](https://dhghomon.github.io/easy_rust/Chapter_1.html)
+ - [ ] [Exercism](https://exercism.org/tracks/rust)
  - [ ] [LifetimeKata](https://tfpk.github.io/lifetimekata/)
    - Macros:
      - [ ] [MacroKata](https://github.com/tfpk/macrokata)
      - [ ] [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
+ - [ ] [Ratatui](https://ratatui.rs/)
+   - [ ] [Ratatui Guides](https://ratatui.rs/tutorials/hello-world/)
+ - [ ] [Tauri](https://beta.tauri.app/guides/)
+ - [ ] [Sycamore](https://sycamore-rs.netlify.app/docs/getting_started/installation)
 
 # Uninstall manually installed programs then reinstall below
  - [ ] rustup (See uninstall instructions at the bottom of [this page](https://www.rust-lang.org/tools/install).
