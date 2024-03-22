@@ -1,7 +1,15 @@
 # Learn Rust
  - [ ] https://www.rust-lang.org/learn
+   - [ ] [Rust Book](https://doc.rust-lang.org/book/)
+   - [ ] [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
+   - [ ] [Rustlings](https://github.com/rust-lang/rustlings/)
+   - [ ] [Rust Command Line Book](https://rust-cli.github.io/book/index.html)
+   - [ ] Further Reading
  - [ ] [Easy Rust](https://dhghomon.github.io/easy_rust/Chapter_1.html)
  - [ ] [Exercism](https://exercism.org/tracks/rust)
+ - [ ] CodeCrafters
+   - [ ] [Rust Primer](https://app.codecrafters.io/collections/rust-primer)
+   - [ ] [Rust Track](https://app.codecrafters.io/tracks/rust)
  - [ ] [LifetimeKata](https://tfpk.github.io/lifetimekata/)
    - Macros:
      - [ ] [MacroKata](https://github.com/tfpk/macrokata)
@@ -10,18 +18,19 @@
    - [ ] [Ratatui Guides](https://ratatui.rs/tutorials/hello-world/)
  - [ ] [Tauri](https://beta.tauri.app/guides/)
  - [ ] [Sycamore](https://sycamore-rs.netlify.app/docs/getting_started/installation)
+ - [ ] [Command Line Rust](https://github.com/kyclark/command-line-rust)
 
 # Uninstall manually installed programs then reinstall below
- - [ ] rustup (See uninstall instructions at the bottom of [this page](https://www.rust-lang.org/tools/install).
+ - [x] rustup (See uninstall instructions at the bottom of [this page](https://www.rust-lang.org/tools/install).
 
 # Install
 
 ## Using [brew](https://brew.sh/):
- - [ ] rustup-init (See "brew info rustup-init" for further instructions.)
+ - [x] rustup-init (See "brew info rustup-init" for further instructions.)
  - [x] git
  - [ ] kitty
  - [ ] oh-my-posh
- - [ ] [visual-studio-code](https://code.visualstudio.com/docs)
+ - [x] [visual-studio-code](https://code.visualstudio.com/docs)
  - [ ] [micro](https://github.com/zyedidia/micro)
  - [ ] neovim
  - [ ] [emacs-plus](https://github.com/d12frosted/homebrew-emacs-plus?tab=readme-ov-file#install)
