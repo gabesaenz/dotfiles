@@ -24,12 +24,17 @@
     libwpd
 
     # Rust
-    cargo
-    clippy
-    rustc
-    rustfmt
-    rust-analyzer
-    bacon
+    # cargo
+    # cargo-binutils # needed for wasm-pack build
+    ###### cargo-llvm-cov # needed for wasm-pack build # nix package currently broken
+    # llvmPackages.bintools # needed for wasm-pack build
+    # rustc-wasm32 # same as above
+    # wasm-bindgen-cli # same
+    # clippy
+    # rustc
+    # rustfmt
+    # rust-analyzer
+    # bacon
 
     # PDF
     djvu2pdf # convert djvu to pdf

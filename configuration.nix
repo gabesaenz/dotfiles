@@ -94,6 +94,7 @@
     nodePackages.stylelint
     nodePackages.js-beautify
     cmake # vterm dependency
+    nodePackages.prettier # code formatting dependency
   ];
 
   # Fonts
@@ -426,6 +427,8 @@
     "switchaudio-osx" # cli audio source switcher # used by sketchybar
     "flavours" # theming
     "svg2png" # convert SVG to PNG
+    "rustup-init" # rust toolchain
+    "exercism" # programming exercises
   ];
   homebrew.casks = [
     #fonts
