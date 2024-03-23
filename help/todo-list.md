@@ -11,7 +11,7 @@
    - [ ] [Rust Primer](https://app.codecrafters.io/collections/rust-primer)
    - [ ] [Rust Track](https://app.codecrafters.io/tracks/rust)
  - [ ] [LifetimeKata](https://tfpk.github.io/lifetimekata/)
- - Macros:
+ - [ ] Macros:
    - [ ] [MacroKata](https://github.com/tfpk/macrokata)
    - [ ] [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
  - [ ] [Ratatui](https://ratatui.rs/)
