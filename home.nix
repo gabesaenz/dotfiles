@@ -38,7 +38,7 @@
 
     # Spotify
     spicetify-cli
-    spotify-tui
+    # spotify-tui
   ];
 
   home.file.flavours = {
@@ -139,7 +139,6 @@
   };
   programs.eza = {
     enable = true;
-    enableAliases = true;
     git = true;
     icons = true;
     extraOptions = [
