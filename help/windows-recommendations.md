@@ -12,8 +12,8 @@
    - [ ] [Rust Track](https://app.codecrafters.io/tracks/rust)
  - [ ] [LifetimeKata](https://tfpk.github.io/lifetimekata/)
  - Macros:
-     - [ ] [MacroKata](https://github.com/tfpk/macrokata)
-     - [ ] [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
+   - [ ] [MacroKata](https://github.com/tfpk/macrokata)
+   - [ ] [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
  - [ ] [Ratatui](https://ratatui.rs/)
    - [ ] [Ratatui Guides](https://ratatui.rs/tutorials/hello-world/)
  - [ ] [Tauri](https://beta.tauri.app/guides/)
