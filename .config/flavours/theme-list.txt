@@ -1,5 +1,13 @@
 gruvbox-material-dark-soft
+gruvbox-material-dark-medium
+gruvbox-material-dark-hard
+gruvbox-material-light-soft
+gruvbox-material-light-medium
+gruvbox-material-light-hard
 catppuccin-frappe
+catppuccin-macchiato
+catppuccin-mocha
+catppuccin-latte
 nord
 solarized-dark
 tokyo-night-terminal-storm
