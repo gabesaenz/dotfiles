@@ -24,7 +24,7 @@
  - [x] [CSS Diner](https://flukeout.github.io/)
  - [x] [Flexbox Froggy](https://codepip.com/games/flexbox-froggy/)
  - [x] [Flexbox Zombies](https://mastery.games/flexboxzombies/)
- - [ ] [Flexbox Defense](http://www.flexboxdefense.com/)
+ - [x] [Flexbox Defense](http://www.flexboxdefense.com/)
  - [ ] [Flexbox (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox)
  - [ ] [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
  - [x] [Grid Garden](https://codepip.com/games/grid-garden/)
