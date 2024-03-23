@@ -21,6 +21,7 @@
  - [ ] [Command Line Rust](https://github.com/kyclark/command-line-rust)
 
 # CSS
+ - [x] [CSS Diner](https://flukeout.github.io/)
  - [x] [Flexbox Froggy](https://codepip.com/games/flexbox-froggy/)
  - [x] [Flexbox Zombies](https://mastery.games/flexboxzombies/)
  - [ ] [Flexbox Defense](http://www.flexboxdefense.com/)
@@ -28,7 +29,6 @@
  - [ ] [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
  - [x] [Grid Garden](https://codepip.com/games/grid-garden/)
  - [ ] [Grids (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
- - [ ] [CSS Diner](https://flukeout.github.io/)
 
 # Other Potential Projects
  - [ ] [The Sanskrit Heritage Engine](https://sanskrit.inria.fr/manual.html)
