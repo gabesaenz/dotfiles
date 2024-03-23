@@ -118,7 +118,6 @@
 
 
 
-
 ;; follow symlinks
 ;; https://emacs.stackexchange.com/a/41292
 ;; (setq find-file-visit-truename t) ; doesn't seem to work
