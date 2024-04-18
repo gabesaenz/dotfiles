@@ -29,6 +29,8 @@
  - [ ] [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
  - [x] [Grid Garden](https://codepip.com/games/grid-garden/)
  - [ ] [Grids (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
+ - [ ] [CSS Hell](https://csshell.dev/)
+ - [ ] [Using HSL Colors in CSS](https://www.smashingmagazine.com/2021/07/hsl-colors-css/)
 
 # Other Potential Projects
  - [ ] [The Sanskrit Heritage Engine](https://sanskrit.inria.fr/manual.html)
