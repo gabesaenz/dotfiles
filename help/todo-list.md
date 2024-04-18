@@ -8,7 +8,7 @@
  - [ ] [Easy Rust](https://dhghomon.github.io/easy_rust/Chapter_1.html)
  - [ ] [Exercism](https://exercism.org/tracks/rust)
  - [ ] CodeCrafters
-   - [ ] [Rust Primer](https://app.codecrafters.io/collections/rust-primer)
+   - [x] [Rust Primer](https://app.codecrafters.io/collections/rust-primer)
    - [ ] [Rust Track](https://app.codecrafters.io/tracks/rust)
  - [ ] [LifetimeKata](https://tfpk.github.io/lifetimekata/)
  - [ ] Macros:
