@@ -3,7 +3,7 @@
 ;; released under the MIT License, copyright (c) 2016-2020 Henrik Lissner.
 
 ;;; Authors:
-;; Scheme: https://github.com/catppuccin/catppuccin
+;; Scheme: Ethan Schoonover (modified by aramisgithub)
 ;; Template: Marcel Arpogaus
 
 ;;; License
@@ -59,35 +59,35 @@ determine the exact padding."
   :group 'doom-base16-theme
   :type '(choice integer boolean))
 
-(if (< (kurecolor-hex-get-brightness "#303446") 0.5)
+(if (< (kurecolor-hex-get-brightness "#002b36") 0.5)
     (def-doom-theme doom-base16
       "A dark theme inspired by Atom One Dark"
       ;; name        default   256       16
-      ((bg         '("#303446" nil       nil            ))
+      ((bg         '("#002b36" nil       nil            ))
        (bg-alt     `(,(doom-darken (car bg) 0.3) nil       nil            ))
        (base0      `(,(doom-darken (car bg-alt) 0.3) "black"   "black"        ))
        (base1      `(,(doom-darken (car bg-alt) 0.2) "#1e1e1e" "brightblack"  ))
        (base2      `(,(doom-darken (car bg-alt) 0.1) "#2e2e2e" "brightblack"  ))
-       (base3      '("#292c3c" "#262626" "brightblack"  ))
-       (base4      '("#414559" "#3f3f3f" "brightblack"  ))
-       (base5      '("#51576d" "#525252" "brightblack"  ))
-       (base6      '("#626880" "#6b6b6b" "brightblack"  ))
-       (base7      '("#c6d0f5" "#979797" "brightblack"  ))
-       (base8      '("#babbf1" "#dfdfdf" "white"        ))
-       (fg         '("#f2d5cf" "#bfbfbf" "brightwhite"  ))
-       (fg-alt     '("#51576d" "#2d2d2d" "white"        ))
+       (base3      '("#073642" "#262626" "brightblack"  ))
+       (base4      '("#586e75" "#3f3f3f" "brightblack"  ))
+       (base5      '("#657b83" "#525252" "brightblack"  ))
+       (base6      '("#839496" "#6b6b6b" "brightblack"  ))
+       (base7      '("#93a1a1" "#979797" "brightblack"  ))
+       (base8      '("#fdf6e3" "#dfdfdf" "white"        ))
+       (fg         '("#eee8d5" "#bfbfbf" "brightwhite"  ))
+       (fg-alt     '("#657b83" "#2d2d2d" "white"        ))
 
        (grey       base4)
-       (red        '("#e78284" "#e78284" "red"          ))
-       (orange     '("#ef9f76" "#dd8844" "brightred"    ))
-       (green      '("#a6d189" "#a6d189" "green"        ))
+       (red        '("#dc322f" "#dc322f" "red"          ))
+       (orange     '("#cb4b16" "#dd8844" "brightred"    ))
+       (green      '("#859900" "#859900" "green"        ))
        (teal       `(,(doom-lighten (car green) 0.2) "#44b9b1" "brightgreen"  ))
-       (yellow     '("#eebebe" "#eebebe" "yellow"       ))
-       (blue       '("#8caaee" "#8caaee" "brightblue"   ))
+       (yellow     '("#d33682" "#d33682" "yellow"       ))
+       (blue       '("#268bd2" "#268bd2" "brightblue"   ))
        (dark-blue  `(,(doom-lighten (car blue) 0.51) "#a0bcf8" "blue"         ))
-       (magenta    '("#ca9ee6" "#ca9ee6" "magenta"      ))
+       (magenta    '("#6c71c4" "#6c71c4" "magenta"      ))
        (violet     `(,(doom-lighten (car magenta) 0.2) "#b751b6" "brightmagenta"))
-       (cyan       '("#81c8be" "#81c8be" "brightcyan"   ))
+       (cyan       '("#2aa198" "#2aa198" "brightcyan"   ))
        (dark-cyan  `(,(doom-lighten (car cyan) 0.2) "#005478" "cyan"         ))
 
        ;; face categories -- required for all themes
@@ -203,31 +203,31 @@ determine the exact padding."
     "A light theme inspired by Atom One"
 
     ;; name        default   256       16
-    ((bg         '("#303446" nil       nil            ))
-     (bg-alt     '("#292c3c" nil       nil            ))
-     (base0      '("#292c3c" "#292c3c" "white"        ))
-     (base1      '("#414559" "#414559" "brightblack"  ))
+    ((bg         '("#002b36" nil       nil            ))
+     (bg-alt     '("#073642" nil       nil            ))
+     (base0      '("#073642" "#073642" "white"        ))
+     (base1      '("#586e75" "#586e75" "brightblack"  ))
      (base2      `(,(doom-darken (car base1) 0.1) "#dfdfdf" "brightblack"  ))
      (base3      `(,(doom-darken (car base2) 0.1) "#c6c7c7" "brightblack"  ))
-     (base4      '("#51576d" "#51576d" "brightblack"  ))
-     (base5      '("#c6d0f5" "#424242" "brightblack"  ))
-     (base6      '("#f2d5cf" "#2e2e2e" "brightblack"  ))
+     (base4      '("#657b83" "#657b83" "brightblack"  ))
+     (base5      '("#93a1a1" "#424242" "brightblack"  ))
+     (base6      '("#eee8d5" "#2e2e2e" "brightblack"  ))
      (base7      `(,(doom-darken (car base6) 0.1) "#1e1e1e" "brightblack"  ))
-     (base8      '("#babbf1" "black"   "black"        ))
-     (fg         '("#c6d0f5" "#424242" "black"        ))
-     (fg-alt     '("#51576d" "#c7c7c7" "brightblack"  ))
+     (base8      '("#fdf6e3" "black"   "black"        ))
+     (fg         '("#93a1a1" "#424242" "black"        ))
+     (fg-alt     '("#657b83" "#c7c7c7" "brightblack"  ))
 
      (grey       base4)
-     (red        '("#e78284" "#e78284" "red"          ))
-     (orange     '("#ef9f76" "#dd8844" "brightred"    ))
-     (green      '("#a6d189" "#a6d189" "green"        ))
+     (red        '("#dc322f" "#dc322f" "red"          ))
+     (orange     '("#cb4b16" "#dd8844" "brightred"    ))
+     (green      '("#859900" "#859900" "green"        ))
      (teal       `(,(doom-lighten (car green) 0.2) "#44b9b1" "brightgreen"  ))
-     (yellow     '("#eebebe" "#eebebe" "yellow"       ))
-     (blue       '("#8caaee" "#8caaee" "brightblue"   ))
+     (yellow     '("#d33682" "#d33682" "yellow"       ))
+     (blue       '("#268bd2" "#268bd2" "brightblue"   ))
      (dark-blue  `(,(doom-lighten (car blue) 0.51) "#a0bcf8" "blue"         ))
-     (magenta    '("#ca9ee6" "#ca9ee6" "magenta"      ))
+     (magenta    '("#6c71c4" "#6c71c4" "magenta"      ))
      (violet     `(,(doom-lighten (car magenta) 0.2) "#b751b6" "brightmagenta"))
-     (cyan       '("#81c8be" "#81c8be" "brightcyan"   ))
+     (cyan       '("#2aa198" "#2aa198" "brightcyan"   ))
      (dark-cyan  `(,(doom-lighten (car cyan) 0.2) "#005478" "cyan"         ))
 
      ;; face categories -- required for all themes
