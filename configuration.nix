@@ -88,7 +88,7 @@
     cmigemo
     gnugrep # gnu pcre warning
     coreutils-prefixed # gnu ls warning
-    nixfmt
+    nixfmt-rfc-style
     shellcheck
     shfmt
     nodePackages.stylelint
