@@ -95,6 +95,12 @@
     nodePackages.js-beautify
     cmake # vterm dependency
     nodePackages.prettier # code formatting dependency
+    (aspellWithDicts (dicts: with dicts; [
+      en # English
+      de # German
+      la # Latin
+      grc # Ancient Greek
+    ]))
   ];
 
   # Fonts
