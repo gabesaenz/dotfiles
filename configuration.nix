@@ -95,12 +95,15 @@
     nodePackages.js-beautify
     cmake # vterm dependency
     nodePackages.prettier # code formatting dependency
-    (aspellWithDicts (dicts: with dicts; [
-      en # English
-      de # German
-      la # Latin
-      grc # Ancient Greek
-    ]))
+    (aspellWithDicts (
+      dicts: with dicts; [
+        en # English
+        de # German
+        la # Latin
+        grc # Ancient Greek
+      ]
+    ))
+    wordnet # for lookup with offline dictionary
   ];
 
   # Fonts
@@ -427,6 +430,8 @@
     "mu" # doom emacs dependency
     "gcc" # doom emacs dependency (native compilation)
     "libvterm" # doom emacs dependency (vterm)
+
+    "dict" # dictd dictionary server
     "gh" # github-cli # used by sketchybar
     "jq" # used by sketchybar
     "switchaudio-osx" # cli audio source switcher # used by sketchybar
@@ -443,6 +448,8 @@
 
     "adobe-acrobat-reader" # work
     "basictex" # minimal texlive distribution, provides tlmgr
+    "dictionaries" # dictionary tool
+    "dictunifier" # dictionary converstion tool
     "dropbox" # cloud storage
     "element" # matrix chat client
     "ferdium" # chat service

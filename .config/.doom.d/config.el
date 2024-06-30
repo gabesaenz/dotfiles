@@ -190,3 +190,6 @@
 (setq shell-file-name (executable-find "bash"))
 (setq-default vterm-shell (executable-find "fish"))
 (setq-default explicit-shell-file-name (executable-find "fish"))
+
+;; use builtin eww browser for online lookup (dictionary)
+(setq +lookup-open-url-fn #'eww)

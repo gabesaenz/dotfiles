@@ -59,3 +59,11 @@
 
 ;; required by base16 theme
 (package! kurecolor)
+
+;; lookup on Mac OSX doesn't normally include the following
+;; online
+(package! define-word)
+(package! powerthesaurus)
+;; offline
+(package! wordnut)
+(package! synosaurus)
