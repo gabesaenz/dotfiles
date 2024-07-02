@@ -20,10 +20,29 @@
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
-;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-;;
+
+;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+
+(setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 16)
+      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 18)
+      ;; doom-symbol-font (font-spec :family "Noto Sans" :size 18)
+      )
+
+;; additional font config
+;; (after! unicode-fonts
+;; (push "Gentium Plus" (cadr (assoc "Greek" unicode-fonts-block-font-mapping))))
+
+;; (after! unicode-fonts
+;; (push "Annapurna SIL" (cadr (assoc "Devanagari" unicode-fonts-block-font-mapping))))
+
+;; (after! unicode-fonts
+;;   (dolist (unicode-block '(
+;;                            ;; "Additional Unicode Block"
+;;                            ;; "Additional Unicode Block"
+;;                            "Greek"))
+;;     (push "Gentium Plus" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
@@ -193,3 +212,4 @@
 
 ;; use builtin eww browser for online lookup (dictionary)
 (setq +lookup-open-url-fn #'eww)
+

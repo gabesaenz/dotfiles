@@ -1,4 +1,11 @@
-{ config, pkgs, lib, modulesPath, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  inputs,
+  ...
+}:
 
 {
   # Nix settings
@@ -40,7 +47,10 @@
   nix.package = pkgs.nix;
 
   # Enable nix command
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Environment variables
   environment.variables = {
@@ -108,13 +118,24 @@
 
   # Fonts
   fonts.packages = with pkgs; [
+    # emacs unicode recommendations
+    dejavu_fonts
+    # quivira # not available on mac
+    # symbola # unfree build error
     noto-fonts
+
+    gentium # gentium plus for greek
     noto-fonts-cjk
     noto-fonts-emoji
     # Devanāgarī
     annapurna-sil
     # nerd fonts
-    (nerdfonts.override { fonts = [ "Noto" "FiraCode" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "Noto"
+        "FiraCode"
+      ];
+    })
     # emacs icons
     emacs-all-the-icons-fonts
     # sketchybar font
@@ -469,13 +490,13 @@
     "yacreader" # comic book library
     "zoom" # video conferencing
   ];
-  homebrew.masApps = { # Mac App Store
+  homebrew.masApps = {
+    # Mac App Store
     "Horo - Timer for Menu Bar" = 1437226581; # timer
     "Logic Pro" = 634148309; # audio editor # large (1GB+)
     "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   };
-  homebrew.onActivation.cleanup =
-    "zap"; # uninstall and remove all data from anything not listed above
+  homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data from anything not listed above
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.upgrade = true;
 
