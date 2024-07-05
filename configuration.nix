@@ -105,6 +105,7 @@
     nodePackages.js-beautify
     cmake # vterm dependency
     nodePackages.prettier # code formatting dependency
+    wordnet # for lookup with offline dictionary
     (aspellWithDicts (
       dicts: with dicts; [
         en # English
@@ -113,7 +114,6 @@
         grc # Ancient Greek
       ]
     ))
-    wordnet # for lookup with offline dictionary
   ];
 
   # Fonts
