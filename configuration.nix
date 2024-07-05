@@ -98,6 +98,7 @@
     cmigemo
     gnugrep # gnu pcre warning
     coreutils-prefixed # gnu ls warning
+    editorconfig-core-c # editorconfig
     nixfmt-rfc-style
     shellcheck
     shfmt
