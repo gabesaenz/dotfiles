@@ -67,3 +67,6 @@
 ;; offline
 (package! wordnut)
 (package! synosaurus)
+
+;; Fraktur input minor mode
+(package! fraktur-mode)
