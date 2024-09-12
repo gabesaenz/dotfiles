@@ -115,6 +115,8 @@
         grc # Ancient Greek
       ]
     ))
+    # Rust
+    rustup
   ];
 
   # Fonts
@@ -453,14 +455,15 @@
     "gcc" # doom emacs dependency (native compilation)
     "libvterm" # doom emacs dependency (vterm)
 
+    "codecrafters" # programming exercises
     "dict" # dictd dictionary server
+    "exercism" # programming exercises
     "gh" # github-cli # used by sketchybar
     "jq" # used by sketchybar
     "switchaudio-osx" # cli audio source switcher # used by sketchybar
     "flavours" # theming
     "svg2png" # convert SVG to PNG
-    "rustup-init" # rust toolchain
-    "exercism" # programming exercises
+    # "rustup-init" # rust toolchain
   ];
   homebrew.casks = [
     #fonts
