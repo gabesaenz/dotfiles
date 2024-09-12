@@ -441,7 +441,7 @@
         "with-native-comp"
       ];
       # restart_service = true;
-      start_service = true;
+      # start_service = true;
     }
     {
       name = "sketchybar";
