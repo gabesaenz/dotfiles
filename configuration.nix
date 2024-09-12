@@ -421,10 +421,12 @@
   homebrew.enable = true;
   homebrew.taps = [
     # "homebrew/cask"
+    # "homebrew/core" # maybe this could fix the build issue with npm/node?
     "homebrew/services"
-    "homebrew/cask-fonts" # used for nerd fonts
+    # "homebrew/cask-fonts" # used for nerd fonts # deprecated
     "d12frosted/emacs-plus" # emacs
     "FelixKratz/formulae" # sketchybar
+    "codecrafters-io/tap" # codecrafters cli for programming exercises
   ];
   homebrew.brews = [
     {
@@ -474,7 +476,7 @@
     "adobe-acrobat-reader" # work
     "basictex" # minimal texlive distribution, provides tlmgr
     "dictionaries" # dictionary tool
-    "dictunifier" # dictionary converstion tool
+    # "dictunifier" # dictionary converstion tool # deprecated
     "dropbox" # cloud storage
     "element" # matrix chat client
     "ferdium" # chat service
