@@ -21,15 +21,48 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 
+;; unicode fix
+(defun unicode-fonts-setup-h (frame)
+  "Run unicode-fonts-setup, then remove the hook."
+  (progn
+    (select-frame frame)
+    (unicode-fonts-setup)
+    (message "Removing unicode-fonts-setup to after-make-frame-functions hook")
+    (remove-hook 'after-make-frame-functions 'unicode-fonts-setup-h)
+    ))
+
+(add-hook 'after-make-frame-functions 'unicode-fonts-setup-h nil)
+
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-(setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 24)
-      ;; doom-variable-pitch-font (font-spec :family "Noto Sans")
-      doom-symbol-font (font-spec :family "Annapurna SIL")
-      )
+(setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 24))
+;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans"))
+(setq doom-symbol-font (font-spec :family "Annapurna SIL" :size 32))
 
 ;; additional font config
+;; working example: (or is it?)
+;; (after! unicode-fonts
+;;   (dolist (unicode-block '("Cyrillic"
+;;                            "Cyrillic Supplement"))
+;;     (push "JetBrains Mono" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
+;; (after! unicode-fonts
+;;   (dolist (unicode-block '(
+;;                            "Greek and Coptic"
+;;                            "Greek Extended"
+;;                            ))
+;;     (push "Gentium Plus" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
+;; (after! unicode-fonts
+;;   (dolist (unicode-block '(
+;;                            "Devanagari"
+;;                            "Devanagari Extended"
+;;                            "Devanagari Extended-A"
+;;                            "Vedic Extensions"
+;;                            ))
+;;     (push "Annapurna SIL" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
 ;; (after! unicode-fonts
 ;; (push "Gentium Plus" (cadr (assoc "Greek" unicode-fonts-block-font-mapping))))
 
@@ -53,13 +86,13 @@
 
 ;; big font mode
 ;; set increment
-;; (setq doom-big-font-increment 5)
+;; (setq doom-big-font-increment 3)
 ;; disable then enable doom big font mode
 ;; this prevents the font size from increasing repeatedly
 ;; (if (display-graphic-p)
-;; (doom-big-font-mode -1))
+;;     (doom-big-font-mode -1))
 ;; (if (display-graphic-p)
-;; (doom-big-font-mode +1))
+;;     (doom-big-font-mode +1))
 
 ;; theming fix for emacsclient
 (setq custom-theme-directory "/Users/gabesaenz/dotfiles/.config/.doom.d/themes/")
