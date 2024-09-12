@@ -101,7 +101,7 @@
     functions = {
       fish_greeting = {
         description = "";
-        body = "colorscript random";
+        body = "colorscript exec fade";
       };
     };
     shellInit = ''
