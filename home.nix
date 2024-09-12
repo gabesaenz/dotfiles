@@ -1,4 +1,11 @@
-{ config, pkgs, lib, modulesPath, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  inputs,
+  ...
+}:
 
 {
   # home.username = "gabesaenz";
@@ -76,7 +83,9 @@
   # Shells
   programs.zsh = {
     enable = true;
-    oh-my-zsh = { enable = true; };
+    oh-my-zsh = {
+      enable = true;
+    };
     initExtra = ''
       function brew() {
         command brew "$@"
@@ -117,10 +126,8 @@
       cat = "bat";
       top = "btop";
       rebuild = "rebuild-nix && rebuild-brew && garbage && doomsync";
-      rebuild-nix =
-        "nix flake update ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix store optimise";
-      rebuild-brew =
-        "brew update && brew upgrade && brew autoremove && brew cleanup";
+      rebuild-nix = "nix flake update ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix store optimise";
+      rebuild-brew = "brew update && brew upgrade && brew autoremove && brew cleanup";
       rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
       doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
       garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
@@ -154,7 +161,9 @@
       "--ignore-glob=.git|.DS_Store"
     ];
   };
-  programs.dircolors = { enable = true; };
+  programs.dircolors = {
+    enable = true;
+  };
   programs.bat = {
     enable = true;
     config = {
@@ -166,7 +175,9 @@
     enable = true;
     nix-direnv.enable = true;
   };
-  programs.lazygit = { enable = true; };
+  programs.lazygit = {
+    enable = true;
+  };
   # programs.oh-my-posh = {
   #   enable = true;
   #   useTheme = "nordtron";
@@ -235,11 +246,10 @@
     sensibleOnTop = false;
     shell = "/Users/gabesaenz/.nix-profile/bin/fish";
     terminal = "tmux-direct";
-    plugins = with pkgs.tmuxPlugins;
-      [
-        # nord # nord theme
-        gruvbox # gruvbox theme
-      ];
+    plugins = with pkgs.tmuxPlugins; [
+      # nord # nord theme
+      gruvbox # gruvbox theme
+    ];
     extraConfig = ''
       set-option -g status off
       bind-key b set-option status
@@ -264,19 +274,18 @@
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
     '';
-    plugins = with pkgs;
-      [
-        # {
-        #   # nord colorscheme
-        #   plugin = vimPlugins.nord-vim;
-        #   config = "colorscheme nord";
-        # }
-        {
-          # gruvbox-flat colorscheme
-          plugin = vimPlugins.gruvbox-flat-nvim;
-          config = "colorscheme gruvbox-flat";
-        }
-      ];
+    plugins = with pkgs; [
+      # {
+      #   # nord colorscheme
+      #   plugin = vimPlugins.nord-vim;
+      #   config = "colorscheme nord";
+      # }
+      {
+        # gruvbox-flat colorscheme
+        plugin = vimPlugins.gruvbox-flat-nvim;
+        config = "colorscheme gruvbox-flat";
+      }
+    ];
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
