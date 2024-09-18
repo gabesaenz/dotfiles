@@ -5,6 +5,7 @@
    - [x] [Rustlings](https://github.com/rust-lang/rustlings/)
    - [x] [Rust Command Line Book](https://rust-cli.github.io/book/index.html)
    - [ ] Further Reading
+     - [ ] [The Little Book of Rust Books](https://lborb.github.io/book/title-page.html)
  - [ ] [Easy Rust](https://dhghomon.github.io/easy_rust/Chapter_1.html)
  - [ ] [Exercism](https://exercism.org/tracks/rust)
  - [ ] CodeCrafters
