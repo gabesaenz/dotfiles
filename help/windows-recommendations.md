@@ -1,3 +1,6 @@
+# Command Line
+ - [ ] [Tutorials](./command-line.md)
+
 # Learn Rust
  - [ ] https://www.rust-lang.org/learn
    - [ ] [Rust Book](https://doc.rust-lang.org/book/)
@@ -20,47 +23,43 @@
  - [ ] [Sycamore](https://sycamore-rs.netlify.app/docs/getting_started/installation)
  - [ ] [Command Line Rust](https://github.com/kyclark/command-line-rust)
 
-# Uninstall manually installed programs then reinstall below
- - [x] rustup
- - [x] git
-
 # Install
 
 ## Using winget (see: https://winget.run/):
- - [x] rustup
- - [x] git
- - [x] WindowsTerminal
- - [x] OhMyPosh
- - [x] VisualStudioCode
- - [x] micro (installed via nix on Ubuntu)
+ - [ ] rustup
+ - [ ] git
+ - [ ] WindowsTerminal
+ - [ ] OhMyPosh
+ - [ ] VisualStudioCode
+ - [ ] micro (installed via nix on Ubuntu)
  - [ ] Notepad++
- - [x] Neovim (installed via nix on Ubuntu)
+ - [ ] Neovim (installed via nix on Ubuntu)
  - [ ] Emacs
 
 ## Window Tiling Manager
- - [x] [whkd](https://github.com/LGUG2Z/whkd)
+ - [ ] [whkd](https://github.com/LGUG2Z/whkd)
    - windows hotkey daemon, used by komorebi
- - [x] [komorebi](https://github.com/LGUG2Z/komorebi)
+ - [ ] [komorebi](https://github.com/LGUG2Z/komorebi)
    - window tiling manager, uses wkhd
 
 ## Usability
- - [x] [LittleTips](https://github.com/chenjing1294/LittleTips)
+ - [ ] [LittleTips](https://github.com/chenjing1294/LittleTips)
    - displays shortcut keys for the active window
- - [x] [Vimium](https://vimium.github.io/)
+ - [ ] [Vimium](https://vimium.github.io/)
 
 ## Windows Subsystem for Linux
- - [x] [Install](https://learn.microsoft.com/en-us/windows/wsl/install)
+ - [ ] [Install](https://learn.microsoft.com/en-us/windows/wsl/install)
    - [Running Linux commands from Windows and vice versa](https://learn.microsoft.com/en-us/windows/wsl/filesystems#run-linux-tools-from-a-windows-command-line)
    - [Running Linux GUI apps](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)
 
 # Configure
 
 ## Windows Terminal
- - [x] [Themes](https://windowsterminalthemes.dev/)
+ - [ ] [Themes](https://windowsterminalthemes.dev/)
  - [YouTube:  Make Windows Terminal look amazing!](https://www.youtube.com/watch?v=AK2JE2YsKto)
 
 ## OhMyPosh
- - [x] [Install Fonts](https://ohmyposh.dev/docs/installation/fonts)
+ - [ ] [Install Fonts](https://ohmyposh.dev/docs/installation/fonts)
 
 ## [direnv](https://direnv.net/)
  - [ ] [Install](https://direnv.net/docs/installation.html)
@@ -75,7 +74,7 @@
 
 ## Visual Studio Code
  - [ ] [Install Nord Theme](https://marketplace.visualstudio.com/items?itemName=arcticicestudio.nord-visual-studio-code)
- - [x] Install Catpuccin Theme
+ - [ ] Install Catpuccin Theme
 
 ## Neovim
  - [ ] Install Neovide
@@ -95,9 +94,9 @@
 
 # Fonts
  - [Korean Coding Font](https://github.com/naver/d2codingfont)
-   - [x] Install (possibly using oh-my-posh font manager or winget?)
-   - [x] Use in Windows Terminal
-   - [x] Use in other places?
+   - [ ] Install (possibly using oh-my-posh font manager or winget?)
+   - [ ] Use in Windows Terminal
+   - [ ] Use in other places?
    - This has some spacing issues. Maybe it will work better with WSL.
      - [ ] Install on WSL using nix.
 
@@ -105,8 +104,8 @@
  - [Windows 10, more like MacOS...](https://www.youtube.com/watch?v=uCVc-7z-toE)
    - :x: ~~[PowerToys](https://github.com/microsoft/PowerToys?tab=readme-ov-file#via-winget)~~ (not available on older versions of Windows 10)
      - :x: ~~Mac Style Spotlight Search~~
-   - [x] [TaskbarX](https://chrisandriessen.nl/taskbarx)
-   - [x] [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups?tab=readme-ov-file#-how-to-download-taskbar-groups)
+   - [ ] [TaskbarX](https://chrisandriessen.nl/taskbarx)
+   - [ ] [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups?tab=readme-ov-file#-how-to-download-taskbar-groups)
    - [ ] [QuickLook](https://github.com/QL-Win/QuickLook?tab=readme-ov-file#downloadinstallation)
    - [ ] [Files](https://github.com/files-community/Files)
  - [How to Rice Windows.](https://dev.to/ananddhruv295/how-to-rice-windows-2h12)
@@ -118,7 +117,7 @@
  - [Rainmeter](https://www.rainmeter.net/)
 
 ## Windows 10 Themes
- - [x] [Catpuccin Theme](https://www.youtube.com/watch?v=kvpZx_SP2SM)
+ - [ ] [Catpuccin Theme](https://www.youtube.com/watch?v=kvpZx_SP2SM)
    - [Written Instructions](https://github.com/niivu/Windows-10-themes)
    - [Theme Gallery](https://www.deviantart.com/niivu/gallery/89254379/windows-10)
 
@@ -130,8 +129,8 @@
  - [ ] Install Catpuccin Theme
 
 # Install Nix
- - [x] [Nix Windows service](https://nixos.org/download#nix-install-windows)
- - [x] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
+ - [ ] [Nix Windows service](https://nixos.org/download#nix-install-windows)
+ - [ ] [Home Manager](https://nix-community.github.io/home-manager/#sec-install-standalone)
    - :x: Will setting [this](https://nix-community.github.io/home-manager/options.xhtml#opt-programs.home-manager.path) fix the error?
      ```
      programs.home-manager.path = https://github.com/nix-community/home-manager/archive/master.tar.gz;
