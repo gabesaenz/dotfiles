@@ -81,7 +81,9 @@
  - [ ] Install Neovide
  - [ ] Install Nord Theme
  - [ ] Install Catpuccin Theme
- - [ ] Work through the tutorial.
+ - [ ] Work through the tutorial
+   - [ ] [Vim Tutor & Vim School](https://vimschool.netlify.app/introduction/vimtutor/)
+   - [ ] [Vim Tutor Sequel](https://github.com/micahkepe/vimtutor-sequel)
 
 ## Notepad++
  - [ ] [Install Nord Theme](https://github.com/nordtheme/notepadplusplus)
@@ -125,7 +127,11 @@
 # Install Doom Emacs
  - [ ] [Documentation](https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org)
    - [ ] Use [this example](https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix) as a model for instaling with nix.
- - [ ] Do the vi and emacs tutorials.
+ - [ ] Do the vi and emacs tutorials
+   - [ ] [A Guided Tour of Emacs](https://www.gnu.org/software/emacs/tour/)
+     - [ ] Emacs Tutor (ctrl-h + t)
+   - [ ] [Master Emacs in one year](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/guide-en.org)
+   - [ ] [Practical Emacs Tutorial](http://xahlee.info/emacs/emacs/emacs.html)
  - [ ] Install Nord Theme
  - [ ] Install Catpuccin Theme
 
