@@ -104,6 +104,7 @@
     shfmt
     nodePackages.stylelint
     nodePackages.js-beautify
+    nodePackages.npm # npm warning
     cmake # vterm dependency
     nodePackages.prettier # code formatting dependency
     wordnet # for lookup with offline dictionary
@@ -452,7 +453,7 @@
       # restart_service = true;
       # start_service = true;
     }
-    "npm" # doom emacs dependency
+    # "npm" # doom emacs dependency
     "mu" # doom emacs dependency
     "gcc" # doom emacs dependency (native compilation)
     "libvterm" # doom emacs dependency (vterm)
