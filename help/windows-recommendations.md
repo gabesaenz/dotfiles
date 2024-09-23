@@ -53,6 +53,7 @@
    - [Running Linux commands from Windows and vice versa](https://learn.microsoft.com/en-us/windows/wsl/filesystems#run-linux-tools-from-a-windows-command-line)
      - Programs installed using nix home-manager aren't being found using "wsl app-name" from Windows.
        - I think wsl runs as root and home-manager needs the related user.
+         - Does this have anything to do with nix multi-user vs. single-user or wsl with systemd?
        - [ ] Try using "wsl --exec ..." or "wsl --user ...".
        - [ ] Try switching to flakes.
        - [ ] Check if programs installed using the nix system config work.
