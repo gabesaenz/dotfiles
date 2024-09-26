@@ -422,12 +422,8 @@
 
   homebrew.enable = true;
   homebrew.taps = [
-    # "homebrew/cask"
-    # "homebrew/core" # maybe this could fix the build issue with npm/node?
     "homebrew/services"
-    # "homebrew/cask-fonts" # used for nerd fonts # deprecated
     "d12frosted/emacs-plus" # emacs
-    "FelixKratz/formulae" # sketchybar
     "codecrafters-io/tap" # codecrafters cli for programming exercises
   ];
   homebrew.brews = [
@@ -449,12 +445,6 @@
       # restart_service = true;
       # start_service = true;
     }
-    {
-      name = "sketchybar";
-      # restart_service = true;
-      # start_service = true;
-    }
-    # "npm" # doom emacs dependency
     "mu" # doom emacs dependency
     "gcc" # doom emacs dependency (native compilation)
     "libvterm" # doom emacs dependency (vterm)
@@ -462,33 +452,21 @@
     "codecrafters" # programming exercises
     "dict" # dictd dictionary server
     "exercism" # programming exercises
-    "gh" # github-cli # used by sketchybar
-    "jq" # used by sketchybar
-    "switchaudio-osx" # cli audio source switcher # used by sketchybar
     "flavours" # theming
     "svg2png" # convert SVG to PNG
-    # "rustup-init" # rust toolchain
+    "vimtutor-sequel"
   ];
   homebrew.casks = [
-    #fonts
-    "font-hack-nerd-font" # used by sketchybar
-    "sf-symbols" # used by sketchybar
-    "font-sf-mono" # used by nvim config from sketchybar creator
-
     "adobe-acrobat-reader" # work
     "basictex" # minimal texlive distribution, provides tlmgr
-    "dictionaries" # dictionary tool
-    # "dictunifier" # dictionary converstion tool # deprecated
     "dropbox" # cloud storage
-    "element" # matrix chat client
-    "ferdium" # chat service
     "firefox" # web browser
     "flux" # nighttime colorshift
     "google-chrome" # web browser
     "inkscape" # svg editor
     "kitty" # terminal emulator
     "libreoffice" # work
-    "neovide" # neovim frontend
+    # "neovide" # neovim frontend
     "simple-comic" # comic book viewer
     "spotify" # music streaming
     "the-unarchiver" # archive manager
