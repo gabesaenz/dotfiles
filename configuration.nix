@@ -337,7 +337,8 @@
 
       # text editors
       ralt - return : emacsclient -c -a "emacs"
-      meh - return : /Applications/Neovide.app/Contents/MacOS/neovide
+      # meh - return : /Applications/Neovide.app/Contents/MacOS/neovide
+      meh - return : neovide
 
       ##########
       # theming:

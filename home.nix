@@ -22,6 +22,7 @@
 
     # Text editors
     micro
+    # neovide # nvim frontend # build error
 
     # Password management
     pass
