@@ -62,9 +62,6 @@
     # doom emacs config folder
     DOOMDIR = "$HOME/dotfiles/.config/.doom.d";
 
-    # remove Neovide titlebar
-    # NEOVIDE_FRAME = "none";
-
     # hide direnv output
     DIRENV_LOG_FORMAT = "";
   };
@@ -124,8 +121,6 @@
   fonts.packages = with pkgs; [
     # emacs unicode recommendations
     dejavu_fonts
-    # quivira # not available on mac
-    # symbola # unfree build error
     noto-fonts
 
     gentium # gentium plus for greek
@@ -142,87 +137,11 @@
     })
     # emacs icons
     emacs-all-the-icons-fonts
-    # sketchybar font
-    sketchybar-app-font
   ];
 
   # Window Manager
   services.skhd = {
     enable = true;
-    # old personal config
-    # skhdConfig = ''
-    #   # Reload config
-    #   fn - r: skhd --reload
-
-    #   #################
-    #   # yabai controls:
-    #   #################
-
-    #   # focus window
-    #   meh - h : yabai -m window --focus west
-    #   meh - j : yabai -m window --focus south
-    #   meh - k : yabai -m window --focus north
-    #   meh - l : yabai -m window --focus east
-
-    #   # swap managed window
-    #   hyper - h : yabai -m window --swap west
-    #   hyper - j : yabai -m window --swap south
-    #   hyper - k : yabai -m window --swap north
-    #   hyper - l : yabai -m window --swap east
-
-    #   # send window to desktop
-    #   hyper - 1 : yabai -m window --space 1
-    #   hyper - 2 : yabai -m window --space 2
-    #   hyper - 3 : yabai -m window --space 3
-    #   hyper - 4 : yabai -m window --space 4
-    #   hyper - 5 : yabai -m window --space 5
-    #   hyper - 6 : yabai -m window --space 6
-    #   hyper - 7 : yabai -m window --space 7
-    #   hyper - 8 : yabai -m window --space 8
-    #   hyper - 9 : yabai -m window --space 9
-
-    #   # move floating window
-    #   meh - y : yabai -m window --move rel:-20:0
-    #   meh - u : yabai -m window --move rel:0:20
-    #   meh - i : yabai -m window --move rel:0:-20
-    #   meh - o : yabai -m window --move rel:20:0
-
-    #   # increase window size
-    #   hyper - y : yabai -m window --resize left:-20:0
-    #   hyper - i : yabai -m window --resize top:0:-20
-
-    #   # decrease window size
-    #   hyper - o : yabai -m window --resize left:20:0
-    #   hyper - u : yabai -m window --resize top:0:20
-
-    #   # balance size of windows
-    #   hyper - 0 : yabai -m space --balance
-
-    #   # toggle window zoom
-    #   fn - y : yabai -m window --toggle zoom-parent
-    #   fn - u : yabai -m window --toggle zoom-fullscreen
-
-    #   # toggle window split type
-    #   fn - i : yabai -m window --toggle split
-
-    #   # float / unfloat window and center on screen
-    #   fn - o : yabai -m window --toggle float --grid 4:4:1:1:2:2
-
-    #   # toggle sticky(+float), picture-in-picture
-    #   fn - p : yabai -m window --toggle sticky --toggle pip
-
-    #   ########################
-    #   # application shortcuts:
-    #   ########################
-
-    #   # terminal
-    #   rcmd - return : /Applications/kitty.app/Contents/MacOS/kitty
-
-    #   # text editors
-    #   ralt - return : emacsclient -c -a "emacs"
-    #   meh - return : /Applications/Neovide.app/Contents/MacOS/neovide
-    #   hyper - return : /Applications/Neovide.app/Contents/MacOS/neovide --frame none
-    # '';
     skhdConfig = ''
       ## Navigation (lalt - ...)
       # Space Navigation (four spaces per display): lalt - {1, 2, 3, 4}
@@ -242,13 +161,13 @@
       lalt - 0x27 : yabai -m window --focus  last
 
       # Float / Unfloat window: lalt - space
-      lalt - space : yabai -m window --toggle float; sketchybar --trigger window_focus
+      lalt - space : yabai -m window --toggle float
 
       # Make window zoom to fullscreen: shift + lalt - f
-      shift + lalt - f : yabai -m window --toggle zoom-fullscreen; sketchybar --trigger window_focus
+      shift + lalt - f : yabai -m window --toggle zoom-fullscreen
 
       # Make window zoom to parent node: lalt - f
-      lalt - f : yabai -m window --toggle zoom-parent; sketchybar --trigger window_focus
+      lalt - f : yabai -m window --toggle zoom-parent
 
       ## Window Movement (shift + lalt - ...)
       # Moving windows in spaces: shift + lalt - {j, k, l, ö}
@@ -262,16 +181,16 @@
 
       # Moving windows between spaces: shift + lalt - {1, 2, 3, 4, p, n } (Assumes 4 Spaces Max per Display)
       shift + lalt - 1 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[1] ]] \
-                        && yabai -m window --space $SPACES[1] && sketchybar --trigger windows_on_spaces
+                        && yabai -m window --space $SPACES[1]
 
       shift + lalt - 2 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[2] ]] \
-                        && yabai -m window --space $SPACES[2] && sketchybar --trigger windows_on_spaces
+                        && yabai -m window --space $SPACES[2]
 
       shift + lalt - 3 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[3] ]] \
-                        && yabai -m window --space $SPACES[3] && sketchybar --trigger windows_on_spaces
+                        && yabai -m window --space $SPACES[3]
 
       shift + lalt - 4 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[4] ]] \
-                        && yabai -m window --space $SPACES[4] && sketchybar --trigger windows_on_spaces
+                        && yabai -m window --space $SPACES[4]
 
       shift + lalt - p : yabai -m window --space prev && yabai -m space --focus prev
       shift + lalt - n : yabai -m window --space next && yabai -m space --focus next
@@ -282,10 +201,10 @@
 
       ## Stacks (shift + ctrl - ...)
       # Add the active window to the window or stack to the {direction}: shift + ctrl - {j, k, l, ö}
-      shift + ctrl - j    : yabai -m window  west --stack $(yabai -m query --windows --window | jq -r '.id') && sketchybar --trigger window_focus
-      shift + ctrl - k    : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id') && sketchybar --trigger window_focus
-      shift + ctrl - l    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id') && sketchybar --trigger window_focus
-      shift + ctrl - 0x29 : yabai -m window  east --stack $(yabai -m query --windows --window | jq -r '.id') && sketchybar --trigger window_focus
+      shift + ctrl - j    : yabai -m window  west --stack $(yabai -m query --windows --window | jq -r '.id')
+      shift + ctrl - k    : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
+      shift + ctrl - l    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
+      shift + ctrl - 0x29 : yabai -m window  east --stack $(yabai -m query --windows --window | jq -r '.id')
 
       # Stack Navigation: shift + ctrl - {n, p}
       shift + ctrl - n : yabai -m window --focus stack.next
@@ -324,10 +243,6 @@
       lalt - s : yabai -m window --insert east;  skhd -k "cmd - n"
       lalt - v : yabai -m window --insert south; skhd -k "cmd - n"
 
-      # Toggle sketchybar
-      shift + lalt - space : sketchybar --bar hidden=toggle
-      shift + lalt - r : sketchybar --remove '/.*/' && sh -c 'export CONFIG_DIR=$HOME/.config/sketchybar && $CONFIG_DIR/sketchybarrc'
-
       ########################
       # application shortcuts:
       ########################
@@ -337,7 +252,6 @@
 
       # text editors
       ralt - return : emacsclient -c -a "emacs"
-      # meh - return : /Applications/Neovide.app/Contents/MacOS/neovide
       meh - return : neovide
 
       ##########
@@ -356,30 +270,11 @@
     enable = true;
     package = pkgs.yabai;
     enableScriptingAddition = true;
-    # config = {
-    #   focus_follows_mouse = "off";
-    #   mouse_follows_focus = "off";
-    #   window_placement = "second_child";
-    #   window_opacity = "off";
-    #   window_opacity_duration = "0.0";
-    #   window_animation_duration = "0.0";
-    #   window_border = "off";
-    #   active_window_border_topmost = "off";
-    #   window_topmost = "on";
-    #   active_window_opacity = "1.0";
-    #   normal_window_opacity = "1.0";
-    #   split_ratio = "0.50";
-    #   auto_balance = "on";
-    #   layout = "bsp";
-    # };
     extraConfig = ''
       #!/usr/bin/env sh
 
       sudo yabai --load-sa
       yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-      yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-      yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-      yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
       yabai -m config external_bar               all:0:0      \
                       mouse_follows_focus        off          \
@@ -442,8 +337,6 @@
         "with-imagemagick"
         "with-native-comp"
       ];
-      # restart_service = true;
-      # start_service = true;
     }
     "mu" # doom emacs dependency
     "gcc" # doom emacs dependency (native compilation)
@@ -466,7 +359,6 @@
     "inkscape" # svg editor
     "kitty" # terminal emulator
     "libreoffice" # work
-    # "neovide" # neovim frontend
     "simple-comic" # comic book viewer
     "spotify" # music streaming
     "the-unarchiver" # archive manager

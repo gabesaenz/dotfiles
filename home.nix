@@ -8,8 +8,6 @@
 }:
 
 {
-  # home.username = "gabesaenz";
-  # home.homeDirectory = "/Users/gabesaenz";
   home.stateVersion = "22.05";
   home.packages = with pkgs; [
     # Shell tools
@@ -22,7 +20,6 @@
 
     # Text editors
     micro
-    # neovide # nvim frontend # build error
 
     # Password management
     pass
@@ -31,19 +28,6 @@
     pandoc
     libwpd
 
-    # Rust
-    # cargo
-    # cargo-binutils # needed for wasm-pack build
-    ###### cargo-llvm-cov # needed for wasm-pack build # nix package currently broken
-    # llvmPackages.bintools # needed for wasm-pack build
-    # rustc-wasm32 # same as above
-    # wasm-bindgen-cli # same
-    # clippy
-    # rustc
-    # rustfmt
-    # rust-analyzer
-    # bacon
-
     # PDF
     djvu2pdf # convert djvu to pdf
     sioyek
@@ -51,7 +35,6 @@
 
     # Spotify
     spicetify-cli
-    # spotify-tui
   ];
 
   home.file.flavours = {
@@ -62,11 +45,6 @@
   home.file.flavours-sources = {
     source = ./.config/flavours/sources;
     target = "./Library/Application Support/flavours/base16/sources";
-  };
-
-  home.file.sketchybar = {
-    source = ./.config/sketchybar;
-    target = "./.config/sketchybar";
   };
 
   fonts.fontconfig.enable = true; # doom emacs dependency
@@ -87,15 +65,6 @@
     oh-my-zsh = {
       enable = true;
     };
-    initExtra = ''
-      function brew() {
-        command brew "$@"
-
-        if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
-          sketchybar --trigger brew_update
-        fi
-      }
-    '';
   };
   programs.fish = {
     enable = true;
@@ -167,10 +136,6 @@
   };
   programs.bat = {
     enable = true;
-    config = {
-      # theme = "Nord";
-      # theme = "gruvbox-dark";
-    };
   };
   programs.direnv = {
     enable = true;
@@ -179,24 +144,12 @@
   programs.lazygit = {
     enable = true;
   };
-  # programs.oh-my-posh = {
-  #   enable = true;
-  #   useTheme = "nordtron";
-  # };
   programs.starship.enable = true;
-  # a theme isn't necessary as the default prompt will follow the colors of the terminal
-  # home.file.starship = {
-  #   source = ./.config/gruvbox-rainbow.toml;
-  #   target = "./.config/starship.toml";
-  # };
 
   # Terminals
   programs.kitty = {
     enable = true;
-    darwinLaunchOptions = [
-      # "--single-instance"
-      "--directory=~"
-    ];
+    darwinLaunchOptions = [ "--directory=~" ];
     extraConfig = ''
       # default shell
       shell fish
@@ -236,8 +189,6 @@
       # startup session
       startup_session ~/dotfiles/.config/kitty/kitty-startup.session
     '';
-    # theme = "Nord";
-    # theme = "Gruvbox Material Dark Soft";
   };
   programs.tmux = {
     enable = true;
@@ -247,10 +198,6 @@
     sensibleOnTop = false;
     shell = "/Users/gabesaenz/.nix-profile/bin/fish";
     terminal = "tmux-direct";
-    plugins = with pkgs.tmuxPlugins; [
-      # nord # nord theme
-      # gruvbox # gruvbox theme
-    ];
     extraConfig = ''
       set-option -g status off
       bind-key b set-option status
@@ -262,8 +209,6 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      # theme = "nord";
-      # theme = "gruvbox_dark_soft";
       editor.whitespace.render = "all";
       editor.auto-pairs = false;
     };
@@ -275,18 +220,6 @@
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
     '';
-    # plugins = with pkgs; [
-    # {
-    #   # nord colorscheme
-    #   plugin = vimPlugins.nord-vim;
-    #   config = "colorscheme nord";
-    # }
-    # {
-    # gruvbox-flat colorscheme
-    # plugin = vimPlugins.gruvbox-flat-nvim;
-    # config = "colorscheme gruvbox-flat";
-    # }
-    # ];
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
@@ -310,16 +243,4 @@
     };
   };
 
-  # Spotify
-  # not supported on MacOS/nix-darwin
-  # services.spotifyd = {
-  #   enable = true;
-  #   settings = {
-  #     global = {
-  #       username = "gabesaenz@gmail.com";
-  #       password_cmd = "pass spotify";
-  #       # device_name = "macground";
-  #     };
-  #   };
-  # };
 }
