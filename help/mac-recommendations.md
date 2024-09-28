@@ -64,6 +64,7 @@
 
 ## Neovim
  - [ ] Work through the tutorial
+   - [ ] [Vim Adventures](https://vim-adventures.com/)
    - [ ] [Vim Tutor & Vim School](https://vimschool.netlify.app/introduction/vimtutor/)
    - [ ] [Vim Tutor Sequel](https://github.com/micahkepe/vimtutor-sequel)
    - [ ] ["Wonderful vi" article](https://world.hey.com/dhh/wonderful-vi-a1d034d3)
