@@ -141,7 +141,7 @@
     settings = {
       #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
       #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
-      color_theme = "gruvbox_material_dark";
+      # color_theme = "gruvbox_material_dark";
 
       #* If the theme set background should be shown, set to False if you want terminal background transparency.
       theme_background = true;
@@ -169,7 +169,7 @@
     enable = true;
     config = {
       # theme = "Nord";
-      theme = "gruvbox-dark";
+      # theme = "gruvbox-dark";
     };
   };
   programs.direnv = {
@@ -249,7 +249,7 @@
     terminal = "tmux-direct";
     plugins = with pkgs.tmuxPlugins; [
       # nord # nord theme
-      gruvbox # gruvbox theme
+      # gruvbox # gruvbox theme
     ];
     extraConfig = ''
       set-option -g status off
@@ -263,7 +263,7 @@
     defaultEditor = true;
     settings = {
       # theme = "nord";
-      theme = "gruvbox_dark_soft";
+      # theme = "gruvbox_dark_soft";
       editor.whitespace.render = "all";
       editor.auto-pairs = false;
     };
@@ -283,8 +283,8 @@
       # }
       {
         # gruvbox-flat colorscheme
-        plugin = vimPlugins.gruvbox-flat-nvim;
-        config = "colorscheme gruvbox-flat";
+        # plugin = vimPlugins.gruvbox-flat-nvim;
+        # config = "colorscheme gruvbox-flat";
       }
     ];
     viAlias = true;
