@@ -54,10 +54,11 @@
      - Programs installed using nix home-manager aren't being found using "wsl app-name" from Windows.
        - I think wsl runs as root and home-manager needs the related user.
          - Does this have anything to do with nix multi-user vs. single-user or wsl with systemd?
-       - [ ] Try using "wsl --exec ..." or "wsl --user ...".
-       - [ ] Try switching to flakes.
-       - [ ] Check if programs installed using the nix system config work.
-         - [ ] If so, maybe stop using home-manager?
+       - [x] Try using "wsl --exec ..." or "wsl --user ...".
+       - [x] Try switching to flakes.
+       - [x] Check if programs installed using the nix system config work.
+         - [x] If so, maybe stop using home-manager?
+       - Looks like this was fixed by switching to multi-user. Works out of the box with NixOS.
    - [Running Linux GUI apps](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)
 
 # Configure
