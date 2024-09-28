@@ -63,12 +63,13 @@
  - [ ] Install Catpuccin Theme
 
 ## Neovim
- - [ ] Install Neovide
- - [ ] Install Nord Theme
- - [ ] Install Catpuccin Theme
  - [ ] Work through the tutorial
    - [ ] [Vim Tutor & Vim School](https://vimschool.netlify.app/introduction/vimtutor/)
    - [ ] [Vim Tutor Sequel](https://github.com/micahkepe/vimtutor-sequel)
+   - [ ] ["Wonderful vi" article](https://world.hey.com/dhh/wonderful-vi-a1d034d3)
+ - [ ] Install Neovide
+ - [ ] Install Nord Theme
+ - [ ] Install Catpuccin Theme
 
 # Color Palettes
  - [Catpuccin](https://github.com/catppuccin)
@@ -81,6 +82,8 @@
  - [ ] Do the vi and emacs tutorials
    - [ ] [A Guided Tour of Emacs](https://www.gnu.org/software/emacs/tour/)
      - [ ] Emacs Tutor (ctrl-h + t)
+       - or (ctrl-u + ctrl-h + t) to select the language for the tutorial
+       - or run this from the command line: emacs --no-window-system --quick --funcall menu-bar-mode --funcall help-with-tutorial-spec-language
    - [ ] [Master Emacs in one year](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/guide-en.org)
    - [ ] [Practical Emacs Tutorial](http://xahlee.info/emacs/emacs/emacs.html)
  - [ ] Install Nord Theme
