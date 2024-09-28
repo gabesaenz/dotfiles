@@ -275,18 +275,18 @@
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
     '';
-    plugins = with pkgs; [
-      # {
-      #   # nord colorscheme
-      #   plugin = vimPlugins.nord-vim;
-      #   config = "colorscheme nord";
-      # }
-      {
-        # gruvbox-flat colorscheme
-        # plugin = vimPlugins.gruvbox-flat-nvim;
-        # config = "colorscheme gruvbox-flat";
-      }
-    ];
+    # plugins = with pkgs; [
+    # {
+    #   # nord colorscheme
+    #   plugin = vimPlugins.nord-vim;
+    #   config = "colorscheme nord";
+    # }
+    # {
+    # gruvbox-flat colorscheme
+    # plugin = vimPlugins.gruvbox-flat-nvim;
+    # config = "colorscheme gruvbox-flat";
+    # }
+    # ];
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
