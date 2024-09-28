@@ -84,7 +84,7 @@
    - [ ] [A Guided Tour of Emacs](https://www.gnu.org/software/emacs/tour/)
      - [ ] Emacs Tutor (ctrl-h + t)
        - or (ctrl-u + ctrl-h + t) to select the language for the tutorial
-       - or run this from the command line: emacs --no-window-system --quick --funcall menu-bar-mode --funcall help-with-tutorial-spec-language
+       - or run this from the command line: emacs --quick --funcall menu-bar-mode --funcall help-with-tutorial-spec-language
    - [ ] [Master Emacs in one year](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/guide-en.org)
    - [ ] [Practical Emacs Tutorial](http://xahlee.info/emacs/emacs/emacs.html)
  - [ ] Install Nord Theme
