@@ -159,8 +159,7 @@
 
       # fonts
       font_family FiraCode Nerd Font Mono
-      # font_size 20.0
-      font_size 12.0
+      font_size 16.0
 
       # Devanāgarī support
       # from : https://www.wikiwand.com/en/Devanagari#Unicode
