@@ -208,6 +208,7 @@
     enable = true;
     defaultEditor = true;
     settings = {
+      theme = "base16_transparent";
       editor.whitespace.render = "all";
       editor.auto-pairs = false;
     };
