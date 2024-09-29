@@ -137,6 +137,7 @@
 # Install Doom Emacs
  - [ ] [Documentation](https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org)
    - [ ] Use [this example](https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix) as a model for instaling with nix.
+ - [ ] [DoomCasts](https://youtube.com/playlist?list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj&si=R7f5pFLBDKds9l33)
  - [ ] Do the vi and emacs tutorials
    - [ ] [A Guided Tour of Emacs](https://www.gnu.org/software/emacs/tour/)
      - [ ] Emacs Tutor (ctrl-h + t)
