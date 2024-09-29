@@ -60,6 +60,9 @@
          - [x] If so, maybe stop using home-manager?
        - Looks like this was fixed by switching to multi-user. Works out of the box with NixOS.
    - [Running Linux GUI apps](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps)
+ - Microsoft Store Apps to help with integration but that cost money:
+   - [ ] [GWSL - Native UI and shortcuts - 5 Euros](https://apps.microsoft.com/detail/9nl6kd1h33v3?hl=en-us&gl=US)
+   - [ ] [OpenInWSL - file associations - 3 Euros](https://apps.microsoft.com/detail/9ngmqpwcg7sf?cid=storebadge&ocid=badge&rtc=1&hl=en-us&gl=DE)
 
 # Configure
 
