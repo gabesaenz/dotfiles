@@ -141,6 +141,9 @@
  - [ ] [Documentation](https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org)
    - [ ] Use [this example](https://github.com/hlissner/dotfiles/blob/master/modules/editors/emacs.nix) as a model for instaling with nix.
  - [ ] [DoomCasts](https://youtube.com/playlist?list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj&si=R7f5pFLBDKds9l33)
+    - **Warning**: the install instructions are out of date. Install first then watch.
+    - In general there is out of date information but it's a nice helpful visual guide. Follow along with the explanations and see how they actually work in the editor.
+    - In context menus press ? to get a full list of options. Up and Down can navigate these lists or C-j and C-k.
  - [ ] Do the vi and emacs tutorials
    - [ ] [A Guided Tour of Emacs](https://www.gnu.org/software/emacs/tour/)
      - [ ] Emacs Tutor (ctrl-h + t)
