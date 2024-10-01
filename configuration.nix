@@ -357,6 +357,7 @@
     "flux" # nighttime colorshift
     "google-chrome" # web browser
     "inkscape" # svg editor
+    "keycastr" # display keys pressed
     "kitty" # terminal emulator
     "libreoffice" # work
     "simple-comic" # comic book viewer
