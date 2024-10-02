@@ -1,6 +1,9 @@
 # Command Line
  - [ ] [Tutorials](./command-line.md)
 
+# Git
+ - [ ] [Tutorials](./git.md)
+
 # Learn Rust
  - [ ] https://www.rust-lang.org/learn
    - [ ] [Rust Book](https://doc.rust-lang.org/book/)

@@ -6,4 +6,6 @@ Here's some advice for people just starting out.
 
 [Command Line](./command-line.md)
 
+[Git](./git.md)
+
 And my own personal [todo list](./todo-list.md).
