@@ -4,6 +4,9 @@
 # Git
  - [ ] [Tutorials](./git.md)
 
+# Databases
+ - [ ] [Relational Databases](./databases.md)
+
 # Learn Rust
  - [ ] https://www.rust-lang.org/learn
    - [ ] [Rust Book](https://doc.rust-lang.org/book/)

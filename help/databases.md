@@ -1,0 +1,12 @@
+# Databases
+ - [ ] [SQLBolt](https://sqlbolt.com/)
+ - [ ] [PostgreSQL Exercises](https://pgexercises.com/)
+ - [ ] [SQLCourse](https://www.sqlcourse.com/)
+ - [ ] [SQLRU - Interactive Textbook](http://www.sql-tutorial.ru/)
+ - [ ] [SQL Zoo](http://sqlzoo.net/wiki/SQL_Tutorial)
+ - [ ] [What is a relational database? - Google Cloud](https://cloud.google.com/learn/what-is-a-relational-database)
+ - [ ] [edX courses](https://www.edx.org/learn/relational-databases)
+ - [ ] [Explore fundamental relational data concepts - Microsoft Tutorial](https://learn.microsoft.com/en-us/training/modules/explore-relational-data-offerings/)
+ - [ ] [Introduction to Relational Databases (RDBMS) - IBM](https://www.coursera.org/learn/introduction-to-relational-databases?action=enroll)
+ - [ ] [Relational Database Courses - freeCodeCamp](https://www.freecodecamp.org/learn/relational-database/)
+ - [ ] [List of Resources from r/SQL wiki - Several other items are from this list.](https://www.reddit.com/r/SQL/wiki/index/)

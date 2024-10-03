@@ -8,4 +8,6 @@ Here's some advice for people just starting out.
 
 [Git](./git.md)
 
+[Databases](./databases.md)
+
 And my own personal [todo list](./todo-list.md).
