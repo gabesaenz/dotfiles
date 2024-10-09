@@ -98,7 +98,7 @@
       rebuild = "rebuild-no-update";
       rebuild-brew = "brew-update && brew-clean";
       rebuild-nix = "nix flake update ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix-optimise";
-      rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doomsync";
+      rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
       rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
       rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
       brew-update = "brew update && brew upgrade";
