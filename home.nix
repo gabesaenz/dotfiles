@@ -95,12 +95,17 @@
     shellAliases = {
       cat = "bat";
       top = "btop";
-      rebuild = "rebuild-nix && rebuild-brew && garbage && doomsync";
-      rebuild-nix = "nix flake update ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix store optimise";
-      rebuild-brew = "brew update && brew upgrade && brew autoremove && brew cleanup";
+      rebuild = "rebuild-no-update";
+      rebuild-brew = "brew-update && brew-clean";
+      rebuild-nix = "nix flake update ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix-optimise";
+      rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doomsync";
       rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
+      rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
+      brew-update = "brew update && brew upgrade";
+      brew-clean = "brew autoremove && brew cleanup";
       doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
       garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+      nix-optimise = "nix store optimise";
     };
   };
 
