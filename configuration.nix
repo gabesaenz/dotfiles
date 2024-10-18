@@ -253,6 +253,7 @@
       # text editors
       ralt - return : emacsclient -c -a "emacs"
       meh - return : neovide
+      rcmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
 
       ##########
       # theming:
