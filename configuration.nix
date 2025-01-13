@@ -70,7 +70,6 @@
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
   environment.shells = with pkgs; [ fish ];
-  environment.loginShell = "/run/current-system/sw/bin/fish";
 
   # Mac settings
 
