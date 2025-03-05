@@ -20,6 +20,9 @@
  - [x] [Tauri](https://beta.tauri.app/guides/)
  - [x] [Sycamore](https://sycamore-rs.netlify.app/docs/getting_started/installation)
  - [ ] [Command Line Rust](https://github.com/kyclark/command-line-rust)
+ - [ ] [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/index.html)
+ - [ ] [Rust Practice Questions](https://rust-unofficial.github.io/rust-practise-questions/)
+ - [ ] [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
 
 # CSS
  - [x] [CSS Diner](https://flukeout.github.io/)
@@ -29,7 +32,7 @@
  - [ ] [Flexbox (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox)
  - [ ] [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
  - [x] [Grid Garden](https://codepip.com/games/grid-garden/)
- - [ ] [Grid Critters](https://mastery.games/gridcritters/)
+ - [x] [Grid Critters](https://mastery.games/gridcritters/)
  - [ ] [Grids (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
  - [ ] [CSS Hell](https://csshell.dev/)
  - [ ] [Using HSL Colors in CSS](https://www.smashingmagazine.com/2021/07/hsl-colors-css/)
