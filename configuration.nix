@@ -60,16 +60,20 @@
     FLAVOURS_CONFIG_FILE = "$HOME/.config/flavours/config.toml";
 
     # doom emacs config folder
-    DOOMDIR = "$HOME/dotfiles/.config/.doom.d";
+    # DOOMDIR = "/Users/gabesaenz/dotfiles/.config/.doom.d";
 
     # hide direnv output
     DIRENV_LOG_FORMAT = "";
   };
+  # environment.interactiveShellInit = "nu";
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
-  environment.shells = with pkgs; [ fish ];
+  # environment.shells = with pkgs; [
+  # fish
+  # nushell
+  # ];
 
   # Mac settings
 
@@ -82,6 +86,17 @@
   # Networking
   networking.hostName = "Gabe-Mac"; # Define your hostname.
 
+  # Emacs service
+  services.emacs.enable = true;
+  services.emacs.package =
+    with pkgs;
+    ((emacsPackagesFor emacs-30).emacsWithPackages (epkgs: [
+      epkgs.vterm
+      epkgs.org-pdftools
+      epkgs.pdf-tools
+      epkgs.saveplace-pdf-view
+    ]));
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -90,12 +105,17 @@
     ripgrep
     coreutils # optional
     fd # optional
+
+    mu # email
+
     # doom emacs doom doctor suggestions
     cmigemo
     gnugrep # gnu pcre warning
     coreutils-prefixed # gnu ls warning
     editorconfig-core-c # editorconfig
+    gnuplot # org-plot/gnuplot dependency
     nixfmt-rfc-style
+    pngpaste # org-download-clipboard dependency
     shellcheck
     shfmt
     nodePackages.stylelint
@@ -104,6 +124,10 @@
     cmake # vterm dependency
     nodePackages.prettier # code formatting dependency
     wordnet # for lookup with offline dictionary
+    emacsPackages.vterm # bypass vterm compilation
+    emacsPackages.pdf-tools # bypass pdf-tools compilation
+    poppler # fix pdf-tools compilation error
+    imagemagick # fix email mu4e warning
     (aspellWithDicts (
       dicts: with dicts; [
         en # English
@@ -112,8 +136,19 @@
         grc # Ancient Greek
       ]
     ))
+
     # Rust
     rustup
+    cargo-binstall # binary installer for rust tools
+
+    # Mac App Store
+    # mas
+
+    # misc
+    translate-shell # translator
+
+    # Shells
+    # nushell
   ];
 
   # Fonts
@@ -123,7 +158,8 @@
     noto-fonts
 
     gentium # gentium plus for greek
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     noto-fonts-emoji
     # Devanāgarī
     annapurna-sil
@@ -264,6 +300,12 @@
       fn - 0x2B : $HOME/dotfiles/.config/flavours/previous-theme.sh
       # period
       fn - 0x2F : $HOME/dotfiles/.config/flavours/next-theme.sh
+
+      ##########
+      # restart:
+      ##########
+
+      shift + ralt - r : pkill -x "yabai" && pkill -x "skhd"
     '';
   };
   services.yabai = {
@@ -318,32 +360,31 @@
   homebrew.enable = true;
   homebrew.taps = [
     "homebrew/services"
-    "d12frosted/emacs-plus" # emacs
+    # "d12frosted/emacs-plus" # emacs
     "codecrafters-io/tap" # codecrafters cli for programming exercises
   ];
   homebrew.brews = [
-    {
-      # doom emacs dependency (fixes doom doctor warning)
-      name = "dbus";
-      restart_service = true;
-      start_service = true;
-    }
-    {
-      name = "emacs-plus";
-      args = [
-        "with-dbus"
-        "with-mailutils"
-        "with-no-frame-refocus"
-        "with-imagemagick"
-        "with-native-comp"
-      ];
-    }
-    "mu" # doom emacs dependency
+    # {
+    #   # doom emacs dependency (fixes doom doctor warning)
+    #   name = "dbus";
+    #   restart_service = true;
+    #   start_service = true;
+    # }
+    # {
+    #   name = "emacs-plus";
+    #   args = [
+    #     "with-dbus"
+    #     "with-mailutils"
+    #     "with-no-frame-refocus"
+    #     "with-imagemagick"
+    #     "with-native-comp"
+    #   ];
+    # }
+    # "mu" # doom emacs dependency
     "gcc" # doom emacs dependency (native compilation)
     "libvterm" # doom emacs dependency (vterm)
 
     "codecrafters" # programming exercises
-    "dict" # dictd dictionary server
     "exercism" # programming exercises
     "flavours" # theming
     "svg2png" # convert SVG to PNG
@@ -351,8 +392,10 @@
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
+    "adobe-digital-editions" # DRM PDF reader
     "anki" # flashcards
     "basictex" # minimal texlive distribution, provides tlmgr
+    "calibre" # ebook library
     "dropbox" # cloud storage
     "firefox" # web browser
     "flux" # nighttime colorshift
@@ -360,6 +403,7 @@
     "inkscape" # svg editor
     "keycastr" # display keys pressed
     "kitty" # terminal emulator
+    "languagetool" # grammar checker
     "libreoffice" # work
     "simple-comic" # comic book viewer
     "spotify" # music streaming
@@ -370,19 +414,20 @@
     "yacreader" # comic book library
     "zoom" # video conferencing
   ];
-  homebrew.masApps = {
-    # Mac App Store
-    "Horo - Timer for Menu Bar" = 1437226581; # timer
-    "Logic Pro" = 634148309; # audio editor # large (1GB+)
-    "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
-  };
+  # homebrew.masApps = {
+  #   # Mac App Store
+  #   "Horo - Timer for Menu Bar" = 1437226581; # timer
+  #   "Logic Pro" = 634148309; # audio editor # large (1GB+)
+  #   "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
+  # };
   homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data from anything not listed above
   # homebrew.onActivation.autoUpdate = true;
   # homebrew.onActivation.upgrade = true;
 
   users.users.gabesaenz = {
     home = "/Users/gabesaenz";
-    shell = pkgs.fish;
+    # shell = pkgs.nushell;
+    # ignoreShellProgramCheck = true;
   };
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

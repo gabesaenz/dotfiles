@@ -5,11 +5,13 @@
   description = "Darwin configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
-    darwin.url = "github:lnl7/nix-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
+    darwin.url = "github:lnl7/nix-darwin/nix-darwin-24.11";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    darwin-emacs.url = "github:c4710n/nix-darwin-emacs";
+    darwin-emacs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -17,6 +19,7 @@
       nixpkgs,
       home-manager,
       darwin,
+      darwin-emacs,
       ...
     }:
     {
@@ -30,6 +33,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.gabesaenz = import ./home.nix;
+              nixpkgs = {
+                overlays = [
+                  darwin-emacs.overlays.emacs
+                ];
+              };
 
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home.nix

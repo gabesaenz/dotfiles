@@ -16,7 +16,6 @@
     skhd # standalone install for use with "skhd --observe"
     dwt1-shell-color-scripts # colorscripts for shell greeting
     tmatrix # The Matrix style animation
-    translate-shell # translator
 
     # Text editors
     micro
@@ -30,7 +29,6 @@
 
     # PDF
     djvu2pdf # convert djvu to pdf
-    sioyek
     zathura
 
     # Spotify
@@ -92,22 +90,51 @@
       # direnv integration
       direnv hook fish | source
     '';
-    shellAliases = {
-      cat = "bat";
-      top = "btop";
-      rebuild = "rebuild-no-update";
-      rebuild-brew = "brew-update && brew-clean";
-      rebuild-nix = "nix flake update ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix-optimise";
-      rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
-      rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
-      rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
-      brew-update = "brew update && brew upgrade";
-      brew-clean = "brew autoremove && brew cleanup";
-      doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
-      garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
-      nix-optimise = "nix store optimise";
-    };
+    # shellAliases = {
+    #   cat = "bat";
+    #   top = "btop";
+    #   rebuild = "rebuild-no-update";
+    #   rebuild-brew = "brew-update && brew-clean";
+    #   rebuild-nix = "nix flake update --flake ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix-optimise";
+    #   rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
+    #   rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
+    #   rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
+    #   brew-update = "brew update && brew upgrade";
+    #   brew-clean = "brew autoremove && brew cleanup";
+    #   doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
+    #   garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+    #   nix-optimise = "nix store optimise";
+    # };
   };
+  programs.nushell.enable = true;
+
+  home.shellAliases = {
+    cat = "bat";
+    top = "btop";
+    rebuild = "rebuild-no-update";
+    rebuild-brew = "brew-update && brew-clean";
+    rebuild-nix = "nix flake update --flake ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix-optimise";
+    rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
+    rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
+    rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
+    brew-update = "brew update && brew upgrade";
+    brew-clean = "brew autoremove && brew cleanup";
+    doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
+    garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+    nix-optimise = "nix store optimise";
+  };
+
+  home.sessionPath = [
+    # add doom emacs bin to $PATH
+    "~/.emacs.d/bin"
+
+    # add rust cargo installs to $PATH
+    "~/.cargo/bin"
+
+    # add tlmgr to $PATH
+    # requires brew cask "basictex"
+    "/usr/local/texlive/2023basic/bin/universal-darwin"
+  ];
 
   # Shell Tools
   programs.btop = {
@@ -127,7 +154,7 @@
   programs.eza = {
     enable = true;
     git = true;
-    icons = true;
+    icons = "auto";
     extraOptions = [
       "--all"
       "--group-directories-first"
@@ -149,7 +176,10 @@
   programs.lazygit = {
     enable = true;
   };
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
 
   # Terminals
   programs.kitty = {
@@ -157,7 +187,7 @@
     darwinLaunchOptions = [ "--directory=~" ];
     extraConfig = ''
       # default shell
-      shell fish
+      shell nu
 
       # disable confirm on close
       confirm_os_window_close 0
@@ -200,7 +230,7 @@
     keyMode = "vi";
     mouse = true;
     sensibleOnTop = false;
-    shell = "/Users/gabesaenz/.nix-profile/bin/fish";
+    # shell = "/Users/gabesaenz/.nix-profile/bin/fish";
     terminal = "tmux-direct";
     extraConfig = ''
       set-option -g status off
@@ -211,7 +241,7 @@
   # Text Editors
   programs.helix = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
     settings = {
       theme = "base16_transparent";
       editor.whitespace.render = "all";
@@ -220,7 +250,7 @@
   };
   programs.neovim = {
     enable = true;
-    defaultEditor = false;
+    defaultEditor = true;
     extraConfig = ''
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
@@ -228,6 +258,27 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+  };
+  programs.emacs = {
+    enable = true;
+    package =
+      with pkgs;
+      ((emacsPackagesFor emacs-30).emacsWithPackages (epkgs: [
+        epkgs.vterm
+        epkgs.org-pdftools
+        epkgs.pdf-tools
+        epkgs.saveplace-pdf-view
+      ]));
+    # extraPackages = epkgs: [
+    #   epkgs.vterm
+    #   epkgs.org-pdftools
+    #   epkgs.pdf-tools
+    #   epkgs.saveplace-pdf-view
+    # ];
+  };
+  home.file.doom-emacs = {
+    source = ./.config/.doom.d;
+    target = "./.doom.d";
   };
 
   # Email
