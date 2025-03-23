@@ -221,8 +221,6 @@
                       (user-mail-address      . "gabriel.saenz@gmx.de")    ;; only needed for mu < 1.4
                       (user-full-name         . "Gabriel Saenz"))
                     t)
-;; offlineimap
-(setq +mu4e-backend 'offlineimap)
 ;; msmtp
 (after! mu4e
   (setq sendmail-program (executable-find "msmtp")
