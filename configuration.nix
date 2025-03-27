@@ -64,16 +64,19 @@
 
     # hide direnv output
     DIRENV_LOG_FORMAT = "";
+
+    # default shell
+    SHELL = "nu";
   };
   # environment.interactiveShellInit = "nu";
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
-  # environment.shells = with pkgs; [
-  # fish
-  # nushell
-  # ];
+  environment.shells = with pkgs; [
+    fish
+    nushell
+  ];
 
   # Mac settings
 
@@ -146,12 +149,9 @@
 
     # misc
     translate-shell # translator
-
-    # Shells
-    # nushell
   ];
 
-  # Fonts
+  #----=[ Fonts ]=----#
   fonts.packages = with pkgs; [
     # emacs unicode recommendations
     dejavu_fonts
@@ -168,6 +168,8 @@
       fonts = [
         "Noto"
         "FiraCode"
+        "Iosevka"
+        "VictorMono"
       ];
     })
     # emacs icons
@@ -283,7 +285,7 @@
       ########################
 
       # terminal
-      rcmd - return : /Applications/kitty.app/Contents/MacOS/kitty
+      rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
       # text editors
       ralt - return : emacsclient -c -a "emacs"
@@ -393,6 +395,7 @@
   homebrew.casks = [
     "adobe-acrobat-reader" # work
     "adobe-digital-editions" # DRM PDF reader
+    "alacritty" # terminal emulator
     "anki" # flashcards
     "basictex" # minimal texlive distribution, provides tlmgr
     "calibre" # ebook library
@@ -405,11 +408,13 @@
     "kitty" # terminal emulator
     "languagetool" # grammar checker
     "libreoffice" # work
+    "neovide" # nvim frontend
     "simple-comic" # comic book viewer
     "spotify" # music streaming
     "the-unarchiver" # archive manager
     "virtualbox" # virtualization
     "vlc" # media player
+    "warp" # terminal emulator
     "whatsapp" # messaging
     "yacreader" # comic book library
     "zoom" # video conferencing
@@ -424,10 +429,13 @@
   # homebrew.onActivation.autoUpdate = true;
   # homebrew.onActivation.upgrade = true;
 
+  # allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   users.users.gabesaenz = {
     home = "/Users/gabesaenz";
-    # shell = pkgs.nushell;
-    # ignoreShellProgramCheck = true;
+    shell = pkgs.nushell;
+    ignoreShellProgramCheck = true;
   };
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

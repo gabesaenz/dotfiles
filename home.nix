@@ -45,7 +45,28 @@
     target = "./Library/Application Support/flavours/base16/sources";
   };
 
-  fonts.fontconfig.enable = true; # doom emacs dependency
+  #----=[ Fonts ]=----#
+  fonts = {
+    fontconfig = {
+      enable = true; # doom emacs dependency
+      defaultFonts = {
+        serif = [
+          "Gentium Plus"
+          "Annapurna SIL"
+          "Noto Serif"
+          "NotoSerif Nerd Font"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "NotoSans Nerd Font"
+        ];
+        monospace = [
+          "VictorMono Nerd Font"
+          "NotoSansM Nerd Font Mono"
+        ];
+      };
+    };
+  };
 
   programs.git = {
     enable = true;
@@ -106,16 +127,37 @@
     #   nix-optimise = "nix store optimise";
     # };
   };
-  programs.nushell.enable = true;
+  programs.nushell = {
+    enable = true;
+    extraConfig = ''
+      mkdir ($nu.data-dir | path join "vendor/autoload")
+      starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")"
+    '';
+    shellAliases = {
+      cat = "bat";
+      top = "btop";
+      rebuild = "rebuild-no-update";
+      rebuild-brew = "brew-update && brew-clean";
+      rebuild-nix = "nix flake update --flake ~/dotfiles && darwin-rebuild switch --flake ~/dotfiles && nix-optimise";
+      rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
+      rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles";
+      rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
+      brew-update = "brew update && brew upgrade";
+      brew-clean = "brew autoremove && brew cleanup";
+      doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
+      garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+      nix-optimise = "nix store optimise";
+    };
+  };
 
   home.shellAliases = {
     cat = "bat";
     top = "btop";
     rebuild = "rebuild-no-update";
     rebuild-brew = "brew-update && brew-clean";
-    rebuild-nix = "nix flake update --flake ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix-optimise";
+    rebuild-nix = "nix flake update --flake ~/dotfiles && darwin-rebuild switch --flake ~/dotfiles && nix-optimise";
     rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
-    rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
+    rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles";
     rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
     brew-update = "brew update && brew upgrade";
     brew-clean = "brew autoremove && brew cleanup";
@@ -224,18 +266,35 @@
       startup_session ~/dotfiles/.config/kitty/kitty-startup.session
     '';
   };
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      # terminal.shell = "nu";
+      font.normal = {
+        family = "VictorMono Nerd Font";
+        style = "Regular";
+      };
+      font.size = 16.0;
+    };
+  };
   programs.tmux = {
     enable = true;
     clock24 = true;
     keyMode = "vi";
     mouse = true;
     sensibleOnTop = false;
-    # shell = "/Users/gabesaenz/.nix-profile/bin/fish";
+    shell = "nu";
     terminal = "tmux-direct";
     extraConfig = ''
       set-option -g status off
       bind-key b set-option status
     '';
+  };
+  programs.zellij = {
+    enable = true;
+    # settings = {
+    #   default_shell = "nu";
+    # };
   };
 
   # Text Editors
@@ -254,6 +313,9 @@
     extraConfig = ''
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
+
+      " neovide font
+      set guifont=VictorMono\ Nerd\ Font:h18
     '';
     viAlias = true;
     vimAlias = true;

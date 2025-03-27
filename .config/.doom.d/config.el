@@ -36,7 +36,8 @@
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-(setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 18))
+;; (setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 18))
+(setq doom-font (font-spec :family "VictorMono Nerd Font" :size 18))
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans"))
 (setq doom-symbol-font (font-spec :family "Annapurna SIL" :size 32))
 
