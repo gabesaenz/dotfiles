@@ -91,14 +91,14 @@
 
   # Emacs service
   services.emacs.enable = true;
-  services.emacs.package =
-    with pkgs;
-    ((emacsPackagesFor emacs-30).emacsWithPackages (epkgs: [
-      epkgs.vterm
-      epkgs.org-pdftools
-      epkgs.pdf-tools
-      epkgs.saveplace-pdf-view
-    ]));
+  # services.emacs.package =
+  #   with pkgs;
+  #   ((emacsPackagesFor emacs-30).emacsWithPackages (epkgs: [
+  #     epkgs.vterm
+  #     epkgs.org-pdftools
+  #     epkgs.pdf-tools
+  #     epkgs.saveplace-pdf-view
+  #   ]));
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -130,6 +130,7 @@
     emacsPackages.vterm # bypass vterm compilation
     emacsPackages.pdf-tools # bypass pdf-tools compilation
     poppler # fix pdf-tools compilation error
+    libpng # fix pdf-tools compilation error
     imagemagick # fix email mu4e warning
     (aspellWithDicts (
       dicts: with dicts; [

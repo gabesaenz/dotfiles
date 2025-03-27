@@ -323,14 +323,14 @@
   };
   programs.emacs = {
     enable = true;
-    package =
-      with pkgs;
-      ((emacsPackagesFor emacs-30).emacsWithPackages (epkgs: [
-        epkgs.vterm
-        epkgs.org-pdftools
-        epkgs.pdf-tools
-        epkgs.saveplace-pdf-view
-      ]));
+    # package =
+    #   with pkgs;
+    #   ((emacsPackagesFor emacs-30).emacsWithPackages (epkgs: [
+    #     epkgs.vterm
+    #     epkgs.org-pdftools
+    #     epkgs.pdf-tools
+    #     epkgs.saveplace-pdf-view
+    #   ]));
     # extraPackages = epkgs: [
     #   epkgs.vterm
     #   epkgs.org-pdftools
@@ -341,6 +341,7 @@
   home.file.doom-emacs = {
     source = ./.config/.doom.d;
     target = "./.doom.d";
+    recursive = true;
   };
 
   # Email
