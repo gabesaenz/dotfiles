@@ -166,6 +166,11 @@
     nix-optimise = "nix store optimise";
   };
 
+  # suppress last login message when opening shells
+  home.file.".hushlogin" = {
+    text = "";
+  };
+
   home.sessionPath = [
     # add doom emacs bin to $PATH
     "~/.emacs.d/bin"
