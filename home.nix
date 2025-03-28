@@ -16,6 +16,8 @@
     skhd # standalone install for use with "skhd --observe"
     dwt1-shell-color-scripts # colorscripts for shell greeting
     tmatrix # The Matrix style animation
+    hyperfine # Command-line benchmarking tool
+    ripgrep-all # Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, and more
 
     # Text editors
     micro
@@ -225,7 +227,12 @@
   };
   programs.starship = {
     enable = true;
-    enableNushellIntegration = true;
+  };
+  programs.fd = {
+    enable = true;
+  };
+  programs.zoxide = {
+    enable = true;
   };
 
   # Terminals
