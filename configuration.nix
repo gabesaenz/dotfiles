@@ -347,6 +347,13 @@
                       left_padding               5            \
                       right_padding              5            \
                       window_gap                 5
+
+      # emacsclient fixes
+      # manage emacsclient windows
+      yabai -m rule --add app="^emacs$" role="^AXTextField$" subrole="^AXStandardWindow$" manage=on
+      # focus newly created emacsclient windows
+      yabai -m signal --add event=window_created app="^emacs$" action="yabai -m window --focus \$YABAI_WINDOW_ID"
+
       # Exclude problematic apps from being managed:
       yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor)$" manage=off
       yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
