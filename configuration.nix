@@ -188,13 +188,13 @@
       lalt - 3 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[3] ]] && yabai -m space --focus $SPACES[3]
       lalt - 4 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[4] ]] && yabai -m space --focus $SPACES[4]
 
-      # Window Navigation (through display borders): lalt - {j, k, l, ö}
+      # Window Navigation (through display borders): lalt - {j, k, l, semicolon}
       lalt - j    : yabai -m window --focus west  || yabai -m display --focus west
       lalt - k    : yabai -m window --focus south || yabai -m display --focus south
       lalt - l    : yabai -m window --focus north || yabai -m display --focus north
       lalt - 0x29 : yabai -m window --focus east  || yabai -m display --focus east
 
-      # Extended Window Navigation: lalt - {h, ä}
+      # Extended Window Navigation: lalt - {h, single-quote}
       lalt -    h : yabai -m window --focus first
       lalt - 0x27 : yabai -m window --focus  last
 
@@ -202,13 +202,13 @@
       lalt - space : yabai -m window --toggle float
 
       # Make window zoom to fullscreen: shift + lalt - f
-      shift + lalt - f : yabai -m window --toggle zoom-fullscreen
+      fn - f : yabai -m window --toggle native-fullscreen
 
       # Make window zoom to parent node: lalt - f
       lalt - f : yabai -m window --toggle zoom-parent
 
       ## Window Movement (shift + lalt - ...)
-      # Moving windows in spaces: shift + lalt - {j, k, l, ö}
+      # Moving windows in spaces: shift + lalt - {j, k, l, semicolon}
       shift + lalt - j : yabai -m window --warp west || $(yabai -m window --display west && yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-10:0
       shift + lalt - k : yabai -m window --warp south || $(yabai -m window --display south && yabai -m display --focus south) || yabai -m window --move rel:0:10
       shift + lalt - l : yabai -m window --warp north || $(yabai -m window --display north && yabai -m display --focus north) || yabai -m window --move rel:0:-10
@@ -238,7 +238,7 @@
       shift + lalt - y : yabai -m space --mirror y-axis
 
       ## Stacks (shift + ctrl - ...)
-      # Add the active window to the window or stack to the {direction}: shift + ctrl - {j, k, l, ö}
+      # Add the active window to the window or stack to the {direction}: shift + ctrl - {j, k, l, semicolon}
       shift + ctrl - j    : yabai -m window  west --stack $(yabai -m query --windows --window | jq -r '.id')
       shift + ctrl - k    : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
       shift + ctrl - l    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
@@ -249,7 +249,7 @@
       shift + ctrl - p : yabai -m window --focus stack.prev
 
       ## Resize (ctrl + lalt - ...)
-      # Resize windows: ctrl + lalt - {j, k, l, ö}
+      # Resize windows: ctrl + lalt - {j, k, l, semicolon}
       ctrl + lalt - j    : yabai -m window --resize right:-100:0 || yabai -m window --resize left:-100:0
       ctrl + lalt - k    : yabai -m window --resize bottom:0:100 || yabai -m window --resize top:0:100
       ctrl + lalt - l    : yabai -m window --resize bottom:0:-100 || yabai -m window --resize top:0:-100
@@ -266,7 +266,7 @@
       shift + ctrl + lalt - b : yabai -m config window_border on
 
       ## Insertion (shift + ctrl + lalt - ...)
-      # Set insertion point for focused container: shift + ctrl + lalt - {j, k, l, ö, s}
+      # Set insertion point for focused container: shift + ctrl + lalt - {j, k, l, ;, s}
       shift + ctrl + lalt - j : yabai -m window --insert west
       shift + ctrl + lalt - k : yabai -m window --insert south
       shift + ctrl + lalt - l : yabai -m window --insert north
@@ -275,7 +275,7 @@
 
       ## Misc
       # Open new Alacritty window
-      lalt - t : alacritty msg create-window
+      # lalt - t : alacritty msg create-window
 
       # New window in hor./ vert. splits for all applications with yabai
       lalt - s : yabai -m window --insert east;  skhd -k "cmd - n"
@@ -308,7 +308,7 @@
       # restart:
       ##########
 
-      shift + ralt - r : pkill -x "yabai" && pkill -x "skhd"
+      # shift + ralt - r : pkill -x "yabai" && pkill -x "skhd"
     '';
   };
   services.yabai = {
@@ -353,6 +353,9 @@
       yabai -m rule --add app="^emacs$" role="^AXTextField$" subrole="^AXStandardWindow$" manage=on
       # focus newly created emacsclient windows
       yabai -m signal --add event=window_created app="^emacs$" action="yabai -m window --focus \$YABAI_WINDOW_ID"
+      # focus recent or first window on closing an emacs window
+      # focus recent seems like the intended behavior but only focus first seems to be working in this situation
+      yabai -m signal --add event=window_destroyed app="^emacs$" action="yabai -m window --focus recent || yabai -m window --focus first"
 
       # Exclude problematic apps from being managed:
       yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor)$" manage=off
