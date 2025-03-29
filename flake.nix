@@ -1,6 +1,3 @@
-# Run this the first time then use "rebuild" or "rebuild-quick" from then on.
-# nix flake update ~/dotfiles/nix/mac/ && darwin-rebuild switch --flake ~/dotfiles/nix/mac/
-
 {
   description = "Darwin configuration";
 
@@ -10,8 +7,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # darwin-emacs.url = "github:c4710n/nix-darwin-emacs";
-    # darwin-emacs.inputs.nixpkgs.follows = "nixpkgs";
+    # automatically manage mac application links
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs =
@@ -19,7 +16,7 @@
       nixpkgs,
       home-manager,
       darwin,
-      # darwin-emacs,
+      mac-app-util,
       ...
     }:
     {
@@ -27,20 +24,20 @@
         Gabe-Mac = darwin.lib.darwinSystem {
           system = "x86_64-darwin";
           modules = [
+            mac-app-util.darwinModules.default
             ./configuration.nix
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.gabesaenz = import ./home.nix;
-              # nixpkgs = {
-              #   overlays = [
-              #     darwin-emacs.overlays.emacs
-              #   ];
-              # };
 
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home.nix
+
+              home-manager.sharedModules = [
+                mac-app-util.homeManagerModules.default
+              ];
             }
           ];
         };

@@ -289,7 +289,7 @@
       rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
       # text editors
-      ralt - return : emacsclient -c -a "emacs"
+      ralt - return : emacsclient -c -n
       meh - return : neovide
       rcmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
 
