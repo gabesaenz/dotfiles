@@ -330,6 +330,13 @@
   };
   programs.emacs = {
     enable = true;
+    package = (
+      (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: [
+        epkgs.vterm
+        epkgs.pdf-tools
+        epkgs.org-pdftools
+      ])
+    );
   };
   home.file.doom-emacs = {
     source = ./.config/.doom.d;

@@ -90,7 +90,16 @@
   networking.hostName = "Gabe-Mac"; # Define your hostname.
 
   # Emacs service
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+    package = (
+      (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: [
+        epkgs.vterm
+        epkgs.pdf-tools
+        epkgs.org-pdftools
+      ])
+    );
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
