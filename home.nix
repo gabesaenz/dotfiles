@@ -32,6 +32,7 @@
     # PDF
     djvu2pdf # convert djvu to pdf
     zathura
+    diff-pdf # diff PDFs
 
     # Spotify
     spicetify-cli
