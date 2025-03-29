@@ -113,21 +113,6 @@
       # direnv integration
       direnv hook fish | source
     '';
-    # shellAliases = {
-    #   cat = "bat";
-    #   top = "btop";
-    #   rebuild = "rebuild-no-update";
-    #   rebuild-brew = "brew-update && brew-clean";
-    #   rebuild-nix = "nix flake update --flake ~/dotfiles/ && darwin-rebuild switch --flake ~/dotfiles/ && nix-optimise";
-    #   rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
-    #   rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles/";
-    #   rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
-    #   brew-update = "brew update && brew upgrade";
-    #   brew-clean = "brew autoremove && brew cleanup";
-    #   doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
-    #   garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
-    #   nix-optimise = "nix store optimise";
-    # };
   };
   programs.nushell = {
     enable = true;
@@ -282,7 +267,6 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      # terminal.shell = "nu";
       font.normal = {
         family = "VictorMono Nerd Font";
         style = "Regular";
@@ -306,7 +290,7 @@
     keyMode = "vi";
     mouse = true;
     sensibleOnTop = false;
-    shell = "nu";
+    # shell = "nu";
     terminal = "tmux-direct";
     extraConfig = ''
       set-option -g status off
@@ -315,15 +299,14 @@
   };
   programs.zellij = {
     enable = true;
-    # settings = {
-    #   default_shell = "nu";
-    # };
+    settings = {
+      default_shell = "nu";
+    };
   };
 
   # Text Editors
   programs.helix = {
     enable = true;
-    # defaultEditor = true;
     settings = {
       theme = "base16_transparent";
       editor.whitespace.render = "all";

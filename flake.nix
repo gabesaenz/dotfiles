@@ -7,6 +7,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     # automatically manage mac application links
     mac-app-util.url = "github:hraban/mac-app-util";
   };

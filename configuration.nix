@@ -91,14 +91,6 @@
 
   # Emacs service
   services.emacs.enable = true;
-  # services.emacs.package =
-  #   with pkgs;
-  #   ((emacsPackagesFor emacs-30).emacsWithPackages (epkgs: [
-  #     epkgs.vterm
-  #     epkgs.org-pdftools
-  #     epkgs.pdf-tools
-  #     epkgs.saveplace-pdf-view
-  #   ]));
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -144,9 +136,6 @@
     # Rust
     rustup
     cargo-binstall # binary installer for rust tools
-
-    # Mac App Store
-    # mas
 
     # misc
     translate-shell # translator
@@ -201,7 +190,7 @@
       # Float / Unfloat window: lalt - space
       lalt - space : yabai -m window --toggle float
 
-      # Make window zoom to fullscreen: shift + lalt - f
+      # Make window fullscreen: fn - f
       fn - f : yabai -m window --toggle native-fullscreen
 
       # Make window zoom to parent node: lalt - f
@@ -261,7 +250,7 @@
       # Enable / Disable gaps in current workspace: ctrl + lalt - g
       ctrl + lalt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
-      # Enable / Disable gaps in current workspace: ctrl + lalt - g
+      # Enable / Disable window borders in current workspace: (shift +) ctrl + lalt - b
       ctrl + lalt - b : yabai -m config window_border off
       shift + ctrl + lalt - b : yabai -m config window_border on
 
@@ -272,10 +261,6 @@
       shift + ctrl + lalt - l : yabai -m window --insert north
       shift + ctrl + lalt - 0x29 : yabai -m window --insert east
       shift + ctrl + lalt - s : yabai -m window --insert stack
-
-      ## Misc
-      # Open new Alacritty window
-      # lalt - t : alacritty msg create-window
 
       # New window in hor./ vert. splits for all applications with yabai
       lalt - s : yabai -m window --insert east;  skhd -k "cmd - n"
@@ -303,12 +288,6 @@
       fn - 0x2B : $HOME/dotfiles/.config/flavours/previous-theme.sh
       # period
       fn - 0x2F : $HOME/dotfiles/.config/flavours/next-theme.sh
-
-      ##########
-      # restart:
-      ##########
-
-      # shift + ralt - r : pkill -x "yabai" && pkill -x "skhd"
     '';
   };
   services.yabai = {
@@ -373,27 +352,9 @@
   homebrew.enable = true;
   homebrew.taps = [
     "homebrew/services"
-    # "d12frosted/emacs-plus" # emacs
     "codecrafters-io/tap" # codecrafters cli for programming exercises
   ];
   homebrew.brews = [
-    # {
-    #   # doom emacs dependency (fixes doom doctor warning)
-    #   name = "dbus";
-    #   restart_service = true;
-    #   start_service = true;
-    # }
-    # {
-    #   name = "emacs-plus";
-    #   args = [
-    #     "with-dbus"
-    #     "with-mailutils"
-    #     "with-no-frame-refocus"
-    #     "with-imagemagick"
-    #     "with-native-comp"
-    #   ];
-    # }
-    # "mu" # doom emacs dependency
     "gcc" # doom emacs dependency (native compilation)
     "libvterm" # doom emacs dependency (vterm)
 
