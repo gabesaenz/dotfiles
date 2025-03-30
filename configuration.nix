@@ -283,10 +283,17 @@
       # terminal
       rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
-      # text editors
+      # text editor
       ralt - return : emacsclient -c -n
-      meh - return : neovide
+      # backslash: 0x2A
+      ralt - 0x2A : neovide
+
+      # web browser
       rcmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
+
+      # pdf viewer
+      # backslash: 0x2A
+      rcmd - 0x2A : zathura
 
       ##########
       # theming:

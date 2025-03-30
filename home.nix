@@ -31,7 +31,6 @@
 
     # PDF
     djvu2pdf # convert djvu to pdf
-    zathura
     diff-pdf # diff PDFs
 
     # Spotify
@@ -343,6 +342,26 @@
     source = ./.config/.doom.d;
     target = "./.doom.d";
     recursive = true;
+  };
+
+  # PDF Viewers
+  programs.zathura = {
+    enable = true;
+    extraConfig = ''
+      # man zathurarc
+
+      # default view mode
+      set adjust-open "width"
+
+      # remove status bar
+      set guioptions ""
+
+      # dark mode
+      set recolor "true"
+
+      # window icon
+      set window-icon-document "true"
+    '';
   };
 
   # Email
