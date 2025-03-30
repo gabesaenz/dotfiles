@@ -335,8 +335,15 @@
         epkgs.vterm
         epkgs.pdf-tools
         epkgs.org-pdftools
+        epkgs.saveplace-pdf-view
       ])
     );
+    extraPackages = epkgs: [
+      epkgs.vterm
+      epkgs.pdf-tools
+      epkgs.org-pdftools
+      epkgs.saveplace-pdf-view
+    ];
   };
   home.file.doom-emacs = {
     source = ./.config/.doom.d;

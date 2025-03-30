@@ -97,6 +97,7 @@
         epkgs.vterm
         epkgs.pdf-tools
         epkgs.org-pdftools
+        epkgs.saveplace-pdf-view
       ])
     );
   };
