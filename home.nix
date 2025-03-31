@@ -365,7 +365,7 @@
       set font "VictorMono Nerd Font 16"
 
       # color theme
-      include "~/dotfiles/.config/zathura/base16-theme"
+      include ~/dotfiles/.config/zathura/base16-theme
 
       # default view mode
       set adjust-open "width"
