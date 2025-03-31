@@ -33,6 +33,9 @@
     djvu2pdf # convert djvu to pdf
     diff-pdf # diff PDFs
 
+    # OCR
+    tesseract
+
     # Spotify
     spicetify-cli
   ];
