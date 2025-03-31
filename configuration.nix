@@ -289,7 +289,8 @@
       ralt - 0x2A : neovide
 
       # web browser
-      rcmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
+      # right square bracket: 0x1E
+      rcmd - 0x1E : /Applications/Firefox.app/Contents/MacOS/firefox
 
       # pdf viewer
       # backslash: 0x2A
@@ -299,11 +300,11 @@
       # theming:
       ##########
 
-      # slash
+      # slash: 0x2C
       fn - 0x2C : flavours apply
-      # comma
+      # comma: 0x2B
       fn - 0x2B : $HOME/dotfiles/.config/flavours/previous-theme.sh
-      # period
+      # period: 0x2F
       fn - 0x2F : $HOME/dotfiles/.config/flavours/next-theme.sh
     '';
   };

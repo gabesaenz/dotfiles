@@ -21,6 +21,7 @@
 
     # Text editors
     micro
+    neovim-remote # send commands to nvim
 
     # Password management
     pass
@@ -270,6 +271,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      general.import = [ "~/dotfiles/.config/alacritty/base16.toml" ];
       font.normal = {
         family = "VictorMono Nerd Font";
         style = "Regular";
@@ -325,10 +327,17 @@
 
       " neovide font
       set guifont=VictorMono\ Nerd\ Font:h18
+
+      " color scheme
+      colorscheme flavours
     '';
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+  };
+  home.file.neovim-colorscheme = {
+    source = ./.config/nvim/colors/flavours.vim;
+    target = "./.config/nvim/colors/flavours.vim";
   };
   programs.emacs = {
     enable = true;
@@ -352,6 +361,11 @@
     enable = true;
     extraConfig = ''
       # man zathurarc
+
+      set font "VictorMono Nerd Font 16"
+
+      # color theme
+      include "~/dotfiles/.config/zathura/base16-theme"
 
       # default view mode
       set adjust-open "width"

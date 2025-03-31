@@ -13,7 +13,12 @@
 file = "~/dotfiles/.config/.doom.d/themes/doom-base16-theme.el"
 template = "doom"
 rewrite = true
-# hook = 'emacsclient --eval "(base16-theme-reload)" --quiet -no-wait --suppress-output -a true'
+
+[[item]]
+file = "~/dotfiles/.config/nvim/colors/base16.vim"
+template = "vim"
+rewrite = true
+hook = '~/dotfiles/.config/nvim/reload-colorscheme.sh'
 
 [[item]]
 file = "~/dotfiles/.config/kitty/base16.conf"
@@ -21,3 +26,15 @@ template = "kitty"
 subtemplate = "default-256"
 rewrite = true
 hook = 'kitty +kitten themes --reload-in=all --config-file-name /tmp/kitty-theme.conf base16'
+
+[[item]]
+file = "~/dotfiles/.config/alacritty/base16.toml"
+template = "alacritty"
+subtemplate = "default-256"
+rewrite = true
+
+[[item]]
+file = "~/dotfiles/.config/zathura/base16-theme"
+template = "zathura"
+subtemplate = "recolor"
+rewrite = true
