@@ -15,8 +15,8 @@ template = "doom"
 rewrite = true
 
 [[item]]
-file = "~/dotfiles/.config/nvim/colors/base16.vim"
-template = "vim"
+file = "~/dotfiles/.config/nvim/colors/base16.lua"
+template = "nvim"
 rewrite = true
 hook = '~/dotfiles/.config/nvim/reload-colorscheme.sh'
 

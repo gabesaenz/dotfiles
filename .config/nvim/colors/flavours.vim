@@ -1,1 +1,1 @@
-source ~/dotfiles/.config/nvim/colors/base16.vim
+source ~/dotfiles/.config/nvim/colors/base16.lua
