@@ -120,21 +120,22 @@
   };
   programs.nushell = {
     enable = true;
+    shellAliases = config.home.shellAliases;
     extraConfig = ''
       # aliases
-      alias cat = bat
-      alias top = btop
-      alias rebuild = rebuild-no-update
-      alias rebuild-brew = brew-update; brew-clean
-      alias rebuild-nix = nix flake update --flake ~/dotfiles; darwin-rebuild switch --flake ~/dotfiles; nix-optimise
-      alias rebuild-no-update = rebuild-quick; nix-optimise; brew-clean; garbage; doom sync
-      alias rebuild-quick = darwin-rebuild switch --flake ~/dotfiles
-      alias rebuild-update = rebuild-nix; rebuild-brew; garbage; doomsync
-      alias brew-update = brew update; brew upgrade
-      alias brew-clean = brew autoremove; brew cleanup
-      alias doomsync = doom sync; doom upgrade; doom sync; doom doctor
-      alias garbage = sudo nix-collect-garbage -d; nix-collect-garbage -d
-      alias nix-optimise = nix store optimise
+      # alias cat = bat
+      # alias top = btop
+      # alias rebuild = rebuild-no-update
+      # alias rebuild-brew = brew-update; brew-clean
+      # alias rebuild-nix = nix flake update --flake ~/dotfiles; darwin-rebuild switch --flake ~/dotfiles; nix-optimise
+      # alias rebuild-no-update = rebuild-quick; nix-optimise; brew-clean; garbage; doom sync
+      # alias rebuild-quick = darwin-rebuild switch --flake ~/dotfiles
+      # alias rebuild-update = rebuild-nix; rebuild-brew; garbage; doomsync
+      # alias brew-update = brew update; brew upgrade
+      # alias brew-clean = brew autoremove; brew cleanup
+      # doomsync = "doom sync --force && doom upgrade --force && doom sync --gc --force && doom doctor --force";
+      # alias garbage = sudo nix-collect-garbage -d; nix-collect-garbage -d
+      # alias nix-optimise = nix store optimise
 
       # starship prompt
       mkdir ($nu.data-dir | path join "vendor/autoload")
@@ -153,7 +154,7 @@
     rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
     brew-update = "brew update && brew upgrade";
     brew-clean = "brew autoremove && brew cleanup";
-    doomsync = "doom sync && doom upgrade && doom sync && doom doctor";
+    doomsync = "doom sync --force && doom upgrade --force && doom sync --gc --force && doom doctor --force";
     garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
     nix-optimise = "nix store optimise";
   };
