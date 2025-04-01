@@ -208,6 +208,9 @@
   };
   programs.bat = {
     enable = true;
+    config = {
+      theme = "base16-256";
+    };
   };
   programs.direnv = {
     enable = true;
@@ -328,6 +331,9 @@
 
       " neovide font
       set guifont=VictorMono\ Nerd\ Font:h18
+
+      " Access colors present in 256 colorspace
+      let base16colorspace=256
 
       " color scheme
       colorscheme flavours
