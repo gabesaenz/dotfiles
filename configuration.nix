@@ -166,9 +166,9 @@
     # nerd fonts
     (nerdfonts.override {
       fonts = [
-        "Noto"
         "FiraCode"
         "Iosevka"
+        "Noto"
         "VictorMono"
       ];
     })
