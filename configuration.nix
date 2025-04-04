@@ -59,14 +59,15 @@
     # fix issue with flavours finding its config file
     FLAVOURS_CONFIG_FILE = "$HOME/.config/flavours/config.toml";
 
-    # doom emacs config folder
-    # DOOMDIR = "/Users/gabesaenz/dotfiles/.config/.doom.d";
-
     # hide direnv output
     DIRENV_LOG_FORMAT = "";
 
     # default shell
     SHELL = "nu";
+
+    # default editor
+    VISUAL = "$HOME/dotfiles/emacsclient.sh";
+    EDITOR = "$HOME/dotfiles/emacsclient.sh";
   };
   # environment.interactiveShellInit = "nu";
 
@@ -283,8 +284,8 @@
       # terminal
       rcmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 
-      # text editor
-      ralt - return : emacsclient -c -n
+      # text editors
+      ralt - return : $HOME/dotfiles/emacsclient.sh
       # backslash: 0x2A
       ralt - 0x2A : neovide
 

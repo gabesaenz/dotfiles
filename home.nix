@@ -324,7 +324,6 @@
   };
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
     extraConfig = ''
       " hide mouse when typing
       let g:neovide_hide_mouse_when_typing = v:false
