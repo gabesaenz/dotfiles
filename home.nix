@@ -296,6 +296,8 @@
     enable = true;
     settings = {
       general.import = [ "~/dotfiles/.config/alacritty/base16.toml" ];
+      # background transparency
+      window.opacity = 0.95;
       font.normal = {
         family = "VictorMono Nerd Font";
         style = "Regular";
@@ -350,6 +352,12 @@
 
       " neovide font
       set guifont=VictorMono\ Nerd\ Font:h18
+
+      " neovide transparency
+      " everything
+      " let g:neovide_opacity = 0.95
+      " background only
+      let g:neovide_normal_opacity = 0.95
 
       " Access colors present in 256 colorspace
       let base16colorspace=256
