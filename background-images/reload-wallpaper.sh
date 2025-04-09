@@ -1,5 +1,8 @@
 #!/bin/sh
-gowall convert --batch ~/dotfiles/background-images/current.jpg --format jpg --theme ~/dotfiles/background-images/gowall-base16-theme.json
-cp ~/Pictures/gowall/current.jpg ~/Pictures/gowall/dummy
-automator -i ~/Pictures/gowall/dummy ~/dotfiles/background-images/setWallpaper.workflow
-automator -i ~/Pictures/gowall/current.jpg ~/dotfiles/background-images/setWallpaper.workflow
+dir=$(readlink -f "$0" | xargs dirname)
+gowall_dir="$HOME/Pictures/gowall"
+current=$(head --lines=1 "${dir}/current-wallpaper.txt")
+gowall convert --batch "${dir}/${current}" --theme "${dir}/gowall-base16-theme.json"
+cp "${gowall_dir}/${current}" "${gowall_dir}/dummy"
+automator -i "${gowall_dir}/dummy" "${dir}/setWallpaper.workflow"
+automator -i "${gowall_dir}/${current}" "${dir}/setWallpaper.workflow"
