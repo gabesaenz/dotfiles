@@ -130,7 +130,7 @@
       # aliases
       # alias cat = bat
       # alias top = btop
-      # alias rebuild = rebuild-no-update
+      # alias rebuild = rebuild-update-without-brew-update
       # alias rebuild-brew = brew-update; brew-clean
       # alias rebuild-nix = nix flake update --flake ~/dotfiles; darwin-rebuild switch --flake ~/dotfiles; nix-optimise
       # alias rebuild-no-update = rebuild-quick; nix-optimise; brew-clean; garbage; doom sync
@@ -152,7 +152,7 @@
   home.shellAliases = {
     cat = "bat";
     top = "btop";
-    rebuild = "rebuild-no-update";
+    rebuild = "rebuild-update-without-brew-update";
     rebuild-brew = "brew-update && brew-clean";
     rebuild-nix = "nix flake update --flake ~/dotfiles && darwin-rebuild switch --flake ~/dotfiles && nix-optimise";
     rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
