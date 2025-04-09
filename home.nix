@@ -39,9 +39,6 @@
 
     # Spotify
     spicetify-cli
-
-    # SVG
-    wkhtmltopdf
   ];
 
   home.file.flavours = {
