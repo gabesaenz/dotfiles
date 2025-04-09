@@ -1,7 +1,9 @@
 apple-inc-minimal-h1.jpg
 apple.jpg
+squares.png
+squares-zoomed.png
+pages_1.png
 berries.jpg
-current.jpg
 NixOS-Gradient-grey.png
 Purple6KiMac2021iOS11.png
 kiki.png
