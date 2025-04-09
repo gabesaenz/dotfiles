@@ -41,6 +41,9 @@
     spicetify-cli
   ];
 
+  # required for nushell while XDG_HOME is set
+  xdg.enable = true;
+
   home.file.flavours = {
     source = ./.config/flavours;
     target = "./.config/flavours";
@@ -125,27 +128,37 @@
   };
   programs.nushell = {
     enable = true;
-    shellAliases = config.home.shellAliases;
+    shellAliases = {
+      cat = "bat";
+      top = "btop";
+    };
     extraConfig = ''
-      # aliases
-      # alias cat = bat
-      # alias top = btop
-      # alias rebuild = rebuild-update-without-brew-update
-      # alias rebuild-brew = brew-update; brew-clean
-      # alias rebuild-nix = nix flake update --flake ~/dotfiles; darwin-rebuild switch --flake ~/dotfiles; nix-optimise
-      # alias rebuild-no-update = rebuild-quick; nix-optimise; brew-clean; garbage; doom sync
-      # alias rebuild-quick = darwin-rebuild switch --flake ~/dotfiles
-      # alias rebuild-update = rebuild-nix; rebuild-brew; garbage; doomsync
-      # alias rebuild-update-without-brew-update = rebuild-nix; brew-clean; garbage; doomsync
-      # alias brew-update = brew update; brew upgrade
-      # alias brew-clean = brew autoremove; brew cleanup
-      # doomsync = "doom sync --force && doom upgrade --force && doom sync --gc --force && doom doctor --force";
-      # alias garbage = sudo nix-collect-garbage -d; nix-collect-garbage -d
-      # alias nix-optimise = nix store optimise
+      # remove startup message
+      $env.config.show_banner = false
 
-      # starship prompt
-      mkdir ($nu.data-dir | path join "vendor/autoload")
-      starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")"
+      # custom commands
+      def rebuild [] {
+        rebuild-quick
+        darwin-rebuild switch --flake ~/dotfiles
+        nix store optimise
+        # brew-update
+        brew autoremove
+        brew cleanup
+        sudo nix-collect-garbage -d
+        nix-collect-garbage -d
+        doomsync
+      }
+      def rebuild-quick [] { darwin-rebuild switch --flake ~/dotfiles }
+      def brew-update [] {
+        brew update
+        brew upgrade
+      }
+      def doomsync [] {
+        doom sync --force
+        doom upgrade --force
+        doom sync --gc --force
+        doom doctor --force
+      }
     '';
   };
 
@@ -153,16 +166,16 @@
     cat = "bat";
     top = "btop";
     rebuild = "rebuild-update-without-brew-update";
-    rebuild-brew = "brew-update && brew-clean";
-    rebuild-nix = "nix flake update --flake ~/dotfiles && darwin-rebuild switch --flake ~/dotfiles && nix-optimise";
-    rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
+    rebuild-brew = "brew-update;brew-clean";
+    rebuild-nix = "nix flake update --flake ~/dotfiles;darwin-rebuild switch --flake ~/dotfiles;nix-optimise";
+    rebuild-no-update = "rebuild-quick;nix-optimise;brew-clean;garbage;doom sync";
     rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles";
-    rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
-    rebuild-update-without-brew-update = "rebuild-nix && brew-clean && garbage && doomsync";
-    brew-update = "brew update && brew upgrade";
-    brew-clean = "brew autoremove && brew cleanup";
-    doomsync = "doom sync --force && doom upgrade --force && doom sync --gc --force && doom doctor --force";
-    garbage = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+    rebuild-update = "rebuild-nix;rebuild-brew;garbage;doomsync";
+    rebuild-update-without-brew-update = "rebuild-nix;brew-clean;garbage;doomsync";
+    brew-update = "brew update;brew upgrade";
+    brew-clean = "brew autoremove;brew cleanup";
+    doomsync = "doom sync --force;doom upgrade --force;doom sync --gc --force;doom doctor --force";
+    garbage = "sudo nix-collect-garbage -d;nix-collect-garbage -d";
     nix-optimise = "nix store optimise";
   };
 

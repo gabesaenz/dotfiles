@@ -188,14 +188,14 @@
       lalt - 3 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[3] ]] && yabai -m space --focus $SPACES[3]
       lalt - 4 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[4] ]] && yabai -m space --focus $SPACES[4]
 
-      # Window Navigation (through display borders): lalt - {j, k, l, semicolon}
-      lalt - j    : yabai -m window --focus west  || yabai -m display --focus west
-      lalt - k    : yabai -m window --focus south || yabai -m display --focus south
-      lalt - l    : yabai -m window --focus north || yabai -m display --focus north
-      lalt - 0x29 : yabai -m window --focus east  || yabai -m display --focus east
+      # Window Navigation (through display borders): lalt - {h, j, k, l}
+      lalt - h : yabai -m window --focus west  || yabai -m display --focus west
+      lalt - j : yabai -m window --focus south || yabai -m display --focus south
+      lalt - k : yabai -m window --focus north || yabai -m display --focus north
+      lalt - l : yabai -m window --focus east  || yabai -m display --focus east
 
-      # Extended Window Navigation: lalt - {h, single-quote}
-      lalt -    h : yabai -m window --focus first
+      # Extended Window Navigation: lalt - {semicolon, single-quote}
+      lalt - 0x29 : yabai -m window --focus first
       lalt - 0x27 : yabai -m window --focus  last
 
       # Float / Unfloat window: lalt - space
@@ -208,16 +208,16 @@
       lalt - f : yabai -m window --toggle zoom-parent
 
       ## Window Movement (shift + lalt - ...)
-      # Moving windows in spaces: shift + lalt - {j, k, l, semicolon}
-      shift + lalt - j : yabai -m window --warp west || $(yabai -m window --display west && yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-10:0
-      shift + lalt - k : yabai -m window --warp south || $(yabai -m window --display south && yabai -m display --focus south) || yabai -m window --move rel:0:10
-      shift + lalt - l : yabai -m window --warp north || $(yabai -m window --display north && yabai -m display --focus north) || yabai -m window --move rel:0:-10
-      shift + lalt - 0x29 : yabai -m window --warp east || $(yabai -m window --display east && yabai -m display --focus east && yabai -m window --warp first) || yabai -m window --move rel:10:0
+      # Moving windows in spaces: shift + lalt - {h, j, k, l}
+      shift + lalt - h : yabai -m window --warp west || $(yabai -m window --display west && yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-10:0
+      shift + lalt - j : yabai -m window --warp south || $(yabai -m window --display south && yabai -m display --focus south) || yabai -m window --move rel:0:10
+      shift + lalt - k : yabai -m window --warp north || $(yabai -m window --display north && yabai -m display --focus north) || yabai -m window --move rel:0:-10
+      shift + lalt - l : yabai -m window --warp east || $(yabai -m window --display east && yabai -m display --focus east && yabai -m window --warp first) || yabai -m window --move rel:10:0
 
       # Toggle split orientation of the selected windows node: shift + lalt - s
       shift + lalt - s : yabai -m window --toggle split
 
-      # Moving windows between spaces: shift + lalt - {1, 2, 3, 4, p, n } (Assumes 4 Spaces Max per Display)
+      # Moving windows between spaces: shift + lalt - {1, 2, 3, 4, n , p} (Assumes 4 Spaces Max per Display)
       shift + lalt - 1 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[1] ]] \
                         && yabai -m window --space $SPACES[1]
 
@@ -230,30 +230,30 @@
       shift + lalt - 4 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[4] ]] \
                         && yabai -m window --space $SPACES[4]
 
-      shift + lalt - p : yabai -m window --space prev && yabai -m space --focus prev
       shift + lalt - n : yabai -m window --space next && yabai -m space --focus next
+      shift + lalt - p : yabai -m window --space prev && yabai -m space --focus prev
 
       # Mirror Space on X and Y Axis: shift + lalt - {x, y}
       shift + lalt - x : yabai -m space --mirror x-axis
       shift + lalt - y : yabai -m space --mirror y-axis
 
       ## Stacks (shift + ctrl - ...)
-      # Add the active window to the window or stack to the {direction}: shift + ctrl - {j, k, l, semicolon}
-      shift + ctrl - j    : yabai -m window  west --stack $(yabai -m query --windows --window | jq -r '.id')
-      shift + ctrl - k    : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
-      shift + ctrl - l    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
-      shift + ctrl - 0x29 : yabai -m window  east --stack $(yabai -m query --windows --window | jq -r '.id')
+      # Add the active window to the window or stack to the {direction}: shift + ctrl - {h, j, k, l}
+      shift + ctrl - h : yabai -m window  west --stack $(yabai -m query --windows --window | jq -r '.id')
+      shift + ctrl - j : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
+      shift + ctrl - k : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
+      shift + ctrl - l : yabai -m window  east --stack $(yabai -m query --windows --window | jq -r '.id')
 
       # Stack Navigation: shift + ctrl - {n, p}
       shift + ctrl - n : yabai -m window --focus stack.next
       shift + ctrl - p : yabai -m window --focus stack.prev
 
       ## Resize (ctrl + lalt - ...)
-      # Resize windows: ctrl + lalt - {j, k, l, semicolon}
-      ctrl + lalt - j    : yabai -m window --resize right:-100:0 || yabai -m window --resize left:-100:0
-      ctrl + lalt - k    : yabai -m window --resize bottom:0:100 || yabai -m window --resize top:0:100
-      ctrl + lalt - l    : yabai -m window --resize bottom:0:-100 || yabai -m window --resize top:0:-100
-      ctrl + lalt - 0x29 : yabai -m window --resize right:100:0 || yabai -m window --resize left:100:0
+      # Resize windows: ctrl + lalt - {h, j, k, l}
+      ctrl + lalt - h : yabai -m window --resize right:-100:0 || yabai -m window --resize left:-100:0
+      ctrl + lalt - j : yabai -m window --resize bottom:0:100 || yabai -m window --resize top:0:100
+      ctrl + lalt - k : yabai -m window --resize bottom:0:-100 || yabai -m window --resize top:0:-100
+      ctrl + lalt - l : yabai -m window --resize right:100:0 || yabai -m window --resize left:100:0
 
       # Equalize size of windows: ctrl + lalt - e
       ctrl + lalt - e : yabai -m space --balance
@@ -266,11 +266,11 @@
       shift + ctrl + lalt - b : yabai -m config window_border on
 
       ## Insertion (shift + ctrl + lalt - ...)
-      # Set insertion point for focused container: shift + ctrl + lalt - {j, k, l, ;, s}
-      shift + ctrl + lalt - j : yabai -m window --insert west
-      shift + ctrl + lalt - k : yabai -m window --insert south
-      shift + ctrl + lalt - l : yabai -m window --insert north
-      shift + ctrl + lalt - 0x29 : yabai -m window --insert east
+      # Set insertion point for focused container: shift + ctrl + lalt - {h, j, k, l, s}
+      shift + ctrl + lalt - h : yabai -m window --insert west
+      shift + ctrl + lalt - j : yabai -m window --insert south
+      shift + ctrl + lalt - k : yabai -m window --insert north
+      shift + ctrl + lalt - l : yabai -m window --insert east
       shift + ctrl + lalt - s : yabai -m window --insert stack
 
       # New window in hor./ vert. splits for all applications with yabai
@@ -426,9 +426,12 @@
   #   "Logic Pro" = 634148309; # audio editor # large (1GB+)
   #   "Microsoft Word" = 462054704; # document editor # large (1GB+) # work
   # };
-  homebrew.onActivation.cleanup = "zap"; # uninstall and remove all data from anything not listed above
-  # homebrew.onActivation.autoUpdate = true;
-  # homebrew.onActivation.upgrade = true;
+  # uninstall and remove all data from anything not listed above
+  homebrew.onActivation.cleanup = "zap";
+  # prevent auto update
+  homebrew.global.autoUpdate = false;
+  homebrew.onActivation.autoUpdate = false;
+  homebrew.onActivation.upgrade = false;
 
   # allow unfree packages
   nixpkgs.config.allowUnfree = true;
