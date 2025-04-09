@@ -136,6 +136,7 @@
       # alias rebuild-no-update = rebuild-quick; nix-optimise; brew-clean; garbage; doom sync
       # alias rebuild-quick = darwin-rebuild switch --flake ~/dotfiles
       # alias rebuild-update = rebuild-nix; rebuild-brew; garbage; doomsync
+      # alias rebuild-update-without-brew-update = rebuild-nix; brew-clean; garbage; doomsync
       # alias brew-update = brew update; brew upgrade
       # alias brew-clean = brew autoremove; brew cleanup
       # doomsync = "doom sync --force && doom upgrade --force && doom sync --gc --force && doom doctor --force";
@@ -157,6 +158,7 @@
     rebuild-no-update = "rebuild-quick && nix-optimise && brew-clean && garbage && doom sync";
     rebuild-quick = "darwin-rebuild switch --flake ~/dotfiles";
     rebuild-update = "rebuild-nix && rebuild-brew && garbage && doomsync";
+    rebuild-update-without-brew-update = "rebuild-nix && brew-clean && garbage && doomsync";
     brew-update = "brew update && brew upgrade";
     brew-clean = "brew autoremove && brew cleanup";
     doomsync = "doom sync --force && doom upgrade --force && doom sync --gc --force && doom doctor --force";
