@@ -380,6 +380,7 @@
     "codecrafters" # programming exercises
     "exercism" # programming exercises
     "flavours" # theming
+    "gowall" # wallpaper theming
     "svg2png" # convert SVG to PNG
     "vimtutor-sequel"
   ];

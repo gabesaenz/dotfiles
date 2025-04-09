@@ -38,3 +38,9 @@ file = "~/dotfiles/.config/zathura/base16-theme"
 template = "zathura"
 subtemplate = "recolor"
 rewrite = true
+
+[[item]]
+file = "~/dotfiles/background-images/gowall-base16-theme.json"
+template = "gowall"
+rewrite = true
+hook = '~/dotfiles/background-images/reload-wallpaper.sh'

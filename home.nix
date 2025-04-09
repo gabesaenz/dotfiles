@@ -39,6 +39,9 @@
 
     # Spotify
     spicetify-cli
+
+    # SVG
+    wkhtmltopdf
   ];
 
   home.file.flavours = {
@@ -49,6 +52,11 @@
   home.file.flavours-sources = {
     source = ./.config/flavours/sources;
     target = "./Library/Application Support/flavours/base16/sources";
+  };
+
+  home.file.flavours-templates = {
+    source = ./.config/flavours/templates;
+    target = "./Library/Preferences/flavours/templates";
   };
 
   #----=[ Fonts ]=----#
