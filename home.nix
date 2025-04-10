@@ -373,6 +373,12 @@
     source = ./.config/nvim/colors/flavours.vim;
     target = "./.config/nvim/colors/flavours.vim";
   };
+  programs.neovide = {
+    enable = true;
+    settings = {
+      #   frame = "none";
+    };
+  };
   programs.emacs = {
     enable = true;
     package = (
@@ -388,6 +394,9 @@
     source = ./.config/.doom.d;
     target = "./.doom.d";
     recursive = true;
+  };
+  programs.zed-editor = {
+    enable = true;
   };
 
   # PDF Viewers
