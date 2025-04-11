@@ -3,24 +3,24 @@
 -- based on
 -- base16-vim (https://github.com/chriskempson/base16-vim)
 -- by Chris Kempson (https://github.com/chriskempson)
--- darkmoss scheme by Gabriel Avanzi (https://github.com/avanzzzi)
+-- Nebula scheme by Gabriel Fontes (https://github.com/Misterio77)
 
-local gui00 = "#171e1f"
-local gui01 = "#252c2d"
-local gui02 = "#373c3d"
-local gui03 = "#555e5f"
-local gui04 = "#818f80"
-local gui05 = "#c7c7a5"
-local gui06 = "#e3e3c8"
-local gui07 = "#e1eaef"
-local gui08 = "#ff4658"
-local gui09 = "#e6db74"
-local gui0A = "#fdb11f"
-local gui0B = "#499180"
-local gui0C = "#66d9ef"
-local gui0D = "#498091"
-local gui0E = "#9bc0c8"
-local gui0F = "#d27b53"
+local gui00 = "#22273b"
+local gui01 = "#414f60"
+local gui02 = "#5a8380"
+local gui03 = "#6e6f72"
+local gui04 = "#87888b"
+local gui05 = "#a4a6a9"
+local gui06 = "#c7c9cd"
+local gui07 = "#8dbdaa"
+local gui08 = "#777abc"
+local gui09 = "#94929e"
+local gui0A = "#4f9062"
+local gui0B = "#6562a8"
+local gui0C = "#226f68"
+local gui0D = "#4d6bb6"
+local gui0E = "#716cae"
+local gui0F = "#8c70a7"
 
 local cterm00 = 0
 local cterm03 = 8
@@ -43,7 +43,7 @@ vim.cmd [[
   highlight clear
   syntax reset
 ]]
-vim.g.colors_name = "base16-darkmoss"
+vim.g.colors_name = "base16-nebula"
 
 -- Vim editor colors                    fg bg ctermfg ctermbg attr guisp
 vim.api.nvim_set_hl(0, 'Normal', { fg = gui05, bg = gui00, ctermfg = cterm05, ctermbg = cterm00 })

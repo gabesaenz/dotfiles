@@ -1,32 +1,32 @@
-# Base16 darkmoss
-# Author: Gabriel Avanzi (https://github.com/avanzzzi)
+# Base16 Nebula
+# Author: Gabriel Fontes (https://github.com/Misterio77)
 
-set default-bg                  "#171e1f"
-set default-fg                  "#252c2d"
+set default-bg                  "#22273b"
+set default-fg                  "#414f60"
 
-set statusbar-fg                "#818f80"
-set statusbar-bg                "#373c3d"
+set statusbar-fg                "#87888b"
+set statusbar-bg                "#5a8380"
 
-set inputbar-bg                 "#171e1f"
-set inputbar-fg                 "#e1eaef"
+set inputbar-bg                 "#22273b"
+set inputbar-fg                 "#8dbdaa"
 
-set notification-bg             "#171e1f"
-set notification-fg             "#e1eaef"
+set notification-bg             "#22273b"
+set notification-fg             "#8dbdaa"
 
-set notification-error-bg       "#171e1f"
-set notification-error-fg       "#ff4658"
+set notification-error-bg       "#22273b"
+set notification-error-fg       "#777abc"
 
-set notification-warning-bg     "#171e1f"
-set notification-warning-fg     "#ff4658"
+set notification-warning-bg     "#22273b"
+set notification-warning-fg     "#777abc"
 
-set highlight-color             "#fdb11f"
-set highlight-active-color      "#498091"
+set highlight-color             "#4f9062"
+set highlight-active-color      "#4d6bb6"
 
-set completion-bg               "#252c2d"
-set completion-fg               "#498091"
+set completion-bg               "#414f60"
+set completion-fg               "#4d6bb6"
 
-set completion-highlight-fg     "#e1eaef"
-set completion-highlight-bg     "#498091"
+set completion-highlight-fg     "#8dbdaa"
+set completion-highlight-bg     "#4d6bb6"
 
-set recolor-lightcolor          "#171e1f"
-set recolor-darkcolor           "#e3e3c8"
+set recolor-lightcolor          "#22273b"
+set recolor-darkcolor           "#c7c9cd"
