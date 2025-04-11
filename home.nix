@@ -139,7 +139,6 @@
       # custom commands
       def rebuild [] {
         rebuild-quick
-        darwin-rebuild switch --flake ~/dotfiles
         nix store optimise
         # brew-update
         brew autoremove
