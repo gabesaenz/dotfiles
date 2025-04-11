@@ -1,7 +1,7 @@
 #!/bin/sh
 dir=$(readlink -f "$0" | xargs dirname)
 themes="${dir}/theme-list.txt"
-current=$(flavours current)
+current=$(head --lines=1 "${dir}/current-theme.txt")
 line=$(sed -n "/${current}/=" "${themes}")
 next=$(head --lines=1 "${themes}")
 if [ -n "$line" ]; then
@@ -11,4 +11,5 @@ fi
 if [ -n "$line" ]; then
     next=${line}
 fi
+echo "${next}" >"${dir}/current-theme.txt"
 flavours apply "${next}"

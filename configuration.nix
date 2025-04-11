@@ -302,20 +302,20 @@
       ##########
 
       # color schemes
-      # slash: 0x2C
-      fn - 0x2C : flavours apply
-      # comma: 0x2B
+      # previous theme - comma: 0x2B
       fn - 0x2B : $HOME/dotfiles/.config/flavours/previous-theme.sh
-      # period: 0x2F
+      # next theme - period: 0x2F
       fn - 0x2F : $HOME/dotfiles/.config/flavours/next-theme.sh
+      # random theme - slash: 0x2C
+      fn - 0x2C : $HOME/dotfiles/.config/flavours/random-theme.sh
 
       # desktop wallpapers
-      # backslash: 0x2A
-      fn - 0x2A : $HOME/dotfiles/background-images/reload-wallpaper.sh
-      # left square bracket: 0x21
+      # previous wallpaper - left square bracket: 0x21
       fn - 0x21 : $HOME/dotfiles/background-images/previous-wallpaper.sh
-      # right square bracket: 0x1E
+      # next wallpaper - right square bracket: 0x1E
       fn - 0x1E : $HOME/dotfiles/background-images/next-wallpaper.sh
+      # reload wallpaper - backslash: 0x2A
+      fn - 0x2A : $HOME/dotfiles/background-images/reload-wallpaper.sh
     '';
   };
   services.yabai = {

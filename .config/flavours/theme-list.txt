@@ -1,3 +1,4 @@
+nebula
 darkmoss
 gruvbox-material-dark-soft
 gruvbox-material-dark-medium
