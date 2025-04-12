@@ -2,6 +2,7 @@ apple-inc-minimal-h1.jpg
 apple.jpg
 squares.png
 squares-zoomed.png
+squares-full.png
 pages_1.png
 berries.jpg
 NixOS-Gradient-grey.png
