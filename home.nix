@@ -138,6 +138,7 @@
 
       # custom commands
       def rebuild [] {
+        nix flake update --flake ~/dotfiles
         rebuild-quick
         nix store optimise
         # brew-update
