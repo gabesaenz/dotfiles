@@ -411,6 +411,7 @@
     "libreoffice" # work
     "neovide" # nvim frontend
     "simple-comic" # comic book viewer
+    "sioyek" # PDF viewer
     "spotify" # music streaming
     "the-unarchiver" # archive manager
     "virtualbox" # virtualization

@@ -423,9 +423,6 @@
       set window-icon-document "true"
     '';
   };
-  programs.sioyek = {
-    enable = true;
-  };
 
   # Email
   programs.offlineimap.enable = true; # doom emacs mu4e dependency
