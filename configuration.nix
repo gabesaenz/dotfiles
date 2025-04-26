@@ -379,7 +379,6 @@
 
   homebrew.enable = true;
   homebrew.taps = [
-    "homebrew/services"
     "codecrafters-io/tap" # codecrafters cli for programming exercises
   ];
   homebrew.brews = [
