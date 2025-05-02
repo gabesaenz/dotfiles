@@ -144,12 +144,23 @@
       ]
     ))
 
+    # paw.el dependencies
+    sdcv # StarDict CLI
+    mpv # CLI media player
+    python312Packages.nltk
+    python312Packages.flask
+    python312Packages.flask-cors
+    python312Packages.requests
+    python312Packages.mecab-python3
+    python312Packages.unidic-lite
+
     # Rust
     rustup
     cargo-binstall # binary installer for rust tools
 
     # misc
     translate-shell # translator
+    jq # JSON processor
   ];
 
   #----=[ Fonts ]=----#
@@ -199,7 +210,7 @@
       lalt - 0x27 : yabai -m window --focus  last
 
       # Float / Unfloat window: lalt - space
-      lalt - space : yabai -m window --toggle float
+      lalt - space : yabai -m window --toggle float --grid 6:4:1:1:2:4
 
       # Make window fullscreen: fn - f
       fn - f : yabai -m window --toggle native-fullscreen
@@ -391,6 +402,8 @@
     "gowall" # wallpaper theming
     "svg2png" # convert SVG to PNG
     "vimtutor-sequel"
+
+    "ikawaha/kagome/kagome" # paw.el dependency # Japanese morphological analyzer
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
@@ -399,6 +412,7 @@
     "anki" # flashcards
     "basictex" # minimal texlive distribution, provides tlmgr
     "calibre" # ebook library
+    "dictunifier" # convert dictionaries to be used with built-in mac dictionary
     "dropbox" # cloud storage
     "firefox" # web browser
     "flux" # nighttime colorshift
@@ -409,6 +423,7 @@
     "languagetool" # grammar checker
     "libreoffice" # work
     "neovide" # nvim frontend
+    "shottr" # screenshot tool with OCR
     "simple-comic" # comic book viewer
     "sioyek" # PDF viewer
     "spotify" # music streaming

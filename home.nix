@@ -44,6 +44,12 @@
   # required for nushell while XDG_HOME is set
   xdg.enable = true;
 
+  # StarDict CLI dictionary search path
+  home.file.sdcv = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dictionaries";
+    target = "./.local/share/stardict/dic";
+  };
+
   home.file.flavours = {
     source = ./.config/flavours;
     target = "./.config/flavours";
