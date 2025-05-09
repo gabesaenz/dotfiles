@@ -124,11 +124,11 @@
     pngpaste # org-download-clipboard dependency
     shellcheck
     shfmt
-    nodePackages.stylelint
-    nodePackages.js-beautify
-    nodePackages.npm # npm warning
+    # nodePackages.stylelint
+    # nodePackages.js-beautify
+    # nodePackages.npm # npm warning
     cmake # vterm dependency
-    nodePackages.prettier # code formatting dependency
+    # nodePackages.prettier # code formatting dependency
     wordnet # for lookup with offline dictionary
     emacsPackages.vterm # bypass vterm compilation
     emacsPackages.pdf-tools # bypass pdf-tools compilation
