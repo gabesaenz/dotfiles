@@ -90,17 +90,19 @@
   # Networking
   networking.hostName = "Gabe-Mac"; # Define your hostname.
 
+  nixpkgs.overlays = [ inputs.nix-doom-emacs-unstraightened.overlays.default ];
+
   # Emacs service
   services.emacs = {
     enable = true;
-    package = (
-      (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: [
-        epkgs.vterm
-        epkgs.pdf-tools
-        epkgs.org-pdftools
-        epkgs.saveplace-pdf-view
-      ])
-    );
+    package = pkgs.emacsWithDoom {
+      doomDir = ./doomdir;
+      # doomDir = inputs.doom-config;
+      # If you stored your Doom configuration in the same flake, use
+      #   doomDir = ./path/to/doom/config;
+      # instead.
+      doomLocalDir = "~/.local/share/nix-doom";
+    };
   };
 
   # List packages installed in system profile. To search by name, run:
@@ -173,6 +175,7 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-emoji
+    noto-fonts-color-emoji
     # Devanāgarī
     annapurna-sil
     # nerd fonts

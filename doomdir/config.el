@@ -100,7 +100,7 @@
 ;;     (doom-big-font-mode +1))
 
 ;; theming fix for emacsclient
-(setq custom-theme-directory "/Users/gabesaenz/dotfiles/.config/.doom.d/themes/")
+(setq custom-theme-directory "/Users/gabesaenz/dotfiles/doomdir/themes/")
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -266,3 +266,7 @@
 ;;         "jmdict-en-ja"
 ;;         "JCEDict" "EDICT"
 ;;         "JEDict" "ENAMDICT" "EJDic" "DrEye日汉词典" "DrEye4in1词典"))
+
+;; enable themed pdf viewing by default
+(use-package pdf-tools
+  :hook ((pdf-view-mode . pdf-view-themed-minor-mode)))

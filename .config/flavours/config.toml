@@ -10,7 +10,7 @@
 # source = "https://github.com/Softsun2/base16-tarko-scheme"
 
 [[item]]
-file = "~/dotfiles/.config/.doom.d/themes/doom-base16-theme.el"
+file = "~/dotfiles/doomdir/themes/doom-base16-theme.el"
 template = "doom"
 rewrite = true
 

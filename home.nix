@@ -152,19 +152,19 @@
         brew cleanup
         sudo nix-collect-garbage -d
         nix-collect-garbage -d
-        doomsync
+        # doomsync
       }
       def rebuild-quick [] { darwin-rebuild switch --flake ~/dotfiles }
       def brew-update [] {
         brew update
         brew upgrade
       }
-      def doomsync [] {
-        doom sync --force
-        doom upgrade --force
-        doom sync --gc --force
-        doom doctor --force
-      }
+      # def doomsync [] {
+      #   doom sync --force
+      #   doom upgrade --force
+      #   doom sync --gc --force
+      #   doom doctor --force
+      # }
     '';
   };
 
@@ -385,22 +385,29 @@
       #   frame = "none";
     };
   };
-  programs.emacs = {
+  # programs.emacs = {
+  # enable = true;
+  # package = (
+  #   (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: [
+  #     epkgs.vterm
+  #     epkgs.pdf-tools
+  #     epkgs.org-pdftools
+  #     epkgs.saveplace-pdf-view
+  #   ])
+  # );
+  # };
+  programs.doom-emacs = {
     enable = true;
-    package = (
-      (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: [
-        epkgs.vterm
-        epkgs.pdf-tools
-        epkgs.org-pdftools
-        epkgs.saveplace-pdf-view
-      ])
-    );
+    doomDir = ./doomdir;
+    # doomDir = inputs.doom-config; # or e.g. `./doom.d` for a local configuration
+    # doomLocalDir = "${config.home.homeDirectory}/.doom.d";
   };
-  home.file.doom-emacs = {
-    source = ./.config/.doom.d;
-    target = "./.doom.d";
-    recursive = true;
-  };
+  # this may not be needed anymore if the above module works
+  # home.file.doom-emacs = {
+  #   source = ./doomdir;
+  #   target = "./.doom.d";
+  #   recursive = true;
+  # };
   programs.zed-editor = {
     enable = true;
   };

@@ -10,6 +10,13 @@
 
     # automatically manage mac application links
     mac-app-util.url = "github:hraban/mac-app-util";
+
+    # manage doom emacs through nix
+    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
+    # Optional, to download less. Neither the module nor the overlay uses this input.
+    nix-doom-emacs-unstraightened.inputs.nixpkgs.follows = "";
+    # doom-config.url = "./doomdir";
+    # doom-config.flake = false;
   };
 
   outputs =
@@ -18,6 +25,7 @@
       home-manager,
       darwin,
       mac-app-util,
+      nix-doom-emacs-unstraightened,
       ...
     }:
     {
@@ -38,9 +46,12 @@
 
               home-manager.sharedModules = [
                 mac-app-util.homeManagerModules.default
+                nix-doom-emacs-unstraightened.homeModule
               ];
             }
           ];
+          specialArgs = { inherit inputs; };
+          # extraSpecialArgs = { inherit inputs; };
         };
       };
     };

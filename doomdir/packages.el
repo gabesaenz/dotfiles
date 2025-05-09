@@ -79,7 +79,7 @@
   (package! posframe))
 
 ;; paw.el language learning tool
-(package! paw :recipe (:host github :repo "chenyanming/paw" :files ("*")))
+;; (package! paw :recipe (:host github :repo "chenyanming/paw" :files ("*")))
 
 ;; Slint support
 (package! slint-mode)
