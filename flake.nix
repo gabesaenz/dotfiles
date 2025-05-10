@@ -15,8 +15,6 @@
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     # Optional, to download less. Neither the module nor the overlay uses this input.
     nix-doom-emacs-unstraightened.inputs.nixpkgs.follows = "";
-    # doom-config.url = "./doomdir";
-    # doom-config.flake = false;
   };
 
   outputs =
@@ -25,7 +23,6 @@
       home-manager,
       darwin,
       mac-app-util,
-      nix-doom-emacs-unstraightened,
       ...
     }:
     {
@@ -33,6 +30,15 @@
         Gabe-Mac = darwin.lib.darwinSystem {
           system = "x86_64-darwin";
           modules = [
+            {
+              nixpkgs.overlays = [
+                (self: super: {
+                  # avoid build break in nodejs-20.19 on darwin
+                  nodejs = super.nodejs_22;
+                })
+                inputs.nix-doom-emacs-unstraightened.overlays.default
+              ];
+            }
             mac-app-util.darwinModules.default
             ./configuration.nix
             home-manager.darwinModules.home-manager
@@ -45,13 +51,13 @@
               # arguments to home.nix
 
               home-manager.sharedModules = [
+                inputs.nix-doom-emacs-unstraightened.homeModule
                 mac-app-util.homeManagerModules.default
-                nix-doom-emacs-unstraightened.homeModule
               ];
             }
           ];
+          # access inputs from configuration.nix (doom-emacs overlay)
           specialArgs = { inherit inputs; };
-          # extraSpecialArgs = { inherit inputs; };
         };
       };
     };

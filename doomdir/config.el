@@ -41,42 +41,6 @@
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans"))
 (setq doom-symbol-font (font-spec :family "Annapurna SIL" :size 32))
 
-;; additional font config
-;; working example: (or is it?)
-;; (after! unicode-fonts
-;;   (dolist (unicode-block '("Cyrillic"
-;;                            "Cyrillic Supplement"))
-;;     (push "JetBrains Mono" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
-
-;; (after! unicode-fonts
-;;   (dolist (unicode-block '(
-;;                            "Greek and Coptic"
-;;                            "Greek Extended"
-;;                            ))
-;;     (push "Gentium Plus" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
-
-;; (after! unicode-fonts
-;;   (dolist (unicode-block '(
-;;                            "Devanagari"
-;;                            "Devanagari Extended"
-;;                            "Devanagari Extended-A"
-;;                            "Vedic Extensions"
-;;                            ))
-;;     (push "Annapurna SIL" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
-
-;; (after! unicode-fonts
-;; (push "Gentium Plus" (cadr (assoc "Greek" unicode-fonts-block-font-mapping))))
-
-;; (after! unicode-fonts
-;; (push "Annapurna SIL" (cadr (assoc "Devanagari" unicode-fonts-block-font-mapping))))
-
-;; (after! unicode-fonts
-;;   (dolist (unicode-block '(
-;;                            ;; "Additional Unicode Block"
-;;                            ;; "Additional Unicode Block"
-;;                            "Greek"))
-;;     (push "Gentium Plus" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
-
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
@@ -234,14 +198,7 @@
 	message-sendmail-extra-arguments '("--read-envelope-from")
 	message-send-mail-function #'message-send-mail-with-sendmail))
 
-;; customize window decoration for emacs-plus
-;; This should be in early-init.el but I'm trying it here.
-;; no titlebar, normal corners
-;; (add-to-list 'default-frame-alist '(undecorated . t))
-;; no titlebar, rounded corners
-;; (add-to-list 'default-frame-alist '(undecorated-round . t))
-
-;; fish shell related fixes suggested by doom doctor
+;; shell related fixes suggested by doom doctor
 (setq shell-file-name (executable-find "bash"))
 (setq-default vterm-shell (executable-find "nu"))
 (setq-default explicit-shell-file-name (executable-find "nu"))
@@ -251,21 +208,6 @@
 
 ;; enable nov EPUB reader for .epub files
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-
-;; (setq paw-sdcv-program "sdcv" )
-;; (setq paw-sdcv-dictionary-data-dir (expand-file-name "dict" doom-private-dir))
-;; (setq paw-sdcv-env-lang (getenv "LANG")) ;; may need this on linux and android
-;; (setq paw-sdcv-dictionary-list    ;setup dictionary list for simple search
-;;       '("懒虫简明英汉词典"
-;;         "Collins Cobuild English Dictionary"
-;;         "小学馆-日中词典"
-;;         "日汉双解词典"
-;;         "EJ-EDict" "JE-EDICT_Kanji"
-;;         "日汉词典" "jmdict-ja-en" "KANJIDIC2" "新明解国語辞典"
-;;         "小学館中日辞典EB版" "広辞苑　第六版" "EJ-GENE95"
-;;         "jmdict-en-ja"
-;;         "JCEDict" "EDICT"
-;;         "JEDict" "ENAMDICT" "EJDic" "DrEye日汉词典" "DrEye4in1词典"))
 
 ;; enable themed pdf viewing by default
 (use-package pdf-tools

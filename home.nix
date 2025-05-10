@@ -44,12 +44,6 @@
   # required for nushell while XDG_HOME is set
   xdg.enable = true;
 
-  # StarDict CLI dictionary search path
-  home.file.sdcv = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dictionaries";
-    target = "./.local/share/stardict/dic";
-  };
-
   home.file.flavours = {
     source = ./.config/flavours;
     target = "./.config/flavours";
@@ -114,16 +108,6 @@
       };
     };
     shellInit = ''
-      # add doom emacs bin to $PATH
-      fish_add_path ~/.emacs.d/bin
-
-      # add rust cargo installs to $PATH
-      fish_add_path ~/.cargo/bin
-
-      # add tlmgr to $PATH
-      # requires brew cask "basictex"
-      fish_add_path /usr/local/texlive/2023basic/bin/universal-darwin
-
       # configure dircolors
       # dircolors ~/dotfiles/nord-dir_colors >/dev/null # nord
       dircolors ~/dotfiles/gruvbox.dircolors >/dev/null # gruvbox
@@ -385,29 +369,11 @@
       #   frame = "none";
     };
   };
-  # programs.emacs = {
-  # enable = true;
-  # package = (
-  #   (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: [
-  #     epkgs.vterm
-  #     epkgs.pdf-tools
-  #     epkgs.org-pdftools
-  #     epkgs.saveplace-pdf-view
-  #   ])
-  # );
-  # };
   programs.doom-emacs = {
     enable = true;
     doomDir = ./doomdir;
-    # doomDir = inputs.doom-config; # or e.g. `./doom.d` for a local configuration
-    # doomLocalDir = "${config.home.homeDirectory}/.doom.d";
+    doomLocalDir = "${config.home.homeDirectory}/.config/nix-doom";
   };
-  # this may not be needed anymore if the above module works
-  # home.file.doom-emacs = {
-  #   source = ./doomdir;
-  #   target = "./.doom.d";
-  #   recursive = true;
-  # };
   programs.zed-editor = {
     enable = true;
   };

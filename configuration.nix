@@ -42,6 +42,17 @@
     max-free = ${toString (1024 * 1024 * 1024)}
   '';
 
+  # Caching
+  nix.settings = {
+    substituters = [
+      "https://nix-community.cachix.org"
+      "https://cache.nixos.org/"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
@@ -90,17 +101,11 @@
   # Networking
   networking.hostName = "Gabe-Mac"; # Define your hostname.
 
-  nixpkgs.overlays = [ inputs.nix-doom-emacs-unstraightened.overlays.default ];
-
   # Emacs service
   services.emacs = {
     enable = true;
     package = pkgs.emacsWithDoom {
       doomDir = ./doomdir;
-      # doomDir = inputs.doom-config;
-      # If you stored your Doom configuration in the same flake, use
-      #   doomDir = ./path/to/doom/config;
-      # instead.
       doomLocalDir = "~/.local/share/nix-doom";
     };
   };
@@ -126,16 +131,11 @@
     pngpaste # org-download-clipboard dependency
     shellcheck
     shfmt
-    # nodePackages.stylelint
-    # nodePackages.js-beautify
-    # nodePackages.npm # npm warning
-    cmake # vterm dependency
-    # nodePackages.prettier # code formatting dependency
+    nodePackages.stylelint
+    nodePackages.js-beautify
+    nodePackages.npm # npm warning
+    nodePackages.prettier # code formatting dependency
     wordnet # for lookup with offline dictionary
-    emacsPackages.vterm # bypass vterm compilation
-    emacsPackages.pdf-tools # bypass pdf-tools compilation
-    poppler # fix pdf-tools compilation error
-    libpng # fix pdf-tools compilation error
     imagemagick # fix email mu4e warning
     (aspellWithDicts (
       dicts: with dicts; [
@@ -145,16 +145,6 @@
         grc # Ancient Greek
       ]
     ))
-
-    # paw.el dependencies
-    sdcv # StarDict CLI
-    mpv # CLI media player
-    python312Packages.nltk
-    python312Packages.flask
-    python312Packages.flask-cors
-    python312Packages.requests
-    python312Packages.mecab-python3
-    python312Packages.unidic-lite
 
     # Rust
     rustup
@@ -397,7 +387,6 @@
   ];
   homebrew.brews = [
     "gcc" # doom emacs dependency (native compilation)
-    "libvterm" # doom emacs dependency (vterm)
 
     "codecrafters" # programming exercises
     "exercism" # programming exercises
@@ -405,8 +394,6 @@
     "gowall" # wallpaper theming
     "svg2png" # convert SVG to PNG
     "vimtutor-sequel"
-
-    "ikawaha/kagome/kagome" # paw.el dependency # Japanese morphological analyzer
   ];
   homebrew.casks = [
     "adobe-acrobat-reader" # work
