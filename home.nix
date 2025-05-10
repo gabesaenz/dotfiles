@@ -295,16 +295,6 @@
       font.size = 16.0;
     };
   };
-  programs.rio = {
-    enable = true;
-    settings = {
-      shell.program = "nu";
-      fonts = {
-        family = "VictorMono Nerd Font";
-        size = 18;
-      };
-    };
-  };
   programs.tmux = {
     enable = true;
     clock24 = true;
