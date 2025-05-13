@@ -131,24 +131,18 @@
         nix flake update --flake ~/dotfiles
         rebuild-quick
         nix store optimise
-        # brew-update
+        brew-update
         brew autoremove
         brew cleanup
+        rustup update --no-self-update stable
         sudo nix-collect-garbage -d
         nix-collect-garbage -d
-        # doomsync
       }
       def rebuild-quick [] { darwin-rebuild switch --flake ~/dotfiles }
       def brew-update [] {
         brew update
         brew upgrade
       }
-      # def doomsync [] {
-      #   doom sync --force
-      #   doom upgrade --force
-      #   doom sync --gc --force
-      #   doom doctor --force
-      # }
     '';
   };
 
