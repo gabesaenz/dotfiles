@@ -5,6 +5,7 @@
    - [x] [Rustlings](https://github.com/rust-lang/rustlings/)
    - [ ] [Rust Command Line Book](https://rust-cli.github.io/book/index.html)
    - [ ] [Rust Cookbok](https://rust-lang-nursery.github.io/rust-cookbook/)
+   - [ ] [Rust WASM Book](https://rustwasm.github.io/docs/book/)
    - [ ] Further Reading
      - [ ] [The Little Book of Rust Books](https://lborb.github.io/book/title-page.html)
  - [ ] [Command Line Rust](https://github.com/kyclark/command-line-rust)
