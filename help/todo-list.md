@@ -1,7 +1,7 @@
 # Learn Rust
  - [ ] https://www.rust-lang.org/learn
    - [x] [Rust Book](https://doc.rust-lang.org/book/)
-   - [ ] [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
+   - [x] [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
    - [x] [Rustlings](https://github.com/rust-lang/rustlings/)
    - [ ] [Rust Command Line Book](https://rust-cli.github.io/book/index.html)
    - [ ] Further Reading
