@@ -402,7 +402,6 @@
     "anki" # flashcards
     "basictex" # minimal texlive distribution, provides tlmgr
     "calibre" # ebook library
-    "dictunifier" # convert dictionaries to be used with built-in mac dictionary
     "dropbox" # cloud storage
     "firefox" # web browser
     "flux" # nighttime colorshift
