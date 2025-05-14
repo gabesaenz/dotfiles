@@ -411,6 +411,7 @@
     "adobe-acrobat-reader" # work
     "adobe-digital-editions" # DRM PDF reader
     "alacritty" # terminal emulator
+    "alfred" # app launcher
     "anki" # flashcards
     "basictex" # minimal texlive distribution, provides tlmgr
     "calibre" # ebook library
