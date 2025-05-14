@@ -23,6 +23,9 @@
      - [ ] [Ratatui Guides](https://ratatui.rs/tutorials/hello-world/)
    - [x] [Tauri](https://beta.tauri.app/guides/)
    - [x] [Sycamore](https://sycamore-rs.netlify.app/docs/getting_started/installation)
+ - [ ] Testing
+   - [ ] [Proptest Book](https://proptest-rs.github.io/proptest/intro.html)
+   - [ ] [Rust Fuzz Book](https://rust-fuzz.github.io/book/introduction.html)
  - [ ] [Easy Rust](https://dhghomon.github.io/easy_rust/Chapter_1.html)
  - [ ] [Learning Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/index.html)
  - [ ] [Rust Practice Questions](https://rust-unofficial.github.io/rust-practise-questions/)
