@@ -151,6 +151,13 @@
                         ("æ" ?ऽ)
                         (">>" ?॥))))
 
+;; set default multilingual input method
+;; this is the secondary input method
+;; that you switch to with C-\
+(setq! default-input-method "german")
+(after! pyim
+  (setq! default-input-method "german"))
+
 ;; RMarkdown-mode
 ;; https://github.com/polymode/poly-R
 (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+R-mode))
