@@ -301,6 +301,18 @@
       # backslash: 0x2A
       rcmd - 0x2A : zathura
 
+      # ocr screenshot
+      # Default languages
+      ctrl + lalt + lcmd - o : ~/dotfiles/ocr.sh
+      # English
+      ctrl + lalt + lcmd - e : ~/dotfiles/ocr.sh eng
+      # German
+      ctrl + lalt + lcmd - d : ~/dotfiles/ocr.sh deu
+      # Latin
+      ctrl + lalt + lcmd - l : ~/dotfiles/ocr.sh lat
+      # Ancient Greek
+      ctrl + lalt + lcmd - g : ~/dotfiles/ocr.sh grc
+
       ##########
       # theming:
       ##########
