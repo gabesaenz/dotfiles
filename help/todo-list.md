@@ -17,6 +17,8 @@
  - CodeCrafters
    - [x] [Rust Primer](https://app.codecrafters.io/collections/rust-primer)
    - [ ] [Rust Track](https://app.codecrafters.io/tracks/rust)
+ - [ ] [Repo Quest](https://github.com/cognitive-engineering-lab/repo-quest)
+   - [ ] [RQST-Async](https://github.com/cognitive-engineering-lab/rqst-async/)
  - Async
    - [ ] [Tokio Tutorial](https://tokio.rs/tokio/tutorial)
  - UI
