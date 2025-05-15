@@ -4,7 +4,7 @@
    - [x] [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
    - [x] [Rustlings](https://github.com/rust-lang/rustlings/)
    - [x] [Rust Command Line Book](https://rust-cli.github.io/book/index.html)
-   - [ ] [Rust WASM Book](https://rustwasm.github.io/docs/book/)
+   - ~[ ] [Rust WASM Book](https://rustwasm.github.io/docs/book/)~
    - [ ] [Rust Cookbok](https://rust-lang-nursery.github.io/rust-cookbook/)
    - Further Reading
      - [ ] [The Little Book of Rust Books](https://lborb.github.io/book/title-page.html)
