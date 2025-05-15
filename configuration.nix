@@ -425,7 +425,6 @@
     "languagetool" # grammar checker
     "libreoffice" # work
     "neovide" # nvim frontend
-    "shottr" # screenshot tool with OCR
     "simple-comic" # comic book viewer
     "sioyek" # PDF viewer
     "spotify" # music streaming
