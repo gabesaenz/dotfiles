@@ -135,6 +135,7 @@
         brew autoremove
         brew cleanup
         rustup update --no-self-update stable
+        cargo install-update -a
         sudo nix-collect-garbage -d
         nix-collect-garbage -d
       }
