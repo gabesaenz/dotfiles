@@ -4,15 +4,15 @@
    - [x] [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
    - [x] [Rustlings](https://github.com/rust-lang/rustlings/)
    - [x] [Rust Command Line Book](https://rust-cli.github.io/book/index.html)
-   - ~[ ] [Rust WASM Book](https://rustwasm.github.io/docs/book/)~
+   - ~[Rust WASM Book](https://rustwasm.github.io/docs/book/)~
    - [ ] [Rust Cookbok](https://rust-lang-nursery.github.io/rust-cookbook/)
    - Further Reading
      - [ ] [The Little Book of Rust Books](https://lborb.github.io/book/title-page.html)
+ - [ ] [Command Line Rust](https://github.com/kyclark/command-line-rust)
  - [ ] [LifetimeKata](https://tfpk.github.io/lifetimekata/)
  - Macros
    - [ ] [MacroKata](https://github.com/tfpk/macrokata)
    - [ ] [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
- - [ ] [Command Line Rust](https://github.com/kyclark/command-line-rust)
  - [ ] [Exercism](https://exercism.org/tracks/rust)
  - CodeCrafters
    - [x] [Rust Primer](https://app.codecrafters.io/collections/rust-primer)
