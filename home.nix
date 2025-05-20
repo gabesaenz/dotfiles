@@ -34,6 +34,9 @@
     djvu2pdf # convert djvu to pdf
     diff-pdf # diff PDFs
 
+    # Font tools
+    python312Packages.fonttools # font manipulation tools
+
     # OCR
     tesseract
 
