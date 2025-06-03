@@ -392,8 +392,6 @@
     "codecrafters-io/tap" # codecrafters cli for programming exercises
   ];
   homebrew.brews = [
-    "gcc" # doom emacs dependency (native compilation)
-
     "codecrafters" # programming exercises
     "exercism" # programming exercises
     "flavours" # theming
