@@ -54,7 +54,6 @@
   };
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
   # Enable nix command
@@ -166,17 +165,12 @@
     noto-fonts-cjk-serif
     noto-fonts-emoji
     noto-fonts-color-emoji
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
+    nerd-fonts.noto
+    nerd-fonts.victor-mono
     # Devanāgarī
     annapurna-sil
-    # nerd fonts
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "Iosevka"
-        "Noto"
-        "VictorMono"
-      ];
-    })
     # emacs icons
     emacs-all-the-icons-fonts
   ];
@@ -452,6 +446,7 @@
   # allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  system.primaryUser = "gabesaenz";
   users.users.gabesaenz = {
     home = "/Users/gabesaenz";
     shell = pkgs.nushell;

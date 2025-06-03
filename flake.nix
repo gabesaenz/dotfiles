@@ -2,10 +2,10 @@
   description = "Darwin configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
-    darwin.url = "github:lnl7/nix-darwin/nix-darwin-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
+    darwin.url = "github:lnl7/nix-darwin/nix-darwin-25.05";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # automatically manage mac application links
@@ -32,10 +32,10 @@
           modules = [
             {
               nixpkgs.overlays = [
-                (self: super: {
-                  # avoid build break in nodejs-20.19 on darwin
-                  nodejs = super.nodejs_22;
-                })
+                # (self: super: {
+                # avoid build break in nodejs-20.19 on darwin
+                # nodejs = super.nodejs_22;
+                # })
                 inputs.nix-doom-emacs-unstraightened.overlays.default
               ];
             }
