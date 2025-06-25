@@ -134,7 +134,7 @@
         nix flake update --flake ~/dotfiles
         rebuild-quick
         nix store optimise
-        brew-update
+        # brew-update
         brew autoremove
         brew cleanup
         rustup update --no-self-update stable
