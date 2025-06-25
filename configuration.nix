@@ -417,6 +417,7 @@
     "languagetool" # grammar checker
     "libreoffice" # work
     "neovide" # nvim frontend
+    "raycast" # spotlight alternative
     "simple-comic" # comic book viewer
     "sioyek" # PDF viewer
     "spotify" # music streaming
