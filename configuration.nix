@@ -201,6 +201,7 @@
 
       # Make window fullscreen: fn - f
       fn - f : yabai -m window --toggle native-fullscreen
+      meh - f : yabai -m window --toggle native-fullscreen
 
       # Make window zoom to parent node: lalt - f
       lalt - f : yabai -m window --toggle zoom-parent
@@ -414,6 +415,7 @@
     "inkscape" # svg editor
     "keycastr" # display keys pressed
     "kitty" # terminal emulator
+    "keymapp" # moonlander config
     "languagetool" # grammar checker
     "libreoffice" # work
     "neovide" # nvim frontend
