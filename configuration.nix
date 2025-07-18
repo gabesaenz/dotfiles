@@ -419,6 +419,7 @@
     "languagetool" # grammar checker
     "libreoffice" # work
     "neovide" # nvim frontend
+    "plover" # stenography engine
     "raycast" # spotlight alternative
     "simple-comic" # comic book viewer
     "sioyek" # PDF viewer
