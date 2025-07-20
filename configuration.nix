@@ -130,10 +130,10 @@
     pngpaste # org-download-clipboard dependency
     shellcheck
     shfmt
-    nodePackages.stylelint
-    nodePackages.js-beautify
-    nodePackages.npm # npm warning
-    nodePackages.prettier # code formatting dependency
+    # nodePackages.stylelint
+    # nodePackages.js-beautify
+    # nodePackages.npm # npm warning
+    # nodePackages.prettier # code formatting dependency
     wordnet # for lookup with offline dictionary
     imagemagick # fix email mu4e warning
     (aspellWithDicts (

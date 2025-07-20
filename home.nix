@@ -362,9 +362,9 @@
     doomDir = ./doomdir;
     doomLocalDir = "${config.home.homeDirectory}/.config/nix-doom";
   };
-  programs.zed-editor = {
-    enable = true;
-  };
+  # programs.zed-editor = {
+  #   enable = true;
+  # };
 
   # PDF Viewers
   programs.zathura = {
