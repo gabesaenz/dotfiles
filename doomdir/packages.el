@@ -76,3 +76,6 @@
 
 ;; Slint support
 (package! slint-mode)
+
+;; Matrix chat
+(package! ement)
