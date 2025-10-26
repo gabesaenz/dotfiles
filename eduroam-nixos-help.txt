@@ -1,0 +1,4 @@
+nix-shell -p "python3.withPackages (ps: with ps; [ dbus-python ])" 
+python3 eduroam-linux-Universitat_Heidelberg-Standard_ab_2024.py
+username: username@uni-heidelberg.de
+password: normal password for heico etc.
