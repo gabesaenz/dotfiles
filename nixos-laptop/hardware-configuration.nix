@@ -8,10 +8,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  # set kernal version to avoid boot error
-  # this didn't actually help with the boot error
-  # boot.kernelPackages = pkgs.linuxPackages_6_6_hardened;
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "wl" ];
   boot.kernelModules = [ "kvm-intel" ];
@@ -24,18 +20,18 @@
     ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/3724038f-5f22-4c88-9199-8156d356fec5";
+    { device = "/dev/disk/by-uuid/45ffb502-8287-46e9-8536-dc772128010a";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/8C37-FCCE";
+    { device = "/dev/disk/by-uuid/FA37-9CD2";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/cd49966c-db11-499f-9167-d2a6a31cd18a"; }
+    [ { device = "/dev/disk/by-uuid/0dd303d0-d7cb-4358-834a-0a323e19483c"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
