@@ -207,8 +207,8 @@
 
 ;; shell related fixes suggested by doom doctor
 (setq shell-file-name (executable-find "bash"))
-(setq-default vterm-shell (executable-find "fish"))
-(setq-default explicit-shell-file-name (executable-find "fish"))
+;; (setq-default vterm-shell (executable-find "bash"))
+;; (setq-default explicit-shell-file-name (executable-find "bash"))
 
 ;; use builtin eww browser for online lookup (dictionary)
 (setq +lookup-open-url-fn #'eww)
