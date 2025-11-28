@@ -194,6 +194,9 @@
     # doomLocalDir = "~/.local/share/nix-doom";
   };
 
+  # Shells
+  programs.bash.enable = true; # required for shell tool integrations to work
+
   # doom emacs dependency
   programs.direnv = {
     enable = true;

@@ -216,7 +216,7 @@
 	message-send-mail-function #'message-send-mail-with-sendmail))
 
 ;; shell related fixes suggested by doom doctor
-(setq shell-file-name (executable-find "bash"))
+;; (setq shell-file-name (executable-find "bash"))
 ;; (setq-default vterm-shell (executable-find "bash"))
 ;; (setq-default explicit-shell-file-name (executable-find "bash"))
 

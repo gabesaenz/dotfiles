@@ -131,6 +131,10 @@
     ];
   };
 
+  # Shells
+  programs.bash.enable = true; # required for shell tool integrations to work
+  users.defaultUserShell = pkgs.bash;
+
   # Install firefox.
   programs.firefox.enable = true;
 
