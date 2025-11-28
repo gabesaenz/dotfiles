@@ -21,25 +21,35 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 
-;; unicode fix
-(defun unicode-fonts-setup-h (frame)
-  "Run unicode-fonts-setup, then remove the hook."
-  (progn
-    (select-frame frame)
-    (unicode-fonts-setup)
-    (message "Removing unicode-fonts-setup to after-make-frame-functions hook")
-    (remove-hook 'after-make-frame-functions 'unicode-fonts-setup-h)
-    ))
-
-(add-hook 'after-make-frame-functions 'unicode-fonts-setup-h nil)
-
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-;; (setq doom-font (font-spec :family "NotoSansM Nerd Font Mono" :size 18))
 (setq doom-font (font-spec :family "VictorMono Nerd Font" :size 18))
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans"))
-(setq doom-symbol-font (font-spec :family "Annapurna SIL" :size 32))
+;; don't set doom-symbol-font / main fallback unicode font
+;; as it would override the more specific settings below
+;; (setq doom-symbol-font (font-spec :family "Noto Serif" :size 24))
+
+;; examples of how to configure a single unicode block
+;; (after! unicode-fonts
+;;   (push "Gentium" (cadr (assoc "Greek and Coptic" unicode-fonts-block-font-mapping))))
+
+;; (after! unicode-fonts
+;;   (push "Symbola" (cadr (assoc "Miscellaneous Symbols" unicode-fonts-block-font-mapping))))
+
+;; set multiple unicode blocks at once
+(after! unicode-fonts
+  (dolist (unicode-block '("Greek and Coptic"
+                           "Greek Extended"
+                           "Ancient Greek Musical Notation"
+                           "Ancient Greek Numbers"))
+    (push "Gentium" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
+(after! unicode-fonts
+  (dolist (unicode-block '("Devanagari"
+                           "Devanagari Extended"
+                           "Vedic Extensions"))
+    (push "Annapurna SIL" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
 
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
