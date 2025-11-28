@@ -197,10 +197,58 @@
   # Shells
   programs.bash.enable = true; # required for shell tool integrations to work
 
+  # Shell Tools
+  programs.btop = {
+    enable = true;
+    settings = {
+      #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
+      #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
+      # color_theme = "gruvbox_material_dark";
+
+      #* If the theme set background should be shown, set to False if you want terminal background transparency.
+      theme_background = true;
+
+      #* Sets if 24-bit truecolor should be used, will convert 24-bit colors to 256 color (6x6x6 color cube) if false.
+      truecolor = true;
+    };
+  };
+  programs.eza = {
+    enable = true;
+    git = true;
+    icons = "auto";
+    extraOptions = [
+      "--all"
+      "--group-directories-first"
+      "--header"
+      "--long"
+      "--ignore-glob=.git|.DS_Store"
+    ];
+  };
+  programs.dircolors = {
+    enable = true;
+  };
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "base16-256";
+    };
+  };
   # doom emacs dependency
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+  };
+  programs.lazygit = {
+    enable = true;
+  };
+  programs.starship = {
+    enable = true;
+  };
+  programs.fd = {
+    enable = true;
+  };
+  programs.zoxide = {
+    enable = true;
   };
 
   # terminal emulator
