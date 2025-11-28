@@ -130,6 +130,31 @@
     # '')
   ];
 
+  # input methods
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5.waylandFrontend = true; # prevent error messages in Wayland
+    fcitx5.addons = with pkgs; [
+      fcitx5-configtool
+      fcitx5-gtk
+
+      # Chinese
+      fcitx5-chinese-addons
+      fcitx5-table-extra
+
+      # Japanese
+      fcitx5-mozc
+
+      # Korean
+      fcitx5-hangul
+
+      # multiple languages
+      fcitx5-m17n
+      fcitx5-table-other
+    ];
+  };
+
   # doom emacs dependency
   fonts.fontconfig.enable = true; # required for fonts to work properly
 
