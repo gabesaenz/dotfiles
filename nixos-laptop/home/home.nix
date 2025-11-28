@@ -25,7 +25,6 @@
     # # "Hello, world!" when run.
     # pkgs.hello
 
-    # START copied over from mac nix config
     # doom emacs dependencies
     # required
     git
@@ -83,18 +82,21 @@
       ]
     ))
 
-    # Dropbox
-    # maestral # build error
-    # maestral-gui # build error
-
     # Rust
     rustup
     cargo-binstall # binary installer for rust tools
+    cargo-update
+    # helpful commands:
+    # rustup update --no-self-update stable
+    # cargo install-update -a # requires cargo-update
+
+    # Slint
+    slint-lsp # required for doom emacs slint-mode
+    slint-viewer
 
     # misc
     translate-shell # translator
     jq # JSON processor
-    # END copied over from mac nix config
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -158,6 +160,10 @@
   # doom emacs dependency
   fonts.fontconfig.enable = true; # required for fonts to work properly
 
+  # hide mouse cursor when not in use
+  services.unclutter.enable = true;
+
+  # cloud file storage
   services.dropbox = {
     enable = true;
   };
