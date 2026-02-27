@@ -60,6 +60,8 @@
     wl-clipboard
     gnome-screenshot
     graphviz
+    # nov.el
+    unzip
     # web
     html-tidy
     stylelint

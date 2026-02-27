@@ -202,3 +202,6 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+;; make sure evil mode adjusts to visual line mode
+(setq evil-respect-visual-line-mode t)

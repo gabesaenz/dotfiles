@@ -196,6 +196,7 @@
                          trailing
                          ;; lines-tail
                          ))
+(setq whitespace-global-modes '(not nov-mode))
 ;; reload white space options
 (global-whitespace-toggle-options '(whitespace-style))
 
@@ -227,6 +228,50 @@
 
 ;; enable nov EPUB reader for .epub files
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+;; nov.el configuration
+;; force variable pitch font mode since it wasn't happening otherwise
+(add-hook 'nov-mode-hook 'variable-pitch-mode)
+;; font configuration
+(defun my-nov-font-setup ()
+  (face-remap-add-relative 'shr-text :family "Noto Serif"
+                           :height 1.0))
+(add-hook 'nov-mode-hook 'my-nov-font-setup)
+;; force disabling of visible whitespace
+;; not necessary if nov-mode is added to global whitespace blacklist
+;; (add-hook 'nov-mode-hook
+;;           (lambda () (setq-local whitespace-style nil)))
+;; basic option
+(setq nov-text-width t)
+(setq visual-fill-column-center-text t)
+(add-hook 'nov-mode-hook 'visual-line-mode)
+(add-hook 'nov-mode-hook 'visual-fill-column-mode)
+;; alternative option with justification
+;; (setq nov-text-width t)
+
+;; (defun my-nov-window-configuration-change-hook ()
+;;   (my-nov-post-html-render-hook)
+;;   (remove-hook 'window-configuration-change-hook
+;;                'my-nov-window-configuration-change-hook
+;;                t))
+
+;; (defun my-nov-post-html-render-hook ()
+;;   (if (get-buffer-window)
+;;       (let ((max-width (pj-line-width))
+;;             buffer-read-only)
+;;         (save-excursion
+;;           (goto-char (point-min))
+;;           (while (not (eobp))
+;;             (when (not (looking-at "^[[:space:]]*$"))
+;;               (goto-char (line-end-position))
+;;               (when (> (shr-pixel-column) max-width)
+;;                 (goto-char (line-beginning-position))
+;;                 (pj-justify)))
+;;             (forward-line 1))))
+;;     (add-hook 'window-configuration-change-hook
+;;               'my-nov-window-configuration-change-hook
+;;               nil t)))
+
+;; (add-hook 'nov-post-html-render-hook 'my-nov-post-html-render-hook)
 
 ;; enable themed pdf viewing by default
 (use-package pdf-tools
