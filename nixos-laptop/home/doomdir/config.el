@@ -294,3 +294,14 @@
 
 ;; (add-hook 'elfeed-new-entry-hook #'ime-elfeed-podcast-tagger)
 
+;; eww browser
+;;
+;; set eww as default emacs web browser
+;; https://www.reddit.com/r/emacs/comments/lia9s0/open_links_in_elfeed_in_eww_or_other_emacs_web/
+(setq browse-url-browser-function 'eww-browse-url)
+;; enable readable mode by default
+;; (setq eww-readable-default t)
+(add-hook 'eww-after-render-hook 'eww-readable)
+;; use visual-line-mode to wrap text
+(add-hook 'eww-mode-hook 'visual-line-mode)
+
