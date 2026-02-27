@@ -175,8 +175,232 @@
     ];
   };
 
-  # doom emacs dependency
-  fonts.fontconfig.enable = true; # required for fonts to work properly
+  fonts.fontconfig = {
+    enable = true; # doom emacs dependency # required for fonts to work properly
+    defaultFonts = {
+      serif = [
+        "Gentium"
+        "Annapurna SIL"
+        "Noto Serif"
+        "NotoSerif Nerd Font"
+      ];
+      sansSerif = [
+        "Noto Sans"
+        "NotoSans Nerd Font"
+      ];
+      monospace = [
+        "Iosevka Nerd Font"
+        "VictorMono Nerd Font"
+        "NotoSansM Nerd Font Mono"
+      ];
+      emoji = [
+        "Iosevka Nerd Font"
+        "Noto Color Emoji"
+      ];
+    };
+    # configFile = {
+    #   greek = {
+    #     enable = true;
+    #     label = "greek";
+    #     priority = 90;
+    #     text = ''
+    #         <?xml version="1.0"?>
+    #         <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+    #         <fontconfig>
+    #           <!-- Default font for greek (no fc-match pattern) -->
+    #           <match>
+    #             <test compare="contains" name="lang">
+    #               <string>el</string>
+    #             </test>
+    #             <edit mode="prepend" name="family">
+    #               <string>Gentium</string>
+    #             </edit>
+    #           </match>
+    #           <match>
+    #             <test compare="contains" name="lang">
+    #               <string>grc</string>
+    #             </test>
+    #             <edit mode="prepend" name="family">
+    #               <string>Gentium</string>
+    #             </edit>
+    #           </match>
+    #           <!-- Default monospace fonts -->
+    #           <match>
+    #             <test compare="contains" name="lang">
+    #               <string>el</string>
+    #             </test>
+    #             <test qual="any" name="family">
+    #               <string>monospace</string>
+    #             </test>
+    #             <edit name="family" mode="prepend" binding="same">
+    #               <string>Iosevka Nerd Font</string>
+    #             </edit>
+    #           </match>
+    #           <match>
+    #             <test compare="contains" name="lang">
+    #               <string>grc</string>
+    #             </test>
+    #             <test qual="any" name="family">
+    #               <string>monospace</string>
+    #             </test>
+    #             <edit name="family" mode="prepend" binding="same">
+    #               <string>Iosevka Nerd Font</string>
+    #             </edit>
+    #           </match>
+    #           <!-- Remove all other monospace fonts from Greek Unicode ranges -->
+    #           <match>
+    #             <test target="font" name="family" compare="not_eq">
+    #             <string>Iosevka Nerd Font</string>
+    #             </test>
+    #             <test qual="any" name="family">
+    #               <string>monospace</string>
+    #             </test>
+    #             <edit name="charset" mode="assign">
+    #             <!-- Greek and Coptic -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x0370</int>
+    #                 <int>0x03FF</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Phonetic Extensions -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1D00</int>
+    #                 <int>0x1D7F</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Phonetic Extensions Supplement -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1D80</int>
+    #                 <int>0x1DBF</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Greek Extended -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1F00</int>
+    #                 <int>0x1FFF</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Letterlike Symbols -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x2100</int>
+    #                 <int>0x214F</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Latin Extended-E -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0xAB30</int>
+    #                 <int>0xAB6F</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Ancient Greek Numbers -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x10140</int>
+    #                 <int>0x1018F</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Ancient Symbols -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x10190</int>
+    #                 <int>0x101CF</int>
+    #               </range>
+    #             </minus>
+    #             <!-- Ancient Greek Musical Notation -->
+    #             <minus>
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1D200</int>
+    #                 <int>0x1D24F</int>
+    #               </range>
+    #             </minus>
+    #           </edit>
+    #         </match>
+    #         <!-- Add monospace font to Greek Unicode ranges -->
+    #         <match>
+    #           <test qual="any" name="family">
+    #             <string>monospace</string>
+    #           </test>
+    #           <edit name="family" mode="prepend" binding="same">
+    #             <string>Iosevka Nerd Font</string>
+    #           </edit>
+    #             <edit name="charset" mode="assign">
+    #             <!-- Greek and Coptic -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x0370</int>
+    #                 <int>0x03FF</int>
+    #               </range>
+    #             <!-- Phonetic Extensions -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1D00</int>
+    #                 <int>0x1D7F</int>
+    #               </range>
+    #             <!-- Phonetic Extensions Supplement -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1D80</int>
+    #                 <int>0x1DBF</int>
+    #               </range>
+    #             <!-- Greek Extended -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1F00</int>
+    #                 <int>0x1FFF</int>
+    #               </range>
+    #             <!-- Letterlike Symbols -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x2100</int>
+    #                 <int>0x214F</int>
+    #               </range>
+    #             <!-- Latin Extended-E -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0xAB30</int>
+    #                 <int>0xAB6F</int>
+    #               </range>
+    #             <!-- Ancient Greek Numbers -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x10140</int>
+    #                 <int>0x1018F</int>
+    #               </range>
+    #             <!-- Ancient Symbols -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x10190</int>
+    #                 <int>0x101CF</int>
+    #               </range>
+    #             <!-- Ancient Greek Musical Notation -->
+    #               <name>charset</name>
+    #               <range>
+    #                 <int>0x1D200</int>
+    #                 <int>0x1D24F</int>
+    #               </range>
+    #           </edit>
+    #         </match>
+    #       </fontconfig>
+    #     '';
+    #   };
+    # };
+  };
+
   # Touchpad gestures
   services.fusuma = {
     enable = true;
