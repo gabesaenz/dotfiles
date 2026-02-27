@@ -226,6 +226,10 @@
 ;; use builtin eww browser for online lookup (dictionary)
 (setq +lookup-open-url-fn #'eww)
 
+;; define-word default service
+(setq define-word-default-service 'offline-wikitionary)
+(setq define-word-offline-dict-directory '"/home/gabe/Dictionaries/offline-wiktionary/ding")
+
 ;; display
 (display-battery-mode)
 
