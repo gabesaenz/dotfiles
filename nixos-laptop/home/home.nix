@@ -318,7 +318,9 @@
   #  /etc/profiles/per-user/gabe/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "emacs";
+    # required for fcitx in QT and GTK apps
+    QT_IM_MODULE = "fcitx";
+    GTK_IM_MODULE = "fcitx";
   };
 
   # Let Home Manager install and manage itself.
