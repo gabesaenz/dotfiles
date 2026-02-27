@@ -283,3 +283,14 @@
 ;; enable themed pdf viewing by default
 (use-package pdf-tools
   :hook ((pdf-view-mode . pdf-view-themed-minor-mode)))
+
+;; automatically update feed when opening elfeed
+(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+;; tag entries with media as podcasts
+;; https://www.reddit.com/r/emacs/comments/g1o36p/emacs_way_to_listen_podcasts/
+;; (defun ime-elfeed-podcast-tagger (entry)
+;;   (when (elfeed-entry-enclosures entry)
+;;     (elfeed-tag entry 'podcast)))
+
+;; (add-hook 'elfeed-new-entry-hook #'ime-elfeed-podcast-tagger)
+
