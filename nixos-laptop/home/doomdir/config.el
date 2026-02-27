@@ -392,6 +392,14 @@ The result will be displayed in a buffer."
               (read-only-mode -1)) ;;my changes end
             ))))))
 
+(map! :leader
+      (:prefix ("l" . "misc")
+       :desc "RSS Feeds" "r" #'elfeed
+       :desc "EMMS" "e" #'emms
+       :desc "StarDict Search" "d" #'quick-sdcv-search-at-point
+       )
+      )
+
 ;; diogenes
 (setq diogenes-path "/home/gabe/diogenes")
 ;; (require 'diogenes)
