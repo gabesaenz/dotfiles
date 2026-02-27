@@ -392,3 +392,16 @@ The result will be displayed in a buffer."
               (read-only-mode -1)) ;;my changes end
             ))))))
 
+;; diogenes
+(setq diogenes-path "/home/gabe/diogenes")
+;; (require 'diogenes)
+;; (setq diogenes-library-path "/path/to/diogenes")
+;; (use-package diogenes
+;;   :init
+;;   (diogenes-path "~/Downloads/usr/local/diogenes")
+;;   :bind (("C-c d" . diogenes))
+;;   :commands (diogenes-ad-to-ol
+;;              diogenes-ol-to-ad
+;;              diogenes-utf8-to-beta
+;;              diogenes-beta-to-utf8))
+

@@ -86,3 +86,11 @@
 ;; nushell syntax highlighting
 (package! nushell-mode)
 
+;; diogenes
+(package! thingatpt
+  :recipe (:host github :repo "emacs-mirror/emacs" :files ("lisp/thingatpt.el"))
+  :pin "f0dbe25d4c77b9a369badb79ec3e72b64c821e68")
+(package! diogenes
+  :recipe (:host github :repo "nitardus/diogenes.el")
+  :pin "6eafa76de3bbf0c9e8c87d4051b719cf6046b982")
+
