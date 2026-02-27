@@ -145,6 +145,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  # Plover stenography requirement
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+  '';
+
   # Macbook webcam support
   hardware.facetimehd.enable = true;
 
@@ -155,6 +160,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "input" # Plover stenography requirement
     ];
     packages = with pkgs; [
       #  thunderbird

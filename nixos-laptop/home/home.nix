@@ -1,6 +1,15 @@
-{ config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
+  imports = [
+    inputs.plover-flake.homeManagerModules.plover
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "gabe";
@@ -284,6 +293,29 @@
       offlineimap.enable = true;
       msmtp.enable = true;
     };
+  };
+
+  # Plover stenography
+  programs.plover = {
+    enable = true;
+    # Select individual plugins to include
+    package = inputs.plover-flake.packages.${pkgs.stdenv.hostPlatform.system}.plover.withPlugins (
+      ps: with ps; [
+        # plover-lapwing-aio
+      ]
+    );
+
+    # Or, use `plover-full` if you want Plover with all the plugins installed:
+    # package = inputs.plover-flake.packages.${pkgs.stdenv.hostPlatform.system}.plover-full;
+
+    # Example settings given in installation instructions
+    # settings = {
+    #   "Machine Configuration" = {
+    #     machine_type = "Gemini PR";
+    #     auto_start = true;
+    #   };
+    #   "Output Configuration".undo_levels = 100;
+    # };
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
