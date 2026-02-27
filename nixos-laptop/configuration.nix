@@ -193,7 +193,7 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.nushell;
 
-  # Install firefox.
+  # Web browsers
   programs.firefox.enable = true;
 
   # Allow unfree packages
