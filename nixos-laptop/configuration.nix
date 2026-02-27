@@ -102,8 +102,17 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
+  # services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+
+  # Enable the COSMIC login manager
+  services.displayManager.cosmic-greeter.enable = true;
+
+  # Enable the COSMIC desktop environment
+  services.desktopManager.cosmic.enable = true;
+
+  # slightly improve performance of COSMIC
+  services.system76-scheduler.enable = true;
 
   # Switch to nixos-rebuild-ng
   system.rebuild.enableNg = true;
