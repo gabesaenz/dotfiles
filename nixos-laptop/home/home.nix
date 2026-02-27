@@ -116,6 +116,7 @@
     # misc
     translate-shell # translator
     jq # JSON processor
+    tlrc # cli for tldr - simplified man pages
     sdcv # stardict cli
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -435,6 +436,9 @@
       ];
     };
   };
+
+  # tldr - simplified man pages
+  services.tldr-update.enable = true;
 
   # emacs
   services.emacs.enable = true;
