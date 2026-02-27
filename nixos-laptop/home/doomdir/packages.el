@@ -79,6 +79,10 @@
 
 ;; Matrix chat
 (package! ement)
+
+;; stardict offline dictionary search
+(package! quick-sdcv)
+
 ;; nushell syntax highlighting
 (package! nushell-mode)
 

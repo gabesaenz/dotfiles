@@ -305,3 +305,90 @@
 ;; use visual-line-mode to wrap text
 (add-hook 'eww-mode-hook 'visual-line-mode)
 
+;; quick-sdcv
+(use-package quick-sdcv
+  ;; :ensure t
+  :custom
+  ;; (quick-sdcv-dictionary-prefix-symbol "►")
+  ;; (quick-sdcv-ellipsis " ▼")
+  (quick-sdcv-dictionary-data-dir "~/Dictionaries"))
+;; this doesn't seem to actually work
+;; (add-to-list 'display-buffer-alist '("\\*sdcv"
+;;                                      (display-buffer-pop-up-window)))
+(require 'shr)
+(require 'quick-sdcv)
+(defun quick-sdcv--translate-result (word dictionary-list)
+  "Search for WORD in DICTIONARY-LIST. Return filtered string of results."
+  (let* ((args (cons word (mapcan (lambda (d) (list "-u" d)) dictionary-list)))
+         (result (mapconcat
+                  (lambda (result)
+                    (let-alist result
+                      ;; This is the original line.
+                      ;; (format "-->%s\n-->%s\n%s\n\n" .dict .word .definition)))
+                      ;; my changes start
+                      (format "-->%s\n-->%s\n%s\n\n" .dict .word
+                              ;; check for presence of html tags (poorly)
+                              ;; and parse the html if they're detected
+                              (if (string-match "<*>" .definition)
+                                  (with-temp-buffer
+                                    (shr-insert-document
+                                     (with-temp-buffer
+                                       (insert .definition)
+                                       (libxml-parse-html-region)))
+                                    (buffer-string))
+                                .definition)))) ;; my changes end
+                  (apply #'quick-sdcv--call-process args)
+                  "")))
+    (if (string-empty-p result)
+        quick-sdcv-fail-notify-string
+      result)))
+(defun quick-sdcv--search-detail (&optional word)
+  "Search WORD in `quick-sdcv-dictionary-complete-list'.
+The result will be displayed in a buffer."
+  (when word
+    (let* ((buffer-name (quick-sdcv--get-buffer-name word))
+           (buffer (get-buffer buffer-name))
+           (refresh (or (not buffer)
+                        ;; When the words share the same buffer, always refresh
+                        (not quick-sdcv-unique-buffers)))
+           (inhibit-read-only t))
+      (unless buffer
+        (setq buffer (quick-sdcv--get-buffer word)))
+
+      (let ((text (quick-sdcv--search-with-dictionary
+                   word
+                   quick-sdcv-dictionary-complete-list)))
+        (unless text
+          (error "The command %s produced no output" quick-sdcv-program))
+
+        (when (buffer-live-p buffer)
+          (with-current-buffer buffer
+            (when refresh
+              (when quick-sdcv-verbose
+                (message "[SDCV] Searching..."))
+              (erase-buffer)
+              (set-buffer-file-coding-system 'utf-8)  ;; Force UTF-8
+              (setq quick-sdcv-current-translate-object word)
+              (let ((text (quick-sdcv--search-with-dictionary
+                           word
+                           quick-sdcv-dictionary-complete-list)))
+                (insert text))
+
+              (goto-char (point-min))
+
+              (when quick-sdcv-verbose
+                (message "[SDCV] Finished searching `%s'."
+                         quick-sdcv-current-translate-object)))
+            ;; This is the original line.
+            ;; (pop-to-buffer buffer)
+            ;; my changes start
+            ;; Change to showing the results in a popup
+            (+eval-display-results-in-popup text)
+            ;; Switch to the correct mode in the popup
+            ;; as long as the popup has this name
+            (with-current-buffer "*doom eval*"
+              (quick-sdcv-mode)
+              ;; turn off read only mode to avoid blocking other popup windows
+              (read-only-mode -1)) ;;my changes end
+            ))))))
+
