@@ -78,6 +78,8 @@
     # pngpaste # org-download-clipboard dependency # not available on linux
     shellcheck
     shfmt
+    mpc_cli # emms media player
+    mpv # emms media player
     # nodePackages.stylelint
     # nodePackages.js-beautify
     # nodePackages.npm # npm warning
@@ -445,8 +447,8 @@
   };
 
   # doom emacs dependency for emms
-  # services.mpd.enable = true;
-  # services.mpd.musicDirectory = /home/gabe/Music;
+  services.mpd.enable = true;
+  services.mpd.musicDirectory = /home/gabe/Music;
 
   # Web browsers
   programs.firefox.enable = true;
