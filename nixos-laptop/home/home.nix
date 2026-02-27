@@ -161,6 +161,25 @@
   xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   xdg.portal.config.common.default = "*";
 
+  # icons for use with xdg.desktopEntries
+  # home.file."human-japanese-icon" = {
+  #   source = icons/human-japanese.png;
+  #   target = "icons/human-japanese.png";
+  # };
+
+  # desktop shortcuts
+  # xdg.desktopEntries = {
+  #   "human-japanese" = {
+  #     name = "Human Japanese";
+  #     genericName = "Human Japanese";
+  #     exec = "firefox --new-window https://www.humanjapanese.com/content/human-japanese-intermediate";
+  #     icon = "${config.home.homeDirectory}/icons/human-japanese.png";
+  #     type = "Application";
+  #     terminal = false;
+  #     categories = [ "Education" ];
+  #   };
+  # };
+
   # input methods
   i18n.inputMethod = {
     type = "fcitx5";
