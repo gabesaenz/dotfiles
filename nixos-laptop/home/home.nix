@@ -465,7 +465,19 @@
   services.tldr-update.enable = true;
 
   # emacs
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+    defaultEditor = true;
+    startWithUserSession = "graphical";
+
+    # not sure if these three are necessary
+    client.enable = true;
+    # client.arguments = [
+    #   "--create-frame"
+    #   "--no-wait"
+    # ];
+    socketActivation.enable = true;
+  };
   # the emacs service will use doom-emacs
   programs.doom-emacs = {
     enable = true;
