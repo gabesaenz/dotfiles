@@ -156,6 +156,11 @@
   # required for nushell while XDG_HOME is set
   xdg.enable = true;
 
+  # enable this so that fcitx works with flatpak
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  xdg.portal.config.common.default = "*";
+
   # input methods
   i18n.inputMethod = {
     type = "fcitx5";
