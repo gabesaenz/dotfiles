@@ -59,6 +59,24 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # SMB Filesharing
+  fileSystems."/mnt/salsa" = {
+    device = "//192.168.0.1/disk_a2";
+    fsType = "cifs";
+    options =
+      let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+      in
+      [
+        "
+            ${automount_opts}
+            # ,credentials=/etc/nixos/smb-secrets
+        "
+      ];
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
