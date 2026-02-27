@@ -188,8 +188,10 @@
   };
 
   # Shells
-  programs.bash.enable = true; # required for shell tool integrations to work
-  users.defaultUserShell = pkgs.bash;
+  # shells must be enabled for shell tool integrations to work
+  programs.bash.enable = true;
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.nushell;
 
   # Install firefox.
   programs.firefox.enable = true;

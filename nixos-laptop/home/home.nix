@@ -147,6 +147,9 @@
     # '')
   ];
 
+  # required for nushell while XDG_HOME is set
+  xdg.enable = true;
+
   # input methods
   i18n.inputMethod = {
     type = "fcitx5";
@@ -214,8 +217,30 @@
     # doomLocalDir = "~/.local/share/nix-doom";
   };
 
+  # doom emacs dependency for emms
+  # services.mpd.enable = true;
+  # services.mpd.musicDirectory = /home/gabe/Music;
+
+  # Web browsers
+  programs.firefox.enable = true;
+  programs.chromium.enable = true;
+
   # Shells
-  programs.bash.enable = true; # required for shell tool integrations to work
+  # shells must be enabled for shell tool integrations to work
+  programs.bash.enable = true;
+  programs.zsh.enable = true;
+  programs.zsh.autosuggestion.enable = true;
+  programs.nushell = {
+    enable = true;
+    shellAliases = {
+      cat = "bat";
+      top = "btop";
+    };
+    extraConfig = ''
+      # remove startup message
+      $env.config.show_banner = false
+    '';
+  };
 
   # Shell Tools
   programs.btop = {

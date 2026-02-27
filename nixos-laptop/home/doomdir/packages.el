@@ -79,3 +79,6 @@
 
 ;; Matrix chat
 (package! ement)
+;; nushell syntax highlighting
+(package! nushell-mode)
+
