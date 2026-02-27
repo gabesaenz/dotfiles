@@ -174,6 +174,11 @@
 
   # doom emacs dependency
   fonts.fontconfig.enable = true; # required for fonts to work properly
+  # Touchpad gestures
+  services.fusuma = {
+    enable = true;
+    settings = { };
+  };
 
   # hide mouse cursor when not in use
   services.unclutter.enable = true;

@@ -156,6 +156,23 @@
   # ZSA keyboard support
   hardware.keyboard.zsa.enable = true;
 
+  ### Get Apple Magic Touchpad working:
+  # 1. Enable Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
+  # 2. Add Apple HID driver for better gesture/button support
+  boot.kernelModules = [ "hid-apple" ];
+
+  # 3. Enable Libinput (required for touchpad gestures)
+  services.xserver.libinput.enable = true;
+
+  # 4. (Optional) GUI tool to pair the device
+  services.blueman.enable = true;
+
+  # 5. Enable X11/Desktop
+  # services.xserver.enable = true; # already enabled elsewhere
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gabe = {
     isNormalUser = true;
