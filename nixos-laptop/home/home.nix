@@ -568,6 +568,16 @@
   # terminal emulator
   programs.alacritty = {
     enable = true;
+    settings = {
+      general.import = [ "~/dotfiles/.config/alacritty/base16.toml" ];
+      # background transparency
+      window.opacity = 0.95;
+      font.normal = {
+        family = "monospace";
+        style = "Regular";
+      };
+      font.size = 14.0;
+    };
   };
 
   programs.git = {
