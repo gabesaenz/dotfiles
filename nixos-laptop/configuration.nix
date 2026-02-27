@@ -153,6 +153,9 @@
   # Macbook webcam support
   hardware.facetimehd.enable = true;
 
+  # ZSA keyboard support
+  hardware.keyboard.zsa.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gabe = {
     isNormalUser = true;

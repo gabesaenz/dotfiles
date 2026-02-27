@@ -103,6 +103,12 @@
     slint-lsp # required for doom emacs slint-mode
     slint-viewer
 
+    # ZSA Keyboard
+    # zsa-udev-rules # not sure if this is necessary
+    # wally-cli # firmware tool
+    keymapp # configuration GUI
+    # kontroll # configuration CLI
+
     # misc
     translate-shell # translator
     jq # JSON processor
