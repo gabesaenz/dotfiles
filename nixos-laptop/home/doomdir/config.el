@@ -226,6 +226,9 @@
 ;; use builtin eww browser for online lookup (dictionary)
 (setq +lookup-open-url-fn #'eww)
 
+;; display
+(display-battery-mode)
+
 ;; enable nov EPUB reader for .epub files
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 ;; nov.el configuration
