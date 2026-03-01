@@ -133,7 +133,6 @@
     gentium # gentium plus for greek
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    noto-fonts-emoji
     noto-fonts-color-emoji
     nerd-fonts.fira-code
     nerd-fonts.iosevka
