@@ -74,7 +74,7 @@
     # coreutils-prefixed # gnu ls warning # was clashing with coreutils above
     editorconfig-core-c # editorconfig
     gnuplot # org-plot/gnuplot dependency
-    nixfmt-rfc-style
+    nixfmt
     # pngpaste # org-download-clipboard dependency # not available on linux
     shellcheck
     shfmt
