@@ -78,7 +78,7 @@
     # pngpaste # org-download-clipboard dependency # not available on linux
     shellcheck
     shfmt
-    mpc_cli # emms media player
+    mpc # emms media player
     mpv # emms media player
     # nodePackages.stylelint
     # nodePackages.js-beautify
