@@ -139,9 +139,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
   # Plover stenography requirement
   services.udev.extraRules = ''
     KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
@@ -162,7 +159,9 @@
   boot.kernelModules = [ "hid-apple" ];
 
   # 3. Enable Libinput (required for touchpad gestures)
-  services.xserver.libinput.enable = true;
+  # services.xserver.libinput.enable = true;
+  # that option was renamed to:
+  services.libinput.enable = true;
 
   # 4. (Optional) GUI tool to pair the device
   services.blueman.enable = true;
