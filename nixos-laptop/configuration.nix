@@ -114,9 +114,6 @@
   # slightly improve performance of COSMIC
   services.system76-scheduler.enable = true;
 
-  # Switch to nixos-rebuild-ng
-  system.rebuild.enableNg = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
