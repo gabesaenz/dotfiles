@@ -511,6 +511,7 @@
   programs.zsh.autosuggestion.enable = true;
   programs.nushell = {
     enable = true;
+    plugins = with pkgs.nushellPlugins; [ polars ];
     extraConfig = ''
       # remove startup message
       $env.config.show_banner = false
