@@ -225,9 +225,10 @@
         "Iosevka Nerd Font"
         "VictorMono Nerd Font"
         "NotoSansM Nerd Font Mono"
+        # "Iosevka NFM Greek"
       ];
       emoji = [
-        "Iosevka Nerd Font"
+        # "Iosevka Nerd Font"
         "Noto Color Emoji"
       ];
     };
