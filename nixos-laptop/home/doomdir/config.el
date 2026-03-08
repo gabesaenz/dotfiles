@@ -394,7 +394,8 @@ The result will be displayed in a buffer."
             (with-current-buffer "*doom eval*"
               (quick-sdcv-mode)
               ;; turn off read only mode to avoid blocking other popup windows
-              (read-only-mode -1)) ;;my changes end
+              (read-only-mode -1))
+            (pop-to-buffer "*doom eval*") ;;my changes end
             ))))))
 
 (use-package sdcv-pure
