@@ -645,6 +645,9 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    # set the order of stardict cli results
+    ".config/sdcv_ordering".source = sdcv/sdcv_ordering;
   };
 
   # Home Manager can also manage your environment variables through
