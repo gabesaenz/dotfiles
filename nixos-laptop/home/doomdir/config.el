@@ -219,9 +219,9 @@
 	message-send-mail-function #'message-send-mail-with-sendmail))
 
 ;; shell related fixes suggested by doom doctor
-(setq shell-file-name (executable-find "bash"))
-(setq-default vterm-shell (executable-find "nu"))
-(setq-default explicit-shell-file-name (executable-find "nu"))
+;; (setq shell-file-name (executable-find "bash"))
+;; (setq-default vterm-shell (executable-find "zsh"))
+;; (setq-default explicit-shell-file-name (executable-find "zsh"))
 
 ;; use builtin eww browser for online lookup (dictionary)
 (setq +lookup-open-url-fn #'eww)
