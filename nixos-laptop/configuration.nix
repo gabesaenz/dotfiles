@@ -258,6 +258,16 @@
     ];
   };
 
+  # Set Geoclue as the default location provider
+  location.provider = "geoclue2";
+
+  # Enable Geoclue
+  services.geoclue2 = {
+    enable = true;
+    # if using beaconDB
+    geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+  };
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 

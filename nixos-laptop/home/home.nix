@@ -487,7 +487,13 @@
 
   # doom emacs dependency for emms
   services.mpd.enable = true;
-  services.mpd.musicDirectory = /home/gabe/Music;
+  services.mpd.musicDirectory = "${config.home.homeDirectory}/Music";
+
+  # night light / red shift
+  services.gammastep = {
+    enable = true;
+    provider = "geoclue2";
+  };
 
   # Web browsers
   programs.firefox.enable = true;
