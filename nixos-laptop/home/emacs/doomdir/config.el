@@ -76,7 +76,7 @@
 ;;     (doom-big-font-mode +1))
 
 ;; theming fix for emacsclient
-(setq custom-theme-directory "/home/gabe/dotfiles/nixos-laptop/home/doomdir/themes/")
+(setq custom-theme-directory "/home/gabe/dotfiles/nixos-laptop/home/emacs/doomdir/themes/")
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
