@@ -57,7 +57,32 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openconnect
+    ];
+    # see: https://discourse.nixos.org/t/how-to-properly-manage-cisco-anyconnect-connections-with-networkmanager/71526/4
+    # ensureProfiles = {
+    #   profiles.UniHeidelbergVpn = {
+    #     connection = {
+    #       id = "Uni Heidelberg VPN";
+    #       type = "vpn";
+    #     };
+    #     vpn = rec {
+    #       # set these to your params
+    #       gateway = "vpn-ac.urz.uni-heidelberg.de";
+    #       remote = gateway;
+    #       username = "username";
+
+    #       service-type = "org.freedesktop.NetworkManager.openconnect";
+    #       protocol = "anyconnect";
+    #       useragent = "AnyConnect";
+    #       authtype = "password";
+    #     };
+    #   };
+    # };
+  };
 
   # SMB Filesharing
   fileSystems."/mnt/salsa" = {
@@ -176,6 +201,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "Standard ab 2024" # eduroam requirement
       "input" # Plover stenography requirement
     ];
     packages = with pkgs; [
