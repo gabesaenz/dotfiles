@@ -149,7 +149,34 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-
+;; +lookup config
+;; look up words in dictionaries while in reading focused modes
+(dolist (mode '(quick-sdcv-mode nov-mode))
+  (set-lookup-handlers! mode
+    :definition '(define-word-at-point :async t)
+    :documentation '(quick-sdcv-search-at-point :async t)))
+;; adjust org-mode lookup behavior
+(defun org-lookup-definition-fallback-handler (orig-fun WORD &rest args)
+  (if (org-in-src-block-p)
+      (apply orig-fun WORD args)
+    (progn
+      (setq-local +lookup-definition-functions '(define-word-at-point t))
+      (+lookup/definition))))
+(advice-add '+org-lookup-definition-handler :around #'org-lookup-definition-fallback-handler)
+(defun org-lookup-documentation-fallback-handler (orig-fun WORD &rest args)
+  (if (org-in-src-block-p)
+      (apply orig-fun WORD args)
+    (progn
+      (setq-local +lookup-documentation-functions '(quick-sdcv-search-at-point t))
+      (+lookup/documentation))))
+(advice-add '+org-lookup-documentation-handler :around #'org-lookup-documentation-fallback-handler)
+(defun org-lookup-online-override-handler (orig-fun WORD &rest args)
+  (if (eq major-mode 'org-mode)
+      (progn
+        (setq-local +lookup-documentation-functions '(quick-sdcv-search-at-point t))
+        (+lookup/documentation))
+    (apply orig-fun WORD args)))
+(advice-add '+lookup-online-backend-fn :around #'org-lookup-online-override-handler);)
 
 ;; follow symlinks
 ;; https://emacs.stackexchange.com/a/41292
