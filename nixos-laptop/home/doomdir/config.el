@@ -308,10 +308,15 @@
 ;; quick-sdcv
 (use-package quick-sdcv
   ;; :ensure t
+  :config
+  ;; try to get it looking like nov-mode
+  (add-hook 'nov-mode-hook 'visual-line-mode)
+  (add-hook 'nov-mode-hook 'visual-fill-column-mode)
   :custom
-  ;; (quick-sdcv-dictionary-prefix-symbol "►")
-  ;; (quick-sdcv-ellipsis " ▼")
-  (quick-sdcv-dictionary-data-dir "~/Dictionaries"))
+  ;; not necessary now that env variable STARDICT_DATA_DIR is set
+  ;; (quick-sdcv-dictionary-data-dir "~/Dictionaries/stardict/dic")
+  (quick-sdcv-dictionary-prefix-symbol "►")
+  (quick-sdcv-ellipsis " ▼"))
 ;; this doesn't seem to actually work
 ;; (add-to-list 'display-buffer-alist '("\\*sdcv"
 ;;                                      (display-buffer-pop-up-window)))

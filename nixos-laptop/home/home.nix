@@ -682,6 +682,9 @@
     # required for fcitx in QT and GTK apps
     QT_IM_MODULE = "fcitx";
     GTK_IM_MODULE = "fcitx";
+
+    # stardict CLI dictionaries folder
+    STARDICT_DATA_DIR = "${config.home.homeDirectory}/Dictionaries/stardict";
   };
 
   # Let Home Manager install and manage itself.
