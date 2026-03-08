@@ -244,6 +244,20 @@
 
   # List services that you want to enable:
 
+  # dictd dictionary service
+  # call with "dict <word>"
+  services.dictd = {
+    enable = true;
+    DBs = with pkgs.dictdDBs; [
+      wiktionary
+      wordnet
+      eng2deu
+      deu2eng
+      jpn2eng
+      eng2jpn
+    ];
+  };
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
