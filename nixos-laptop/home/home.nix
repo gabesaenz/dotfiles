@@ -113,6 +113,10 @@
     keymapp # configuration GUI
     # kontroll # configuration CLI
 
+    # archive tools
+    unrar
+    p7zip
+
     # misc
     translate-shell # translator
     jq # JSON processor
