@@ -45,7 +45,7 @@
                            "Greek Extended"
                            "Ancient Greek Musical Notation"
                            "Ancient Greek Numbers"))
-    (push "Iosevka Nerd Font" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+    (push "Gentium" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
 
 (after! unicode-fonts
   (dolist (unicode-block '("Devanagari"
