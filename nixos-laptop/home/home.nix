@@ -486,8 +486,21 @@
   programs.doom-emacs = {
     enable = true;
     doomDir = ./doomdir;
-    # copied this next line over from the mac config. not sure if it's necessary.
-    # doomLocalDir = "~/.local/share/nix-doom";
+    extraPackages = (
+      epkgs: [
+        (epkgs.melpaBuild {
+          pname = "sdcv-pure";
+          version = "9999snapshot1";
+          packageRequires = [ epkgs.popup ];
+          src = builtins.fetchTree {
+            type = "github";
+            owner = "jsntn";
+            repo = "sdcv-pure.el";
+            rev = "22184f446457f3647932dfa74ca812e980493378";
+          };
+        })
+      ]
+    );
   };
 
   # doom emacs dependency for emms

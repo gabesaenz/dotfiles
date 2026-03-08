@@ -397,6 +397,26 @@ The result will be displayed in a buffer."
               (read-only-mode -1)) ;;my changes end
             ))))))
 
+(use-package sdcv-pure
+  :config
+
+  ;; set your dictionaries, see example below,
+  (defvar sdcv-simple-dict
+    `("~/Dictionaries/stardict/dic/Whittaker")
+    "Dictionary to search")
+  (defvar sdcv-multiple-dicts
+    `(("~/Dictionaries/stardict/dic/Whittaker")
+      ;; ("~/Dictionaries/stardict/dic/")
+      ;; ("~/Dictionaries/stardict/dic/")
+      ;; ("~/Dictionaries/stardict/dic/")
+      ("~/Dictionaries/stardict/dic/pape_gr-de-2.4.2"))
+    "List of dictionaries to search.")
+
+  ;; keybinding example,
+  (global-set-key (kbd "C-c d") 'sdcv-simple-definition)
+  (global-set-key (kbd "C-c D") 'sdcv-complete-definition)
+  )
+
 (map! :leader
       (:prefix ("l" . "misc")
        :desc "RSS Feeds" "r" #'elfeed
