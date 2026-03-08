@@ -506,14 +506,14 @@
   programs.zsh.autosuggestion.enable = true;
   programs.nushell = {
     enable = true;
-    shellAliases = {
-      cat = "bat";
-      top = "btop";
-    };
     extraConfig = ''
       # remove startup message
       $env.config.show_banner = false
     '';
+  };
+  home.shellAliases = {
+    cat = "bat";
+    top = "btop";
   };
 
   # Shell Tools
