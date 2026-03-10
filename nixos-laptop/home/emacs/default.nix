@@ -87,7 +87,7 @@
   # the emacs service will use doom-emacs
   programs.doom-emacs = {
     enable = true;
-    doomDir = ./doomdir;
+    doomDir = "${config.xdg.configHome}/doom-emacs";
     extraPackages = (
       epkgs: [
         (epkgs.melpaBuild {
@@ -104,6 +104,12 @@
       ]
     );
   };
+  ### Doom Emacs config files
+  ### These are applied first and can be added to with "text" attributes elsewhere.
+  xdg.configFile."doom-emacs" = pkgs.lib.mkFirst ({
+    source = ./doom;
+    recursive = true;
+  });
   # doom emacs dependency for emms
   services.mpd.enable = true;
   services.mpd.musicDirectory = "${config.home.homeDirectory}/Music";
