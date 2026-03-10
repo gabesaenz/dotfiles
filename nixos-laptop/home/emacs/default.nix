@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 {
+  imports = [
+    ./w3m
+  ];
   home.packages = with pkgs; [
     # doom emacs dependencies
     # required
