@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./w3m
+    ./w3m.nix
   ];
   home.packages = with pkgs; [
     # doom emacs dependencies
@@ -109,10 +109,10 @@
   };
   ### Doom Emacs config files
   ### These are applied first and can be added to with "text" attributes elsewhere.
-  xdg.configFile."doom-emacs" = pkgs.lib.mkFirst ({
+  xdg.configFile."doom-emacs" = pkgs.lib.mkBefore {
     source = ./doom;
     recursive = true;
-  });
+  };
   # doom emacs dependency for emms
   services.mpd.enable = true;
   services.mpd.musicDirectory = "${config.home.homeDirectory}/Music";
