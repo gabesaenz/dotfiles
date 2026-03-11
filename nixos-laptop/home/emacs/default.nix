@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ./w3m.nix
@@ -107,13 +112,24 @@
       ]
     );
   };
-  ### Doom Emacs config files
-  ### These are applied first and can be added to with "text" attributes elsewhere.
-  xdg.configFile."doom-emacs" = pkgs.lib.mkBefore {
-    source = ./doom;
-    recursive = true;
-  };
   # doom emacs dependency for emms
   services.mpd.enable = true;
   services.mpd.musicDirectory = "${config.home.homeDirectory}/Music";
+  ### Doom Emacs config files
+  xdg.configFile = lib.mkBefore {
+    "doom-emacs/init.el".source = ./doom/init.el;
+    "doom-emacs/custom.el".source = ./doom/custom.el;
+    "doom-emacs/config.org".source = ./doom/config.org;
+    "doom-emacs/packages.el".text = builtins.readFile ./doom/packages.el;
+    "doom-emacs/config.el".text = builtins.readFile ./doom/config.el;
+    "doom-emacs/themes" = {
+      source = ./doom/themes;
+      recursive = true;
+    };
+    # nothing currently in this folder so this won't work
+    # "doom-emacs/lisp" = {
+    #   source = ./doom/lisp;
+    #   recursive = true;
+    # };
+  };
 }
