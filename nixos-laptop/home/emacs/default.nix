@@ -90,7 +90,7 @@
   # the emacs service will use doom-emacs
   programs.doom-emacs = {
     enable = true;
-    doomDir = "${config.xdg.configHome}/doom-emacs";
+    doomDir = ./doom;
     extraPackages = (
       epkgs: [
         (epkgs.melpaBuild {
