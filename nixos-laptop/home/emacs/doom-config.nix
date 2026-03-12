@@ -26,11 +26,11 @@
     };
   };
   config.doom-config = {
-    init = builtins.readFile ./doom/init.el;
-    custom = builtins.readFile ./doom/custom.el;
-    packages = builtins.readFile ./doom/packages.el;
-    config = builtins.readFile ./doom/config.el;
-    config-org = builtins.readFile ./doom/config.org;
-    theme = builtins.readFile ./doom/themes/doom-base16-theme.el;
+    init = lib.mkBefore (builtins.readFile ./doom/init.el);
+    custom = lib.mkBefore (builtins.readFile ./doom/custom.el);
+    packages = lib.mkBefore (builtins.readFile ./doom/packages.el);
+    config = lib.mkBefore (builtins.readFile ./doom/config.el);
+    config-org = lib.mkBefore (builtins.readFile ./doom/config.org);
+    theme = lib.mkBefore (builtins.readFile ./doom/themes/doom-base16-theme.el);
   };
 }
