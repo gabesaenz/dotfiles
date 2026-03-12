@@ -5,25 +5,13 @@
   ...
 }:
 let
-  doom-init-el = pkgs.writeTextDir "init.el" (builtins.readFile ./doom/init.el);
-  doom-custom-el = pkgs.writeTextDir "custom.el" (builtins.readFile ./doom/custom.el);
-  doom-packages-el = pkgs.writeTextDir "packages.el" (builtins.readFile ./doom/packages.el);
-  doom-config-el = pkgs.writeTextDir "config.el" (builtins.readFile ./doom/config.el);
-  doom-config-org = pkgs.writeTextDir "config.org" (builtins.readFile ./doom/config.org);
-  doom-theme-el = pkgs.writeTextDir "themes/doom-base16-theme.el" (
-    builtins.readFile ./doom/themes/doom-base16-theme.el
-  );
-  doom-config = pkgs.symlinkJoin {
-    name = "doom-config";
-    paths = [
-      doom-init-el
-      doom-custom-el
-      doom-packages-el
-      doom-config-el
-      doom-config-org
-      doom-theme-el
-    ];
-  };
+  ### Doom Emacs config files
+  doom-init-el = builtins.readFile ./doom/init.el;
+  doom-custom-el = builtins.readFile ./doom/custom.el;
+  doom-packages-el = builtins.readFile ./doom/packages.el;
+  doom-config-el = builtins.readFile ./doom/config.el;
+  doom-config-org = builtins.readFile ./doom/config.org;
+  doom-theme-el = builtins.readFile ./doom/themes/doom-base16-theme.el;
 in
 {
   imports = [
@@ -116,7 +104,17 @@ in
   # the emacs service will use doom-emacs
   programs.doom-emacs = {
     enable = true;
-    doomDir = doom-config;
+    doomDir = pkgs.symlinkJoin {
+      name = "doom-config";
+      paths = [
+        (pkgs.writeTextDir "init.el" doom-init-el)
+        (pkgs.writeTextDir "custom.el" doom-custom-el)
+        (pkgs.writeTextDir "packages.el" doom-packages-el)
+        (pkgs.writeTextDir "config.el" doom-config-el)
+        (pkgs.writeTextDir "config.org" doom-config-org)
+        (pkgs.writeTextDir "themes/doom-base16-theme.el" doom-theme-el)
+      ];
+    };
     extraPackages = (
       epkgs: [
         (epkgs.melpaBuild {
@@ -136,21 +134,4 @@ in
   # doom emacs dependency for emms
   services.mpd.enable = true;
   services.mpd.musicDirectory = "${config.home.homeDirectory}/Music";
-  ### Doom Emacs config files
-  xdg.configFile = lib.mkBefore {
-    "doom-emacs/init.el".source = ./doom/init.el;
-    "doom-emacs/custom.el".source = ./doom/custom.el;
-    "doom-emacs/config.org".source = ./doom/config.org;
-    "doom-emacs/packages.el".text = builtins.readFile ./doom/packages.el;
-    "doom-emacs/config.el".text = builtins.readFile ./doom/config.el;
-    "doom-emacs/themes" = {
-      source = ./doom/themes;
-      recursive = true;
-    };
-    # nothing currently in this folder so this won't work
-    # "doom-emacs/lisp" = {
-    #   source = ./doom/lisp;
-    #   recursive = true;
-    # };
-  };
 }
