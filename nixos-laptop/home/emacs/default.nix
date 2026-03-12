@@ -4,6 +4,27 @@
   lib,
   ...
 }:
+let
+  doom-init-el = pkgs.writeTextDir "init.el" (builtins.readFile ./doom/init.el);
+  doom-custom-el = pkgs.writeTextDir "custom.el" (builtins.readFile ./doom/custom.el);
+  doom-packages-el = pkgs.writeTextDir "packages.el" (builtins.readFile ./doom/packages.el);
+  doom-config-el = pkgs.writeTextDir "config.el" (builtins.readFile ./doom/config.el);
+  doom-config-org = pkgs.writeTextDir "config.org" (builtins.readFile ./doom/config.org);
+  doom-theme-el = pkgs.writeTextDir "themes/doom-base16-theme.el" (
+    builtins.readFile ./doom/themes/doom-base16-theme.el
+  );
+  doom-config = pkgs.symlinkJoin {
+    name = "doom-config";
+    paths = [
+      doom-init-el
+      doom-custom-el
+      doom-packages-el
+      doom-config-el
+      doom-config-org
+      doom-theme-el
+    ];
+  };
+in
 {
   imports = [
     ./w3m.nix
@@ -95,7 +116,7 @@
   # the emacs service will use doom-emacs
   programs.doom-emacs = {
     enable = true;
-    doomDir = ./doom;
+    doomDir = doom-config;
     extraPackages = (
       epkgs: [
         (epkgs.melpaBuild {
