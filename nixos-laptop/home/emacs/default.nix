@@ -4,17 +4,9 @@
   lib,
   ...
 }:
-let
-  ### Doom Emacs config files
-  doom-init-el = builtins.readFile ./doom/init.el;
-  doom-custom-el = builtins.readFile ./doom/custom.el;
-  doom-packages-el = builtins.readFile ./doom/packages.el;
-  doom-config-el = builtins.readFile ./doom/config.el;
-  doom-config-org = builtins.readFile ./doom/config.org;
-  doom-theme-el = builtins.readFile ./doom/themes/doom-base16-theme.el;
-in
 {
   imports = [
+    ./doom-config.nix
     ./w3m.nix
   ];
   home.packages = with pkgs; [
@@ -107,12 +99,12 @@ in
     doomDir = pkgs.symlinkJoin {
       name = "doom-config";
       paths = [
-        (pkgs.writeTextDir "init.el" doom-init-el)
-        (pkgs.writeTextDir "custom.el" doom-custom-el)
-        (pkgs.writeTextDir "packages.el" doom-packages-el)
-        (pkgs.writeTextDir "config.el" doom-config-el)
-        (pkgs.writeTextDir "config.org" doom-config-org)
-        (pkgs.writeTextDir "themes/doom-base16-theme.el" doom-theme-el)
+        (pkgs.writeTextDir "init.el" config.doom-config.init)
+        (pkgs.writeTextDir "custom.el" config.doom-config.custom)
+        (pkgs.writeTextDir "packages.el" config.doom-config.packages)
+        (pkgs.writeTextDir "config.el" config.doom-config.config)
+        (pkgs.writeTextDir "config.org" config.doom-config.config-org)
+        (pkgs.writeTextDir "themes/doom-base16-theme.el" config.doom-config.theme)
       ];
     };
     extraPackages = (
