@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./sway-dependencies.nix
   ];
 
   # Enable flakes
@@ -120,18 +121,19 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # required for sway wm
-  security.polkit.enable = true;
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+  # Enable the regreet login manager
+  # supports sway
+  programs.regreet.enable = true;
 
   # Enable the GNOME Desktop Environment.
   # services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
   # Enable the COSMIC login manager
-  services.displayManager.cosmic-greeter.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
 
   # Enable the COSMIC desktop environment
   services.desktopManager.cosmic.enable = true;
