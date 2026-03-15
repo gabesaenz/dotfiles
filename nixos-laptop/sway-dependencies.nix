@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  # Sway WM and some system level dependencies
+  # https://wiki.nixos.org/wiki/Sway
   environment.systemPackages = with pkgs; [
     wl-clipboard # Copy/Paste functionality.
     mako # Notification utility.
