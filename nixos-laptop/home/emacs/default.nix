@@ -7,6 +7,7 @@
 {
   imports = [
     ./doom-config.nix
+    ./org.nix
     ./w3m.nix
   ];
   home.packages = with pkgs; [
