@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   home.packages = with pkgs; [
     # https://discourse.nixos.org/t/write-scripts-in-home-manager/60320
@@ -23,6 +28,23 @@
       '';
     })
   ];
+  wayland.windowManager.sway = {
+    config = rec {
+      # use lib.mkOptionDefault to merge with default keybindings
+      # otherwise all the defaults are removed
+      keybindings =
+        let
+          modifier = config.wayland.windowManager.sway.config.modifier;
+        in
+        lib.mkOptionDefault {
+          "${modifier}+shift+o" = "exec ocr";
+          "${modifier}+shift+n" = "exec ocr eng";
+          "${modifier}+shift+d" = "exec ocr deu";
+          "${modifier}+shift+f" = "exec ocr lat";
+          "${modifier}+shift+g" = "exec ocr grc";
+        };
+    };
+  };
   # These hotkeys only seem to work while Emacs is focused.
   # Maybe that has to do with X11 versus Wayland.
   services.sxhkd = {
