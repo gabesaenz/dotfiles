@@ -126,7 +126,12 @@
 
   # Enable the regreet login manager
   # supports sway
-  programs.regreet.enable = true;
+  programs.regreet = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+    };
+  };
 
   # Enable the GNOME Desktop Environment.
   # services.displayManager.gdm.enable = true;
