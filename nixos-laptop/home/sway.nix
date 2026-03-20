@@ -155,7 +155,7 @@
         modules-right = [
           # "mpd"
           # "custom/mymodule#with-css-id"
-          "temperature"
+          # "temperature"
         ];
 
         "sway/workspaces" = {
