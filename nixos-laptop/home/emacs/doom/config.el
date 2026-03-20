@@ -82,10 +82,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-nord)
-;; (setq doom-theme 'doom-gruvbox)
 (setq doom-theme 'doom-base16)
-;; (setq doom-theme 'doom-gruvbox-material) ;; this is causing an error with the emacs server
 
 ;; auto reload the base16 theme when it changes
 (setq base16-reload nil)
