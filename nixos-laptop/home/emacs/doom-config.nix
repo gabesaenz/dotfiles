@@ -21,9 +21,6 @@
     config-org = lib.mkOption {
       type = lib.types.lines;
     };
-    theme = lib.mkOption {
-      type = lib.types.lines;
-    };
   };
   config.doom-config = {
     init = lib.mkBefore (builtins.readFile ./doom/init.el);
@@ -31,6 +28,5 @@
     packages = lib.mkBefore (builtins.readFile ./doom/packages.el);
     config = lib.mkBefore (builtins.readFile ./doom/config.el);
     config-org = lib.mkBefore (builtins.readFile ./doom/config.org);
-    theme = lib.mkBefore (builtins.readFile ./doom/themes/doom-base16-theme.el);
   };
 }

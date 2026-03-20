@@ -105,7 +105,6 @@
         (pkgs.writeTextDir "packages.el" config.doom-config.packages)
         (pkgs.writeTextDir "config.el" config.doom-config.config)
         (pkgs.writeTextDir "config.org" config.doom-config.config-org)
-        (pkgs.writeTextDir "themes/doom-base16-theme.el" config.doom-config.theme)
       ];
     };
     extraPackages = (
