@@ -560,13 +560,15 @@
     # package = inputs.plover-flake.packages.${pkgs.stdenv.hostPlatform.system}.plover-full;
 
     # Example settings given in installation instructions
-    # settings = {
-    #   "Machine Configuration" = {
-    #     machine_type = "Gemini PR";
-    #     auto_start = true;
-    #   };
-    #   "Output Configuration".undo_levels = 100;
-    # };
+    settings = {
+      "Machine Configuration" = {
+        machine_type = "Gemini PR";
+        auto_start = true;
+      };
+      # "Output Configuration".undo_levels = 100;
+      # Configure the input device or it won't actually work
+      "Gemini PR".port = "/dev/serial/by-id/usb-ZSA_Technology_Labs_Moonlander_Mark_I_vqdxO_Eexnev-if02";
+    };
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
