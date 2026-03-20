@@ -568,6 +568,8 @@
       # "Output Configuration".undo_levels = 100;
       # Configure the input device or it won't actually work
       "Gemini PR".port = "/dev/serial/by-id/usb-ZSA_Technology_Labs_Moonlander_Mark_I_vqdxO_Eexnev-if02";
+      "System: English Stenotype".dictionaries =
+        ''[{"enabled": true, "path": "~/dotfiles/steno/typey-type-full.json"}, {"enabled": true, "path": "user.json"}, {"enabled": true, "path": "commands.json"}, {"enabled": false, "path": "main.json"}]'';
     };
   };
 
