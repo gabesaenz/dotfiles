@@ -55,6 +55,9 @@
     keymapp # configuration GUI
     # kontroll # configuration CLI
 
+    # Terminal
+    ueberzugpp # image preview in terminal
+
     # archive tools
     unrar
     p7zip
@@ -495,6 +498,9 @@
     enable = true;
   };
   programs.fd = {
+    enable = true;
+  };
+  programs.yazi = {
     enable = true;
   };
   programs.zoxide = {
