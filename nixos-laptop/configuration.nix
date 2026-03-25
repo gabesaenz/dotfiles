@@ -85,7 +85,16 @@
     # };
   };
 
-  # SMB Filesharing
+  ### SMB Filesharing
+  # https://nixos.wiki/wiki/Samba
+  # create file with credentials
+  # if there are actual credentials do this manually instead
+  # but access is only allowed from the local network so everything is blank here
+  environment.etc."nixos/smb-secrets".text = ''
+    username=
+    domain=
+    password=
+  '';
   fileSystems."/mnt/salsa" = {
     device = "//192.168.0.1/disk_a2";
     fsType = "cifs";
@@ -96,10 +105,7 @@
 
       in
       [
-        "
-            ${automount_opts}
-            # ,credentials=/etc/nixos/smb-secrets
-        "
+        "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=${toString config.users.users.gabe.uid},gid=${toString config.users.groups.users.gid}"
       ];
   };
 
@@ -202,7 +208,10 @@
   # services.xserver.enable = true; # already enabled elsewhere
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  # set user and group ID manually so they can be referenced in smb config
+  # see: https://nlewo.github.io/nixos-manual-sphinx/configuration/user-mgmt.xml.html
   users.users.gabe = {
+    uid = 1000;
     isNormalUser = true;
     description = "gabe";
     extraGroups = [
@@ -215,6 +224,7 @@
       #  thunderbird
     ];
   };
+  users.groups.users.gid = 100;
 
   # Shells
   # shells must be enabled for shell tool integrations to work
