@@ -61,6 +61,17 @@
       ];
       # disable swaybar
       bars = [ ];
+      # disable titlebars
+      window.titlebar = false;
+      floating.titlebar = false;
+      gaps = {
+        inner = 5;
+        # outer = 5;
+        # hide gaps when there's only one window
+        smartGaps = true;
+        # hide borders when there's only one window
+        smartBorders = "on";
+      };
       input = {
         "type:touchpad" = {
           # Enables or disables tap for specified input device.
