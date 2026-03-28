@@ -104,23 +104,58 @@
   xdg.portal.config.common.default = "*";
 
   # icons for use with xdg.desktopEntries
-  # home.file."human-japanese-icon" = {
-  #   source = icons/human-japanese.png;
-  #   target = "icons/human-japanese.png";
-  # };
+  home.file."human-japanese-icon" = {
+    source = icons/human-japanese.png;
+    target = "icons/human-japanese.png";
+  };
+  home.file."satori-reader-icon" = {
+    source = icons/satori-reader.png;
+    target = "icons/satori-reader.png";
+  };
+  home.file."typey-type-icon" = {
+    source = icons/typey-type.png;
+    target = "icons/typey-type.png";
+  };
+  home.file."entertrained-icon" = {
+    source = icons/entertrained.png;
+    target = "icons/entertrained.png";
+  };
 
   # desktop shortcuts
-  # xdg.desktopEntries = {
-  #   "human-japanese" = {
-  #     name = "Human Japanese";
-  #     genericName = "Human Japanese";
-  #     exec = "firefox --new-window https://www.humanjapanese.com/content/human-japanese-intermediate";
-  #     icon = "${config.home.homeDirectory}/icons/human-japanese.png";
-  #     type = "Application";
-  #     terminal = false;
-  #     categories = [ "Education" ];
-  #   };
-  # };
+  xdg.desktopEntries = {
+    "human-japanese" = {
+      name = "Human Japanese";
+      exec = "firefox -P DesktopApps --kiosk --new-window https://www.humanjapanese.com/content/human-japanese-intermediate";
+      icon = "${config.home.homeDirectory}/icons/human-japanese.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+    "satori-reader" = {
+      name = "Satori Reader";
+      exec = "firefox -P DesktopApps --kiosk --new-window https://www.satorireader.com/dashboard";
+      icon = "${config.home.homeDirectory}/icons/satori-reader.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+    "typey-type" = {
+      name = "Typey Type";
+      exec = "firefox -P DesktopApps --kiosk --new-window https://didoesdigital.com/typey-type/progress";
+      icon = "${config.home.homeDirectory}/icons/typey-type.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+    "entertrained" = {
+      name = "Entertrained";
+      exec = "firefox -P DesktopApps --kiosk --new-window https://entertrained.app";
+      icon = "${config.home.homeDirectory}/icons/entertrained.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+  };
 
   # input methods
   i18n.inputMethod = {
