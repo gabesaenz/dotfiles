@@ -10,7 +10,7 @@
     inputs.plover-flake.homeManagerModules.plover
     ./emacs
     ./ocr.nix
-    ./sway.nix
+    # ./sway.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -67,6 +67,7 @@
     jq # JSON processor
     tlrc # cli for tldr - simplified man pages
     sdcv # stardict cli
+    pywalfox-native # required for Firefox theming through DMS
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -453,15 +454,15 @@
 
   # night light / red shift
   # https://wiki.nixos.org/wiki/Wlsunset
-  services.wlsunset = {
-    enable = true;
-    temperature = {
-      day = 6500;
-      night = 3000;
-    };
-    sunrise = "06:00";
-    sunset = "18:00";
-  };
+  # services.wlsunset = {
+  #   enable = true;
+  #   temperature = {
+  #     day = 6500;
+  #     night = 3000;
+  #   };
+  #   sunrise = "06:00";
+  #   sunset = "18:00";
+  # };
 
   # Web browsers
   programs.firefox.enable = true;
@@ -546,7 +547,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      general.import = [ "~/dotfiles/.config/alacritty/base16.toml" ];
+      general.import = [ "${config.xdg.configHome}/alacritty/dank-theme.toml" ]; # DankMaterialShell Theme
       # background transparency
       window.opacity = 0.95;
       font.normal = {
@@ -613,6 +614,13 @@
         ''[{"enabled": true, "path": "~/dotfiles/steno/typey-type-full.json"}, {"enabled": true, "path": "user.json"}, {"enabled": true, "path": "commands.json"}, {"enabled": false, "path": "main.json"}]'';
     };
   };
+
+  ### Niri WM
+  xdg.configFile."niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
+
+  # required for Firefox theming through DMS
+  home.file.".cache/wal/colors.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.cache/wal/dank-pywalfox.json";
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

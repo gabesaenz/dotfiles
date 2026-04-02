@@ -97,6 +97,7 @@
   # the emacs service will use doom-emacs
   programs.doom-emacs = {
     enable = true;
+    emacs = pkgs.emacs-pgtk; # wayland support
     doomDir = pkgs.symlinkJoin {
       name = "doom-config";
       paths = [

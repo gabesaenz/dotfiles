@@ -25,7 +25,7 @@
 ;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
 (setq doom-font (font-spec :family "VictorMono Nerd Font" :size 18))
-(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 18))
+;; (setq doom-variable-pitch-font (font-spec :family "sansSerif" :size 18))
 ;; WARNING: if you specify a size for the emoji font it will hard-lock any usage of this font to that size. It's rarely a good idea to do so!
 (setq doom-emoji-font (font-spec :family "emoji"))
 ;; don't set doom-symbol-font / main fallback unicode font
@@ -75,27 +75,26 @@
 ;; (if (display-graphic-p)
 ;;     (doom-big-font-mode +1))
 
-;; theming fix for emacsclient
-(setq custom-theme-directory "~/dotfiles/nixos-laptop/home/emacs/doom/themes/")
+;; make sure this directory exists so DankMaterialShell can generate themes there
+(make-directory "~/.config/emacs" t)
+(setq custom-theme-directory "~/.config/emacs/themes/")
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-base16)
+(setq doom-theme 'dank-emacs)
 
-;; auto reload the base16 theme when it changes
-(setq base16-reload nil)
-(if (equal doom-theme 'doom-base16) (setq base16-reload t))
-(setq base16-theme-file (concat (file-name-as-directory custom-theme-directory) "doom-base16-theme.el"))
-(defun base16-theme-reload ()
-  (load-file base16-theme-file)
+;; auto reload the theme when it changes
+(setq dynamic-theme-file (concat (file-name-as-directory custom-theme-directory) (format "%s%s" doom-theme "-theme.el")))
+(defun dynamic-theme-reload ()
+  (load-file dynamic-theme-file)
   (doom/reload-theme))
-(defun base16-callback (event)
+(defun dynamic-theme-callback (event)
   (message "Event %S" event)
-  (if base16-reload (base16-theme-reload)))
+  (dynamic-theme-reload))
 (require 'filenotify)
-(file-notify-add-watch base16-theme-file '(change) 'base16-callback)
+(file-notify-add-watch dynamic-theme-file '(change) 'dynamic-theme-callback)
 
 ;; Dashboard
 ;; Remove the banner
