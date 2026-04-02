@@ -532,6 +532,9 @@
   };
   programs.starship = {
     enable = true;
+    settings = {
+      scan_timeout = 500;
+    };
   };
   programs.fd = {
     enable = true;
