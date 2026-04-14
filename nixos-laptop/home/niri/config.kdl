@@ -678,6 +678,12 @@ binds {
 
     // Web Browser
     Mod+B hotkey-overlay-title="Launch Firefox" { spawn "firefox"; }
+
+    // Pomodoro Timer
+    // start the timer and display a notification that the timer has started
+    Mod+T hotkey-overlay-title="Start Pomodoro Timer" { spawn-sh "tomat start && dms ipc call toast info \"🍅 Starting Pomodoro Timer\""; }
+    Mod+Alt+T hotkey-overlay-title="Stop Pomodoro Timer" { spawn-sh "tomat stop && dms ipc call toast info \"☕ Stopping Pomodoro Timer\""; }
+    Mod+Shift+T hotkey-overlay-title="Display Pomodoro Timer Status" { spawn-sh "dms ipc call toast info \"$(tomat status --output plain)\""; }
 }
 
 cursor {
