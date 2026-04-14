@@ -416,9 +416,6 @@
     settings = { };
   };
 
-  # hide mouse cursor when not in use
-  services.unclutter.enable = true;
-
   # cloud file storage
   services.dropbox = {
     enable = true;
@@ -427,42 +424,23 @@
   # tldr - simplified man pages
   services.tldr-update.enable = true;
 
-  # night light / red shift
-  # https://wiki.nixos.org/wiki/Gammastep
-  # services.gammastep = {
-  #   enable = true;
-  #   # Schedule and set time range for dusk/dawn
-  #   duskTime = "18:35-20:15";
-  #   dawnTime = "6:00-7:45";
-  #   # Temperature to use at night/day (between 1000 and 25000 Kelvin).
-  #   temperature = {
-  #     day = 5500;
-  #     night = 3700;
-  #   };
-  #   # Tray Icon
-  #   tray = true;
-  #   enableVerboseLogging = true;
-  #   settings = {
-  #     general = {
-  #       adjustment-method = "randr";
-  #     };
-  #     randr = {
-  #       screen = 0;
-  #     };
-  #   };
-  # };
-
-  # night light / red shift
-  # https://wiki.nixos.org/wiki/Wlsunset
-  # services.wlsunset = {
-  #   enable = true;
-  #   temperature = {
-  #     day = 6500;
-  #     night = 3000;
-  #   };
-  #   sunrise = "06:00";
-  #   sunset = "18:00";
-  # };
+  # pomodoro timer service
+  services.tomat = {
+    enable = true;
+    settings = {
+      notification = {
+        enabled = true;
+      };
+      sound = {
+        enabled = true;
+      };
+      timer = {
+        auto_advance = false;
+        break = 5;
+        work = 25;
+      };
+    };
+  };
 
   # Web browsers
   programs.firefox.enable = true;
