@@ -445,7 +445,10 @@ The result will be displayed in a buffer."
       (:prefix ("l" . "misc")
        :desc "RSS Feeds" "r" #'elfeed
        :desc "EMMS" "e" #'emms
-       :desc "StarDict Search" "d" #'quick-sdcv-search-at-point
+       :desc "StarDict Search at point" "d" #'quick-sdcv-search-at-point
+       :desc "StarDict Search" "D" #'quick-sdcv-search-input
+       :desc "Lookup word at point" "w" #'define-word-at-point
+       :desc "Lookup word" "W" #'define-word
        )
       )
 
