@@ -45,32 +45,6 @@
         };
     };
   };
-  # These hotkeys only seem to work while Emacs is focused.
-  # Maybe that has to do with X11 versus Wayland.
-  # services.sxhkd = {
-  #   enable = true;
-  #   keybindings = {
-  #     "super + shift + o" = "ocr";
-  #     "super + shift + e" = "ocr eng";
-  #     "super + shift + d" = "ocr deu";
-  #     "super + shift + f" = "ocr lat";
-  #     "super + shift + g" = "ocr grc";
-  #   };
-  # };
-  # # Ensure sxhkd runs as a systemd user service
-  # systemd.user.services.sxhkd = {
-  #   Unit = {
-  #     Description = "Simple X hotkey daemon";
-  #     After = [ "graphical-session.target" ];
-  #   };
-  #   Service = {
-  #     ExecStart = "${pkgs.sxhkd}/bin/sxhkd";
-  #     Restart = "on-failure";
-  #   };
-  #   Install = {
-  #     WantedBy = [ "graphical-session.target" ]; # Starts with GUI
-  #   };
-  # };
   # desktop shortcuts
   xdg.desktopEntries = {
     "ocr" = {

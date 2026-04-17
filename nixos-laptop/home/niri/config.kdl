@@ -684,6 +684,13 @@ binds {
     Mod+T hotkey-overlay-title="Start Pomodoro Timer" { spawn-sh "tomat start && dms ipc call toast info \"🍅 Starting Pomodoro Timer\""; }
     Mod+Alt+T hotkey-overlay-title="Stop Pomodoro Timer" { spawn-sh "tomat stop && dms ipc call toast info \"☕ Stopping Pomodoro Timer\""; }
     Mod+Shift+T hotkey-overlay-title="Display Pomodoro Timer Status" { spawn-sh "dms ipc call toast info \"$(tomat status --output plain)\""; }
+
+    // OCR
+    Mod+Alt+Shift+O hotkey-overlay-title="OCR from screenshot" { spawn "ocr"; }
+    Mod+Alt+Shift+E hotkey-overlay-title="OCR from screenshot (English)" { spawn "ocr" "eng"; }
+    Mod+Alt+Shift+D hotkey-overlay-title="OCR from screenshot (German)" { spawn "ocr" "deu"; }
+    Mod+Alt+Shift+L hotkey-overlay-title="OCR from screenshot (Latin)" { spawn "ocr" "lat"; }
+    Mod+Alt+Shift+G hotkey-overlay-title="OCR from screenshot (Ancient Greek)" { spawn "ocr" "grc"; }
 }
 
 cursor {
