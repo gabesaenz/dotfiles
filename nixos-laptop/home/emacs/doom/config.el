@@ -195,6 +195,38 @@
 (after! pyim
   (setopt default-input-method "german"))
 
+;; functions to switch between input methods
+;; as well as related settings like the current dictionary
+(defun input-method-english ()
+  "Switch to English input method"
+  (interactive)
+  (ispell-change-dictionary "en")
+  (set-input-method nil))
+(defun input-method-german ()
+  "Switch to German input method"
+  (interactive)
+  (ispell-change-dictionary "de")
+  (set-input-method "german"))
+(defun input-method-compose ()
+  "Switch to Compose input method"
+  (interactive)
+  (set-input-method "compose"))
+(defun input-method-ancient-greek ()
+  "Switch to Ancient Greek input method"
+  (interactive)
+  (ispell-change-dictionary "grc")
+  (set-input-method "greek-ibycus4"))
+
+;; add shortcut keys for commonly used input methods
+;; they should use key combinations that can be pressed in any context
+;; for example, don't use the leader key (space)
+;; as it can't be accessed when entering search terms
+(map! (:prefix ("C-M-S-s-i" . "Input Method")
+       :desc "English" "e" #'input-method-english
+       :desc "German" "d" #'input-method-german
+       :desc "Compose" "c" #'input-method-compose
+       :desc "Ancient Greek" "g" #'input-method-ancient-greek))
+
 ;; RMarkdown-mode
 ;; https://github.com/polymode/poly-R
 (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+R-mode))
