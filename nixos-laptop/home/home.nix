@@ -584,6 +584,9 @@
 
     # Example settings given in installation instructions
     settings = {
+      "Startup" = {
+        "start minimized" = true;
+      };
       "Machine Configuration" = {
         machine_type = "Gemini PR";
         auto_start = true;

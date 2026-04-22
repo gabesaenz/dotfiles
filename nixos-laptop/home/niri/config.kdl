@@ -735,6 +735,9 @@ window-rule {
     clip-to-geometry true
 }
 
+// automatically start Plover
+spawn-at-startup "plover" "--gui" "none"
+
 // Open DMS windows as floating by default
 window-rule {
     match app-id=r#"org.quickshell$"#
