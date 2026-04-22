@@ -24,8 +24,10 @@
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-(setq doom-font (font-spec :family "VictorMono Nerd Font" :size 18))
+;; (setq doom-font (font-spec :family "VictorMono Nerd Font" :size 18))
+(setq doom-font (font-spec :family "monospace" :size 18))
 ;; (setq doom-variable-pitch-font (font-spec :family "sansSerif" :size 18))
+(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 18))
 ;; WARNING: if you specify a size for the emoji font it will hard-lock any usage of this font to that size. It's rarely a good idea to do so!
 (setq doom-emoji-font (font-spec :family "emoji"))
 ;; don't set doom-symbol-font / main fallback unicode font

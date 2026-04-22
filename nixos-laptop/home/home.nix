@@ -197,8 +197,8 @@
         "NotoSans Nerd Font"
       ];
       monospace = [
-        "Iosevka Nerd Font"
         "VictorMono Nerd Font"
+        "Iosevka Nerd Font"
         "NotoSansM Nerd Font Mono"
         # "Iosevka NFM Greek"
       ];
