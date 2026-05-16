@@ -94,3 +94,5 @@
   :recipe (:host github :repo "nitardus/diogenes.el")
   :pin "6eafa76de3bbf0c9e8c87d4051b719cf6046b982")
 
+;; eat terminal emulator
+(package! eat)
