@@ -38,12 +38,16 @@
     # pkgs.hello
 
     # Rust
-    rustup
-    cargo-binstall # binary installer for rust tools
-    cargo-update
+    # rustup
+    # cargo-binstall # binary installer for rust tools
+    # cargo-update
     # helpful commands:
     # rustup update --no-self-update stable
     # cargo install-update -a # requires cargo-update
+    # the above wasn't working so here's a more direct route:
+    cargo
+    rustc
+    # gcc # not necessary to fix linking issues anymore
 
     # Slint
     slint-lsp # required for doom emacs slint-mode
