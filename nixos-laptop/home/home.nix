@@ -48,6 +48,11 @@
     cargo
     rustc
     # gcc # not necessary to fix linking issues anymore
+    # LSP support:
+    rust-analyzer
+    rustfmt
+    # cargo-check # I think this is built into the cargo pkg and also not in nixpkgs anyways
+    clippy
 
     # Slint
     slint-lsp # required for doom emacs slint-mode
