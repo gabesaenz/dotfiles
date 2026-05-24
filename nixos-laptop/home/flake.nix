@@ -10,9 +10,11 @@
     home-manager = {
       # 26.05
       # url = "github:nix-community/home-manager/release-26.05";
+      # 26.11
+      # url = "github:nix-community/home-manager/release-26.11";
       # unstable
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     # Optional, to download less. Neither the module nor the overlay uses this input.
