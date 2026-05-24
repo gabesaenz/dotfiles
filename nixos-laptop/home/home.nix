@@ -200,20 +200,24 @@
         "Annapurna SIL"
         "Noto Serif"
         "NotoSerif Nerd Font"
+        "Symbols Nerd Font"
       ];
       sansSerif = [
         "Noto Sans"
         "NotoSans Nerd Font"
+        "Symbols Nerd Font"
       ];
       monospace = [
         "VictorMono Nerd Font"
         "Iosevka Nerd Font"
         "NotoSansM Nerd Font Mono"
         # "Iosevka NFM Greek"
+        "Symbols Nerd Font Mono"
       ];
       emoji = [
         # "Iosevka Nerd Font"
         "Noto Color Emoji"
+        "Symbols Nerd Font Mono"
       ];
     };
     # configFile = {
