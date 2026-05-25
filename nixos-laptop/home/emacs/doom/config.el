@@ -500,3 +500,12 @@ The result will be displayed in a buffer."
 ;;              diogenes-utf8-to-beta
 ;;              diogenes-beta-to-utf8))
 
+;; IRC Chat
+(set-irc-server! "irc.libera.chat"
+                 `(:tls t
+                   :port 6697
+                   :nick "δέλτα"
+                   :sasl-username ,(delta-epsilon-lambda-tau-alpha   "irc/libera.chat")
+                   ;; :sasl-username ,(+pass-get-user   "irc/libera.chat")
+                   ;; :sasl-password ,(+pass-get-secret "irc/libera.chat")
+                   :channels ("#emacs" "#home-manager")))
