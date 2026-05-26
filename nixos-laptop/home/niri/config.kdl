@@ -675,6 +675,7 @@ binds {
 
     // Emacs
     Mod+E hotkey-overlay-title="Launch Emacs Client" { spawn "~/dotfiles/emacsclient.sh"; }
+    Mod+D hotkey-overlay-title="Launch Emacs-Everywhere Pop-up" { spawn "doom" "+everywhere"; }
 
     // Web Browser
     Mod+B hotkey-overlay-title="Launch Firefox" { spawn "firefox"; }
@@ -741,6 +742,12 @@ spawn-at-startup "plover" "--gui" "none"
 // Open DMS windows as floating by default
 window-rule {
     match app-id=r#"org.quickshell$"#
+    open-floating true
+}
+
+// Open emacs-everywhere windows as floating by default
+window-rule {
+    match title="^Emacs Everywhere"
     open-floating true
 }
 

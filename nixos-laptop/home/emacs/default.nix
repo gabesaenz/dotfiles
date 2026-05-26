@@ -44,6 +44,11 @@
     jsbeautifier
     # email mu4e
     mu
+    # emacs-everywhere
+    xclip
+    xdotool
+    xprop
+    xwininfo
     # other
     cmigemo
     gnugrep # gnu pcre warning

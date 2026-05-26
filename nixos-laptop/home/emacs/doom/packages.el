@@ -96,3 +96,6 @@
 
 ;; eat terminal emulator
 (package! eat)
+
+;; emacs-everywhere dependencies
+(package! ox-gfm)
