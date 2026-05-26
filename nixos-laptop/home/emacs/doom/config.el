@@ -481,6 +481,7 @@ The result will be displayed in a buffer."
       (:prefix ("l" . "misc")
        :desc "RSS Feeds" "r" #'elfeed
        :desc "EMMS" "e" #'emms
+       :desc "irc" "i" #'=irc
        :desc "StarDict Search at point" "d" #'quick-sdcv-search-at-point
        :desc "StarDict Search" "D" #'quick-sdcv-search-input
        :desc "Lookup word at point" "w" #'define-word-at-point
@@ -502,14 +503,16 @@ The result will be displayed in a buffer."
 ;;              diogenes-beta-to-utf8))
 
 ;; IRC Chat
-(set-irc-server! "irc.libera.chat"
-                 `(:tls t
-                   :port 6697
-                   :nick "δέλτα"
-                   :sasl-username ,(delta-epsilon-lambda-tau-alpha   "irc/libera.chat")
-                   ;; :sasl-username ,(+pass-get-user   "irc/libera.chat")
-                   ;; :sasl-password ,(+pass-get-secret "irc/libera.chat")
-                   :channels ("#emacs" "#home-manager")))
+(after! circe
+  (set-irc-server! "irc.libera.chat"
+    `(:tls t
+      :port 6697
+      :nick "δέλτα"
+      :sasl-username "delta_epsilon_lambda_tau_alpha"
+      ;; :sasl-username ,(+pass-get-user   "irc/libera.chat")
+      ;; :sasl-password ,(+pass-get-secret "irc/libera.chat")
+      :channels ("#emacs" "#home-manager"))))
+
 ;; Emacs Everywhere
 (setq emacs-everywhere-major-mode-function #'org-mode) ; use org mode formatting
   ;;; Emacs Everywhere (Niri/Wayland)
