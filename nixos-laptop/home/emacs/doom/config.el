@@ -510,3 +510,111 @@ The result will be displayed in a buffer."
                    ;; :sasl-username ,(+pass-get-user   "irc/libera.chat")
                    ;; :sasl-password ,(+pass-get-secret "irc/libera.chat")
                    :channels ("#emacs" "#home-manager")))
+;; Emacs Everywhere
+(setq emacs-everywhere-major-mode-function #'org-mode) ; use org mode formatting
+  ;;; Emacs Everywhere (Niri/Wayland)
+  ;;; see: https://github.com/tecosaur/emacs-everywhere/issues/50
+(after! emacs-everywhere
+  (require 'ox-gfm)
+
+  ;; Niri IPC
+  (defun my-emacs-everywhere/update-niri-socket ()
+    "Find and set NIRI_SOCKET (changes between sessions)."
+    (let* ((rundir (format "/run/user/%d/" (user-uid)))
+           (sockets (when (file-directory-p rundir)
+                      (directory-files rundir nil "^niri.*sock$" t)))
+           (socket-file (when (consp sockets) (concat rundir (car sockets)))))
+      (if socket-file
+          (setenv "NIRI_SOCKET" socket-file)
+        (message "[emacs-everywhere] Could not find an active niri socket"))))
+
+  (defun emacs-everywhere--app-info-linux-niri ()
+    "Return info on the focused window via niri IPC."
+    (require 'json)
+    (my-emacs-everywhere/update-niri-socket)
+    (let* ((json-raw (emacs-everywhere--call "niri" "msg" "-j" "focused-window"))
+           (is-err (string-prefix-p "Error" json-raw)))
+      (if is-err
+          (error "[emacs-everywhere] %s (NIRI_SOCKET=%s)" json-raw (getenv "NIRI_SOCKET"))
+        (let-alist (json-read-from-string json-raw)
+          (make-emacs-everywhere-app
+           :id (if (numberp .id) (number-to-string .id) .id)
+           :class .app_id :title .title :geometry nil)))))
+
+  (setq emacs-everywhere-system-configs
+        (append emacs-everywhere-system-configs
+                '(((wayland . niri)
+                   :copy-command ("sh" "-c" "wl-copy < %f")
+                   :focus-command ("niri" "msg" "action" "focus-window" "--id" "%w")
+                   :info-function emacs-everywhere--app-info-linux-niri))))
+
+  ;; ZZ: call finish directly (evil-save-and-close destroys frame before paste)
+  (map! :map emacs-everywhere-mode-map :n "ZZ" #'emacs-everywhere-finish)
+
+  ;; Paste: sleep for async focus transfer before wtype fires
+  (defadvice! my/emacs-everywhere-niri-paste-a (&rest _)
+    :after #'emacs-everywhere--configure-system
+    (when (equal (emacs-everywhere--system-compositor) '(wayland . niri))
+      (setq emacs-everywhere--paste-command
+            '("sh" "-c" "sleep 0.15 && wtype -M ctrl -k v -m ctrl"))))
+
+  ;; Empty buffer: Ctrl+A BackSpace (wl-copy can't copy empty)
+  (defadvice! my/emacs-everywhere-empty-buffer-a (oldfn &optional abort)
+    :around #'emacs-everywhere-finish
+    (if (and emacs-everywhere-mode (not abort)
+             (not (equal emacs-everywhere--contents (buffer-string)))
+             (string-empty-p (buffer-string)))
+        (let ((emacs-everywhere--paste-command
+               '("sh" "-c" "sleep 0.15 && wtype -M ctrl -k a -m ctrl && wtype -k BackSpace")))
+          (funcall oldfn abort))
+      (funcall oldfn abort)))
+
+  ;; Selection: Ctrl+A Ctrl+C before frame opens, save/restore clipboard
+  (defvar my/emacs-everywhere--grabbed-text nil)
+
+  (defadvice! my/emacs-everywhere-grab-input-a (oldfn &rest args)
+    :around #'emacs-everywhere
+    (setq my/emacs-everywhere--grabbed-text nil)
+    (when (equal (emacs-everywhere--system-compositor) '(wayland . niri))
+      (let ((saved (with-temp-buffer
+                     (when (zerop (call-process "wl-paste" nil '(t nil) nil "--no-newline"))
+                       (buffer-string)))))
+        (call-process "wl-copy" nil nil nil "--clear")
+        (call-process "wtype" nil nil nil "-M" "ctrl" "-k" "a" "-m" "ctrl")
+        (sleep-for 0.05)
+        (call-process "wtype" nil nil nil "-M" "ctrl" "-k" "c" "-m" "ctrl")
+        (sleep-for 0.1)
+        (setq my/emacs-everywhere--grabbed-text
+              (with-temp-buffer
+                (when (zerop (call-process "wl-paste" nil '(t nil) nil "--no-newline"))
+                  (buffer-string))))
+        (if (and saved (not (string-empty-p saved)))
+            (with-temp-buffer
+              (insert saved)
+              (call-process-region (point-min) (point-max) "wl-copy" nil nil nil))
+          (call-process "wl-copy" nil nil nil "--clear"))))
+    (apply oldfn args))
+
+  (defun my/emacs-everywhere-insert-selection ()
+    "Insert grabbed text on Wayland, or PRIMARY on X11."
+    (pcase (car (emacs-everywhere--system-compositor))
+      ('wayland
+       (when (and my/emacs-everywhere--grabbed-text
+                  (not (string-empty-p my/emacs-everywhere--grabbed-text)))
+         (insert my/emacs-everywhere--grabbed-text)))
+      (_ (when-let ((selection (gui-get-selection 'PRIMARY 'UTF8_STRING)))
+           (gui-backend-set-selection 'PRIMARY "")
+           (insert selection))))
+    (when (and (eq major-mode 'org-mode)
+               (emacs-everywhere-markdown-p)
+               (executable-find "pandoc"))
+      (apply #'call-process-region
+             (point-min) (point-max) "pandoc" t t t
+             emacs-everywhere-pandoc-md-args)
+      (deactivate-mark) (goto-char (point-max)))
+    (cond ((bound-and-true-p evil-local-mode) (evil-insert-state))))
+
+  (setq emacs-everywhere-init-hooks
+        (mapcar (lambda (h) (if (eq h 'emacs-everywhere-insert-selection)
+                                #'my/emacs-everywhere-insert-selection h))
+                emacs-everywhere-init-hooks)))
