@@ -26,11 +26,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779733940,
-        "narHash": "sha256-3DhS32jHm6znzblqBWNJJ28wmFXcx9+2EYgtC75+kZ0=",
+        "lastModified": 1779993298,
+        "narHash": "sha256-eV2NaJnpxKDw71o0SPDdC0ZXtiQawwsqWo3SAfCR+NY=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "c7704e4387f66c07a9ce2c76f5081848c61a3f1c",
+        "rev": "2d896b772f50ab8dc711b5761a23404d43129bb8",
         "type": "github"
       },
       "original": {
@@ -65,11 +65,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1779969153,
-        "narHash": "sha256-ej8qgq6B2ul2iDT0RfOqvtEUZ3m6K6ILOHSVX0gILtQ=",
+        "lastModified": 1780054923,
+        "narHash": "sha256-51cOTdsO2tFuzUXV6iuVcmxbCtPvn9MGVs/x7G7grIc=",
         "owner": "marienz",
         "repo": "nix-doom-emacs-unstraightened",
-        "rev": "24af52ad865f15cc444d5345fbe42b2452427f3b",
+        "rev": "02dff38a03309ad73488702fbe96db6867c38449",
         "type": "github"
       },
       "original": {
@@ -96,15 +96,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1779989685,
-        "narHash": "sha256-fgy4B3G7qcqEjie4HAQ8330ETzH9rFqM7xMszt5QWJY=",
-        "owner": "nixos",
+        "lastModified": 1779560665,
+        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7eeefdad901bd146ded3b07d1d521f331300c18c",
+        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -168,11 +169,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1779966493,
-        "narHash": "sha256-vP8BetwXacZZMK1fVN//nD90sxcX2ivet7DEZwalpBo=",
+        "lastModified": 1780077750,
+        "narHash": "sha256-8+nOlYydV/5d57zjuGN+gI8hJtam08sKdCQVU1nUk20=",
         "owner": "openstenoproject",
         "repo": "plover-flake",
-        "rev": "c64cceb910fac3837050540534a66936a409761f",
+        "rev": "4bf38ab14522a9ec2cce1614c71998ce2c274f1b",
         "type": "github"
       },
       "original": {
