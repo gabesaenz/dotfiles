@@ -6,7 +6,7 @@
     # 26.05
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     # unstable
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       # 26.05
       # url = "github:nix-community/home-manager/release-26.05";
