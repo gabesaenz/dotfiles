@@ -221,7 +221,6 @@
 (defun input-method-sanskrit ()
   "Switch to Ancient Greek input method"
   (interactive)
-  (ispell-change-dictionary "sa")
   (set-input-method "devanagari-itrans"))
 
 ;; add shortcut keys for commonly used input methods
