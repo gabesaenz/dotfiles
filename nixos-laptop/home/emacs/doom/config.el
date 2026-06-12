@@ -103,10 +103,12 @@
 ;; Dashboard
 ;; Remove the banner
 (remove-hook '+dashboard-functions #'dashboard-widget-banner)
-;; Remove load time message
-(remove-hook '+dashboard-functions #'dashboard-widget-loaded)
+;; Remove shortcut menu
+;; (remove-hook '+dashboard-functions #'+dashboard-widget-shortmenu)
 ;; Remove footer
 (remove-hook '+dashboard-functions #'dashboard-widget-footer)
+;; Remove load time message
+(remove-hook '+dashboard-functions #'dashboard-widget-loaded)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
