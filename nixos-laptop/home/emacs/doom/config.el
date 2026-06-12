@@ -218,6 +218,11 @@
   (interactive)
   (ispell-change-dictionary "grc")
   (set-input-method "greek-ibycus4"))
+(defun input-method-sanskrit ()
+  "Switch to Ancient Greek input method"
+  (interactive)
+  (ispell-change-dictionary "sa")
+  (set-input-method "devanagari-itrans"))
 
 ;; add shortcut keys for commonly used input methods
 ;; they should use key combinations that can be pressed in any context
@@ -227,7 +232,8 @@
        :desc "English" "e" #'input-method-english
        :desc "German" "d" #'input-method-german
        :desc "Compose" "c" #'input-method-compose
-       :desc "Ancient Greek" "g" #'input-method-ancient-greek))
+       :desc "Ancient Greek" "g" #'input-method-ancient-greek
+       :desc "Sanskrit" "s" #'input-method-sanskrit))
 
 ;; RMarkdown-mode
 ;; https://github.com/polymode/poly-R
