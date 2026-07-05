@@ -223,6 +223,9 @@
     enable = true;
     nix-direnv.enable = true;
   };
+  programs.devenv = {
+    enable = true;
+  };
   programs.lazygit = {
     enable = true;
   };
