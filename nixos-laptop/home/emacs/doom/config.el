@@ -255,7 +255,7 @@
                          indentation
                          tabs
                          tab-mark
-                         spaces
+                         ;; spaces
                          space-mark
                          newline
                          newline-mark
