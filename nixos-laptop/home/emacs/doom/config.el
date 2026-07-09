@@ -628,3 +628,9 @@ The result will be displayed in a buffer."
         (mapcar (lambda (h) (if (eq h 'emacs-everywhere-insert-selection)
                                 #'my/emacs-everywhere-insert-selection h))
                 emacs-everywhere-init-hooks)))
+
+;; Slint
+;; enable lsp mode in slint mode
+(after! slint-mode
+  (add-hook 'slint-mode-hook 'lsp)
+  )
