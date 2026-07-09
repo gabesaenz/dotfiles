@@ -157,9 +157,31 @@
     enable = true;
     compositor = {
       name = "niri"; # Required. Can be also "hyprland" or "sway"
-      # customConfig = ''
-      #   # Optional custom compositor configuration
-      # '';
+      # Optional custom compositor configuration
+      customConfig = ''
+        input {
+          keyboard {
+            // Enable numlock on startup, omitting this setting disables it.
+            numlock
+          }
+
+          touchpad {
+            tap
+            natural-scroll
+          }
+        }
+
+        cursor {
+          hide-when-typing
+          // Hide the cursor after one second of inactivity.
+          hide-after-inactive-ms 1000
+        }
+
+        hotkey-overlay {
+          // Disable the "Important Hotkeys" pop-up at startup.
+          skip-at-startup
+        }
+      '';
     };
 
     # Sync your user's DankMaterialShell theme with the greeter. You'll probably want this
@@ -178,6 +200,17 @@
 
     # Custom Quickshell Package
     # quickshell.package = pkgs.quickshell;
+  };
+
+  services.displayManager = {
+    # autoLogin = {
+    #   enable = true;
+    #   user = "yourusername";
+    # };
+
+    # Required for auto-login: identifies which session to launch.
+    # Use the .desktop basename without the extension (e.g. "niri", "hyprland").
+    defaultSession = "niri";
   };
 
   # Configure keymap in X11
