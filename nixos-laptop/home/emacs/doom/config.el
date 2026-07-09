@@ -634,3 +634,7 @@ The result will be displayed in a buffer."
 (after! slint-mode
   (add-hook 'slint-mode-hook 'lsp)
   )
+
+;; Custom bookmark file location
+(after! bookmark
+  (setopt bookmark-default-file "~/org/bookmarks"))
