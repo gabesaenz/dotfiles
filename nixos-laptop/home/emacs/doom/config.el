@@ -638,3 +638,9 @@ The result will be displayed in a buffer."
 ;; Custom bookmark file location
 (after! bookmark
   (setopt bookmark-default-file "~/org/bookmarks"))
+
+;; Reload previous session on startup
+;; https://www.answeroverflow.com/m/1358041398250704896
+(after! persp-mode
+  ;; Auto restores the session 1 second after startup. 0 disables it (the default).
+  (setq persp-auto-resume-time 1))
