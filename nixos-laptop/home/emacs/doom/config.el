@@ -632,8 +632,7 @@ The result will be displayed in a buffer."
 ;; Slint
 ;; enable lsp mode in slint mode
 (after! slint-mode
-  (add-hook 'slint-mode-hook 'lsp)
-  )
+  (add-hook 'slint-mode-hook 'lsp))
 
 ;; Custom bookmark file location
 (after! bookmark
