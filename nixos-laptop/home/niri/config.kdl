@@ -587,6 +587,8 @@ binds {
     // Move the focused window between the floating and the tiling layout.
     Mod+Ctrl+V       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Alt+C hotkey-overlay-title="Float and center window." { spawn-sh "niri msg action move-window-to-floating && niri msg action set-window-width 480 && niri msg action set-window-height 300 && niri msg action center-window"; }
+    Mod+Alt+R hotkey-overlay-title="Cycle preset window sizes and center." { spawn-sh "niri msg action switch-preset-window-width && niri msg action switch-preset-window-height && niri msg action center-window"; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
