@@ -659,8 +659,9 @@
   #
   home.sessionVariables = {
     # required for fcitx in QT and GTK apps
-    QT_IM_MODULE = "fcitx";
-    GTK_IM_MODULE = "fcitx";
+    # unset these
+    QT_IM_MODULE = "";
+    GTK_IM_MODULE = "";
 
     # stardict CLI dictionaries folder
     STARDICT_DATA_DIR = "${config.home.homeDirectory}/Dictionaries/stardict";
