@@ -24,10 +24,10 @@
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-(setq doom-font (font-spec :family "VictorMono Nerd Font" :size 20))
+(setopt doom-font (font-spec :family "VictorMono Nerd Font" :size 20))
 ;; (setq doom-font (font-spec :family "monospace" :size 20))
 ;; (setq doom-variable-pitch-font (font-spec :family "sansSerif" :size 20))
-(setq doom-variable-pitch-font (font-spec :family "Gentium" :size 20))
+(setopt doom-variable-pitch-font (font-spec :family "Gentium" :size 20))
 ;; (setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 20))
 ;; WARNING: if you specify a size for the emoji font it will hard-lock any usage of this font to that size. It's rarely a good idea to do so!
 ;; (setq doom-emoji-font (font-spec :family "emoji"))
@@ -49,13 +49,18 @@
                            "Greek Extended"
                            "Ancient Greek Musical Notation"
                            "Ancient Greek Numbers"))
-    (push "Gentium" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+    (push "Galatia SIL" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
 
 (after! unicode-fonts
   (dolist (unicode-block '("Devanagari"
                            "Devanagari Extended"
                            "Vedic Extensions"))
     (push "DejaVu Sans Mono" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
+;; Not all fonts are loading on their own recently.
+;; But this isn't actually fixing that.
+(after! org
+  (doom/reload-font))
 
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to

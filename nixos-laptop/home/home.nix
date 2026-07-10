@@ -85,7 +85,6 @@
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     #----=[ Fonts ]=----#
-    gentium # gentium plus for greek
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
@@ -94,6 +93,15 @@
     nerd-fonts.noto
     nerd-fonts.victor-mono
     nerd-fonts.symbols-only
+    # Greek
+    gentium # gentium plus for greek
+    gentium-plus
+    gentium-book
+    galatia-sil # I like it but can the circumflex be changed with a font option to the ~ style?
+    inconsolata-lgc
+    lato
+    alegreya
+    alegreya-sans
     # Devanāgarī
     annapurna-sil
 
@@ -220,6 +228,32 @@
         "Symbols Nerd Font Mono"
       ];
     };
+    # configFile = {
+    #   Galatia-SIL = {
+    #     enable = true;
+    #     label = "Galatia-SIL";
+    #     priority = 90;
+    #     text = ''
+    #       <?xml version="1.0"?>
+    #       <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:font.dtd">
+    #       <fontconfig>
+    #         <description>Enable swung dash style circumflex of Galatia SIL, for all applications.</description>
+    #         <match target="font">
+    #         <test name="family" compare="eq" ignore-blanks="true">
+    #           <string>Galatia SIL</string>
+    #         </test>
+    #         <edit name="fontfeatures" mode="append">
+    #           <string>dlig on</string>
+    #           <string>tnum on</string>
+    #           <string>ccmp on</string>
+    #           <string>ss01 on</string>
+    #           <string>ss02 on</string>
+    #         </edit>
+    #         </match>
+    #       </fontconfig>
+    #     '';
+    #   };
+    # };
     # configFile = {
     #   greek = {
     #     enable = true;
