@@ -649,4 +649,10 @@ The result will be displayed in a buffer."
 ;; https://www.answeroverflow.com/m/1358041398250704896
 (after! persp-mode
   ;; Auto restores the session 1 second after startup. 0 disables it (the default).
-  (setq persp-auto-resume-time 1))
+  ;; (setopt persp-auto-resume-time 1)
+  (setopt persp-emacsclient-init-frame-behaviour-override
+          `(+workspace-current-name))
+  ;; don't open a new workspace
+  ;; (setopt persp-emacsclient-init-frame-behaviour-override "main")
+  ;; restore previous session when server starts
+  (persp-mode +1))
