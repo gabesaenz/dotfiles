@@ -250,20 +250,27 @@
 
 ;; whitespace
 ;; set white space options
-(setq whitespace-style '(
-                         face
-                         indentation
-                         tabs
-                         tab-mark
-                         ;; spaces
-                         space-mark
-                         newline
-                         newline-mark
-                         trailing
-                         ;; lines-tail
-                         ))
-(setq whitespace-global-modes '(not nov-mode))
-;; reload white space options
+(setopt whitespace-style '(
+                           face
+                           indentation
+                           tabs
+                           tab-mark
+                           spaces
+                           space-mark
+                           missing-newline-at-eof
+                           trailing
+                           ))
+;; Don't visualize whitespace when reading epub files.
+(setopt whitespace-global-modes '(not nov-mode))
+;; Set "spaces" styling to match the beginning of comments.
+;; This affects how the "space-mark" is displayed when "spaces" is enabled above.
+(custom-set-faces!
+  '(whitespace-space
+    :inherit font-lock-comment-delimiter-face
+    :foreground unspecified
+    :distant-foreground unspecified
+    :background unspecified))
+;; reload whitespace options
 (global-whitespace-toggle-options '(whitespace-style))
 
 ;; email
