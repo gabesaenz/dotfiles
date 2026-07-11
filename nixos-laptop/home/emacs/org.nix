@@ -9,7 +9,7 @@
     # required for org-pandoc-export-to-html5-pdf
     python314Packages.weasyprint
     ### Latex PDF export
-    (pkgs.texliveBasic.withPackages (
+    (texliveBasic.withPackages (
       # texliveBasic provides "pdflatex"
       ps: with ps; [
         # required for org-latex-export-to-pdf
