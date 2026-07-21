@@ -77,6 +77,7 @@
     tlrc # cli for tldr - simplified man pages
     sdcv # stardict cli
     pywalfox-native # required for Firefox theming through DMS
+    # open-scq30 # configure bluetooth headset (soundcore V20i) # build error
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -544,7 +545,7 @@
   programs.bat = {
     enable = true;
     config = {
-      theme = "base16-256";
+      theme = "ansi";
     };
   };
   # doom emacs dependency

@@ -83,8 +83,17 @@
 ;; stardict offline dictionary search
 (package! quick-sdcv)
 
-;; nushell syntax highlighting
-(package! nushell-mode)
+;; automatically manage treesit
+(package! treesit-auto)
+
+;; Nushell
+;; (package! nushell-mode)
+(package! nushell-ts-mode
+  :recipe (:host github :repo "herbertjones/nushell-ts-mode")
+  :pin "49915cd99d62b7e743bd8cf9023a5819479d166f")
+(package! nushell-ts-babel
+  :recipe (:host github :repo "herbertjones/nushell-ts-babel")
+  :pin "17da6b0144502b0f0f182585bfcf53274fed238b")
 
 ;; diogenes
 (package! thingatpt

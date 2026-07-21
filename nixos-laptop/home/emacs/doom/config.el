@@ -643,8 +643,7 @@ The result will be displayed in a buffer."
 
 ;; Slint
 ;; enable lsp mode in slint mode
-(after! slint-mode
-  (add-hook 'slint-mode-hook 'lsp))
+(add-hook! 'slint-mode-hook #'lsp-deferred)
 
 ;; Custom bookmark file location
 (after! bookmark
@@ -654,10 +653,50 @@ The result will be displayed in a buffer."
 ;; https://www.answeroverflow.com/m/1358041398250704896
 (after! persp-mode
   ;; Auto restores the session 1 second after startup. 0 disables it (the default).
-  ;; (setopt persp-auto-resume-time 1)
-  (setopt persp-emacsclient-init-frame-behaviour-override
-          `(+workspace-current-name))
+  (setopt persp-auto-resume-time 1)
   ;; don't open a new workspace
+  ;; (setopt persp-emacsclient-init-frame-behaviour-override
+  ;;         `(+workspace-current-name))
+  ;; alternate method
   ;; (setopt persp-emacsclient-init-frame-behaviour-override "main")
   ;; restore previous session when server starts
   (persp-mode +1))
+
+;; automatically manage treesit
+(use-package! treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
+;; Nushell
+(package! corfu) # dependency
+;; treesit recipe
+(setopt nu-ts-auto-config
+        (make-treesit-auto-recipe
+         :lang 'nu
+         :ts-mode 'nushell-ts-mode
+         :remap '(nushell-mode)
+         :url "https://github.com/nushell/tree-sitter-nu"
+         :revision "main"
+         :source-dir "src"
+         :ext "\\.nu\\'"))
+(add-to-list 'treesit-auto-recipe-list nu-ts-auto-config)
+;; nushell-ts-babel
+(with-eval-after-load 'org-contrib
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     ;; ...
+     (nushell . t))))
+;; nushell-ts-mode
+;;   (require 'nushell-ts-babel)
+;;   (defun hfj/nushell/mode-hook ()
+;;     (corfu-mode 1)
+;;     (highlight-parentheses-mode 1)
+;;     (electric-pair-local-mode 1)
+;;     (electric-indent-local-mode 1)
+;;     (lsp-deferred)) ; why won't this work?!
+;;   (add-hook 'nushell-ts-mode-hook #'hfj/nushell/mode-hook)
+(add-hook! 'nushell-ts-mode-hook #'lsp-deferred)
