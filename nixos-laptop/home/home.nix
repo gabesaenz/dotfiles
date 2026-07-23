@@ -30,6 +30,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # manix dependency
+  manual.json.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -78,6 +81,7 @@
     sdcv # stardict cli
     pywalfox-native # required for Firefox theming through DMS
     # open-scq30 # configure bluetooth headset (soundcore V20i) # build error
+    manix # nix packages and option search
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
