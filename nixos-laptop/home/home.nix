@@ -549,10 +549,12 @@
     git = true;
     icons = "auto";
     extraOptions = [
-      "--all"
+      # "--all"
+      "--oneline"
+      "--no-symlinks"
       "--group-directories-first"
       "--header"
-      "--long"
+      # "--long"
       "--ignore-glob=.git|.DS_Store"
     ];
   };
