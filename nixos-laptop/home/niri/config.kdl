@@ -340,6 +340,8 @@ window-rule {
     // block-out-from "screencast"
 }
 
+// DMS overrides this in its theme settings:
+//
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
@@ -559,6 +561,7 @@ binds {
     Mod+F { maximize-window-to-edges; }
     Mod+Alt+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
+    Mod+Alt+W { toggle-windowed-fullscreen; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
