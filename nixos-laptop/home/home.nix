@@ -131,6 +131,10 @@
     source = icons/satori-reader.png;
     target = "icons/satori-reader.png";
   };
+  home.file."dumplingo-icon" = {
+    source = icons/dumplingo.png;
+    target = "icons/dumplingo.png";
+  };
   home.file."typey-type-icon" = {
     source = icons/typey-type.png;
     target = "icons/typey-type.png";
@@ -144,7 +148,7 @@
   xdg.desktopEntries = {
     "human-japanese" = {
       name = "Human Japanese";
-      exec = "firefox -P DesktopApps --kiosk --new-window https://www.humanjapanese.com/content/human-japanese-intermediate";
+      exec = "firefox -P DesktopApps --new-window https://www.humanjapanese.com/content/human-japanese-intermediate";
       icon = "${config.home.homeDirectory}/icons/human-japanese.png";
       type = "Application";
       terminal = false;
@@ -152,15 +156,23 @@
     };
     "satori-reader" = {
       name = "Satori Reader";
-      exec = "firefox -P DesktopApps --kiosk --new-window https://www.satorireader.com/dashboard";
+      exec = "firefox -P DesktopApps --new-window https://www.satorireader.com/dashboard";
       icon = "${config.home.homeDirectory}/icons/satori-reader.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+    "dumplingo" = {
+      name = "Dumplingo";
+      exec = "firefox -P DesktopApps --new-window https://dumplingo.net/stories";
+      icon = "${config.home.homeDirectory}/icons/dumplingo.png";
       type = "Application";
       terminal = false;
       categories = [ "Education" ];
     };
     "typey-type" = {
       name = "Typey Type";
-      exec = "firefox -P DesktopApps --kiosk --new-window https://didoesdigital.com/typey-type/progress";
+      exec = "firefox -P DesktopApps --new-window https://didoesdigital.com/typey-type/progress";
       icon = "${config.home.homeDirectory}/icons/typey-type.png";
       type = "Application";
       terminal = false;
@@ -168,7 +180,7 @@
     };
     "entertrained" = {
       name = "Entertrained";
-      exec = "firefox -P DesktopApps --kiosk --new-window https://entertrained.app";
+      exec = "firefox -P DesktopApps --new-window https://entertrained.app";
       icon = "${config.home.homeDirectory}/icons/entertrained.png";
       type = "Application";
       terminal = false;
