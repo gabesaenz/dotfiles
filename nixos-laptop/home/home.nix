@@ -637,6 +637,14 @@
     };
   };
 
+  # text editor
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "term16_dark";
+    };
+  };
+
   # Plover stenography
   programs.plover = {
     enable = true;
