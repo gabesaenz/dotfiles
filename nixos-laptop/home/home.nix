@@ -609,7 +609,46 @@
       font.size = 14.0;
     };
   };
+  programs.foot = {
+    enable = true;
+    server.enable = true;
+    settings = {
+      main = {
+        font = "monospace:size=14";
+        include = "${config.xdg.configHome}/foot/dank-colors.ini";
+      };
+      colors-dark = {
+        alpha = 0.95;
+      };
+    };
+  };
+  programs.ghostty = {
+    enable = true;
+    systemd.enable = true;
+    settings = {
+      background-opacity = 0.95;
+      font-family = "monospace";
+      font-size = 14;
+      # DankMaterialShell theme
+      theme = "dankcolors";
+    };
+  };
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "monospace";
+      size = 14;
+    };
+    settings = {
+      background_opacity = 0.95;
+    };
+    extraConfig = ''
+      include dank-tabs.conf
+      include dank-theme.conf
+    '';
+  };
 
+  # version control
   programs.git = {
     enable = true;
     settings = {
