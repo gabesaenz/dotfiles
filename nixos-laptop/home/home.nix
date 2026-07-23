@@ -54,6 +54,7 @@
     # LSP support:
     rust-analyzer
     rustfmt
+    semgrep
     # cargo-check # I think this is built into the cargo pkg and also not in nixpkgs anyways
     clippy
 
