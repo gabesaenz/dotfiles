@@ -591,6 +591,12 @@
   programs.yazi = {
     enable = true;
   };
+  programs.herdr = {
+    enable = true;
+  };
+  programs.fzf = {
+    enable = true;
+  };
   programs.zoxide = {
     enable = true;
   };
