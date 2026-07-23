@@ -291,7 +291,7 @@
   # shells must be enabled for shell tool integrations to work
   programs.bash.enable = true;
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.zsh;
 
   # Web browsers
   programs.firefox.enable = true;
