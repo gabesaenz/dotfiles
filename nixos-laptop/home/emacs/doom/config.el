@@ -291,10 +291,10 @@
 ;; msmtp
 (after! mu4e
   (setq sendmail-program (executable-find "msmtp")
-	send-mail-function #'smtpmail-send-it
-	message-sendmail-f-is-evil t
-	message-sendmail-extra-arguments '("--read-envelope-from")
-	message-send-mail-function #'message-send-mail-with-sendmail))
+        send-mail-function #'smtpmail-send-it
+        message-sendmail-f-is-evil t
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail))
 
 ;; shell related fixes suggested by doom doctor
 ;; (setq shell-file-name (executable-find "bash"))
