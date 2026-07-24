@@ -278,6 +278,13 @@
 ;; reload whitespace options
 (global-whitespace-toggle-options '(whitespace-style))
 
+;; Remove foreground value from highlight face.
+;; This is inherited by hl-line as well.
+;; This way the original foreground color of highlighted text is kept.
+(custom-set-faces!
+  '(highlight
+    :foreground unspecified))
+
 ;; email
 (set-email-account! "gmx"
                     '(;; (mu4e-sent-folder       . "")
