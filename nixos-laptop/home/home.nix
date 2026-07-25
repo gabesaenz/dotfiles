@@ -83,6 +83,7 @@
     pywalfox-native # required for Firefox theming through DMS
     # open-scq30 # configure bluetooth headset (soundcore V20i) # build error
     manix # nix packages and option search
+    cliamp # terminal music player
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -606,6 +607,11 @@
   };
   programs.zoxide = {
     enable = true;
+  };
+  # media player service frontend
+  programs.rmpc = {
+    enable = true;
+    # config = {};
   };
 
   # terminal emulator
