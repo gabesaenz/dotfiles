@@ -595,6 +595,9 @@
   programs.yazi = {
     enable = true;
   };
+  programs.superfile = {
+    enable = true;
+  };
   programs.herdr = {
     enable = true;
   };
