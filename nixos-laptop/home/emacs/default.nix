@@ -131,5 +131,6 @@
   };
   # doom emacs dependency for emms
   services.mpd.enable = true;
-  services.mpd.musicDirectory = "${config.home.homeDirectory}/Music";
+  # if xdg.userDirs.music isn't set then this is required
+  # services.mpd.musicDirectory = "${config.home.homeDirectory}/Music";
 }

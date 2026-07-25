@@ -127,6 +127,10 @@
   xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   xdg.portal.config.common.default = "*";
 
+  # configured home directories like Music
+  # mpd requires that this is either set here or explicitly in its config
+  xdg.userDirs.enable = true;
+
   # icons for use with xdg.desktopEntries
   home.file."human-japanese-icon" = {
     source = icons/human-japanese.png;
