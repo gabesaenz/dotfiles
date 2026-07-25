@@ -620,6 +620,8 @@
     };
   };
   programs.foot = {
+    # URL mode is activated with ctrl+shift+o by the way
+    # man foot has more info
     enable = true;
     server.enable = true;
     settings = {
