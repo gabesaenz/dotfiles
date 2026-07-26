@@ -84,6 +84,8 @@
     # open-scq30 # configure bluetooth headset (soundcore V20i) # build error
     manix # nix packages and option search
     cliamp # terminal music player
+    exercism # programming exercises
+    bats # exercism dependency for awk, bash, jq tracks
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -145,6 +147,10 @@
     source = icons/dumplingo.png;
     target = "icons/dumplingo.png";
   };
+  home.file."exercism-icon" = {
+    source = icons/exercism.webp;
+    target = "icons/exercism.webp";
+  };
   home.file."typey-type-icon" = {
     source = icons/typey-type.png;
     target = "icons/typey-type.png";
@@ -176,6 +182,14 @@
       name = "Dumplingo";
       exec = "firefox -P DesktopApps --new-window https://dumplingo.net/stories";
       icon = "${config.home.homeDirectory}/icons/dumplingo.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+    "exercism" = {
+      name = "Exercism";
+      exec = "firefox -P DesktopApps --new-window https://exercism.org/tracks";
+      icon = "${config.home.homeDirectory}/icons/exercism.webp";
       type = "Application";
       terminal = false;
       categories = [ "Education" ];
