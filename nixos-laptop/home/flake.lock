@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784716027,
-        "narHash": "sha256-MJ0f0s6RrRmQ4ni6XXgF/iDmujn94F48oa+qWHkYcrw=",
+        "lastModified": 1785060064,
+        "narHash": "sha256-3/hZcScan8WQ9VOkw8A+sgnosAQim446bW0Z2XsBix0=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "86f02f1aa2f0fec9f6d4e06dc033eb0e9f1c3ee2",
+        "rev": "aa6933edb40a38be04a826628ac7596094cf8a15",
         "type": "github"
       },
       "original": {
@@ -77,11 +77,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1784789275,
-        "narHash": "sha256-cgRTWuG+u1tBPhm01JrId2k0Bni09phVJ1Q0BZlRd7M=",
+        "lastModified": 1784913159,
+        "narHash": "sha256-JWq0BfjO4ktpH5USfQNQzdvHpIDT8fSKD5K7LvdMRFs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3b0e6bbd65869af1beadf5963a99befc179d209f",
+        "rev": "079a3b5d1aa6a719920a51316253b7d6dd22738d",
         "type": "github"
       },
       "original": {
@@ -100,11 +100,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1784716513,
-        "narHash": "sha256-woWmfCWwznLzkmGGyvjrE1rBEUsErchT5hkOaVCRhTo=",
+        "lastModified": 1785060853,
+        "narHash": "sha256-PovQRLBcprAbNEKlC56e9HoRLhapItTzwLi9LBpjoJA=",
         "owner": "marienz",
         "repo": "nix-doom-emacs-unstraightened",
-        "rev": "1243945a16257b7237cf53528a6db7bfe6cd7049",
+        "rev": "d41ee2ac18158bfa4ccc55bbba40e56520bb0110",
         "type": "github"
       },
       "original": {
@@ -131,11 +131,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1784497964,
-        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "lastModified": 1784796856,
+        "narHash": "sha256-wWFrV5/Qbm+lyt5x20E/bSbfJiGKMo4RCxZV8cl/WZI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "rev": "e2587caef70cea85dd97d7daab492899902dbf5d",
         "type": "github"
       },
       "original": {
@@ -147,11 +147,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1784497964,
-        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "lastModified": 1784796856,
+        "narHash": "sha256-wWFrV5/Qbm+lyt5x20E/bSbfJiGKMo4RCxZV8cl/WZI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "rev": "e2587caef70cea85dd97d7daab492899902dbf5d",
         "type": "github"
       },
       "original": {
@@ -180,11 +180,11 @@
     "plover": {
       "flake": false,
       "locked": {
-        "lastModified": 1783854653,
-        "narHash": "sha256-LSX+ko0nL7DXjzKjbpeGl/SmreQB/FscBeZEKysgvss=",
+        "lastModified": 1784839372,
+        "narHash": "sha256-zA3DsOZ5ry9Wjom1ksOlFekH/KEY2fZkwINuOxPrbKA=",
         "owner": "openstenoproject",
         "repo": "plover",
-        "rev": "81cef57401111a40be23673e31a4e45665a28ef3",
+        "rev": "21005813140c50f9541994a8d0433f3ee447e561",
         "type": "github"
       },
       "original": {
@@ -204,11 +204,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1784614389,
-        "narHash": "sha256-F4v6niJNNUgyYxDaaaZ8nizzdOQgJCcL6PHclxxRPTM=",
+        "lastModified": 1785037243,
+        "narHash": "sha256-uFvxzDjFy2vQIceqfn2BO2jEEWo5+hYyaAjUwobuUe4=",
         "owner": "openstenoproject",
         "repo": "plover-flake",
-        "rev": "9f84e2b52f91abb9e542c94c0b47b541d068fddf",
+        "rev": "d95505a4bf6fc499674bbbd0d7f1222b7e225364",
         "type": "github"
       },
       "original": {
@@ -236,11 +236,11 @@
     "plover2cat": {
       "flake": false,
       "locked": {
-        "lastModified": 1777279531,
-        "narHash": "sha256-+yHSp/HCJnqJqpGaiP6d68pZa4MR2woA3AnJtrEb/OM=",
+        "lastModified": 1784932789,
+        "narHash": "sha256-eJLeEhHKuCpAraKC55QqPbIsi34XDQI460bu/uGLMsQ=",
         "owner": "greenwyrt",
         "repo": "plover2CAT",
-        "rev": "36a590f22fa1612b96b7379a76fae8a0c581c793",
+        "rev": "1925c9e412896c4dd6e5581540a26da5b5a37600",
         "type": "github"
       },
       "original": {
