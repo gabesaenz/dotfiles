@@ -25,6 +25,7 @@
     gnumake # fix missing make command warning
     # lsp
     nodejs # fix missing npm warning
+    jq-lsp # jq lsp support
     # data
     libxml2 # fix missing xmllint
     # markdown

@@ -108,3 +108,6 @@
 
 ;; emacs-everywhere dependencies
 (package! ox-gfm)
+
+;; jq mode
+(package! jq-mode)

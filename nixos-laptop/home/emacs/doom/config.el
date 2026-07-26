@@ -714,5 +714,9 @@ The result will be displayed in a buffer."
 ;;   (add-hook 'nushell-ts-mode-hook #'hfj/nushell/mode-hook)
 (add-hook! 'nushell-ts-mode-hook #'lsp-deferred)
 
+;; jq mode
+(add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
+(add-hook! 'jq-mode-hook #'lsp-deferred)
+
 ;; send eww url requests through obscura
 (setopt eww-retrieve-command '("obscura" "fetch"))
