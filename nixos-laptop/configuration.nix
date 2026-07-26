@@ -292,6 +292,8 @@
   programs.bash.enable = true;
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+  # suggested by home-manager for its programs.zsh.enableCompletion
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # Web browsers
   programs.firefox.enable = true;

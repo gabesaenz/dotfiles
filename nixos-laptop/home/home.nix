@@ -533,8 +533,11 @@
   # Shells
   # shells must be enabled for shell tool integrations to work
   programs.bash.enable = true;
-  programs.zsh.enable = true;
-  programs.zsh.autosuggestion.enable = true;
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    enableCompletion = true;
+  };
   programs.nushell = {
     enable = true;
     plugins = with pkgs.nushellPlugins; [ polars ];
