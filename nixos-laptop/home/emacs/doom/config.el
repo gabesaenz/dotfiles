@@ -713,3 +713,6 @@ The result will be displayed in a buffer."
 ;;     (lsp-deferred)) ; why won't this work?!
 ;;   (add-hook 'nushell-ts-mode-hook #'hfj/nushell/mode-hook)
 (add-hook! 'nushell-ts-mode-hook #'lsp-deferred)
+
+;; send eww url requests through obscura
+(setopt eww-retrieve-command '("obscura" "fetch"))

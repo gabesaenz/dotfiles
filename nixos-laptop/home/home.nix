@@ -803,6 +803,18 @@
     STARDICT_DATA_DIR = "${config.home.homeDirectory}/Dictionaries/stardict";
   };
 
+  # Extra directories to prepend to {env}`PATH`.
+  # These directories are added to the {env}`PATH` variable in a
+  # double-quoted context, so expressions like `$HOME` are
+  # expanded by the shell. However, since expressions like `~` or
+  # `*` are escaped, they will end up in the {env}`PATH`
+  # verbatim.
+  home.sessionPath = [
+    # cargo install path
+    # this is where obscura is installed
+    "$HOME/.cargo/bin"
+  ];
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
