@@ -655,6 +655,16 @@
       colors-dark = {
         alpha = 0.95;
       };
+      key-bindings = {
+        scrollback-up-page = "Control+Shift+k";
+        scrollback-up-half-page = "Control+u";
+        scrollback-up-line = "Control+k";
+        scrollback-down-page = "Control+Shift+j";
+        scrollback-down-half-page = "Control+d";
+        scrollback-down-line = "Control+j";
+        scrollback-home = "Control+Shift+a";
+        scrollback-end = "Control+Shift+e";
+      };
     };
   };
   programs.ghostty = {
