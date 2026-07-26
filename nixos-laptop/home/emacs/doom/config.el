@@ -257,7 +257,7 @@
 ;; set white space options
 (setopt whitespace-style '(
                            face
-                           indentation
+                           ;; indentation
                            tabs
                            tab-mark
                            spaces
@@ -269,8 +269,14 @@
 (setopt whitespace-global-modes '(not nov-mode))
 ;; Set "spaces" styling to match the beginning of comments.
 ;; This affects how the "space-mark" is displayed when "spaces" is enabled above.
+;; Do the same for tabs.
 (custom-set-faces!
   '(whitespace-space
+    :inherit font-lock-comment-delimiter-face
+    :foreground unspecified
+    :distant-foreground unspecified
+    :background unspecified)
+  '(whitespace-tab
     :inherit font-lock-comment-delimiter-face
     :foreground unspecified
     :distant-foreground unspecified
