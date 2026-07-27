@@ -725,3 +725,11 @@ The result will be displayed in a buffer."
 
 ;; send eww url requests through obscura
 (setopt eww-retrieve-command '("obscura" "fetch"))
+
+;; helper function for exercism elisp track
+(defun exercism-run-all-tests-in-buffer ()
+  "Deletes all loaded tests from the runtime, evaluates the current buffer and runs all loaded tests with ert."
+  (interactive)
+  (ert-delete-all-tests)
+  (eval-buffer)
+  (ert 't))
