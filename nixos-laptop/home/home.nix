@@ -539,7 +539,7 @@
   };
   programs.nushell = {
     enable = true;
-    plugins = with pkgs.nushellPlugins; [ polars ];
+    # plugins = with pkgs.nushellPlugins; [ polars ]; # causes a build break
     extraConfig = ''
       # remove startup message
       $env.config.show_banner = false
