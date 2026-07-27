@@ -77,7 +77,6 @@
 
     # misc
     translate-shell # translator
-    jq # JSON processor
     tlrc # cli for tldr - simplified man pages
     sdcv # stardict cli
     pywalfox-native # required for Firefox theming through DMS
@@ -625,7 +624,13 @@
   programs.zoxide = {
     enable = true;
   };
+
+  # jq JSON processor
+  programs.jq.enable = true;
+  # jq playground
+  programs.jqp.enable = true;
   # music player service frontend
+
   programs.rmpc = {
     enable = true;
     # config = {};

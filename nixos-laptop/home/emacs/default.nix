@@ -26,6 +26,7 @@
     # lsp
     nodejs # fix missing npm warning
     jq-lsp # jq lsp support
+    jqfmt # jq formatting
     # data
     libxml2 # fix missing xmllint
     # markdown

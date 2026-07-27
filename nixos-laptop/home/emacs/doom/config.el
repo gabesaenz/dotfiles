@@ -714,9 +714,14 @@ The result will be displayed in a buffer."
 ;;   (add-hook 'nushell-ts-mode-hook #'hfj/nushell/mode-hook)
 (add-hook! 'nushell-ts-mode-hook #'lsp-deferred)
 
-;; jq mode
-(add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
-(add-hook! 'jq-mode-hook #'lsp-deferred)
+;; jq
+(after! jq-mode
+  (add-to-list 'auto-mode-alist '("\\.jq$" . jq-mode))
+  ;; lsp and formatting aren't well supported yet
+  ;; (add-hook! 'jq-mode-hook #'lsp-deferred)
+  ;; (set-formatter! 'jqfmt "jqfmt -ob -ar -op pipe" :modes '(jq-mode))
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((jq . t))))
 
 ;; send eww url requests through obscura
 (setopt eww-retrieve-command '("obscura" "fetch"))
