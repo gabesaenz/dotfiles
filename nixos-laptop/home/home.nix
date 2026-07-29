@@ -536,8 +536,9 @@
   programs.bash.enable = true;
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
   };
   programs.nushell = {
     enable = true;
