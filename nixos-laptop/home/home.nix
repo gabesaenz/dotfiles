@@ -539,6 +539,12 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+      }
+    ];
   };
   programs.nushell = {
     enable = true;
