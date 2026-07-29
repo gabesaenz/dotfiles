@@ -57,6 +57,19 @@
                            "Vedic Extensions"))
     (push "DejaVu Sans Mono" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
 
+;; These only seem to work if variable pitch mode is active
+;; and the font for that works fine on its own for now.
+;; IPA Symbols
+;; see: https://en.wikipedia.org/wiki/Phonetic_symbols_in_Unicode#Unicode_blocks_with_many_phonetic_symbols
+;; (after! unicode-fonts
+;;   (dolist (unicode-block '("IPA Extensions"
+;;                            "Spacing Modifier Letters"
+;;                            "Phonetic Extensions"
+;;                            "Phonetic Extensions Supplement"
+;;                            "Modifier Tone Letters"
+;;                            "Superscripts and Subscripts"))
+;;     (push "Doulos SIL" (cadr (assoc unicode-block unicode-fonts-block-font-mapping)))))
+
 ;; Not all fonts are loading on their own recently.
 ;; But this isn't actually fixing that.
 (after! org
@@ -399,10 +412,13 @@
 ;; quick-sdcv
 (use-package quick-sdcv
   ;; :ensure t
-  :config
+  ;; :config
   ;; try to get it looking like nov-mode
-  (add-hook 'nov-mode-hook 'visual-line-mode)
-  (add-hook 'nov-mode-hook 'visual-fill-column-mode)
+  ;; (add-hook! 'quick-sdcv-mode-hook #'visual-line-mode)
+  ;; (add-hook! 'quick-sdcv-mode-hook #'visual-fill-column-mode)
+  ;; Switch to variable pitch font mode.
+  ;; This helps with IPA pronunciation symbols.
+  ;; (add-hook! 'quick-sdcv-mode-hook #'variable-pitch-mode)
   :custom
   ;; not necessary now that env variable STARDICT_DATA_DIR is set
   ;; (quick-sdcv-dictionary-data-dir "~/Dictionaries/stardict/dic")
@@ -411,8 +427,14 @@
 ;; this doesn't seem to actually work
 ;; (add-to-list 'display-buffer-alist '("\\*sdcv"
 ;;                                      (display-buffer-pop-up-window)))
-(require 'shr)
 (require 'quick-sdcv)
+;; try to get it looking like nov-mode
+(add-hook! 'quick-sdcv-mode-hook #'visual-line-mode)
+(add-hook! 'quick-sdcv-mode-hook #'visual-fill-column-mode)
+;; Switch to variable pitch font mode.
+;; This helps with IPA pronunciation symbols.
+(add-hook! 'quick-sdcv-mode-hook #'variable-pitch-mode)
+(require 'shr)
 (defun quick-sdcv--translate-result (word dictionary-list)
   "Search for WORD in DICTIONARY-LIST. Return filtered string of results."
   (let* ((args (cons word (mapcan (lambda (d) (list "-u" d)) dictionary-list)))
