@@ -88,6 +88,7 @@
 
 ;; Nushell
 ;; (package! nushell-mode)
+(package! corfu) ; dependency
 (package! nushell-ts-mode
   :recipe (:host github :repo "herbertjones/nushell-ts-mode")
   :pin "49915cd99d62b7e743bd8cf9023a5819479d166f")

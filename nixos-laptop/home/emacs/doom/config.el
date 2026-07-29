@@ -688,7 +688,7 @@ The result will be displayed in a buffer."
 ;; https://www.answeroverflow.com/m/1358041398250704896
 (after! persp-mode
   ;; Auto restores the session 1 second after startup. 0 disables it (the default).
-  (setopt persp-auto-resume-time 1)
+  (setopt persp-auto-resume-time 1.0)
   ;; don't open a new workspace
   ;; (setopt persp-emacsclient-init-frame-behaviour-override
   ;;         `(+workspace-current-name))
@@ -706,7 +706,6 @@ The result will be displayed in a buffer."
   (global-treesit-auto-mode))
 
 ;; Nushell
-(package! corfu) # dependency
 ;; treesit recipe
 (setopt nu-ts-auto-config
         (make-treesit-auto-recipe
