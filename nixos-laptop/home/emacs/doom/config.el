@@ -748,6 +748,7 @@ The result will be displayed in a buffer."
 (setopt eww-retrieve-command '("obscura" "fetch"))
 
 ;; helper function for exercism elisp track
+(require 'ert)
 (defun exercism-run-all-tests-in-buffer ()
   "Deletes all loaded tests from the runtime, evaluates the current buffer and runs all loaded tests with ert."
   (interactive)
