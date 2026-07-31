@@ -545,6 +545,12 @@
         src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
       }
     ];
+    # enable jumping between prompts with foot term
+    initContent = ''
+      precmd() {
+      print -Pn "\e]133;A\e\\"
+      }
+    '';
   };
   programs.nushell = {
     enable = true;
@@ -632,6 +638,20 @@
   };
   programs.zoxide = {
     enable = true;
+  };
+  programs.readline = {
+    enable = true;
+    # enable jumping between prompts with foot term
+    # should work for bash and maybe others
+    extraConfig = ''
+      $if term=foot
+      set show-mode-in-prompt on
+      set emacs-mode-string "\1\e]133;A\e\\\2"
+      # Uncomment and/or adjust if you're using the vi editing-mode.
+      # set vi-cmd-mode-string "\1\e]133;A\e\\\2"
+      # set vi-ins-mode-string "\1\e]133;A\e\\\2"
+      $endif
+    '';
   };
 
   # jq JSON processor
