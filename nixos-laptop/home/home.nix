@@ -82,6 +82,8 @@
     cliamp # terminal music player
     exercism # programming exercises
     bats # exercism dependency for awk, bash, jq tracks
+    miro # pdf viewer (the executable is called miro-pdf)
+    tdf # pdf viewer
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
