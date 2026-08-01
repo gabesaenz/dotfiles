@@ -537,6 +537,15 @@
     };
   };
 
+  # image viewer
+  programs.swayimg = {
+    enable = true;
+    # hide the text overlay on start
+    initLua = ''
+      swayimg.text.visible = false
+    '';
+  };
+
   # Web browsers
   programs.firefox.enable = true;
   programs.chromium.enable = true;
