@@ -137,6 +137,8 @@
   # set default terminal for xdg terminal apps
   # without this desktop entries for terminal based apps
   # were not working (e.g. yazi)
+  ### this doesn't seem to actually fix the issue although it does appear to be set correctly
+  ### seems to be fixed instead by setting an environment variable TERMINAL
   xdg.terminal-exec = {
     enable = true;
     settings = {
