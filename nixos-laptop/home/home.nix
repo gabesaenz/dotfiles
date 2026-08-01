@@ -668,20 +668,6 @@
   programs.jq.enable = true;
   # jq playground
   programs.jqp.enable = true;
-  # music player service frontend
-
-  programs.rmpc = {
-    enable = true;
-    # config = {};
-  };
-  # music player
-  services.amberol = {
-    enable = true;
-  };
-  # amberol service says it requires this
-  # but it doesn't have a home-manager entry
-  # needs to be added to nixos config I guess
-  # programs.dconf.enable = true;
 
   # terminal emulator
   programs.alacritty = {
