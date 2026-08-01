@@ -636,6 +636,20 @@
   };
   programs.yazi = {
     enable = true;
+    settings = {
+      opener = {
+        edit = [
+          # using $EDITOR wasn't creating a new frame
+          # even though that works with other programs
+          # set it here manually to fix the issue
+          {
+            run = "emacsclient --create-frame %s";
+            # lock the file browser until finished editing
+            block = true;
+          }
+        ];
+      };
+    };
   };
   programs.superfile = {
     enable = true;
@@ -852,6 +866,11 @@
 
     # stardict CLI dictionaries folder
     STARDICT_DATA_DIR = "${config.home.homeDirectory}/Dictionaries/stardict";
+
+    # default terminal
+    # without this desktop entries for terminal based apps
+    # were not working (e.g. yazi)
+    TERMINAL = "footclient";
   };
 
   # Extra directories to prepend to {env}`PATH`.
