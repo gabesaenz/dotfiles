@@ -375,7 +375,8 @@ binds {
     // Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "footclient"; }
+    // Launch default terminal
+    Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "xdg-terminal-exec"; }
     // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -689,11 +690,14 @@ binds {
     Mod+Escape hotkey-overlay-title="Show Power Menu" { spawn "dms" "ipc" "powermenu" "toggle"; }
 
     // Emacs
-    Mod+E hotkey-overlay-title="Launch Emacs Client" { spawn "~/dotfiles/emacsclient.sh"; }
+    Mod+E hotkey-overlay-title="Launch Emacs Client" { spawn "dms" "ipc" "call" "defaultApp" "textEditor"; }
     Mod+D hotkey-overlay-title="Launch Emacs-Everywhere Pop-up" { spawn "doom" "+everywhere"; }
 
+    // File Browser
+    Mod+Slash hotkey-overlay-title="Launch File Manager" { spawn "dms" "ipc" "call" "defaultApp" "fileManager"; }
+
     // Web Browser
-    Mod+B hotkey-overlay-title="Launch Firefox" { spawn "firefox"; }
+    Mod+B hotkey-overlay-title="Launch Firefox" { spawn "dms" "ipc" "call" "defaultApp" "browser"; }
 
     // Pomodoro Timer
     // start the timer and display a notification that the timer has started
