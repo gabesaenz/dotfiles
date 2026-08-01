@@ -135,6 +135,19 @@
   # mpd requires that this is either set here or explicitly in its config
   xdg.userDirs.enable = true;
 
+  # set default terminal for xdg terminal apps
+  # without this desktop entries for terminal based apps
+  # were not working (e.g. yazi)
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      # can be set per desktop environment
+      # you can also set a default like this
+      default = [ "footclient.desktop" ];
+      # desktop entries for terminals are listed in priority order
+    };
+  };
+
   # icons for use with xdg.desktopEntries
   home.file."human-japanese-icon" = {
     source = icons/human-japanese.png;
