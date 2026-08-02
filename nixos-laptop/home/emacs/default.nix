@@ -44,8 +44,6 @@
     html-tidy
     stylelint
     jsbeautifier
-    # email mu4e
-    mu
     # emacs-everywhere
     xclip
     xdotool

@@ -84,6 +84,8 @@
     bats # exercism dependency for awk, bash, jq tracks
     miro # pdf viewer (the executable is called miro-pdf)
     tdf # pdf viewer
+    pass # password manager # requires gpg key
+    gnupg # gpg key cli
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -774,11 +776,23 @@
     # ignores = [ ".DS_Store" ];
   };
 
+  # gpg keys
+  services.gpg-agent = {
+    enable = true;
+    pinentry = {
+      package = pkgs.pinentry-curses;
+      program = "pinentry";
+    };
+  };
+
   # Email
+  programs.mu.enable = true;
+  services.mbsync.enable = true;
+  programs.mbsync.enable = true;
   programs.offlineimap.enable = true; # doom emacs mu4e dependency
   programs.msmtp.enable = true;
   accounts.email = {
-    maildirBasePath = "/Users/gabesaenz/.mail";
+    maildirBasePath = ".mail";
     accounts.gmx = {
       primary = true;
       address = "gabriel.saenz@gmx.de";
@@ -789,6 +803,12 @@
       smtp.host = "mail.gmx.net";
       offlineimap.enable = true;
       msmtp.enable = true;
+      mbsync = {
+        enable = true;
+        create = "both";
+        expunge = "both";
+        patterns = [ "*" ];
+      };
     };
   };
 
@@ -884,6 +904,10 @@
     # without this desktop entries for terminal based apps
     # were not working (e.g. yazi)
     TERMINAL = "footclient";
+
+    # default email database location
+    # used by mu
+    MAILDIR = "${config.home.homeDirectory}/.maildir";
   };
 
   # Extra directories to prepend to {env}`PATH`.
