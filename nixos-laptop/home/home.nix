@@ -11,6 +11,8 @@
     ./emacs
     ./ocr.nix
     # ./sway.nix
+    ./niri.nix
+    ./dms.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -76,7 +78,6 @@
     translate-shell # translator
     tlrc # cli for tldr - simplified man pages
     sdcv # stardict cli
-    pywalfox-native # required for Firefox theming through DMS
     # open-scq30 # configure bluetooth headset (soundcore V20i) # build error
     manix # nix packages and option search
     cliamp # terminal music player
@@ -849,13 +850,6 @@
         ''[{"enabled": true, "path": "~/dotfiles/steno/typey-type-full.json"}, {"enabled": true, "path": "user.json"}, {"enabled": true, "path": "commands.json"}, {"enabled": false, "path": "main.json"}]'';
     };
   };
-
-  ### Niri WM
-  xdg.configFile."niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
-
-  # required for Firefox theming through DMS
-  home.file.".cache/wal/colors.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.cache/wal/dank-pywalfox.json";
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
