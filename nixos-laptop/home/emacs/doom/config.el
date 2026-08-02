@@ -72,8 +72,8 @@
 
 ;; Not all fonts are loading on their own recently.
 ;; But this isn't actually fixing that.
-(after! org
-  (doom/reload-font))
+;; (after! org
+;;   (doom/reload-font))
 
 ;;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -686,16 +686,22 @@ The result will be displayed in a buffer."
 
 ;; Reload previous session on startup
 ;; https://www.answeroverflow.com/m/1358041398250704896
+;; (after! persp-mode
+;;   (setopt persp-auto-resume-time 1.0)
+;;   ;; don't open a new workspace
+;;   ;; (setopt persp-emacsclient-init-frame-behaviour-override
+;;   ;;         `(+workspace-current-name))
+;;   ;; alternate method
+;;   ;; (setopt persp-emacsclient-init-frame-behaviour-override "main")
+;;   ;; restore previous session when server starts
+;;   (persp-mode +1))
+
+;; (after! sessions
+;;   (doom/load-session 1))
+
 (after! persp-mode
   ;; Auto restores the session 1 second after startup. 0 disables it (the default).
-  (setopt persp-auto-resume-time 1.0)
-  ;; don't open a new workspace
-  ;; (setopt persp-emacsclient-init-frame-behaviour-override
-  ;;         `(+workspace-current-name))
-  ;; alternate method
-  ;; (setopt persp-emacsclient-init-frame-behaviour-override "main")
-  ;; restore previous session when server starts
-  (persp-mode +1))
+  (setq persp-auto-resume-time 1))
 
 ;; automatically manage treesit
 (use-package! treesit-auto

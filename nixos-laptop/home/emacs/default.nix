@@ -90,12 +90,9 @@
     enable = true;
     defaultEditor = true;
     startWithUserSession = "graphical";
-    # not sure if the following three options are necessary
     client.enable = true;
     client.arguments = [
       "--create-frame"
-      # "--no-wait"
-      # "--alternate-editor=''"
     ];
     socketActivation.enable = true;
   };
