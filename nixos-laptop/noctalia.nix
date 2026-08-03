@@ -5,6 +5,10 @@
   ...
 }:
 {
+  imports = [
+    ./noctalia-greeter.nix
+  ];
+
   # binary cache
   nix.settings = {
     extra-substituters = [ "https://noctalia.cachix.org" ];
