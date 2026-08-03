@@ -1,0 +1,159 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+// Noctalia
+// https://docs.noctalia.dev/v5/compositor-settings/niri/
+
+// Autostart Noctalia
+// This is the recommended method for launching noctalia, as it integrates with your window manager.
+// https://docs.noctalia.dev/v5/getting-started/running-the-shell/
+spawn-at-startup "noctalia"
+
+// Compositor Settings
+// These settings are for general window appearance and functionality.
+
+/-window-rule {
+  // Rounded corners for a modern look.
+  geometry-corner-radius 20
+
+  // Clips window contents to the rounded corner boundaries.
+  clip-to-geometry true
+}
+
+// Floating Noctalia settings window.
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
+
+// IPC Keybinds
+// Both spawn-sh and spawn are usable to run Noctalia keybinds.
+
+binds {
+    // Core Noctalia binds
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
+    Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
+    // Niri has a built-in window switcher you might want to try it to see which one you prefer.
+
+    // Audio & Brightness
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+
+
+    // Personal keybind configuration begins here:
+
+    // Emacs
+    Mod+E hotkey-overlay-title="Launch Emacs Client" { spawn-sh "$EDITOR"; }
+    Mod+D hotkey-overlay-title="Launch Emacs-Everywhere Pop-up" { spawn "doom" "+everywhere"; }
+
+    // TODO: convert these from dms to noctalia
+
+    // File Browser
+    // Mod+Slash hotkey-overlay-title="Launch File Manager" { spawn "dms" "ipc" "call" "defaultApp" "fileManager"; }
+
+    // Web Browser
+    // Mod+B hotkey-overlay-title="Launch Firefox" { spawn "dms" "ipc" "call" "defaultApp" "browser"; }
+
+    // Pomodoro Timer
+    // start the timer and display a notification that the timer has started
+    // Mod+T hotkey-overlay-title="Start Pomodoro Timer" { spawn-sh "tomat start && dms ipc call toast info \"🍅 Starting Pomodoro Timer\""; }
+    // Mod+Alt+T hotkey-overlay-title="Stop Pomodoro Timer" { spawn-sh "tomat stop && dms ipc call toast info \"☕ Stopping Pomodoro Timer\""; }
+    // Mod+Shift+T hotkey-overlay-title="Display Pomodoro Timer Status" { spawn-sh "dms ipc call toast info \"$(tomat status --output plain)\""; }
+
+    // Personal keybind configuration ends here.
+}
+
+// Optional Type to Launch
+// Noctalia can open its launcher when you start typing in niri’s overview. This is disabled by default because it requires a tiny keyboard-focus layer surface while overview is open, which means some niri overview-only keyboard state, such as the app focus ring, may not behave exactly like native overview navigation.
+
+// [shell]
+// niri_overview_type_to_launch_enabled = true
+
+// Stationary Wallpaper
+// If you prefer a stationary wallpaper that is visible at all times and does not scroll when switching workspaces, use the following configuration.
+// This option should be used with the [niri/backdrop] section disabled in your Noctalia configuration.
+
+// Place the regular wallpaper on the backdrop.
+layer-rule {
+  match namespace="^noctalia-wallpaper"
+  place-within-backdrop true
+}
+
+// Set transparent workspace background color so the backdrop is visible at all times.
+layout {
+  background-color "transparent"
+}
+
+// Optionally, disable workspace shadows in the overview.
+overview {
+  workspace-shadow {
+    off
+  }
+}
+
+// Blur
+// You can enable blur behind windows and Noctalia’s bar, panels, dock, and notifications.
+
+// Turning blur off:
+// When Noctalia detects ext-background-effects, it automatically publishes blur regions for its layer surfaces. This means bars, panels, dock, notifications, and OSD can still blur even if you do not declare any Noctalia layer-rule in your Niri config.
+// If you want fully transparent Noctalia surfaces or simply do not want blur behind them, keep the Noctalia layer-rule and uncomment blur false inside its background-effect block. Omit the window-rule and global blur block only if you do not want to configure Niri blur for regular windows.
+
+/* Apps: blur them all without xray so it looks more realistic. */
+window-rule {
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+/*
+  Noctalia
+  Disable xray on all our surfaces so it looks more realistic.
+  Noctalia publishes blur regions automatically when ext-background-effects is available.
+*/
+layer-rule {
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+  background-effect {
+    xray false
+    // blur false
+  }
+}
+
+/* Enable blur on noctalia's window switcher and disable xray. */
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+/* You can also fine-tune the blur effect globally. */
+blur {
+  passes 2        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.03      // grain overlay (default: 0.02)
+  saturation 1.0  // color saturation boost (default: 1.5)
+}
+
+// Laptop
+// To lock the screen when you close your laptop lid, add this to your Niri config file:
+
+switch-events {
+    lid-close { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+}
+

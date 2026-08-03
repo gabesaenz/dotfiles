@@ -269,7 +269,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+// spawn-at-startup "waybar"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -350,8 +350,6 @@ window-rule {
     // block-out-from "screencast"
 }
 
-// DMS overrides this in its theme settings:
-//
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
@@ -639,72 +637,6 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 
-    // suggestions from DMS docs
-    // https://danklinux.com/docs/dankmaterialshell/compositors#dms-keybindings
-    // Application Launchers
-    Mod+Space hotkey-overlay-title="Application Launcher" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle";
-    }
-    Mod+V hotkey-overlay-title="Clipboard Manager" {
-        spawn "dms" "ipc" "call" "clipboard" "toggle";
-    }
-    Mod+M hotkey-overlay-title="Task Manager" {
-        spawn "dms" "ipc" "call" "processlist" "focusOrToggle";
-    }
-    Mod+Comma hotkey-overlay-title="Settings" {
-        spawn "dms" "ipc" "call" "settings" "focusOrToggle";
-    }
-    Mod+N hotkey-overlay-title="Notification Center" {
-        spawn "dms" "ipc" "call" "notifications" "toggle";
-    }
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
-
-    // Security
-    // Mod+Escape hotkey-overlay-title="Lock Screen" {
-    //     spawn "dms" "ipc" "call" "lock" "lock";
-    // }
-
-    // Audio Controls
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "increment" "3";
-    }
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "decrement" "3";
-    }
-    XF86AudioMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "mute";
-    }
-
-    // Brightness Controls
-    XF86MonBrightnessUp allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
-    }
-    XF86MonBrightnessDown allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
-    }
-
-    // DMS
-    Mod+Shift+Slash hotkey-overlay-title="Show Keyboard Shortcuts" { spawn "dms" "ipc" "call" "keybinds" "toggle" "niri"; }
-    Mod+Escape hotkey-overlay-title="Show Power Menu" { spawn "dms" "ipc" "powermenu" "toggle"; }
-
-    // Emacs
-    Mod+E hotkey-overlay-title="Launch Emacs Client" { spawn "dms" "ipc" "call" "defaultApp" "textEditor"; }
-    Mod+D hotkey-overlay-title="Launch Emacs-Everywhere Pop-up" { spawn "doom" "+everywhere"; }
-
-    // File Browser
-    Mod+Slash hotkey-overlay-title="Launch File Manager" { spawn "dms" "ipc" "call" "defaultApp" "fileManager"; }
-
-    // Web Browser
-    Mod+B hotkey-overlay-title="Launch Firefox" { spawn "dms" "ipc" "call" "defaultApp" "browser"; }
-
-    // Pomodoro Timer
-    // start the timer and display a notification that the timer has started
-    Mod+T hotkey-overlay-title="Start Pomodoro Timer" { spawn-sh "tomat start && dms ipc call toast info \"🍅 Starting Pomodoro Timer\""; }
-    Mod+Alt+T hotkey-overlay-title="Stop Pomodoro Timer" { spawn-sh "tomat stop && dms ipc call toast info \"☕ Stopping Pomodoro Timer\""; }
-    Mod+Shift+T hotkey-overlay-title="Display Pomodoro Timer Status" { spawn-sh "dms ipc call toast info \"$(tomat status --output plain)\""; }
-
     // OCR
     Mod+Alt+Shift+O hotkey-overlay-title="OCR from screenshot" { spawn "ocr"; }
     Mod+Alt+Shift+E hotkey-overlay-title="OCR from screenshot (English)" { spawn "ocr" "eng"; }
@@ -721,11 +653,6 @@ cursor {
 
 layer-rule {
     match namespace="^quickshell$"
-    place-within-backdrop true
-}
-
-layer-rule {
-    match namespace="dms:blurwallpaper"
     place-within-backdrop true
 }
 
@@ -750,19 +677,13 @@ window-rule {
     opacity 0.9
 }
 
-window-rule {
+/-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
 // automatically start Plover
 spawn-at-startup "plover" "--gui" "none"
-
-// Open DMS windows as floating by default
-window-rule {
-    match app-id=r#"org.quickshell$"#
-    open-floating true
-}
 
 // Open emacs-everywhere windows as floating by default
 window-rule {
@@ -779,7 +700,7 @@ environment {
 }
 
 // import DankMaterialShell settings
-include "dms/colors.kdl"
-include "dms/layout.kdl"
-include "dms/alttab.kdl"
-include "dms/binds.kdl"
+// include "dms.kdl"
+
+// import Noctalia settings
+include "noctalia.kdl"
