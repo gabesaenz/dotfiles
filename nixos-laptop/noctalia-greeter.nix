@@ -27,4 +27,21 @@
     #   };
     # };
   };
+
+  ### This doesn't seem to work.
+  ### This might have more to do with pkexec needing to be run as admin.
+  # Skip authentication when syncing to noctalia greeter.
+  # use pkaction to see the list of actions
+  # https://wiki.nixos.org/wiki/Polkit#Writing_rules
+  # https://wiki.archlinux.org/title/Polkit#Bypass_password_prompt
+  # security.polkit.extraConfig = ''
+  #   polkit.addRule(function (action, subject) {
+  #     if (
+  #       action.id == "org.noctalia.greeter.apply-appearance"
+  #       && subject.isInGroup("wheel")
+  #     ) {
+  #       return polkit.Result.YES;
+  #     }
+  #   });
+  # '';
 }
