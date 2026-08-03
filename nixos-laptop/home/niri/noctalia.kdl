@@ -40,10 +40,10 @@ debug {
 
 binds {
     // Core Noctalia binds
-    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
-    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
-    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
-    Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
+    Mod+Space hotkey-overlay-title="Application Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S hotkey-overlay-title="Control Center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma hotkey-overlay-title="Settings" { spawn-sh "noctalia msg settings-toggle"; }
+    Alt+Tab hotkey-overlay-title="Window Switcher" { spawn-sh "noctalia msg window-switcher"; }
     // Niri has a built-in window switcher you might want to try it to see which one you prefer.
 
     // Audio & Brightness
@@ -56,23 +56,26 @@ binds {
 
     // Personal keybind configuration begins here:
 
+    // Noctalia
+    Mod+N hotkey-overlay-title="Notification Center" {spawn-sh "noctalia msg panel-open control-center notifications";}
+    // Mod+Shift+Slash hotkey-overlay-title="Show Keyboard Shortcuts" { spawn ""; }
+    Mod+Escape hotkey-overlay-title="Show Power Menu" { spawn-sh "noctalia msg panel-open session"; }
+
     // Emacs
     Mod+E hotkey-overlay-title="Launch Emacs Client" { spawn-sh "$EDITOR"; }
     Mod+D hotkey-overlay-title="Launch Emacs-Everywhere Pop-up" { spawn "doom" "+everywhere"; }
 
-    // TODO: convert these from dms to noctalia
-
     // File Browser
-    // Mod+Slash hotkey-overlay-title="Launch File Manager" { spawn "dms" "ipc" "call" "defaultApp" "fileManager"; }
+    Mod+Slash hotkey-overlay-title="Launch File Manager" { spawn-sh "xdg-terminal-exec yazi"; }
 
     // Web Browser
-    // Mod+B hotkey-overlay-title="Launch Firefox" { spawn "dms" "ipc" "call" "defaultApp" "browser"; }
+    Mod+B hotkey-overlay-title="Launch Firefox" { spawn "firefox"; }
 
     // Pomodoro Timer
     // start the timer and display a notification that the timer has started
-    // Mod+T hotkey-overlay-title="Start Pomodoro Timer" { spawn-sh "tomat start && dms ipc call toast info \"🍅 Starting Pomodoro Timer\""; }
-    // Mod+Alt+T hotkey-overlay-title="Stop Pomodoro Timer" { spawn-sh "tomat stop && dms ipc call toast info \"☕ Stopping Pomodoro Timer\""; }
-    // Mod+Shift+T hotkey-overlay-title="Display Pomodoro Timer Status" { spawn-sh "dms ipc call toast info \"$(tomat status --output plain)\""; }
+    Mod+T hotkey-overlay-title="Start Pomodoro Timer" { spawn-sh "tomat start && noctalia msg notification-show \"Pomodoro Timer\" \"🍅 Starting Pomodoro Timer\""; }
+    Mod+Alt+T hotkey-overlay-title="Stop Pomodoro Timer" { spawn-sh "tomat stop && noctalia msg notification-show \"Pomodoro Timer\" \"☕ Stopping Pomodoro Timer\""; }
+    Mod+Shift+T hotkey-overlay-title="Display Pomodoro Timer Status" { spawn-sh "noctalia msg notification-show \"Pomodoro Timer\" \"$(tomat status --output plain)\""; }
 
     // Personal keybind configuration ends here.
 }

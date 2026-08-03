@@ -370,11 +370,11 @@ binds {
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
-    // Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Shift+Slash hotkey-overlay-title="Show Keyboard Shortcuts" { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     // Launch default terminal
-    Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "xdg-terminal-exec"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "xdg-terminal"; }
     // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
