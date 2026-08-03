@@ -277,6 +277,10 @@ layout {
 hotkey-overlay {
     // Disable the "Important Hotkeys" pop-up at startup.
     skip-at-startup
+
+    // Hide all actions not bound to a key.
+    // Adding this to hide the quit action.
+    hide-not-bound
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
