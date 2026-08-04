@@ -636,9 +636,6 @@
   };
   programs.bat = {
     enable = true;
-    config = {
-      theme = "ansi";
-    };
   };
   # doom emacs dependency
   programs.direnv = {
@@ -732,7 +729,6 @@
     settings = {
       main = {
         font = "monospace:size=14";
-        include = "${config.xdg.configHome}/foot/dank-colors.ini";
       };
       colors-dark = {
         alpha = 0.95;
@@ -818,9 +814,6 @@
   # text editor
   programs.helix = {
     enable = true;
-    settings = {
-      theme = "term16_dark";
-    };
   };
 
   # Plover stenography
