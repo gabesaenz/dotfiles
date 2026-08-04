@@ -761,3 +761,7 @@ The result will be displayed in a buffer."
   (ert-delete-all-tests)
   (eval-buffer)
   (ert 't))
+
+;; kdl (niri config)
+(after! kdl-mode
+  (add-to-list 'auto-mode-alist '("\\.kdl$" . kdl-mode)))

@@ -112,3 +112,6 @@
 
 ;; jq mode
 (package! jq-mode)
+
+;; kdl mode (niri config files)
+(package! kdl-mode)
