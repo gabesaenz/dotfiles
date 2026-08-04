@@ -624,12 +624,10 @@
     git = true;
     icons = "auto";
     extraOptions = [
-      # "--all"
       "--oneline"
       "--no-symlinks"
       "--group-directories-first"
       "--header"
-      # "--long"
       "--ignore-glob=.git|.DS_Store"
     ];
   };
