@@ -162,6 +162,10 @@
     source = icons/satori-reader.png;
     target = "icons/satori-reader.png";
   };
+  home.file."duchinese-icon" = {
+    source = icons/duchinese.svg;
+    target = "icons/duchinese.svg";
+  };
   home.file."dumplingo-icon" = {
     source = icons/dumplingo.png;
     target = "icons/dumplingo.png";
@@ -193,6 +197,14 @@
       name = "Satori Reader";
       exec = "firefox -P DesktopApps --new-window https://www.satorireader.com/dashboard";
       icon = "${config.home.homeDirectory}/icons/satori-reader.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+    "duchinese" = {
+      name = "Du Chinese";
+      exec = "firefox -P DesktopApps --new-window https://duchinese.net/lessons/studied";
+      icon = "${config.home.homeDirectory}/icons/duchinese.svg";
       type = "Application";
       terminal = false;
       categories = [ "Education" ];
