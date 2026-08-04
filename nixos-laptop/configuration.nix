@@ -199,7 +199,7 @@
   services.libinput.enable = true;
 
   # 4. (Optional) GUI tool to pair the device
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
 
   # 5. Enable X11/Desktop
   # services.xserver.enable = true; # already enabled elsewhere
