@@ -790,15 +790,6 @@
     # ignores = [ ".DS_Store" ];
   };
 
-  # gpg keys
-  services.gpg-agent = {
-    enable = true;
-    pinentry = {
-      package = pkgs.pinentry-curses;
-      program = "pinentry";
-    };
-  };
-
   # Email
   programs.mu.enable = true;
   services.mbsync.enable = true;

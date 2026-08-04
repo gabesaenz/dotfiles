@@ -234,6 +234,9 @@
   # Web browsers
   programs.firefox.enable = true;
 
+  # GPG
+  programs.gnupg.agent.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
