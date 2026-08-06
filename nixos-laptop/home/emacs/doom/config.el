@@ -97,15 +97,14 @@
 ;; (if (display-graphic-p)
 ;;     (doom-big-font-mode +1))
 
-;; make sure this directory exists so DankMaterialShell can generate themes there
-(make-directory "~/.config/emacs" t)
-(setq custom-theme-directory "~/.config/emacs/themes/")
-
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'dank-emacs)
+
+;; make sure this directory exists so themes can be placed there
+(make-directory "~/.config/emacs" t)
+(setq custom-theme-directory "~/.config/emacs/themes/")
 
 ;; auto reload the theme when it changes
 (setq dynamic-theme-file (concat (file-name-as-directory custom-theme-directory) (format "%s%s" doom-theme "-theme.el")))

@@ -5,6 +5,9 @@
   ...
 }:
 {
+  doom-config = {
+    config = "(setq doom-theme 'noctalia)";
+  };
   home.packages = with pkgs; [
     ### Firefox theming
     # - install firefox pywalfox extension

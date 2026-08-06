@@ -20,4 +20,8 @@
       };
     };
   };
+
+  doom-config = {
+    config = "(setq doom-theme 'dank-emacs)";
+  };
 }
