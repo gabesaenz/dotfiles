@@ -22,6 +22,20 @@
   # Enable flakes
   nix.settings.experimental-features = "nix-command flakes";
 
+  # garbage collection
+  nix.gc = {
+    # automatically run garbage collection periodically
+    automatic = true;
+    # remove everything older than 7 days
+    options = "--delete-older-than 7d";
+  };
+
+  # optimise the nix store
+  nix.settings.auto-optimise-store = true;
+  # periodically run the nix store optimiser
+  # this is probably redundant when combined with the setting above
+  nix.optimise.automatic = true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
