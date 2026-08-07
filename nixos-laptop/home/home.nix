@@ -162,6 +162,10 @@
     source = icons/satori-reader.png;
     target = "icons/satori-reader.png";
   };
+  home.file."discord-icon" = {
+    source = icons/discord.svg;
+    target = "icons/discord.svg";
+  };
   home.file."duchinese-icon" = {
     source = icons/duchinese.svg;
     target = "icons/duchinese.svg";
@@ -197,6 +201,14 @@
       name = "Satori Reader";
       exec = "firefox -P DesktopApps --new-window https://www.satorireader.com/dashboard";
       icon = "${config.home.homeDirectory}/icons/satori-reader.png";
+      type = "Application";
+      terminal = false;
+      categories = [ "Education" ];
+    };
+    "discord" = {
+      name = "Discord";
+      exec = "firefox -P DesktopApps --new-window https://discord.com/app";
+      icon = "${config.home.homeDirectory}/icons/discord.svg";
       type = "Application";
       terminal = false;
       categories = [ "Education" ];
