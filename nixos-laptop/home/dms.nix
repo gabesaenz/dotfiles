@@ -21,6 +21,12 @@
     };
   };
 
+  programs.ghostty = {
+    settings = {
+      theme = "dankcolors";
+    };
+  };
+
   doom-config = {
     config = "(setq doom-theme 'dank-emacs)";
   };

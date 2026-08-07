@@ -764,8 +764,6 @@
       background-opacity = 0.95;
       font-family = "monospace";
       font-size = 14;
-      # DankMaterialShell theme
-      theme = "dankcolors";
     };
   };
   programs.kitty = {
