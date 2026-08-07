@@ -150,7 +150,10 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
+
+  # Run X11 apps on Wayland
+  # programs.xwayland.enable = true;
 
   services.displayManager = {
     # autoLogin = {
