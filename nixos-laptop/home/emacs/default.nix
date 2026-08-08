@@ -93,6 +93,8 @@
     client.enable = true;
     client.arguments = [
       "--create-frame"
+      "--no-wait"
+      "--alternate-editor=''"
     ];
     socketActivation.enable = true;
   };
