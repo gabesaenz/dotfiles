@@ -148,7 +148,7 @@
     settings = {
       # can be set per desktop environment
       # you can also set a default like this
-      default = [ "footclient.desktop" ];
+      default = [ "com.mitchellh.ghostty.desktop" ];
       # desktop entries for terminals are listed in priority order
     };
   };
