@@ -16,16 +16,22 @@
     # greeter-args = "";
     # Full declarative greeter.toml (overwritten on each activation).
     # See examples/greeter.toml for every key (appearance.palette, output, …).
-    # settings = {
-    #   cursor = {
-    #     theme = "Bibata-Modern-Ice";
-    #     size = 24;
-    #     path = "${pkgs.bibata-cursors}/share/icons";
-    #   };
-    #   keyboard = {
-    #     layout = "us";
-    #   };
-    # };
+    settings = {
+      appearance = {
+        # Hide the Noctalia brand logo on the login screen.
+        hide_logo = true;
+      };
+      # Seconds with no input before blanking outputs; 0 disables (range 0-86400).
+      idle.timeout = 300;
+      # cursor = {
+      #   theme = "Bibata-Modern-Ice";
+      #   size = 24;
+      #   path = "${pkgs.bibata-cursors}/share/icons";
+      # };
+      # keyboard = {
+      #   layout = "us";
+      # };
+    };
   };
 
   # Skip authentication when syncing to noctalia greeter.
