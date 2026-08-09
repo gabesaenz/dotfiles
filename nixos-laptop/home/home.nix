@@ -760,10 +760,45 @@
   programs.ghostty = {
     enable = true;
     systemd.enable = true;
+    clearDefaultKeybinds = true;
     settings = {
       background-opacity = 0.95;
       font-family = "monospace";
       font-size = 14;
+      link-previews = true;
+      keybind = [
+        "ctrl+shift+,=reload_config"
+        "ctrl+,=open_config"
+        "copy=copy_to_clipboard:mixed"
+        "paste=paste_from_clipboard"
+        "ctrl+shift+c=copy_to_clipboard:mixed"
+        "ctrl+shift+v=paste_from_clipboard"
+        "ctrl+==increase_font_size:1"
+        "ctrl++=increase_font_size:1"
+        "ctrl+-=decrease_font_size:1"
+        "ctrl+0=reset_font_size"
+        "shift+arrow_left=adjust_selection:left"
+        "shift+arrow_right=adjust_selection:right"
+        "shift+arrow_up=adjust_selection:up"
+        "shift+arrow_down=adjust_selection:down"
+        "alt+a=adjust_selection:beginning_of_line"
+        "alt+e=adjust_selection:end_of_line"
+        "alt+u=scroll_page_up"
+        "alt+d=scroll_page_down"
+        "ctrl+shift+a=scroll_to_top"
+        "ctrl+shift+e=scroll_to_bottom"
+        "ctrl+shift+k=jump_to_prompt:-1"
+        "ctrl+shift+j=jump_to_prompt:1"
+        "ctrl+shift+f=start_search"
+        "escape=end_search"
+        "ctrl+shift+i=inspector:toggle"
+        "ctrl+shift+p=toggle_command_palette"
+        "ctrl+shift+y=copy_url_to_clipboard"
+        "ctrl+shift+8=search_selection"
+        "ctrl+shift+n=navigate_search:previous"
+        "ctrl+n=navigate_search:next"
+        "ctrl+slash=scroll_to_selection"
+      ];
     };
   };
   programs.kitty = {
