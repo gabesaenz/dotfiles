@@ -41,8 +41,7 @@
   home.packages = with pkgs; [
     # Security
     # password manager # requires gpg key
-    pass.withExtensions
-    (exts: [ exts.pass-otp ])
+    (pass.withExtensions (exts: [ exts.pass-otp ]))
     gnupg # gpg key cli
 
     # Rust
