@@ -39,9 +39,11 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+    # Security
+    # password manager # requires gpg key
+    pass.withExtensions
+    (exts: [ exts.pass-otp ])
+    gnupg # gpg key cli
 
     # Rust
     # rustup
@@ -86,8 +88,6 @@
     bats # exercism dependency for awk, bash, jq tracks
     miro # pdf viewer (the executable is called miro-pdf)
     tdf # pdf viewer
-    pass # password manager # requires gpg key
-    gnupg # gpg key cli
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
