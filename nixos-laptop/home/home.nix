@@ -697,6 +697,7 @@
   };
   programs.zoxide = {
     enable = true;
+    options = [ "--cmd cd" ];
   };
   programs.readline = {
     enable = true;
