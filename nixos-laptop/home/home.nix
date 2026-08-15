@@ -615,7 +615,8 @@
     top = "btop";
   };
 
-  # Shell Tools
+  ### Shell Tools
+  # "top" alternative
   programs.btop = {
     enable = true;
     settings = {
@@ -630,6 +631,8 @@
       truecolor = true;
     };
   };
+
+  # "ls" alternative
   programs.eza = {
     enable = true;
     git = true;
@@ -642,12 +645,16 @@
       "--ignore-glob=.git|.DS_Store"
     ];
   };
+
   programs.dircolors = {
     enable = true;
   };
+
+  # "cat" alternative
   programs.bat = {
     enable = true;
   };
+
   # doom emacs dependency
   programs.direnv = {
     enable = true;
@@ -657,6 +664,8 @@
   programs.devenv = {
     enable = true;
   };
+
+  # CLI git UI
   programs.lazygit = {
     enable = true;
   };
@@ -671,9 +680,13 @@
   programs.oh-my-posh = {
     enable = true;
   };
+
+  # "find" alternative
   programs.fd = {
     enable = true;
   };
+
+  # File explorer
   programs.yazi = {
     enable = true;
     settings = {
@@ -694,16 +707,23 @@
   programs.superfile = {
     enable = true;
   };
+
+  # terminal multiplexer
   programs.herdr = {
     enable = true;
   };
+
+  # CLI fuzzy finder
   programs.fzf = {
     enable = true;
   };
+
+  # CD alternative
   programs.zoxide = {
     enable = true;
     options = [ "--cmd cd" ];
   };
+
   programs.readline = {
     enable = true;
     # enable jumping between prompts with foot term
