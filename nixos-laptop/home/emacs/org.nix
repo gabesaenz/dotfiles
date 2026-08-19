@@ -20,6 +20,14 @@
 
         # required for org-beamer-export-to-pdf
         beamer
+
+        # required for Greek org-latex-export-to-pdf
+        polyglossia
+        # example org header:
+        #+LANGUAGE: el-polyton
+        #+LATEX_COMPILER: lualatex
+        #+LATEX_HEADER: \newfontfamily\greekfont[Script=Greek]{Galatia SIL}
+        #+LATEX_HEADER: \usepackage[german,AUTO]{polyglossia}
       ]
     ))
   ];
