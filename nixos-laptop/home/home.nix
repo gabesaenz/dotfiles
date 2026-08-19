@@ -80,6 +80,7 @@
     translate-shell # translator
     tlrc # cli for tldr - simplified man pages
     sdcv # stardict cli
+    pyglossary # dictionary format converter
     # open-scq30 # configure bluetooth headset (soundcore V20i) # build error
     manix # nix packages and option search
     cliamp # terminal music player

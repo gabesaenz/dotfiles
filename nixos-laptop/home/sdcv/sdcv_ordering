@@ -1,4 +1,6 @@
 Morphologia Graeca (oxia)
+kaikki.org-dictionary-Altgriechisch.jsonl
+kaikki.org-dictionary-AncientGreek.jsonl
 Pape: Handwörterbuch der griechischen Sprache (1914)
 Griechisches Etymologisches Wörterbuch, Frisk (1960-1972)
 A Greek-English Lexicon, Liddell & Scott (1940)
@@ -11,7 +13,8 @@ BMZ
 Lexer
 LexerN
 FindeB
-wikt-en-ALL-2025-10-05
+kaikki.org-dictionary-Latein.jsonl
+kaikki.org-dictionary-Latin.jsonl
 Georges: Ausführliches lateinisch-deutsches Handwörterbuch (1913-1918)
 Georges: Kleines deutsch-lateinisches Handwörterbuch (1910)
 Janua linguarum reserata, Comenius (2014)
@@ -44,3 +47,4 @@ reader.dict ES
 reader.dict ES
 reader.dict IT
 reader.dict IT
+wikt-en-ALL-2025-10-05
