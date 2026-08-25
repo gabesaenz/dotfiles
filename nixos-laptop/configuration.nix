@@ -278,6 +278,13 @@
 
   # List services that you want to enable:
 
+  # Virtualisation
+  virtualisation.docker.rootless = {
+    enable = true;
+    # make rootless docker the default
+    setSocketVariable = true;
+  };
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
