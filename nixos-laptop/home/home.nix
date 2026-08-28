@@ -660,8 +660,8 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    silent = true;
   };
-  services.lorri.enable = true; # speeds up direnv and nix shell
   programs.devenv = {
     enable = true;
   };
