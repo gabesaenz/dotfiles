@@ -20,7 +20,10 @@
   ];
 
   # Enable flakes
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # garbage collection
   nix.gc = {
