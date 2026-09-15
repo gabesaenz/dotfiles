@@ -115,3 +115,6 @@
 
 ;; kdl mode (niri config files)
 (package! kdl-mode)
+
+;; devdocs.io mode
+(package! devdocs)
