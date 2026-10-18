@@ -130,6 +130,7 @@
     community Cream Autumn
     community Everdeer
     community Everforest
+    community Lilac AMOLED
   '';
   doom-config = {
     config = "(setq doom-theme 'noctalia)";
