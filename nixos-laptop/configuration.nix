@@ -238,6 +238,7 @@
       "networkmanager"
       "wheel"
       "Standard ab 2024" # eduroam requirement
+      "netdev" # eduroam requirement
       "input" # Plover stenography requirement
     ];
     packages = with pkgs; [

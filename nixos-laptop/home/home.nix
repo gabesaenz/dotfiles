@@ -76,6 +76,10 @@
     unrar
     p7zip
 
+    # networking
+    geteduroam
+    geteduroam-cli
+
     # misc
     translate-shell # translator
     tlrc # cli for tldr - simplified man pages
