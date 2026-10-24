@@ -115,24 +115,24 @@
   # create file with credentials
   # if there are actual credentials do this manually instead
   # but access is only allowed from the local network so everything is blank here
-  environment.etc."nixos/smb-secrets".text = ''
-    username=
-    domain=
-    password=
-  '';
-  fileSystems."/mnt/salsa" = {
-    device = "//192.168.0.1/disk_a2";
-    fsType = "cifs";
-    options =
-      let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+  # environment.etc."nixos/smb-secrets".text = ''
+  #   username=
+  #   domain=
+  #   password=
+  # '';
+  # fileSystems."/mnt/salsa" = {
+  #   device = "//192.168.0.1/disk_a2";
+  #   fsType = "cifs";
+  #   options =
+  #     let
+  #       # this line prevents hanging on network split
+  #       automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-      in
-      [
-        "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=${toString config.users.users.gabe.uid},gid=${toString config.users.groups.users.gid}"
-      ];
-  };
+  #     in
+  #     [
+  #       "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=${toString config.users.users.gabe.uid},gid=${toString config.users.groups.users.gid}"
+  #     ];
+  # };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
