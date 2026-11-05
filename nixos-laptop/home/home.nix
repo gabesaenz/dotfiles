@@ -76,6 +76,9 @@
     unrar
     p7zip
 
+    # flashcards
+    anki
+
     # networking
     geteduroam
     geteduroam-cli
