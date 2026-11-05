@@ -28,10 +28,17 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "26.05"; # Please read the comment before changing.
+  home.stateVersion = "26.11"; # Please read the comment before changing.
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+
+    # fixes
+    problems.handlers = {
+      "gtk+".broken = "warn"; # or "ignore"
+    };
+  };
 
   # manix dependency
   manual.json.enable = true;
@@ -58,7 +65,7 @@
     # LSP support:
     rust-analyzer
     rustfmt
-    semgrep
+    # semgrep # currently causing a build break
     # cargo-check # I think this is built into the cargo pkg and also not in nixpkgs anyways
     clippy
 
