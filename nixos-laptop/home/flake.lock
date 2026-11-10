@@ -20,11 +20,11 @@
     "doomemacs": {
       "flake": false,
       "locked": {
-        "lastModified": 1793928737,
-        "narHash": "sha256-nUIqtbuv8Qrw4LH8CzVty/2D0wRqX9bMdDwqNvDa0Do=",
+        "lastModified": 1790918042,
+        "narHash": "sha256-rWBe7ePkrOmXy6kDsnvjVH5pjulYzvnX+dVu54bCVgs=",
         "owner": "doomemacs",
         "repo": "core",
-        "rev": "7ccac7f643ad67baa25b216717cf8617a0903c69",
+        "rev": "59cdaa32ae933469bb6a1fb3cadee8a988c15968",
         "type": "github"
       },
       "original": {
@@ -36,11 +36,11 @@
     "doomemacs-modules": {
       "flake": false,
       "locked": {
-        "lastModified": 1793763084,
-        "narHash": "sha256-aEkGwMUoLxRlSMLU1StIqVMAdhu97+rT/ByEz1uuNEg=",
+        "lastModified": 1790904643,
+        "narHash": "sha256-38qeB+fdxyZvd2UvlpHaiZzDvIlpKfeNd3voMHjjWhg=",
         "owner": "doomemacs",
         "repo": "modules",
-        "rev": "f054be8fcdd2a0446eb8259d76dd4f6f76acc0b7",
+        "rev": "897f815447112bc6e12e0aaf63aa5435b810344b",
         "type": "github"
       },
       "original": {
@@ -59,11 +59,19 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1794199626,
         "narHash": "sha256-hyILHkiuhA31aRflA+lKaXpa7dLRh4KG/ySQU57sZLg=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
         "rev": "5f5556287b8d5e54bdba481cedfa7088c579f72e",
+=======
+        "lastModified": 1793721226,
+        "narHash": "sha256-UIsZOs7PMJA5qcO6lBGQM1MaJQprTGud0tT3Y1PkPcA=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "c0b9c6cce1bd15e4af9809ff8cc38b605ec37917",
+>>>>>>> parent of eb35afe (Update flake lock file.)
         "type": "github"
       },
       "original": {
@@ -77,11 +85,19 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1794278858,
         "narHash": "sha256-rkrJwLgLSHBnXfgoSKIDa+2LLGdTqynsV3GAxOTGhUU=",
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "82ce401aa350502897c3f2e85f384d61cd3b0b6d",
+=======
+        "lastModified": 1793757180,
+        "narHash": "sha256-gyV7AtCwLnOImcrfSETP4J3Ie96bz19DY47B7m7Y3HM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "b787c48e2ec57a9d098f5c2721882a3bc1e16f97",
+>>>>>>> parent of eb35afe (Update flake lock file.)
         "type": "github"
       },
       "original": {
@@ -99,11 +115,19 @@
         "nixpkgs": []
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1794250511,
         "narHash": "sha256-fNW/nneLlZobNaWFHZlJFY2AZ0tAY1FiuTFbPWSuuJM=",
         "owner": "marienz",
         "repo": "nix-doom-emacs-unstraightened",
         "rev": "4520f99540de92bd84b11e8f466b9e27851093bc",
+=======
+        "lastModified": 1793722781,
+        "narHash": "sha256-JBQ5L+LfpDvTUF9hncn6ZlXgfkKsJcXopd6C9mYrNso=",
+        "owner": "marienz",
+        "repo": "nix-doom-emacs-unstraightened",
+        "rev": "ecb277a5d7bbcb3f3eb1421fe096541514e535e0",
+>>>>>>> parent of eb35afe (Update flake lock file.)
         "type": "github"
       },
       "original": {
@@ -127,11 +151,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1794042290,
-        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
         "type": "github"
       },
       "original": {
@@ -143,11 +167,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1794042290,
-        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
         "type": "github"
       },
       "original": {
@@ -200,11 +224,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1794225319,
-        "narHash": "sha256-9HV7D7rM17u8CHgN7SyzEmDAsCr5vADUfMl2+SdNqVk=",
+        "lastModified": 1793877457,
+        "narHash": "sha256-Wq/WX5jzG/UHJ79LWv9OzSiWoPCYmcfKbUIv0+qMoRU=",
         "owner": "openstenoproject",
         "repo": "plover-flake",
-        "rev": "bcfbfa8b4c86dd4c836fe799bc7570e23e274ab0",
+        "rev": "398a089e75443d176276d6fe64fe19ed552a439e",
         "type": "github"
       },
       "original": {
@@ -248,11 +272,11 @@
     "plover_plugins_registry": {
       "flake": false,
       "locked": {
-        "lastModified": 1794160818,
-        "narHash": "sha256-8wfVmqWxIhzbdOzW9BpiVen60Ywz6B0uZ0zAbJW6AUk=",
+        "lastModified": 1793475758,
+        "narHash": "sha256-zUHz5AJTnVdUQvjUlpxVejz19+2bPGPYZuuo+oVfXdQ=",
         "owner": "openstenoproject",
         "repo": "plover_plugins_registry",
-        "rev": "63768c7d79cb20b8e8e74e904774be6693733fd4",
+        "rev": "7e90626bc09b3ea1df5bc14da595dc47856c6ea2",
         "type": "github"
       },
       "original": {
