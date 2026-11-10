@@ -698,9 +698,9 @@ The result will be displayed in a buffer."
 ;; (after! sessions
 ;;   (doom/load-session 1))
 
-(after! persp-mode
-  ;; Auto restores the session 1 second after startup. 0 disables it (the default).
-  (setq persp-auto-resume-time 1))
+;; (after! persp-mode
+;;   ;; Auto restores the session 1 second after startup. 0 disables it (the default).
+;;   (setq persp-auto-resume-time 1))
 
 ;; automatically manage treesit
 (use-package! treesit-auto
